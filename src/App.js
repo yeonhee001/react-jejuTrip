@@ -7,10 +7,13 @@ import CmList from './pages/03-community/CmList';
 import PlannerList from './pages/04-planner/PlannerList';
 import My from './pages/05-mypage/My';
 
+import Toggle from './component/_common/Toggle';
+
 function App() {
   return (
     <Router>
       <Header/>
+      <Toggle/>
 
       <main>
         <Routes>
