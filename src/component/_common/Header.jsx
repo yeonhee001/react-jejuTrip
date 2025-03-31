@@ -1,8 +1,15 @@
 import React from 'react'
+import List from '../icons/List'
+import Search from '../icons/Search'
+
 
 function Header() {
   return (
-    <div>Header</div>
+    <header>
+      <h2><img src='./imgs/logo_blue'/></h2>
+      <Search/>
+      <List/>
+    </header>
   )
 }
 
