@@ -2,7 +2,7 @@ import React from 'react'
 
 function CmSubject() {
   return (
-    <div>CmSubjec t</div>
+    <div>CmSubject</div>
   )
 }
 
