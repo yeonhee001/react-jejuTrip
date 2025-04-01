@@ -2,7 +2,7 @@ import React from 'react'
 
 function Smile() {
   return (
-    <div>Smile</div>
+    <div><img src='/imgs/_icons/Smile.svg'/></div>
   )
 }
 

@@ -1,8 +1,8 @@
 import React from 'react'
 
-function TagBtn() {
+function TagBtn({tagbtn}) {
   return (
-    <div>TagBtn</div>
+    <div className='tagbtn'>{tagbtn}</div>
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 function Check() {
   return (
-    <div>Check</div>
+    <div><img src='/imgs/_icons/Check.svg'/></div>
   )
 }
 

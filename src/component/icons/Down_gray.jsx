@@ -2,7 +2,7 @@ import React from 'react'
 
 function Down_gray() {
   return (
-    <div>Down_gray</div>
+    <div><img src='/imgs/_icons/Down_gray.svg'/></div>
   )
 }
 

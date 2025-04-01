@@ -1,3 +1,6 @@
+@import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 @import "./00-login/login.scss";
 @import "./00-search/search.scss";
 @import "./00-search/searchDetail.scss";
@@ -20,3 +23,21 @@
 @import "./05-mypage/like.scss";
 @import "./05-mypage/my.scss";
 @import "./05-mypage/qna.scss";
+
+*{box-sizing: border-box; padding:0; margin: 0; word-break: keep-all;} 
+html{font-size: 14px; color: #333;} 
+body{ 
+    user-select: none; 
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    margin: 0; padding: 0;
+    font-family:'NanumSquare';
+}
+h1,h2,h3,h4,h5,p,figure{margin: 0; padding: 0;}
+ol,ul,li{list-style: none; margin: 0; padding:0;}
+button{border: 0; margin: 0; padding: 0;}
+img{border: 0; vertical-align: middle;}
+a{text-decoration: none; color: #333;}
+input, textarea{border:0;}
+::before,::after{margin:0; padding: 0; box-sizing: border-box;}
+
