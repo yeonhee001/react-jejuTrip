@@ -1,8 +1,12 @@
 import React from 'react'
+import Reply from '../../component/icons/Reply'
+import Close from '../../component/icons/Close'
 
 function CmDetail() {
   return (
-    <div>CmDetail</div>
+    <div>
+      <Close/>
+    </div>
   )
 }
 

@@ -2,7 +2,10 @@ import React from 'react'
 
 function Dot() {
   return (
-    <div>Dot</div>
+    <div>
+      <img
+      src='/imgs/_icons/Dot.svg'/>
+    </div>
   )
 }
 
