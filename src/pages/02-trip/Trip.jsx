@@ -7,9 +7,11 @@ import Left_black from '../../component/icons/Left_black'
 import Right_black from '../../component/icons/Right_black'
 import Right_blue from '../../component/icons/Right_blue'
 import Burger from '../../component/_common/Burger'
+import PlaceItem from '../../component/_common/PlaceItem'
 function Trip() {
   return (
     <div>
+      
       <Burger/>
       <Heart_fill_red/>
       <Heart_fill_white/>
@@ -18,6 +20,7 @@ function Trip() {
       <Left_black/>
       <Right_black/>
       <Right_blue/>
+      <PlaceItem/>
       </div>
          
   )

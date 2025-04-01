@@ -1,8 +1,9 @@
 import React from 'react'
+import TripSilde from '../../component/02-trip/TripSilde'
 
 function TripDetail() {
   return (
-    <div>TripDetail</div>
+    <div><TripSilde/></div>
   )
 }
 
