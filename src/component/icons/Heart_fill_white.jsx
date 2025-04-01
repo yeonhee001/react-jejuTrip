@@ -2,7 +2,7 @@ import React from 'react'
 
 function Heart_fill_white() {
   return (
-    <div>Heart_fill_white</div>
+    <div><img src="/imgs/_icons/Heart_fill_white.svg" alt="" /></div>
   )
 }
 

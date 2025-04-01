@@ -2,7 +2,7 @@ import React from 'react'
 
 function Right_black() {
   return (
-    <div>Right_black</div>
+    <div><img src="/imgs/_icons/Right_black.svg" alt="" /></div>
   )
 }
 

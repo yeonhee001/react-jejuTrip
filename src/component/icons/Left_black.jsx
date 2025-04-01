@@ -2,7 +2,7 @@ import React from 'react'
 
 function Left_black() {
   return (
-    <div>Left_black</div>
+    <div><img src="/imgs/_icons/Left_black.svg" alt="" /></div>
   )
 }
 
