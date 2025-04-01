@@ -2,7 +2,9 @@ import React from 'react'
 
 function Arrow() {
   return (
-    <div>Arrow</div>
+    <div>
+      <img src='/imgs/_icons/Arrow.svg'/>
+    </div>
   )
 }
 

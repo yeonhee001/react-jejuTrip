@@ -2,7 +2,9 @@ import React from 'react'
 
 function Home_blue() {
   return (
-    <div>Home_blue</div>
+    <div>
+      <img src='/imgs/_icons/Home_blue.svg'/>
+    </div>
   )
 }
 

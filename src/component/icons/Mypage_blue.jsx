@@ -2,7 +2,9 @@ import React from 'react'
 
 function Mypage_blue() {
   return (
-    <div>Mypage_blue</div>
+    <div>
+      <img src='/imgs/_icons/Mypage_blue.svg'/>
+    </div>
   )
 }
 
