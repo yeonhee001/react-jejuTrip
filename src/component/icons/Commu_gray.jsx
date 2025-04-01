@@ -2,7 +2,9 @@ import React from 'react'
 
 function Commu_gray() {
   return (
-    <div>Commu_gray</div>
+    <div>
+      <img src='/imgs/_icons/Commu_gray.svg'/>
+    </div>
   )
 }
 

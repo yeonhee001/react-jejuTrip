@@ -2,7 +2,9 @@ import React from 'react'
 
 function Map_blue() {
   return (
-    <div>Map_blue</div>
+    <div>
+      <img src='/imgs/_icons/Map_blue.svg'/>
+    </div>
   )
 }
 

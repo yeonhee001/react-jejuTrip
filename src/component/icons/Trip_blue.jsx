@@ -2,7 +2,9 @@ import React from 'react'
 
 function Trip_blue() {
   return (
-    <div>Trip_blue</div>
+    <div>
+      <img src='/imgs/_icons/Trip_blue.svg'/>
+    </div>
   )
 }
 
