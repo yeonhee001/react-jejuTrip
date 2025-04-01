@@ -2,7 +2,7 @@ import React from 'react'
 
 function QnA() {
   return (
-    <div>QnA</div>
+    <div>자주 묻는 질문</div>
   )
 }
 
