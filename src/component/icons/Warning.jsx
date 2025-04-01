@@ -2,7 +2,7 @@ import React from 'react'
 
 function Warning() {
   return (
-    <div>Warning</div>
+    <div><img src='/imgs/_icons/Warning.svg'/></div>
   )
 }
 
