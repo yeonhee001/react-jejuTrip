@@ -3,9 +3,27 @@ import Header from './component/_common/Header';
 import Menu from './component/_common/Menu';
 import Home from './pages/01-home/Home';
 import Trip from './pages/02-trip/Trip';
+import TripList from './pages/02-trip/TripList';
+import TripDetail from './pages/02-trip/TripDetail';
 import CmList from './pages/03-community/CmList';
+import CmDetail from './pages/03-community/CmDetail';
+import CmUserDetail from './pages/03-community/CmUserDetail';
+import CmPostPage from './pages/03-community/CmPostPage';
+import CmSubjectPage from './pages/03-community/CmSubjectPage';
+import CmPhoto from './pages/03-community/CmPhoto';
 import PlannerList from './pages/04-planner/PlannerList';
+import Calendar from './pages/04-planner/Calendar';
+import PlannerDetail from './pages/04-planner/PlannerDetail';
+import Place from './pages/04-planner/Place';
 import My from './pages/05-mypage/My';
+import CheckList from './pages/05-mypage/check/CheckList';
+import CheckDetail from './pages/05-mypage/check/CheckDetail';
+import Like from './pages/05-mypage/Like';
+import Activity from './pages/05-mypage/Activity';
+import QnA from './pages/05-mypage/QnA';
+import Login from './pages/00-login/Login';
+import Search from './pages/00-search/Search';
+import SearchDetail from './pages/00-search/SearchDetail';
 
 function App() {
   return (

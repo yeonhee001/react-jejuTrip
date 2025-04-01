@@ -6,7 +6,7 @@ import Search from '../icons/Search'
 function Header() {
   return (
     <header>
-      <h2><img src='./imgs/logo_blue'/></h2>
+      <h2><img src='./imgs/logo_blue.svg'/></h2>
       <Search/>
       <List/>
     </header>
