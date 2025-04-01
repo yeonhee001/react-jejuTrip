@@ -2,7 +2,7 @@ import React from 'react'
 
 function Trash() {
   return (
-    <div>Trash</div>
+    <div><img src='/imgs/_icons/Trash.svg'/></div>
   )
 }
 
