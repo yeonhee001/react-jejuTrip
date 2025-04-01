@@ -2,7 +2,10 @@ import React from 'react'
 
 function Reply() {
   return (
-    <div>Reply</div>
+    <div>
+      <img
+      src='/imgs/_icons/Reply.svg'/>
+    </div>
   )
 }
 

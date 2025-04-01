@@ -2,7 +2,11 @@ import React from 'react'
 
 function Comment() {
   return (
-    <div>Comment</div>
+    <div>
+      <img
+      src='/imgs/_icons/Comment.svg'
+      />
+    </div>
   )
 }
 

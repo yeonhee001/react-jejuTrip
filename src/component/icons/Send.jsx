@@ -2,7 +2,10 @@ import React from 'react'
 
 function Send() {
   return (
-    <div>Send</div>
+    <div>
+      <img
+      src='/imgs/_icons/Send.svg'/>
+      </div>
   )
 }
 
