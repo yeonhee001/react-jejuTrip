@@ -1,8 +1,11 @@
 import React from 'react'
+import MoreBtn from '../../component/_common/MoreBtn'
 
 function Home() {
   return (
-    <div>Home</div>
+    <div>Home
+      <MoreBtn/>
+    </div>
   )
 }
 

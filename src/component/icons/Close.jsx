@@ -2,7 +2,10 @@ import React from 'react'
 
 function Close() {
   return (
-    <div>Close</div>
+    <div>
+      <img
+      src='/imgs/_icons/Close.svg'/>
+      </div>
   )
 }
 

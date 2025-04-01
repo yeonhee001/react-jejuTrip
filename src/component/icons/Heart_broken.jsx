@@ -2,7 +2,7 @@ import React from 'react'
 
 function Heart_broken() {
   return (
-    <div>Heart_broken</div>
+    <div><img src='/imgs/_icons/Heart_broken.svg'/></div>
   )
 }
 

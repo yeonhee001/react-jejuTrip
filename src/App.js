@@ -25,6 +25,8 @@ import Login from './pages/00-login/Login';
 import Search from './pages/00-search/Search';
 import SearchDetail from './pages/00-search/SearchDetail';
 
+import './styles/_style.scss';
+
 function App() {
   return (
     <Router>

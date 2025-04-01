@@ -2,7 +2,7 @@ import React from 'react'
 
 function Activity() {
   return (
-    <div>Activity</div>
+    <div><img src='/imgs/_icons/Activity.svg'/></div>
   )
 }
 
