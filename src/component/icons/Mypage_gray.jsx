@@ -2,7 +2,9 @@ import React from 'react'
 
 function Mypage_gray() {
   return (
-    <div>Mypage_gray</div>
+    <div>
+      <img src='/imgs/_icons/Mypage_gray.svg'/>
+    </div>
   )
 }
 

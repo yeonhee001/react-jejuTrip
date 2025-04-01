@@ -2,7 +2,9 @@ import React from 'react'
 
 function List() {
   return (
-    <div>List</div>
+    <div>
+      <img src='/imgs/_icons/List.svg'/>
+    </div>
   )
 }
 

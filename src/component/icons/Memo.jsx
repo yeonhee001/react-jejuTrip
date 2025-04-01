@@ -2,7 +2,7 @@ import React from 'react'
 
 function Memo() {
   return (
-    <div>Memo</div>
+    <div><img src='/imgs/_icons/Memo.svg'/></div>
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 function Up_gray() {
   return (
-    <div>Up_gray</div>
+    <div><img src='/imgs/_icons/Up_gray.svg'/></div>
   )
 }
 

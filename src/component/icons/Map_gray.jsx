@@ -2,7 +2,9 @@ import React from 'react'
 
 function Map_gray() {
   return (
-    <div>Map_gray</div>
+    <div>
+      <img src='/imgs/_icons/Map_gray.svg'/>
+    </div>
   )
 }
 
