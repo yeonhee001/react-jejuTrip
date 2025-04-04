@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import "../../styles/05-mypage/like.scss";
 import TabPage from '../../component/_common/TabPage';
+import TabItem from '../../component/_common/TabItem';
+import "../../styles/05-mypage/like.scss";
 
 function Like() {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -8,6 +9,7 @@ function Like() {
   return (
     <div>
       <TabPage type={'like'} onTabChange={setSelectedTab}/>
+      <TabItem/>
     </div>
   )
 }

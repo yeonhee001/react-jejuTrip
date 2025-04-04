@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Heart_broken() {
+function Heart_broken({className}) {
   return (
-    <div><img src='/imgs/_icons/Heart_broken.svg'/></div>
+    <div className={className}><img src='/imgs/_icons/Heart_broken.svg'/></div>
   )
 }
 
