@@ -1,8 +1,10 @@
 import React from 'react'
 
-function Right_black() {
+function Right_black({className}) {
   return (
-    <div><img src="/imgs/_icons/Right_black.svg" alt="" /></div>
+    <div className={className}>
+      <img src="/imgs/_icons/Right_black.svg" alt="" />
+    </div>
   )
 }
 

@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Map_blue() {
+function Map_blue({className}) {
   return (
-    <div>
+    <div className={className}>
       <img src='/imgs/_icons/Map_blue.svg'/>
     </div>
   )

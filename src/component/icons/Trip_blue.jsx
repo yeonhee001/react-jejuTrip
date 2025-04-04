@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Trip_blue() {
+function Trip_blue({className}) {
   return (
-    <div>
+    <div className={className}>
       <img src='/imgs/_icons/Trip_blue.svg'/>
     </div>
   )

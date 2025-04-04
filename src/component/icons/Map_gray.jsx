@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Map_gray() {
+function Map_gray({className}) {
   return (
-    <div>
+    <div className={className}>
       <img src='/imgs/_icons/Map_gray.svg'/>
     </div>
   )

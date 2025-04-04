@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Arrow() {
+function Arrow({className, onClick}) {
   return (
-    <div>
-      <img src='/imgs/_icons/Arrow.svg'/>
+    <div className={className} onClick={onClick}>
+      <img src='/imgs/_icons/Arrow.svg' alt=''/>
     </div>
   )
 }

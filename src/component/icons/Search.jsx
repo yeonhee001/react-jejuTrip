@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Search() {
+function Search({className}) {
   return (
-    <div>
-      <img src='/imgs/_icons/Search.svg'/>
+    <div className={className}>
+      <img src='/imgs/_icons/Search.svg' alt=''/>
     </div>
   )
 }

@@ -1,8 +1,10 @@
 import React from 'react'
 
-function Heart_stroke_red() {
+function Heart_stroke_red({className}) {
   return (
-    <div><img src="/imgs/_icons/Heart_stroke_red.svg" alt="" /></div>
+    <div className={className}>
+      <img src="/imgs/_icons/Heart_stroke_red.svg" alt="" />
+    </div>
   )
 }
 

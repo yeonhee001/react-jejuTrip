@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Home_gray() {
+function Home_gray({className}) {
   return (
-    <div>
-      <img src='/imgs/_icons/Home_gray.svg'/>
+    <div className={className}>
+      <img src='/imgs/_icons/Home_gray.svg' alt=''/>
     </div>
   )
 }
