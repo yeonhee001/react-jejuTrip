@@ -1,4 +1,3 @@
-import React from 'react'
 import React, { useState } from 'react';
 import Down_black from '../../component/icons/Down_black';
 import Up_gray from '../../component/icons/Up_gray';
