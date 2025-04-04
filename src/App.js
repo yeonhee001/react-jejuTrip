@@ -12,7 +12,6 @@ import CmPostPage from './pages/03-community/CmPostPage';
 import CmSubjectPage from './pages/03-community/CmSubjectPage';
 import CmPhoto from './pages/03-community/CmPhoto';
 import PlannerList from './pages/04-planner/PlannerList';
-import Calendar from './pages/04-planner/Calendar';
 import PlannerDetail from './pages/04-planner/PlannerDetail';
 import Place from './pages/04-planner/Place';
 import My from './pages/05-mypage/My';
@@ -36,7 +35,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/trip' element={<Trip/>}/>   
-          <Route path='/trip/triplist' element={<TripList/>}/>   
+          <Route path='/trip/triplist' element={<TripList/>}/>
           <Route path='/trip/triplist/tripdetail' element={<TripDetail/>}/>
           
           <Route path='/community' element={<CmList/>}/>
@@ -47,9 +46,8 @@ function App() {
           <Route path='/community/cmphoto' element={<CmPhoto/>}/>
 
           <Route path='/planner' element={<PlannerList/>}/>
-          <Route path='/planner/calendar' element={<Calendar/>}/>
-          <Route path='/planner/plannerdetail' element={<PlannerDetail/>}/>
-          <Route path='/planner/plannerdetail/place' element={<Place/>}/>
+          <Route path='/planner/plannerdetail/:id' element={<PlannerDetail/>}/>
+          <Route path='/planner/plannerdetail/:id/place' element={<Place/>}/>
 
           <Route path='/my' element={<My/>}/>
           <Route path='/my/checklist' element={<CheckList/>}/>
