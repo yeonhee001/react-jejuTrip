@@ -1,8 +1,11 @@
 import React from 'react'
 
-function Ranking() {
+function Ranking({rank, word}) {  
   return (
-    <div>Ranking</div>
+    <div className='rankingOne'>
+      <b>{rank}</b>
+      <span>{word}</span>
+    </div>
   )
 }
 

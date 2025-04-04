@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Commu_gray() {
+function Commu_gray({className}) {
   return (
-    <div>
+    <div className={className}>
       <img src='/imgs/_icons/Commu_gray.svg'/>
     </div>
   )

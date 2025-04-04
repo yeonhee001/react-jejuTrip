@@ -2,7 +2,7 @@ import React from 'react'
 
 function Heart_stroke_white() {
   return (
-    <div><img src="/imgs/_icons_Heart_stroke_white.svg" alt="" /></div>
+    <div><img src="/imgs/_icons/Heart_stroke_white.svg" alt="" /></div>
   )
 }
 

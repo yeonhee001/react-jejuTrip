@@ -1,0 +1,44 @@
+main{margin-top: 59px;}
+
+//Searchbar
+.searchbar{
+  >button{
+    background-color: transparent;
+    cursor: pointer;
+    .search-btn{
+      padding-right: 17px;
+      >img{width: 16px;}
+    }
+  }
+}
+
+//Ranking
+.pop-search{
+  width: 100%;
+  h2{
+    margin: 32px 0 16px;
+    font-size: 18px;
+  }
+  .pop-cont{
+    display: flex;
+    justify-content: space-between;
+    >span{
+      padding-right: 100px;
+    }
+  }
+}
+.rankingOne{
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  b{
+    font-size: 14px;
+    font-weight: bold;
+    color: #5886BA;
+  }
+  span{
+    font-size: 14px;
+    margin-left: 14px;
+    width: 100px;
+  }
+}

@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Mypage_gray() {
+function Mypage_gray({className}) {
   return (
-    <div>
+    <div className={className}>
       <img src='/imgs/_icons/Mypage_gray.svg'/>
     </div>
   )

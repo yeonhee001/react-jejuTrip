@@ -3,8 +3,7 @@ import React from 'react'
 function Dot() {
   return (
     <div>
-      <img
-      src='/imgs/_icons/Dot.svg'/>
+      <img src='/imgs/_icons/Dot.svg'/>
     </div>
   )
 }
