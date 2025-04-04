@@ -1,8 +1,9 @@
 import React from 'react'
 
-function Heart_stroke_white() {
+function Heart_stroke_white({className}) {
   return (
-    <div><img src="/imgs/_icons_Heart_stroke_white.svg" alt="" /></div>
+    <div className={className}>
+      <img src="/imgs/_icons/Heart_stroke_white.svg" alt="" /></div>
   )
 }
 

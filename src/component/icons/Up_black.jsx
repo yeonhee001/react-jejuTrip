@@ -1,8 +1,9 @@
 import React from 'react'
 
-function Up_black() {
+function Up_black({className}) {
   return (
-    <div><img src='/imgs/_icons/Up_black.svg'/></div>
+    <div className={className}>
+      <img src='/imgs/_icons/Up_black.svg'/></div>
   )
 }
 

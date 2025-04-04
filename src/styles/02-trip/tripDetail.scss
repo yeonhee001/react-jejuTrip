@@ -1,0 +1,116 @@
+.triptag{
+    width: 76px;
+    height: 38px;
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 10px 17px;
+    font-size: 12px;
+    
+    // padding: 10px 27px;
+    // text-align: center;
+}
+.tripslide{
+    div{
+        display: block;
+    }
+    width: 100%;
+    height: 100px;
+    border-radius: 15px;
+    b{
+        display: block;
+    }
+
+}
+.backnext{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 33px;
+    gap: 5px;
+    a{
+        display: flex;
+        cursor: pointer;
+    }
+
+}
+.swiperaround{
+    b{
+        padding-top: 7px;
+        font-size: 10px;
+    }
+.triparoundslide{
+    display: block;
+    width: 80px;
+    height: 102px;
+    border-radius: 10px;
+
+}
+}
+
+.tripdetail{
+
+    .detail{
+
+    }
+    .detailimg{
+       
+        position: relative;
+        >img{
+            width: 375px;
+            height: 411px;
+        }
+        .tripdetailheart{
+            position: absolute;
+            right:5%;
+            bottom: 7%;
+        }
+    }
+    .tripdetailtxt{
+        h2{
+            font-size: 20px;
+            color: #333333;
+            font-weight: bold;
+            padding: 32px 0 16px 0;
+        }
+        p{
+            font-size: 14px;
+            font-weight: bold;
+            padding-bottom:10px ;
+            color: #333333;
+        }
+        b{
+            padding: 10px 0;
+            font-size: 14px;
+        }
+        span{
+            padding-top: 10px;
+            display: block;
+            font-size: 14px;
+            
+        }
+    }
+
+}
+.aroundbottom{
+    h3{
+        font-size: 14px;
+        font-weight: bold;
+        padding-bottom: 7px;
+    }
+}
+.aroundswiper{
+    img{
+        width: 80px;
+        height: 102px;
+        border-radius: 10px;
+        padding-bottom: 7px;
+    }
+    p{
+        font-size: 14px;
+        color: #333333;
+        padding-bottom: 5px;
+    }
+    span{
+        font-size: 10px;
+        color: #333333;
+    }
+}

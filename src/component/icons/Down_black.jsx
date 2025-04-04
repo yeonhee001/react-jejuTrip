@@ -1,8 +1,9 @@
 import React from 'react'
 
-function Down_black() {
+function Down_black({className}) {
   return (
-    <div><img src='/imgs/_icons/Down_black.svg'/></div>
+    <div className={className}>
+      <img src='/imgs/_icons/Down_black.svg'/></div>
   )
 }
 

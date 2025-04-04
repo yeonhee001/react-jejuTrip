@@ -1,9 +1,26 @@
-import React from 'react'
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-function TripSildeItem() {
-  return (
-    <div>TripSildeItem</div>
-  )
-}
+// Import Swiper styles
 
-export default TripSildeItem
+
+export default () => {
+return (
+    <Swiper
+        spaceBetween={0}
+        slidesPerView={1}
+        onSlideChange={() => console.log('slide change')}
+        onSwiper={(swiper) => console.log(swiper)}
+        // loop={true}
+        // autoplay={{delay:3000}}
+    >
+        <SwiperSlide>
+            <div className="swiperitem">
+                <img className="tripslide" src="/imgs/component_placeitem.jpg.jpg" alt="" />
+                <b>성산일출봉</b>
+            </div>
+        </SwiperSlide>
+
+    </Swiper>
+    );
+};

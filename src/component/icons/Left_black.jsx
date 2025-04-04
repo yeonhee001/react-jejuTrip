@@ -1,8 +1,9 @@
 import React from 'react'
 
-function Left_black() {
+function Left_black({className}) {
   return (
-    <div><img src="/imgs/_icons/Left_black.svg" alt="" /></div>
+    <div className={className}>
+      <img src="/imgs/_icons/Left_black.svg" alt="" /></div>
   )
 }
 

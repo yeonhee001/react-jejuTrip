@@ -1,8 +1,9 @@
 import React from 'react'
 
-function Heart_fill_white() {
+function Heart_fill_white({className}) {
   return (
-    <div><img src="/imgs/_icons/Heart_fill_white.svg" alt="" /></div>
+    <div className={className}>
+    <img src="/imgs/_icons/Heart_fill_white.svg" alt="" /></div>
   )
 }
 
