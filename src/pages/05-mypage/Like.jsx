@@ -1,8 +1,10 @@
-import React from 'react'
-import './Like.scss';
-import './TabPage.jsx';
-import './TabItem.jsx';
-import './Toggle.jsx';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom'
+import TabItem from '../../component/_common/TabItem';
+import Toggle from '../../component/_common/Toggle';
+
+import '../../styles/05-mypage/like.scss';
+
 
 function Like() {
   const [places,setPlaces] = useState([true]);
@@ -10,10 +12,15 @@ function Like() {
 
   return (
     <div>
-            <div>좋아요</div>
-  
-            <NavLink to="/장소">장소</NavLink>
-            <NavLink to="/게시물">게시물</NavLink>
+        <TabItem/>
+        <Toggle/>
+
+
+                
+      
+            <div><b>좋아요</b></div>
+            <NavLink to="/장소" className="nav-item">장소</NavLink>
+            <NavLink to="/게시물" className="nav-item">게시물</NavLink>
 
          
     </div>

@@ -1,8 +1,10 @@
 import React from 'react'
 
-function Smile() {
+function Smile({className}) {
   return (
-    <div><img src='/imgs/_icons/Smile.svg'/></div>
+    <div className={className}>
+      <img src='/imgs/_icons/Smile.svg'/>
+    </div>
   )
 }
 
