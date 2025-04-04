@@ -6,4 +6,4 @@ function Heart_broken({className}) {
   )
 }
 
-export default Heart_brokena
+export default Heart_broken
