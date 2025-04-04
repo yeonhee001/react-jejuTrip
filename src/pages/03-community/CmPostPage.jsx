@@ -1,22 +1,42 @@
-// import { FormProvider, useForm } from "react-hook-form";
-// import CmNewPost from "../../component/03-community/post/CmNewPost";
+import { FormProvider, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import dayjs from "dayjs";
+import CmNewPost from "../../component/03-community/post/CmNewPost";
 
-// // type FormValues = {
-// //   title: string;
-// //   description: string;
-// // };
+export default function CmPostPage() {
+  const navigate = useNavigate();
+  const postForm = useForm({
+    defaultValues: {
+      title: "",
+      description: "",
+    },
+  });
 
-// export default function PostWriteScreen(){
-//   // const postForm = useForm<FormValues>({
-//   //   defaultValues: {
-//   //     title: "",
-//   //     description: "",
-//   //   },
-//   // });
+  const onSubmit = (data) => {
+    const newPost = {
+      id: Date.now(),
+      title: data.title,
+      description: data.description,
+      createdAt: dayjs().format("YYYY.MM.DD HH:mm"),
+      author: {
+        id: 2,
+        nickname: "새 사용자",
+        imageUri: "https://via.placeholder.com/40",
+      },
+      likes: [],
+      hasVote: false,
+      voteCount: 0,
+      commentCount: 0,
+    };
 
-//   return (
-//     // <FormProvider {...postForm}>
-//     //   <CmNewPost />
-//     // </FormProvider>
-//   )
-// }
+    navigate("/community", { state: { newPost } }); // 작성한 글 데이터 전달
+  };
+
+  return (
+    <FormProvider {...postForm}>
+      <form onSubmit={postForm.handleSubmit(onSubmit)}>
+        <CmNewPost />
+      </form>
+    </FormProvider>
+  );
+}

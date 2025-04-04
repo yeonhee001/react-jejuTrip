@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
-function CmDeleteBtn() {
+function CmDeleteBtn({ onClick }) {
   return (
-    <div>CmDeleteBtn</div>
-  )
+    <button className="cm-delete-btn" onClick={onClick}>
+      삭제하기
+    </button>
+  );
 }
 
-export default CmDeleteBtn
+export default CmDeleteBtn;

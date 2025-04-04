@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Comment() {
+function Comment(className) {
   return (
-    <div>
+    <div className={className}>
       <img
       src='/imgs/_icons/Comment.svg'
       />

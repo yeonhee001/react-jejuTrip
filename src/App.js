@@ -36,12 +36,12 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/trip' element={<Trip/>}/>   
-          <Route path='/trip/triplist' element={<TripList/>}/>   
+          <Route path='/trip/triplist' element={<TripList/>}/>
           <Route path='/trip/triplist/tripdetail' element={<TripDetail/>}/>
           
           <Route path='/community' element={<CmList/>}/>
-          <Route path='/community/cmdetail' element={<CmDetail/>}/>
-          <Route path='/community/cmuserdetail' element={<CmUserDetail/>}/>
+          <Route path='/community/cmdetail/:id' element={<CmDetail/>}/>
+          <Route path='/community/cmuserdetail/:id' element={<CmUserDetail/>}/>
           <Route path='/community/cmpostpage' element={<CmPostPage/>}/>
           <Route path='/community/cmsubjectpage' element={<CmSubjectPage/>}/>
           <Route path='/community/cmphoto' element={<CmPhoto/>}/>

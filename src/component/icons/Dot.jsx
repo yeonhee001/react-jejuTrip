@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Dot() {
+function Dot({className}) {
   return (
-    <div>
+    <div className={className}>
       <img
       src='/imgs/_icons/Dot.svg'/>
     </div>

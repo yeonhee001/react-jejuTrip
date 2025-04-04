@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Close() {
+function Close(className) {
   return (
-    <div>
+    <div className={className}>
       <img
       src='/imgs/_icons/Close.svg'/>
       </div>
