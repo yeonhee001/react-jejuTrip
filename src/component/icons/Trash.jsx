@@ -1,8 +1,10 @@
 import React from 'react'
 
-function Trash() {
+function Trash({className}) {
   return (
-    <div><img src='/imgs/_icons/Trash.svg'/></div>
+    <div className={className}>
+      <img src='/imgs/_icons/Trash.svg'/>
+    </div>
   )
 }
 

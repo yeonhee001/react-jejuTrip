@@ -53,7 +53,7 @@ function App() {
 
           <Route path='/my' element={<My/>}/>
           <Route path='/my/checklist' element={<CheckList/>}/>
-          <Route path='/my/checklist/checkDetail' element={<CheckDetail/>}/>
+          <Route path='/my/checklist/checkDetail/:id' element={<CheckDetail/>}/>
           <Route path='/my/like' element={<Like/>}/>
           <Route path='/my/activity' element={<Activity/>}/>
           <Route path='/my/qna' element={<QnA/>}/>

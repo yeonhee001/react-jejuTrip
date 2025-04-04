@@ -1,4 +1,5 @@
 import React from 'react'
+import "../../styles/02-trip/trip.scss";
 import Heart_fill_red from '../../component/icons/Heart_fill_red'
 import Heart_fill_white from '../../component/icons/Heart_fill_white'
 import Heart_stroke_red from '../../component/icons/Heart_stroke_red'

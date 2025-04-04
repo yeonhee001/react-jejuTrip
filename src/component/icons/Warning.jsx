@@ -1,8 +1,10 @@
 import React from 'react'
 
-function Warning() {
+function Warning({className}) {
   return (
-    <div><img src='/imgs/_icons/Warning.svg'/></div>
+    <span className={className}>
+      <img src='/imgs/_icons/Warning.svg'/>
+    </span>
   )
 }
 

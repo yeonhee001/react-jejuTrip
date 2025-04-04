@@ -1,8 +1,10 @@
 import React from 'react'
 
-function Check() {
+function Check({className}) {
   return (
-    <div><img src='/imgs/_icons/Check.svg'/></div>
+    <div className={className}>
+      <img src='/imgs/_icons/Check.svg'/>
+    </div>
   )
 }
 

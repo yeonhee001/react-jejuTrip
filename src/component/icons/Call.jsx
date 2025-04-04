@@ -1,8 +1,10 @@
 import React from 'react'
 
-function Call() {
+function Call({className}) {
   return (
-    <div><img src='/imgs/_icons/Call.svg'/></div>
+    <span className={className}>
+      <img src='/imgs/_icons/Call.svg'/>
+    </span>
   )
 }
 
