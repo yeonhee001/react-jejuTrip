@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Home_blue() {
+function Home_blue({className}) {
   return (
-    <div>
-      <img src='/imgs/_icons/Home_blue.svg'/>
+    <div className={className}>
+      <img src='/imgs/_icons/Home_blue.svg' alt=''/>
     </div>
   )
 }

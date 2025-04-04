@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Mypage_blue() {
+function Mypage_blue({className}) {
   return (
-    <div>
+    <div className={className}>
       <img src='/imgs/_icons/Mypage_blue.svg'/>
     </div>
   )

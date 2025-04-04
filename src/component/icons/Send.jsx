@@ -1,11 +1,10 @@
 import React from 'react'
 
-function Send() {
+function Send({className}) {
   return (
-    <div>
-      <img
-      src='/imgs/_icons/Send.svg'/>
-      </div>
+    <div className={className}>
+      <img src='/imgs/_icons/Send.svg'/>
+    </div>
   )
 }
 

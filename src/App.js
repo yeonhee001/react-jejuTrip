@@ -21,7 +21,7 @@ import Like from './pages/05-mypage/Like';
 import Activity from './pages/05-mypage/Activity';
 import QnA from './pages/05-mypage/QnA';
 import Login from './pages/00-login/Login';
-import Search from './pages/00-search/Search';
+import SearchPage from './pages/00-search/SearchPage';
 import SearchDetail from './pages/00-search/SearchDetail';
 
 import './styles/_style.scss';
@@ -35,8 +35,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/trip' element={<Trip/>}/>   
-          <Route path='/trip/triplist' element={<TripList/>}/>
-          <Route path='/trip/triplist/tripdetail' element={<TripDetail/>}/>
+          <Route path='/trip/triplist/:type' element={<TripList/>}/>
+          <Route path='/trip/triplist/:type/tripdetail/:id' element={<TripDetail/>}/>
           
           <Route path='/community' element={<CmList/>}/>
           <Route path='/community/cmdetail' element={<CmDetail/>}/>
@@ -58,7 +58,7 @@ function App() {
 
           <Route path='/login' element={<Login/>}/>
 
-          <Route path='/search' element={<Search/>}/>
+          <Route path='/search' element={<SearchPage/>}/>
           <Route path='/search/searchdetail' element={<SearchDetail/>}/>
         </Routes>
       </main>

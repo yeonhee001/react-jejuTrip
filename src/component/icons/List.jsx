@@ -1,9 +1,9 @@
 import React from 'react'
 
-function List() {
+function List({className}) {
   return (
-    <div>
-      <img src='/imgs/_icons/List.svg'/>
+    <div className={className}>
+      <img src='/imgs/_icons/List.svg' alt=''/>
     </div>
   )
 }
