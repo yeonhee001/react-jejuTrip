@@ -1,8 +1,12 @@
 import React from 'react'
 
-function TripTag() {
+function TripTag({tag}) {
   return (
-    <div>TripTag</div>
+    <div className='triptag'>
+      <ul>
+        <li>{tag}</li>
+      </ul>
+    </div>
   )
 }
 

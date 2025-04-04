@@ -8,4 +8,4 @@ function Close({className}) {
   )
 }
 
-export default Close
+export default Close 

@@ -1,0 +1,60 @@
+.tripfilter {
+    position: relative;
+    width: 200px;
+    ul{
+        position: relative;
+        border: 1px solid black;
+    }
+    li{
+        font-size: 10px;
+        color: #333333;
+        text-align: center;
+        padding-bottom: 10px;
+        cursor: pointer;
+    }
+  }
+  .triptitle{
+    font-size: 20px;
+    color: #333333;
+    font-weight: bold;
+    padding-bottom: 7px;
+  }
+  .updown {
+    display: flex;
+    align-items: center;
+  }
+  
+  .order-button {
+    background: none;
+    border: none;
+    font-size: 10px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .trip_down,.trip_up {
+    cursor: pointer;
+  }
+  
+  .filter-list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    border: 1px solid #ddd;
+    width: 68px;
+    height: 92px;
+    list-style: none;
+    font-weight: bolder;
+    border-radius: 10px;
+    padding: 15px 15px 0 15px;
+  }
+  
+  .filter-list li {
+    cursor: pointer;
+    font-size: 10px;
+  }
+  
+  .filter-list li:hover {
+    text-decoration: underline;
+  }
