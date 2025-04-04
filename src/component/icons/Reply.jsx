@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Reply() {
+function Reply(className) {
   return (
-    <div>
+    <div className={className}>
       <img
       src='/imgs/_icons/Reply.svg'/>
     </div>

@@ -1,0 +1,124 @@
+.author-info {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    margin-top: 6px;
+    margin-bottom: 16px;
+  }
+  .comment {
+    font-size: 14px;
+    margin-top: 16px;
+  }
+  .comment-text2{
+    font-size: 12px;
+    color: #333333;
+    font-family: 'NanumSquare';
+    margin-top: 5px;
+    display: inline-block;
+  }
+
+  .comment-input {
+    width: 100%;
+    height: 60px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .comment-submit {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+  
+  .comment-username {
+    font-family: 'NanumSquareBold';
+    font-size: 14px;
+    margin-top: 16px;
+    display: inline-block;
+  }
+  .p-4 {
+    position: relative;
+}
+.cusor {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+}
+.cursor-pointer1 {
+    color: blue;
+    font-size: 12px;
+    font-family: 'NanumSquare';
+}
+.cursor-pointer2 {
+    color: red;
+    margin: 0 7px;
+    font-size: 12px;
+    font-family: 'NanumSquare';
+}
+.comment-item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-right: 10px; 
+  justify-content: space-between;
+}
+.interaction-container {
+  display: flex;
+  align-items: center;
+}
+.dot {
+  margin-left: auto;
+}
+.comment-actions {
+  display: flex;
+  gap: 8px;
+}
+.cm-delete-btn {
+  width: 300px;
+  height: 50px; 
+  border-radius: 10px; 
+  background-color: white;
+  color: #d9534f; 
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #f8d7da; 
+  }
+
+  &:active {
+    background-color: #f5c6cb; 
+  }
+}
+.delete-btn-container {
+  position: fixed; 
+  bottom: 10px; 
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+.comment-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.circle-icon{
+  transform: translateY(-15px);
+}

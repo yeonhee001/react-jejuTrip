@@ -1,14 +1,13 @@
 import React from 'react'
-import Reply from '../../component/icons/Reply'
-import Close from '../../component/icons/Close'
+import CmDetail2 from '../../component/03-community/CmDetail'
 import "../../styles/03-community/cmDetail.scss";
 
 function CmDetail() {
+    
   return (
     <div>
-      <Close/>
+      <CmDetail2 />
     </div>
   )
 }
-
 export default CmDetail

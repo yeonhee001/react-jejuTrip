@@ -4,8 +4,8 @@
 *{box-sizing: border-box; padding:0; margin: 0; word-break: keep-all;} 
 html{font-size: 14px; color: #333;} 
 body{ 
-    user-select: none; 
-    -webkit-user-select: none;
+    // user-select: none; 
+    // -webkit-user-select: none;
     -webkit-tap-highlight-color: transparent;
     margin: 0 auto; padding: 0 38px; width: 768px;
     font-family:'NanumSquare';
