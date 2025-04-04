@@ -30,14 +30,141 @@ body{
     user-select: none; 
     -webkit-user-select: none;
     -webkit-tap-highlight-color: transparent;
-    margin: 0; padding: 0;
-    font-family:'NanumSquare';
+    margin: 0 auto; padding: 0;
+    font-family:'NanumSquare'; 
+    width: 90%;
 }
 h1,h2,h3,h4,h5,p,figure{margin: 0; padding: 0;}
 ol,ul,li{list-style: none; margin: 0; padding:0;}
-button{border: 0; margin: 0; padding: 0;}
+button{border: 0; margin: 0; padding: 0; background-color: transparent;}
 img{border: 0; vertical-align: middle;}
 a{text-decoration: none; color: #333;}
 input, textarea{border:0;}
 ::before,::after{margin:0; padding: 0; box-sizing: border-box;}
+
+//태그모양
+.tagbtn{
+    display: inline-block;
+    padding: 7px 11px;
+    border: 1px solid #5886BA;
+    border-radius: 85px;
+    margin-right: 10px;
+}
+input:checked + .tagbtn{
+    display: inline-block;
+    padding: 7px 11px;
+    color: white;
+    border: 1px solid #5886BA;
+    background-color: #5886BA;
+    border-radius: 85px;
+}
+
+//버튼
+.btn{
+    background-color: white;
+    border: 1px solid #333;
+    border-radius: 7px;
+    padding: 12px 0;
+}
+
+//밀기 애니메이션
+.swipe{
+    position: relative; 
+    .path { 
+    width: 20px; 
+    height: 20px; 
+    position: absolute; 
+    background: rgba(149, 147, 241, 0.5); 
+    border-radius: 40px;
+    top: -7px; 
+    left: 25px;
+    visibility: hidden; 
+    }  
+    .hand-icon { 
+    background-image: url('../../public/imgs/click-hand.svg'); 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    width: 40px;
+    height: 44px;  
+    transform-origin: 52% 62%; 
+    }  
+}
+
+//밀어서 삭제 쓰레기통 아이콘
+.swiperitem{
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    overflow: hidden;
+    
+    .swiperlist{
+        width: 100%;
+        height: 72px;
+    }
+}
+
+//밀어서 삭제
+.swipe-container{
+    position: relative;
+    .children{
+        width: 100%;
+    }
+    .trashicon{
+        width: 80px;
+        height: 100%;
+        background: #FF0000;
+        position: absolute;
+        top: 0; right: -80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@keyframes swipe-hand { 
+    25% { 
+        transform: translate(20px) rotate(30deg); 
+    } 50% {
+        transform: translate(-20px) rotate(-15deg); 
+    } 100% { 
+        transform: translate(0px) rotate(0);
+    } 
+}  
+
+@keyframes swipe-dot { 
+    12% { 
+        visibility: visible; width: 40px; 
+    } 25% { 
+        visibility: visible; 
+        transform: translate(-65px); 
+        width: 20px; 
+    } 26% { 
+        visibility: hidden; 
+    } 
+}
+.weathertemp{
+    span::after{
+        content: '° ';
+    }
+    span:nth-of-type(2)::before{
+        content: ' / ';
+    }
+}
+
+@media (min-width:768px) and (max-width:1920px){
+    body{
+        width: 768px;
+        padding: 0 38px;
+    }
+}
+@media (max-width:768px){
+    body{
+        width: 90%;
+    }
+}
+@media (max-width:480px){
+    body{
+        width: 90%;
+    }
+}
 
