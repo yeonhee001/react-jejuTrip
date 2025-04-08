@@ -14,6 +14,7 @@ import CmPhoto from './pages/03-community/CmPhoto';
 import PlannerList from './pages/04-planner/PlannerList';
 import PlannerDetail from './pages/04-planner/PlannerDetail';
 import Place from './pages/04-planner/Place';
+import PickPlan from './pages/04-planner/PickPlan';
 import My from './pages/05-mypage/My';
 import CheckList from './pages/05-mypage/check/CheckList';
 import CheckDetail from './pages/05-mypage/check/CheckDetail';
@@ -48,6 +49,7 @@ function App() {
           <Route path='/planner' element={<PlannerList/>}/>
           <Route path='/planner/plannerdetail/:id' element={<PlannerDetail/>}/>
           <Route path='/planner/plannerdetail/:id/place' element={<Place/>}/>
+          <Route path='/planner/pickplan' element={<PickPlan/>}/>
 
           <Route path='/my' element={<My/>}/>
           <Route path='/my/checklist' element={<CheckList/>}/>

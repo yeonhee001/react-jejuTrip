@@ -309,7 +309,7 @@ input:checked + .tagbtn{
 .tab-maintitle{
     text-align: center;
     font-size: 20px;
-    margin: 50px 0;
+    margin: 142px 0 50px;
 }
 
 // list
@@ -331,7 +331,7 @@ input:checked + .tagbtn{
 }
 .listpage{
     h2{
-        margin: 50px 0;
+        margin: 142px 0 50px;
         text-align: center;
         font-size: 20px;
     }
@@ -350,7 +350,7 @@ input:checked + .tagbtn{
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 9999999999;
 }
 .popup, .closepopup{
     min-width: 320px;

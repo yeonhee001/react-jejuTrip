@@ -2,7 +2,11 @@ import React from 'react'
 
 function KakaoLogin() {
   return (
-    <div>KakaoLogin</div>
+    <>
+      <p className='btn-kakao'>
+        <img src="/imgs/login_kakao_01.png" alt="로그인btn-카카오" />
+      </p>
+    </>
   )
 }
 

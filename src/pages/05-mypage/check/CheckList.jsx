@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import "../../../styles/05-mypage/check/checkList.scss";
 import ListPage from '../../../component/_common/ListPage';
-import InputPopup from '../../../component/popups/InputPopup';
-import GetCheckPopup from '../../../component/popups/GetCheckPopup';
+import Btn1Popup from '../../../component/popups/Btn1Popup';
+import Btn2Popup from '../../../component/popups/Btn2Popup';
 import GetTripPopup from '../../../component/popups/GetTripPopup';
+import Newpost from '../../../component/icons/Newpost';
 
 function CheckList() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -17,14 +18,14 @@ function CheckList() {
 
   return (
     <div>
-      {/* 예시 */}
-      <button onClick={ () => {setIsPopupOpen(true) }}>팝업</button>
-
       <ListPage listData={listData} page="check"/>
-      <InputPopup isOpen={isPopupOpen} setIsOpen={setIsPopupOpen}/>
-      {/* <GetTripPopup isOpen={isPopupOpen} setIsOpen={setIsPopupOpen} listData={listData}/> */}
-      {/* <GetCheckPopup isOpen={isPopupOpen} setIsOpen={setIsPopupOpen} listData={listData}/> */}
+
+      <Newpost className={'add-check-btn'}/>
       
+      <Btn1Popup isOpen={isPopupOpen} setIsOpen={setIsPopupOpen} type={'select'}/>
+      <Btn1Popup isOpen={isPopupOpen} setIsOpen={setIsPopupOpen} type={'delete'}/>
+      <Btn2Popup isOpen={isPopupOpen} setIsOpen={setIsPopupOpen} type={'delete'}/>
+      <GetTripPopup isOpen={isPopupOpen} setIsOpen={setIsPopupOpen} listData={listData}/>
     </div>
   )
 }

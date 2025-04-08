@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import Toggle from '../../../component/_common/Toggle'
 import { useParams } from 'react-router-dom';
+import Toggle from '../../../component/_common/Toggle'
+import CheckItem from '../../../component/05-mypage/CheckItem';
 import "../../../styles/05-mypage/check/checkDetail.scss";
 
 function CheckDetail() {
-  const [isOpenNeed, setIsOpenNeed] = useState(false);
-  const [isOpenEtc, setIsOpenEtc] = useState(false);
+  const [isOpenNeed, setIsOpenNeed] = useState(true);
+  const [isOpenEtc, setIsOpenEtc] = useState(true);
+  const [isEdit, setIsEdit] = useState(false); // 기본: 편집X
 
   const { id } = useParams(); // url에서 id 가져오기
   const [item, setItem] = useState(null);
+
+  // checklist test data
+  const NeedDefaultData = ['의류', '세면도구 / 화장품', '전자기기', '신분증 / 면허증', '현금', '카드'];
+  const [ needListData, SetNeedListData ] = useState(NeedDefaultData);
+  const [ etcListData, SetEtcListData ] = useState([]);
 
   // test data (list와 동일)
   const listData = [
@@ -16,7 +23,7 @@ function CheckDetail() {
     { id: 2, title: '나의 제주 여행 2', date: '2025.04.02' },
     { id: 3, title: '나의 제주 여행 3', date: '2024.04.03' }, 
   ];
-
+  
   useEffect(() => {
     const foundItem = listData.find((listItem) => listItem.id === Number(id));
 
@@ -29,15 +36,34 @@ function CheckDetail() {
   
   return (
     <div>
-      <h2 className='pagetitle'>체크리스트</h2>
-      <p className='triptitle'>{item.title}</p>
-      <Toggle title={'필수 준비물'} isOpen={isOpenNeed} setIsOpen={setIsOpenNeed} />
-      {isOpenNeed ? (
-        <div>
-          <p>체크리스트</p>
-        </div>
-      ) : null}
-      <Toggle title={'기타 준비물'} isOpen={isOpenEtc} setIsOpen={setIsOpenEtc} />
+      <div className='titlebox'>
+        <h2 className='pagetitle'>체크리스트</h2>
+        <p className='mytriptitle'>{item.title}</p>
+        <button className='detailbtn' onClick={() => setIsEdit(!isEdit)}>
+          {isEdit ? '완료' : '편집'}
+        </button>
+      </div>
+
+      <div className='needitembox'>
+        <Toggle title={'필수 준비물'} isOpen={isOpenNeed} setIsOpen={setIsOpenNeed} />
+        {isOpenNeed && ( 
+          <CheckItem 
+            list={needListData}
+            setList={SetNeedListData}
+            isEdit={isEdit}
+          /> 
+        )}
+      </div>
+      <div>
+        <Toggle title={'기타 준비물'} isOpen={isOpenEtc} setIsOpen={setIsOpenEtc} />
+        {isOpenNeed && ( 
+          <CheckItem 
+            list={etcListData}
+            setList={SetEtcListData}
+            isEdit={isEdit}
+          /> 
+        )}
+      </div>
     </div>
   )
 }

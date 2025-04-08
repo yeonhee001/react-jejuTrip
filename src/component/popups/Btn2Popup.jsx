@@ -40,7 +40,7 @@ function Btn2Popup({ isOpen, setIsOpen, type }) {
       icon: <Warning className={'popup-warningicon'}/>
     },
     call: {
-      txt: '070-0707-0707',
+      txt: '1588-0000',
       btntxt1: '취소',
       btntxt2: '통화',
       icon: <Call className={'popup-callicon'}/>

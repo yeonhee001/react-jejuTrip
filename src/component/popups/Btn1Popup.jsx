@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Warning from '../icons/Warning';
 
 function Btn1Popup({ isOpen, setIsOpen, type }) {
@@ -11,10 +11,13 @@ function Btn1Popup({ isOpen, setIsOpen, type }) {
     save: {
       txt: '저장되었습니다'
     },
+    delete: {
+      txt: '삭제되었습니다'
+    },
     select: {
       txt: '선택된 항목이 없습니다',
       icon: <Warning className={'popup-warningicon'}/>
-    },
+    }
   }
 
   // 팝업 배경 클릭 시 팝업 닫힘
