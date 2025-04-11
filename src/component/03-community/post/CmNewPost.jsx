@@ -1,25 +1,27 @@
 import React, { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { useNavigate } from "react-router-dom";  
+import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { Box, Typography } from "@mui/material";
 import Right_black from "../../icons/Right_black";
-import Photo from "../../icons/Photo";
 import Close from "../../icons/Close";
 import CmSubject from "../cmSubject";
 import { v4 as uuidv4 } from "uuid";
+import CmUploadImg from "../img/CmUploadImg";
 
 function CmNewPost({ onClose = () => {} }) {
   const { control, setFocus, handleSubmit, reset } = useFormContext();
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
   const [isSubjectOpen, setIsSubjectOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState("주제선택");
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const onSubmit = (data) => {
     const newPost = {
       id: uuidv4(),
       title: data.title,
       description: data.description,
+      image: selectedImage,
       createdAt: new Date().toISOString(),
       author: {
         id: 2,
@@ -41,7 +43,9 @@ function CmNewPost({ onClose = () => {} }) {
   return (
     <Box className="container">
       <Box className="header">
-        <div onClick={()=>{navigate("/community")}}><Close className="Cm-closeIcon"  /></div>
+        <div onClick={() => navigate("/community")}>
+          <Close className="Cm-closeIcon" />
+        </div>
         <button className="submitButton" onClick={handleSubmit(onSubmit)}>
           등록
         </button>
@@ -61,11 +65,8 @@ function CmNewPost({ onClose = () => {} }) {
         <Box className="divider" />
       </Box>
 
-      <Box className="photoContainer">
-        <Box className="photoBox">
-          <Photo className={"nw-photo"} />
-        </Box>
-      </Box>
+      {/* ✅ 이미지 업로드 컴포넌트 */}
+      <CmUploadImg selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
 
       <Box className="divider" />
 
@@ -121,7 +122,11 @@ function CmNewPost({ onClose = () => {} }) {
       {isSubjectOpen && (
         <div className="modalOverlay" onClick={() => setIsSubjectOpen(false)}>
           <div onClick={(e) => e.stopPropagation()}>
-            <CmSubject selectedItem={selectedItem} setSelectedItem={setSelectedItem} onClose={() => setIsSubjectOpen(false)} />
+            <CmSubject
+              selectedItem={selectedItem}
+              setSelectedItem={setSelectedItem}
+              onClose={() => setIsSubjectOpen(false)}
+            />
           </div>
         </div>
       )}

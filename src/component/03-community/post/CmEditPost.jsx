@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { Controller, useFormContext } from "react-hook-form";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Controller, useFormContext, useWatch } from "react-hook-form";
+import { useNavigate } from "react-router-dom";  
 import TextField from "@mui/material/TextField";
 import { Box, Typography } from "@mui/material";
+import Right_black from "../../icons/Right_black";
 import Photo from "../../icons/Photo";
+import Warning from "../../icons/Warning";
 import Close from "../../icons/Close";
 import CmSubject from "../cmSubject";
-import Right_black from "../../icons/Right_black";
+import Btn2Popup from "../../popups/Btn2Popup";
 
-function CmEditPost({ onClose = () => {}, updatePost }) {
+function CmEditPost({ postData, onClose = () => {}, onSubmit }) {
   const { control, setFocus, handleSubmit, reset } = useFormContext();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const postData = location.state?.postData; // 기존 게시물 데이터
-
+  const navigate = useNavigate();  
   const [isSubjectOpen, setIsSubjectOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(postData?.category || "주제선택");
+  const [selectedItem, setSelectedItem] = useState("주제선택");
+  const [showSubjectAlert, setShowSubjectAlert] = useState(false);
+  const [isExitPopupOpen, setIsExitPopupOpen] = useState(false);
 
   useEffect(() => {
     if (postData) {
@@ -23,31 +24,67 @@ function CmEditPost({ onClose = () => {}, updatePost }) {
         title: postData.title,
         description: postData.description,
       });
+      setSelectedItem(postData.subject || "주제선택");
     }
   }, [postData, reset]);
 
-  const onSubmit = (data) => {
-    const updatedPost = {
-      ...postData,
-      title: data.title,
-      description: data.description,
-      category: selectedItem, // 카테고리도 함께 업데이트
-    };
+  const title = useWatch({ control, name: "title" });
+  const description = useWatch({ control, name: "description" });
 
-    if (updatePost) {
-      updatePost(updatedPost); // 게시물 업데이트 함수 실행
+  const handleSubmitWrapper = (e) => {
+    e.preventDefault();
+    let shouldShowAlert = false;
+
+    if (selectedItem === "주제선택") {
+      setShowSubjectAlert(true);
+      shouldShowAlert = true;
+    } else {
+      setShowSubjectAlert(false);
     }
 
-    navigate("/community", { state: { updatedPost } }); // 커뮤니티 페이지로 이동
-    onClose();
+    handleSubmit((data) => {
+      if (!shouldShowAlert && onSubmit) {
+        const updatedPost = {
+          ...postData,
+          title: data.title,
+          description: data.description,
+          subject: selectedItem,
+          updatedAt: new Date().toISOString(),
+        };
+        onSubmit(updatedPost); // Call parent handler
+        reset();
+        onClose();
+      }
+    })();
+  };
+
+  const handleCloseClick = () => {
+    const isDirty =
+      title !== postData?.title ||
+      description !== postData?.description ||
+      selectedItem !== postData?.subject;
+
+    if (isDirty) {
+      setIsExitPopupOpen(true);
+    } else {
+      navigate(`/community/cmdetail/${postData?.id}`);
+    }
+  };
+
+  const handleExitConfirm = () => {
+    setIsExitPopupOpen(false);
+    reset();
+    navigate(`/community/cmdetail/${postData?.id}`);
   };
 
   return (
     <Box className="container">
-      <Box className="header">
-        <Close className={"Cm-closeIcon"} onClick={onClose} />
-        <button className="submitButton" onClick={handleSubmit(onSubmit)}>
-          수정 완료
+      <Box className="header1">
+        <div onClick={handleCloseClick}>
+          <Close className={"Cm-closeIcon"} />
+        </div>
+        <button className="submitButton" onClick={handleSubmitWrapper}>
+          등록
         </button>
       </Box>
 
@@ -55,19 +92,32 @@ function CmEditPost({ onClose = () => {}, updatePost }) {
         게시물 수정
       </Typography>
 
+      {showSubjectAlert && (
+        <div className="alertBox">
+          <Warning className={"alertIcon"} />
+          주제를 선택해주세요
+        </div>
+      )}
+
       <Box className="subjectContainer">
-        <Box className="subjectBox" onClick={() => setIsSubjectOpen(true)}>
+        <Box 
+          className="subjectBox" 
+          onClick={() => {
+            setIsSubjectOpen(true);
+            setShowSubjectAlert(false);
+          }}
+        >
           <Typography className="subjectText" variant="body1">
             {selectedItem}
           </Typography>
-          <Right_black className={"Cm-Right"} />
+          <Right_black className={"nw-Right"} />
         </Box>
         <Box className="divider" />
       </Box>
 
       <Box className="photoContainer">
         <Box className="photoBox">
-          <Photo className={"Cm-Photo"} />
+          <Photo className={"nw-photo"} />
         </Box>
       </Box>
 
@@ -76,10 +126,8 @@ function CmEditPost({ onClose = () => {}, updatePost }) {
       <Controller
         name="title"
         control={control}
-        defaultValue={postData?.title || ""}
-        render={({ field: { onChange, value }, fieldState: { error } }) => (
+        render={({ field: { onChange, value } }) => (
           <TextField
-            autoFocus
             value={value}
             onChange={onChange}
             onKeyDown={(e) => {
@@ -88,8 +136,6 @@ function CmEditPost({ onClose = () => {}, updatePost }) {
                 setFocus("description");
               }
             }}
-            error={!!error}
-            helperText={error?.message}
             fullWidth
             variant="standard"
             InputProps={{
@@ -103,13 +149,10 @@ function CmEditPost({ onClose = () => {}, updatePost }) {
       <Controller
         name="description"
         control={control}
-        defaultValue={postData?.description || ""}
-        render={({ field: { onChange, value }, fieldState: { error } }) => (
+        render={({ field: { onChange, value } }) => (
           <TextField
             value={value}
             onChange={onChange}
-            error={!!error}
-            helperText={error?.message}
             fullWidth
             variant="standard"
             InputProps={{
@@ -123,10 +166,24 @@ function CmEditPost({ onClose = () => {}, updatePost }) {
       {isSubjectOpen && (
         <div className="modalOverlay" onClick={() => setIsSubjectOpen(false)}>
           <div onClick={(e) => e.stopPropagation()}>
-            <CmSubject selectedItem={selectedItem} setSelectedItem={setSelectedItem} onClose={() => setIsSubjectOpen(false)} />
+            <CmSubject
+              selectedItem={selectedItem}
+              setSelectedItem={(item) => {
+                setSelectedItem(item);
+                setShowSubjectAlert(false);
+              }}
+              onClose={() => setIsSubjectOpen(false)}
+            />
           </div>
         </div>
       )}
+
+      <Btn2Popup
+        isOpen={isExitPopupOpen}
+        setIsOpen={setIsExitPopupOpen}
+        type="exit"
+        onConfirm={handleExitConfirm}
+      />
     </Box>
   );
 }

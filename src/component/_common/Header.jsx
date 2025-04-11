@@ -24,7 +24,7 @@ function Header() {
     head = "";
   }
 
-  const hiddenPaths = ["/login", "/community/cmpostpage", "/community/cmsubjectpage", "/search", "/search/searchdetail", "/splash"];
+  const hiddenPaths = ["/login", "/community/cmpostpage", "/community/cmeditpage", "/community/cmsubjectpage", "/search", "/search/searchdetail", "/splash"];
   // location이 pathname을 가지고 있어서 안보이게 할 페이지를 지정
   const hideHeader = hiddenPaths.includes(location.pathname);
 
