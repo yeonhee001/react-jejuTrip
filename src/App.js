@@ -7,8 +7,8 @@ import TripList from './pages/02-trip/TripList';
 import TripDetail from './pages/02-trip/TripDetail';
 import CmList from './pages/03-community/CmList';
 import CmDetail from './pages/03-community/CmDetail';
-import CmUserDetail from './pages/03-community/CmUserDetail';
 import CmPostPage from './pages/03-community/CmPostPage';
+import CmEditPage from './pages/03-community/CmEditPage';
 import CmSubjectPage from './pages/03-community/CmSubjectPage';
 import CmPhoto from './pages/03-community/CmPhoto';
 import PlannerList from './pages/04-planner/PlannerList';
@@ -26,6 +26,7 @@ import SearchDetail from './pages/00-search/SearchDetail';
 
 import './styles/_style.scss';
 
+
 function App() {
   return (
     <Router>
@@ -40,8 +41,8 @@ function App() {
           
           <Route path='/community' element={<CmList/>}/>
           <Route path='/community/cmdetail/:id' element={<CmDetail/>}/>
-          <Route path='/community/cmuserdetail/:id' element={<CmUserDetail/>}/>
           <Route path='/community/cmpostpage' element={<CmPostPage/>}/>
+          <Route path='/community/cmeditpage' element={<CmEditPage/>}/>
           <Route path='/community/cmsubjectpage' element={<CmSubjectPage/>}/>
           <Route path='/community/cmphoto' element={<CmPhoto/>}/>
 

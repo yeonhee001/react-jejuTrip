@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Warning from '../icons/Warning';
 
-function Btn1Popup({ isOpen, setIsOpen, type }) {
+function Btn1Popup({ isOpen, setIsOpen, type, onConfirm }) {
 
   // type별 팝업 내용
   const popupContent = {
@@ -37,7 +37,10 @@ function Btn1Popup({ isOpen, setIsOpen, type }) {
         </div>
 
         <div className='popup-btns-box'>
-          <button className='btn1popup-btn' onClick={() => setIsOpen(false)}>
+          <button className='btn1popup-btn' onClick={() => { if (onConfirm) onConfirm(); // 조건부 실행
+           else setIsOpen(false);
+           }}
+           >
             확인
           </button>
         </div>

@@ -1,18 +1,19 @@
-const CmDetail = ({children}) => {
+import dayjs from "dayjs";
+
+const CmDetail = ({children, post}) => {
 
   if (0) {
     return <p className="error-message">게시물을 찾을 수 없습니다.</p>;
   }
-
   return (
     <div className="cm-detail-container">
       <div>
-        <h2 className="title">새 게시물 2</h2>
-        <div className="author-info">
-          <div className="nickname">새 사용자</div>
-          <p className="date-text">2025.04.03 15:47</p>
+        <h2 className="title">{post.title}</h2>
+        <div className="author-info2">
+          <div className="nickname">{post.nickname}</div>
+          <p className="date-text">{dayjs(post.createdAt).format("YYYY.MM.DD HH:mm")}</p>
         </div>
-        <p className="description">새로운 게시물이 추가되었습니다.</p>
+        <p className="description">{post.description}</p>
         {/* <img src="" width="400" /> */}
       </div>
       {children}
