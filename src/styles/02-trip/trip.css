@@ -1,0 +1,38 @@
+.triptrip {
+  margin: 0 auto;
+  text-align: center;
+  padding: 50px 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333333;
+}
+
+.mb-10 h2 {
+  font-size: 20px;
+  padding-bottom: 7px;
+  color: #333333;
+}
+.mb-10 b {
+  font-size: 14px;
+  color: #555555;
+  padding-bottom: 7px;
+}
+
+.swiperitem b {
+  display: inline-block;
+  padding-top: 7px;
+  font-size: 14px;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.tripslide {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.mb-10 {
+  padding-bottom: 50px;
+}/*# sourceMappingURL=trip.css.map */

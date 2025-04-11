@@ -1,0 +1,16 @@
+.tab-content-reply {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+.tab-content-reply p {
+  font-weight: bold;
+}
+.tab-content-reply span {
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.3);
+}
+.tab-content-reply span:nth-of-type(1) {
+  display: block;
+  margin: 7px 0;
+}/*# sourceMappingURL=activity.css.map */

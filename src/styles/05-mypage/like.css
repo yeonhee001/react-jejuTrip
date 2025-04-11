@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .like-page {
   padding: 16px;
 }
@@ -17,7 +18,8 @@
   width: 80px;
   height: 80px;
   border-radius: 8px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   margin-right: 16px;
 }
 
@@ -88,4 +90,4 @@
 .like-post .like-heart svg {
   width: 100%;
   height: 100%;
-}
+}/*# sourceMappingURL=like.css.map */

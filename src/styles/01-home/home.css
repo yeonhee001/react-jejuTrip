@@ -1,0 +1,481 @@
+@charset "UTF-8";
+main {
+  margin-top: 92px;
+}
+
+.bottom-icons {
+  width: 100%;
+  background-color: #fff;
+}
+.bottom-icons .home-menu {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.bottom-icons .home-menu .menu-blue {
+  width: auto;
+  height: 20px;
+}
+.bottom-icons .home-menu .menu-gray {
+  width: auto;
+  height: 20px;
+}
+.bottom-icons .home-menu .menu-label {
+  font-size: 8px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.3);
+  padding-top: 4px;
+}
+.bottom-icons .home-menu .menu-label.active {
+  color: #2449A4;
+}
+
+.home-mainimg {
+  position: relative;
+  width: 100%;
+  max-height: 40vh;
+}
+.home-mainimg .home-bgimg {
+  width: 100%;
+  max-height: 40vh;
+}
+.home-mainimg .home-bgimg img {
+  width: 100%;
+  height: 40vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+}
+.home-mainimg .home-main-whimg {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.home-mainimg .home-main-whimg p {
+  width: 100%;
+  height: auto;
+}
+.home-mainimg .home-main-whimg p img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.home-mainimg .home-main-whimg > b {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(27%, 23%);
+  font-size: 30px;
+  color: #5886BA;
+}
+.home-mainimg .home-main-text {
+  position: absolute;
+  left: 0%;
+  top: 50%;
+  transform: translate(0, -50%);
+  padding-left: 16px;
+  color: #fff;
+}
+.home-mainimg .home-main-text > b {
+  display: block;
+  font-size: 24px;
+  padding-bottom: 5px;
+}
+.home-mainimg .home-main-text span {
+  display: block;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.home-tabmenu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 70px 0;
+}
+.home-tabmenu .home-tabcomp {
+  flex: 1 1 calc(50% - 20px);
+  position: relative;
+}
+.home-tabmenu .home-tabcomp img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.home-tabmenu .home-tabcomp span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 24px;
+  color: #fff;
+}
+
+.home-tripmenu {
+  margin: 70px 0;
+}
+.home-tripmenu .home-tripmenu-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.home-tripmenu .home-tripmenu-top h2 {
+  font-weight: bold;
+  font-size: 28px;
+}
+.home-tripmenu .home-trip {
+  width: 215px;
+  height: 100%;
+}
+.home-tripmenu .home-trip .home-triptab {
+  width: 100%;
+  position: relative;
+}
+.home-tripmenu .home-trip .home-triptab > p {
+  width: 100%;
+  height: 309px;
+  filter: brightness(0.5);
+}
+.home-tripmenu .home-trip .home-triptab > p img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+}
+.home-tripmenu .home-trip .home-triptab .home-triptab-text {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0 0 12px 12px;
+}
+.home-tripmenu .home-trip .home-triptab .home-triptab-text b {
+  font-size: 20px;
+  color: #fff;
+}
+.home-tripmenu .home-trip .home-triptab .home-triptab-text span {
+  font-size: 17px;
+  display: block;
+  color: #fff;
+  padding-top: 3px;
+}
+
+.home-foodmenu {
+  margin: 70px 0;
+}
+.home-foodmenu .home-foodmenu-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.home-foodmenu .home-foodmenu-top h2 {
+  font-weight: bold;
+  font-size: 28px;
+}
+.home-foodmenu .home-food {
+  width: 334px;
+  height: auto;
+}
+.home-foodmenu .home-food .home-foodtab {
+  width: 100%;
+}
+.home-foodmenu .home-food .home-foodtab > p {
+  width: 100%;
+  height: 164px;
+}
+.home-foodmenu .home-food .home-foodtab > p img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+}
+.home-foodmenu .home-food .home-foodtab .home-foodtab-text {
+  padding: 10px 0 20px;
+}
+.home-foodmenu .home-food .home-foodtab .home-foodtab-text > b {
+  font-size: 18px;
+  padding-right: 6px;
+}
+.home-foodmenu .home-food .home-foodtab .home-foodtab-text > span:nth-of-type(1) {
+  font-size: 12px;
+  color: #555;
+}
+.home-foodmenu .home-food .home-foodtab .home-foodtab-text > span:nth-of-type(2) {
+  display: block;
+  padding-top: 5px;
+}
+
+.home-photomenu {
+  margin: 70px 0;
+}
+.home-photomenu .home-photomenu-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.home-photomenu .home-photomenu-top h2 {
+  font-weight: bold;
+  font-size: 28px;
+}
+.home-photomenu .home-photo {
+  width: 635px;
+  height: auto;
+}
+.home-photomenu .home-photo .home-photo-img {
+  width: 100%;
+  height: 825px;
+}
+.home-photomenu .home-photo .home-photo-img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .bottom-icons {
+    width: auto;
+  }
+  .home-mainimg {
+    max-height: 30vh;
+  }
+  .home-mainimg .home-bgimg {
+    max-height: 30vh;
+  }
+  .home-mainimg .home-bgimg img {
+    height: 30vh;
+  }
+  .home-mainimg .home-main-whimg {
+    transform: translateX(10%);
+  }
+  .home-mainimg .home-main-whimg p {
+    width: 90%;
+  }
+  .home-mainimg .home-main-whimg > b {
+    transform: translate(30%, 35%);
+    font-size: 24px;
+  }
+  .home-mainimg .home-main-text > b {
+    font-size: 20px;
+  }
+  .home-mainimg .home-main-text span {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .home-tabmenu {
+    margin: 50px 0;
+  }
+  .home-tabmenu .home-tabcomp {
+    flex: 1 1 calc(50% - 5px); /* 여백 줄임 */
+    max-width: calc(50% - 5px); /* 최대 너비 제한 */
+  }
+  .home-tabmenu .home-tabcomp span {
+    font-size: 20px;
+  }
+  .home-tripmenu {
+    margin: 50px 0;
+  }
+  .home-tripmenu .home-tripmenu-top {
+    margin-bottom: 8px;
+  }
+  .home-tripmenu .home-tripmenu-top h2 {
+    font-size: 24px;
+  }
+  .home-tripmenu .home-trip {
+    width: 143px;
+    height: 100%;
+  }
+  .home-tripmenu .home-trip .home-triptab > p {
+    width: 100%;
+    height: 206px;
+  }
+  .home-tripmenu .home-trip .home-triptab .home-triptab-text {
+    padding: 0 0 10px 4px;
+  }
+  .home-tripmenu .home-trip .home-triptab .home-triptab-text b {
+    font-size: 16px;
+  }
+  .home-tripmenu .home-trip .home-triptab .home-triptab-text span {
+    font-size: 13px;
+    padding-top: 3px;
+  }
+  .home-foodmenu {
+    margin: 50px 0;
+  }
+  .home-foodmenu .home-foodmenu-top {
+    margin-bottom: 8px;
+  }
+  .home-foodmenu .home-foodmenu-top h2 {
+    font-size: 24px;
+  }
+  .home-foodmenu .home-food {
+    width: 222px;
+    height: auto;
+  }
+  .home-foodmenu .home-food .home-foodtab > p {
+    width: 100%;
+    height: 109px;
+  }
+  .home-foodmenu .home-food .home-foodtab .home-foodtab-text {
+    padding: 10px 0 20px;
+  }
+  .home-foodmenu .home-food .home-foodtab .home-foodtab-text > b {
+    font-size: 16px;
+  }
+  .home-foodmenu .home-food .home-foodtab .home-foodtab-text > span:nth-of-type(1) {
+    font-size: 10px;
+    color: #555;
+  }
+  .home-foodmenu .home-food .home-foodtab .home-foodtab-text > span:nth-of-type(2) {
+    font-size: 12px;
+    display: block;
+    padding-top: 5px;
+  }
+  .home-photomenu {
+    margin: 50px 0;
+  }
+  .home-photomenu .home-photomenu-top {
+    margin-bottom: 8px;
+  }
+  .home-photomenu .home-photomenu-top h2 {
+    font-size: 24px;
+  }
+  .home-photomenu .home-photo {
+    width: 420px;
+    height: auto;
+  }
+  .home-photomenu .home-photo .home-photo-img {
+    width: 100%;
+    height: 546px;
+  }
+}
+@media (max-width: 480px) {
+  .bottom-icons {
+    width: auto;
+  }
+  .home-mainimg {
+    max-height: 24vh;
+  }
+  .home-mainimg .home-bgimg {
+    max-height: 24vh;
+  }
+  .home-mainimg .home-bgimg img {
+    height: 24vh;
+  }
+  .home-mainimg .home-main-whimg {
+    transform: translateX(35%);
+  }
+  .home-mainimg .home-main-whimg p {
+    width: 65%;
+  }
+  .home-mainimg .home-main-whimg > b {
+    transform: translate(27%, 26%);
+    font-size: 20px;
+  }
+  .home-mainimg .home-main-text > b {
+    font-size: 18px;
+  }
+  .home-mainimg .home-main-text span {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .home-tabmenu {
+    margin: 50px 0;
+  }
+  .home-tabmenu .home-tabcomp {
+    flex: 1 1 calc(50% - 5px); /* 여백 줄임 */
+    max-width: calc(50% - 5px); /* 최대 너비 제한 */
+  }
+  .home-tabmenu .home-tabcomp span {
+    font-size: 16px;
+  }
+  .home-tripmenu {
+    margin: 50px 0;
+  }
+  .home-tripmenu .home-tripmenu-top {
+    margin-bottom: 6px;
+  }
+  .home-tripmenu .home-tripmenu-top h2 {
+    font-size: 18px;
+  }
+  .home-tripmenu .home-trip {
+    width: 105px;
+    height: 100%;
+  }
+  .home-tripmenu .home-trip .home-triptab > p {
+    width: 100%;
+    height: 151px;
+  }
+  .home-tripmenu .home-trip .home-triptab .home-triptab-text {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 0 0 12px 6px;
+  }
+  .home-tripmenu .home-trip .home-triptab .home-triptab-text b {
+    font-size: 12px;
+  }
+  .home-tripmenu .home-trip .home-triptab .home-triptab-text span {
+    font-size: 9px;
+  }
+  .home-foodmenu {
+    margin: 50px 0;
+  }
+  .home-foodmenu .home-foodmenu-top {
+    margin-bottom: 6px;
+  }
+  .home-foodmenu .home-foodmenu-top h2 {
+    font-size: 18px;
+  }
+  .home-foodmenu .home-food {
+    width: 163px;
+    height: auto;
+  }
+  .home-foodmenu .home-food .home-foodtab > p {
+    width: 100%;
+    height: 80px;
+  }
+  .home-foodmenu .home-food .home-foodtab .home-foodtab-text {
+    padding: 7px 0 15px;
+  }
+  .home-foodmenu .home-food .home-foodtab .home-foodtab-text > b {
+    font-size: 14px;
+  }
+  .home-foodmenu .home-food .home-foodtab .home-foodtab-text > span:nth-of-type(1) {
+    font-size: 7px;
+  }
+  .home-foodmenu .home-food .home-foodtab .home-foodtab-text > span:nth-of-type(2) {
+    font-size: 10px;
+    padding-top: 5px;
+  }
+  .home-photomenu {
+    margin: 50px 0;
+  }
+  .home-photomenu .home-photomenu-top {
+    margin-bottom: 6px;
+  }
+  .home-photomenu .home-photomenu-top h2 {
+    font-size: 18px;
+  }
+  .home-photomenu .home-photo {
+    width: 310px;
+    height: auto;
+  }
+  .home-photomenu .home-photo .home-photo-img {
+    width: 100%;
+    height: 403px;
+  }
+}/*# sourceMappingURL=home.css.map */

@@ -1,0 +1,199 @@
+h2 {
+  font-size: 22px;
+}
+
+.weather_content {
+  margin: 0 auto 50px;
+  font-weight: bold;
+}
+.weather_content h2 {
+  margin-bottom: 5px;
+}
+.weather_content .weather_wf {
+  margin-bottom: 16px;
+  font-size: 22px;
+}
+.weather_content .weather_wf span:nth-of-type(2) {
+  margin-left: 10px;
+  color: #2288FD;
+}
+
+.planner_content {
+  position: relative;
+}
+.planner_content .hand {
+  position: absolute;
+  top: 27%;
+  right: 5%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+}
+.planner_content .planner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.planner_content .planner a {
+  font-size: 16px;
+  color: #2288FD;
+}
+.planner_content .trip_date {
+  margin: 7px 0 16px;
+  font-size: 14px;
+}
+.planner_content .planner_tagbtn {
+  margin: 16px 0;
+}
+
+.ticketline {
+  margin: 16px auto;
+}
+.ticketline .ticket {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.ticketline .ticket .ticketpadding {
+  padding: 16px 5%;
+}
+.ticketline .ticket .tickettop {
+  position: relative;
+  width: 100%;
+  min-height: 50%;
+}
+.ticketline .ticket .tickettop::before {
+  content: "";
+  display: inline-block;
+  width: 100%;
+  height: 14px;
+  border-radius: 8.9px 8.9px 0 0;
+  background-color: #4E7CB2;
+}
+.ticketline .ticket .tickettop .topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+.ticketline .ticket .tickettop .topbar .ticketdate {
+  margin-left: 5px;
+  color: #858585;
+}
+.ticketline .ticket .tickettop .topbar .plane {
+  position: relative;
+  margin: 0 auto;
+}
+.ticketline .ticket .tickettop .topbar .topbarright {
+  color: #2288FD;
+}
+.ticketline .ticket .tickettop .tickebox .liItem {
+  display: flex;
+  align-items: center;
+  gap: 5%;
+}
+.ticketline .ticket .tickettop .tickebox .vertical-line {
+  min-height: 100px;
+}
+.ticketline .ticket .tickettop .tickebox .content {
+  box-shadow: "";
+}
+.ticketline .ticket .tickettop .tickebox .liLine {
+  position: relative;
+  height: 100px;
+}
+.ticketline .ticket .tickettop .tickebox .liLine .liNum {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #4E7CB2;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+.ticketline .ticket .tickettop .tickebox .liLine span {
+  font-size: 10px;
+  display: block;
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  padding: 20%;
+  text-align: center;
+}
+.ticketline .ticket .svgline {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.ticketline .ticket .svgline::before, .ticketline .ticket .svgline::after {
+  content: "";
+  display: block;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid black;
+  position: absolute;
+  background-color: white;
+}
+.ticketline .ticket .svgline::before {
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -35%);
+}
+.ticketline .ticket .svgline::after {
+  top: 0;
+  right: 0;
+  transform: translate(50%, -35%);
+}
+.ticketline .ticket .ticketbottom {
+  position: relative;
+  width: 100%;
+  min-height: 50%;
+}
+.ticketline .ticket .ticketbottom .ticketbtn {
+  display: inline-block;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.swipeactionmemo {
+  width: 100%;
+}
+.swipeactionmemo p:nth-of-type(1) {
+  margin: 7px 0;
+}
+.swipeactionmemo p:nth-of-type(2) {
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.3);
+}
+.swipeactionmemo .title {
+  font-size: 14px;
+  font-weight: bold;
+}
+.swipeactionmemo .memoNtrash {
+  height: 100px;
+  display: flex;
+}
+.swipeactionmemo .memoNtrash .trashicon {
+  right: -160px !important;
+}
+.swipeactionmemo .memoNtrash .memoicon {
+  width: 80px;
+  height: 100%;
+  background: #2288FD;
+  position: absolute;
+  top: 0;
+  right: -80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardbtn {
+  width: 100%;
+  margin: 0 auto;
+}/*# sourceMappingURL=plannerDetail.css.map */
