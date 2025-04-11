@@ -12,17 +12,12 @@ body{
 }
 h1,h2,h3,h4,h5,p,figure{margin: 0; padding: 0;}
 ol,ul,li{list-style: none; margin: 0; padding:0;}
-<<<<<<< HEAD
-button{border: 0; margin: 0; padding: 0; background-color: transparent;}
-img{border: 0; vertical-align: middle; object-fit: cover;}
-=======
 button{
     border: 0; margin: 0; padding: 0; background-color: transparent; 
     font-family: "NanumSquare";
     color: #333;
 }
-img{border: 0; vertical-align: middle;}
->>>>>>> origin/지현
+img{border: 0; vertical-align: middle; object-fit: cover;}
 a{text-decoration: none; color: #333;}
 input, textarea{
     border:0;

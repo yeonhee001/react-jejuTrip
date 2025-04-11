@@ -39,11 +39,7 @@ function SwipeAction({children, setTrashClick}) {
                 }}
             >
                 <div className='children'>{children}</div>
-<<<<<<< HEAD
-                
-=======
-                <div className="trashicon" onClick={setTrashClick}><Trash/></div>
->>>>>>> origin/지호
+                <div className="trashicon" onClick={() => setTrashClick(true)}><Trash/></div>
             </div>
         </div>
     );

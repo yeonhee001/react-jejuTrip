@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -83,14 +82,6 @@ function PickPlan() {
             }
         </div>
     )
-=======
-import React from 'react'
-
-function PickPlan() {
-  return (
-    <div>PickPlan</div>
-  )
->>>>>>> origin/지호
 }
 
 export default PickPlan

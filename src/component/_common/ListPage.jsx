@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
 import ListItem from './ListItem'
-<<<<<<< HEAD
 import SwipeAction from './SwipeAction'
 import Trash from '../icons/Trash';
 import Btn2Popup from '../popups/Btn2Popup';
-=======
 import SwipeHand from './SwipeHand';
->>>>>>> origin/지호
 
 function ListPage({listData, page}) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
