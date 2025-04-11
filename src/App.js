@@ -23,6 +23,7 @@ import QnA from './pages/05-mypage/QnA';
 import Login from './pages/00-login/Login';
 import SearchPage from './pages/00-search/SearchPage';
 import SearchDetail from './pages/00-search/SearchDetail';
+import PickPlan from './pages/04-planner/PickPlan';
 
 import './styles/_style.scss';
 
@@ -48,6 +49,7 @@ function App() {
           <Route path='/planner' element={<PlannerList/>}/>
           <Route path='/planner/plannerdetail/:id' element={<PlannerDetail/>}/>
           <Route path='/planner/plannerdetail/:id/place' element={<Place/>}/>
+          <Route path='/planner/pickplan' element={<PickPlan/>}/>
 
           <Route path='/my' element={<My/>}/>
           <Route path='/my/checklist' element={<CheckList/>}/>

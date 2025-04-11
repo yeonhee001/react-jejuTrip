@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Right_blue() {
+function Right_blue({ className }) {
   return (
-    <div><img src="/imgs/_icons/Right_blue.svg" alt="" /></div>
+    <div className={className}><img src="/imgs/_icons/Right_blue.svg" alt="" /></div>
   )
 }
 

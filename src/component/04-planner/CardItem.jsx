@@ -1,8 +1,12 @@
 import React from 'react'
 
-function CardItem() {
+function CardItem({item}) {
   return (
-    <div>CardItem</div>
+    <div className='swipeactionmemo'>
+        <h2 className='title'>{item.title}</h2>
+        <p>{item.introduction}</p>
+        <p>{`${item.contents_label} ▪ ${item.road_address}`}</p>
+    </div>
   )
 }
 
