@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ListItem from './ListItem'
+import SwipeAction from './SwipeAction'
+import Trash from '../icons/Trash';
+import Btn2Popup from '../popups/Btn2Popup';
 
 function ListPage({listData, page}) {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
   let title = '';
   let subtitle = '';
 
@@ -41,14 +46,18 @@ function ListPage({listData, page}) {
         <div key={year} style={{marginBottom: '32px'}}>
           <h3>{year}</h3> {/* 연도 출력 */}
           {groupedData[year].map((item) => (
-            <ListItem
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              date={item.date}
-              page={page}
-            />
+            <SwipeAction>
+              <ListItem
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                date={item.date}
+                page={page}
+              />
+              <div className="trashicon" onClick={() => setIsPopupOpen(true)}><Trash/></div>
+            </SwipeAction>
           ))}
+          <Btn2Popup isOpen={isPopupOpen} setIsOpen={setIsPopupOpen} type={"delete"}/>
         </div>
       ))}
     </div> 

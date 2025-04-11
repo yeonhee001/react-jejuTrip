@@ -12,11 +12,25 @@ body{
 }
 h1,h2,h3,h4,h5,p,figure{margin: 0; padding: 0;}
 ol,ul,li{list-style: none; margin: 0; padding:0;}
+<<<<<<< HEAD
 button{border: 0; margin: 0; padding: 0; background-color: transparent;}
 img{border: 0; vertical-align: middle; object-fit: cover;}
+=======
+button{
+    border: 0; margin: 0; padding: 0; background-color: transparent; 
+    font-family: "NanumSquare";
+    color: #333;
+}
+img{border: 0; vertical-align: middle;}
+>>>>>>> origin/지현
 a{text-decoration: none; color: #333;}
-input, textarea{border:0;}
+input, textarea{
+    border:0;
+    font-family: "NanumSquare";
+    color: #333;
+}
 ::before,::after{margin:0; padding: 0; box-sizing: border-box;}
+
 
 //태그모양
 .tagbtn{
@@ -41,6 +55,7 @@ input:checked + .tagbtn{
     border: 1px solid #333;
     border-radius: 7px;
     padding: 12px 0;
+    text-align: center;
 }
 
 //밀기 애니메이션

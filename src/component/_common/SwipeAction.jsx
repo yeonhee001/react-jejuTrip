@@ -39,7 +39,7 @@ function SwipeAction({children}) {
                 }}
             >
                 <div className='children'>{children}</div>
-                <div className="trashicon" onClick={() => alert("삭제!")}><Trash/></div>
+                
             </div>
         </div>
     );
