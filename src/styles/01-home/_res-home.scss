@@ -1,4 +1,6 @@
 @media (max-width:768px){
+  .home-main{margin: 92px 0 148px;}
+
   .bottom-icons{
     width: auto;
   } 
@@ -16,7 +18,7 @@
         width: 90%;
       }
       >b{
-        transform: translate(30%, 35%);
+        transform: translate(37%, 40%);
         font-size: 24px;
       }
     }
@@ -42,28 +44,77 @@
     }
   }
 
-  .home-tripmenu{
-    margin: 50px 0;
-    .home-tripmenu-top{
-      margin-bottom: 8px;
-      h2{
-        font-size: 24px;
+  .home-menu-top{
+    margin-bottom: 8px;
+    h2, .emoji{
+      font-size: 24px;
+    }
+  }
+
+  .home-weather-content{
+    border-radius: 50px;
+    .home-weather-today{
+      width: 45%;
+      border-radius: 50px;
+      padding: 9px 33px;
+      >img{
+        width: auto; height: 41px;
+      }
+      >div{
+        margin-left: 29px;
+        >span{
+          font-size: 14px;
+        }
+        >b{
+          font-size: 20px;
+          margin-left: 4px;
+        }
       }
     }
-    .home-trip{
-      width: 143px; height: 100%;
-      .home-triptab{
-        >p{
-          width: 100%; height: 206px;
+    .home-weather-etc{
+      padding-right: 3%;
+      >b{font-size: 20px;}
+      .home-weather-windy{
+        margin: 0 50% 0 0;
+        padding: 0 40% 0 25%;
+        >span{
+          font-size: 14px;
         }
-        .home-triptab-text{
-          padding: 0 0 10px 4px;
-          b{
-            font-size: 16px;
+        >b:nth-of-type(1){
+          font-size: 20px;
+          margin-left: 4px;
+        }
+        >b:nth-of-type(2){
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  .home-tripmenu{
+    margin: 50px 0;
+    .home-tripContent{
+      gap: 12px;
+      .home-trip{
+        width: 60%; height: 100%;
+    
+        &.active {
+          width: 100%; // 펼쳐졌을 때 너비
+        }
+      
+        .home-triptab{
+          >p{
+            width: 100%; height: 206px;
           }
-          span{
-            font-size: 13px;
-            padding-top: 3px;
+          .home-triptab-text{
+            padding: 0 0 10px 4px;
+            b{
+              font-size: 16px;
+            }
+            span{
+              font-size: 13px;
+              padding-top: 3px;
+            }
           }
         }
       }
@@ -72,14 +123,10 @@
 
   .home-foodmenu{
     margin: 50px 0;
-    .home-foodmenu-top{
-      margin-bottom: 8px;
-      h2{
-        font-size: 24px;
-      }
-    }
     .home-food{
       width: 222px; height: auto;
+      flex: 1 1 calc(50% - 5px); /* 여백 줄임 */
+      max-width: calc(50% - 5px); /* 최대 너비 제한 */
       .home-foodtab{
         >p{
           width: 100%; height: 109px;
@@ -105,12 +152,6 @@
 
   .home-photomenu{
     margin: 50px 0;
-    .home-photomenu-top{
-      margin-bottom: 8px;
-      h2{
-        font-size: 24px;
-      }
-    }
     .home-photo{
       width: 420px; height: auto;
       .home-photo-img{
@@ -120,6 +161,8 @@
   }
 }
 @media (max-width:480px){
+  .home-main{margin: 92px 0 108px;}
+
   .bottom-icons{
     width: auto;
   }
@@ -137,7 +180,7 @@
         width: 65%;
       }
       >b{
-        transform: translate(27%, 26%);
+        transform: translate(31%, 26%);
         font-size: 20px;
       }
     }
@@ -163,29 +206,77 @@
     }
   }
 
-  .home-tripmenu{
-    margin: 50px 0;
-    .home-tripmenu-top{
-      margin-bottom: 6px;
-      h2{
-        font-size: 18px;
+  .home-menu-top{
+    margin-bottom: 6px;
+    h2, .emoji{
+      font-size: 18px;
+    }
+  }
+
+  .home-weather-content{
+    border-radius: 50px;
+    .home-weather-today{
+      width: 45%;
+      border-radius: 50px;
+      padding: 7px 24px;
+      >img{
+        width: auto; height: 30px;
+      }
+      >div{
+        margin-left: 22px;
+        >span{
+          font-size: 10px;
+        }
+        >b{
+          font-size: 14px;
+          margin-left: 3px;
+        }
       }
     }
-    .home-trip{
-      width: 105px; height: 100%;
-      .home-triptab{
-        >p{
-          width: 100%; height: 151px;
+    .home-weather-etc{
+      padding-right: 3%;
+      >b{font-size: 14px;}
+      .home-weather-windy{
+        margin: 0 50% 0 0;
+        padding: 0 30% 0 25%;
+        >span{
+          font-size: 10px;
         }
-        .home-triptab-text{
-          position: absolute;
-          left: 0; bottom: 0;
-          padding: 0 0 12px 6px;
-          b{
-            font-size: 12px;
+        >b:nth-of-type(1){
+          font-size: 14px;
+          margin-left: 3px;
+        }
+        >b:nth-of-type(2){
+          font-size: 9px;
+        }
+      }
+    }
+  }
+
+  .home-tripmenu{
+    margin: 50px 0;
+    .home-tripContent{
+      gap: 10px;
+      .home-trip{
+        width: 60%; height: 100%;
+    
+        &.active {
+          width: 100%; // 펼쳐졌을 때 너비
+        }
+        .home-triptab{
+          >p{
+            width: 100%; height: 151px;
           }
-          span{
-            font-size: 9px;
+          .home-triptab-text{
+            position: absolute;
+            left: 0; bottom: 0;
+            padding: 0 0 12px 6px;
+            b{
+              font-size: 12px;
+            }
+            span{
+              font-size: 9px;
+            }
           }
         }
       }
@@ -194,14 +285,10 @@
 
   .home-foodmenu{
     margin: 50px 0;
-    .home-foodmenu-top{
-      margin-bottom: 6px;
-      h2{
-        font-size: 18px;
-      }
-    }
     .home-food{
       width: 163px; height: auto;
+      flex: 1 1 calc(50% - 5px); /* 여백 줄임 */
+      max-width: calc(50% - 5px); /* 최대 너비 제한 */
       .home-foodtab{
         >p{
           width: 100%; height: 80px;
@@ -225,12 +312,6 @@
 
   .home-photomenu{
     margin: 50px 0;
-    .home-photomenu-top{
-      margin-bottom: 6px;
-      h2{
-        font-size: 18px;
-      }
-    }
     .home-photo{
       width: 310px; height: auto;
       .home-photo-img{

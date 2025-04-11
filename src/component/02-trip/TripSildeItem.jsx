@@ -1,26 +1,13 @@
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React from 'react'
+import { NavLink } from 'react-router-dom';
 
-// Import Swiper styles
+function TripSildeItem({detailurl, id, img, title}) {
+  return (
+    <NavLink to={`${detailurl}/${id}`} className="trip-main-slide">
+        <img className="trip-main-slide-img" src={img} alt="" />
+        <span>{title}</span>
+    </NavLink>
+  )
+}
 
-
-export default () => {
-return (
-    <Swiper
-        spaceBetween={0}
-        slidesPerView={1}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
-        // loop={true}
-        // autoplay={{delay:3000}}
-    >
-        <SwiperSlide>
-            <div className="swiperitem">
-                <img className="tripslide" src="/imgs/component_placeitem.jpg.jpg" alt="" />
-                <b>성산일출봉</b>
-            </div>
-        </SwiperSlide>
-
-    </Swiper>
-    );
-};
+export default TripSildeItem

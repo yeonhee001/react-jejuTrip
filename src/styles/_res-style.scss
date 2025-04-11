@@ -24,6 +24,36 @@
     padding: 20px 5% 40px 5%;
     width: 100%;
   }
+
+  // burgermenu
+  .burger-rel{
+    width: 100%;
+    .burger{
+        padding: 59px 5% 131px;
+    }
+  }
+
+  // PlaceItem
+  .place{
+    padding-bottom: 10px;
+    .place-img-txt{
+        .place-img{
+            width: 157px;
+            height: 116px;
+            margin-right: 13px;
+        }
+        .place-txt{
+            width: 233px;
+            >h2{font-size: 18px; font-weight: bold;}
+            >p{font-size: 16px; padding: 6px 0;}
+            .place-tag{
+              >span{
+                font-size: 14px;
+              }
+            }
+        }
+    }
+  }
 }
 
 
@@ -53,5 +83,40 @@
     padding: 20px 5% 40px 5%;
     width: 100%;
   }
-  
+
+  // burgermenu
+  .burger-rel{
+    width: 100%;
+    .burger{
+        padding: 59px 5% 131px;
+    }
+  }
+
+  // LikeRed
+  .heart-fill-red, .heart-stroke-red{
+    width: 18px; height: 16px;
+    >img{width: 100%; height: 100%;}
+  }
+
+  // PlaceItem
+  .place{
+    padding-bottom: 10px;
+    .place-img-txt{
+        .place-img{
+            width: 114px;
+            height: 84px;
+            margin-right: 10px;
+        }
+        .place-txt{
+          width: 141px;
+          >h2{font-size: 14px; font-weight: bold;}
+          >p{font-size: 12px; padding:5px 0;}
+          .place-tag{
+            span{
+                font-size: 10px;
+            }
+          }
+        }
+    }
+  }
 }

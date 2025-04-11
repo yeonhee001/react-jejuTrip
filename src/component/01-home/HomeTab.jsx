@@ -1,11 +1,11 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-function HomeTab({tabLink, url, tabTitle}) {
+function HomeTab({tabLink, imgurl, tabTitle}) {
   return (
     <div className='home-tabcomp'>
       <NavLink to={tabLink}>
-        <img src={`/imgs/${url}`} alt="" />
+        <img src={`/imgs/${imgurl}`} alt="" />
         <span>{tabTitle}</span>
       </NavLink>
     </div>

@@ -35,8 +35,14 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/trip' element={<Trip/>}/>   
-          <Route path='/trip/triplist/:type' element={<TripList/>}/>
-          <Route path='/trip/triplist/:type/tripdetail/:id' element={<TripDetail/>}/>
+          <Route path='/trip/triplist/tour' element={<TripList/>}/>
+          <Route path='/trip/triplist/food' element={<TripList/>}/>
+          <Route path='/trip/triplist/festival' element={<TripList/>}/>
+          <Route path='/trip/triplist/shopping' element={<TripList/>}/>
+          <Route path='/trip/triplist/tour/tripdetail/:id' element={<TripDetail/>}/>
+          <Route path='/trip/triplist/food/tripdetail/:id' element={<TripDetail/>}/>
+          <Route path='/trip/triplist/festival/tripdetail/:id' element={<TripDetail/>}/>
+          <Route path='/trip/triplist/shopping/tripdetail/:id' element={<TripDetail/>}/>
           
           <Route path='/community' element={<CmList/>}/>
           <Route path='/community/cmdetail/:id' element={<CmDetail/>}/>

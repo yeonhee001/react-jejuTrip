@@ -13,7 +13,7 @@ body{
 h1,h2,h3,h4,h5,p,figure{margin: 0; padding: 0;}
 ol,ul,li{list-style: none; margin: 0; padding:0;}
 button{border: 0; margin: 0; padding: 0; background-color: transparent;}
-img{border: 0; vertical-align: middle;}
+img{border: 0; vertical-align: middle; object-fit: cover;}
 a{text-decoration: none; color: #333;}
 input, textarea{border:0;}
 ::before,::after{margin:0; padding: 0; box-sizing: border-box;}
@@ -442,7 +442,7 @@ input:checked + .tagbtn{
   transform: translate(-50%, 0);
   width: 768px; height: 91.33px;
   padding: 45px 38px 13px;
-  z-index: 9999;
+  z-index: 9998;
   h2{
     >img{width: 97px;}
   }
@@ -459,10 +459,8 @@ input:checked + .tagbtn{
     img{width: 16px;}
   }
   .header-list{
-    img{width: 23.5px;}
-  }
-  div{
     padding-left: 17px;
+    img{width: 23.5px;}
   }
 }
 
@@ -493,8 +491,9 @@ input:checked + .tagbtn{
   background-color: #fff;
   position: fixed;
   left: 50%; bottom: 0;
-  transform: translate(-50%, 0);
+  transform: translateX(-50%);
   width: 768px;
+  z-index: 999;
 }
 
 //SearchBar
@@ -522,105 +521,117 @@ input:checked + .tagbtn{
   }
 }
 
+// LikeRed
+.heart-fill-red, .heart-stroke-red{
+    width: 25px; height: 22px;
+    >img{width: 100%; height: 100%;}
+}
+
+// LikeWhite
+.heart-fill-white, .heart-stroke-white{
+    width: 25px; height: 22px;
+    >img{width: 100%; height: 100%;}
+}
+
+// PlaceItem
 .place{
     display: flex;
-    align-items: flex-end;
-    padding-bottom: 10px;
-    .placeimg{
-        width: 44%;
-        img{
-        width: 150px;
-        height: 107px;
-        border-radius: 15px;
-        padding-right: 10px;
-
-    }
-    }
-}
-.placetxt{
-    width: 40%;
-
-    h2{font-size: 14px;color: #333333; font-weight: bold;}
-    p{font-size: 10px; color: #333333; padding:5px 0;}
-    b{
-        font-size: 7px; color: #333333;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow:ellipsis;
-        
-    }
-
-}
-
-
-.burger {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-    padding: 0 20px;
-    background-color:#FFFAF4 ;
-    li:nth-of-type(1){
-        padding-top: 140px;
-    }
-    span{
-        font-size: 20px;
-    }
-    display: inline-block;
-    ul{
-        padding: 0 0 14px 0;
-    }
-  }
-
-  // X모양
-  .burger_close {
-    position: absolute;
-    right: 5.5%; top: 6%;
-    cursor: pointer;
-
-   img{
-    width:14.6px;
-    height:14.6px;
-    color: #333333;
-    
-   }
-
-  }
-  // 텍스트 >
-  .menu-item {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding-bottom: 50px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #2449A4;
-    div{
-        width: 9px;
-        height: 18px;
-        img{
-           width: 100%;
-           height: 100%;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    .place-img-txt{
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+        .place-img{
+            width: 157px;
+            height: 116px;
+            margin-right: 13px;
+            >img{
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            }
+        }
+        .place-txt{
+            width: 400px;
+            >h2{
+                font-size: 18px;
+                font-weight: bold;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%; // 너비 제한 필수
+            }
+            >p{font-size: 16px; padding:5px 0;}
+            .place-tag{
+                >span{
+                    font-size: 14px;
+                }
+            }
         }
     }
-  }
+}
 
-
-  //로그인 밑줄
-  .login{
-  
-    span{
-        text-decoration: underline;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 12px;
-        color: rgba($color: #000000, $alpha: 0.3);
+// burgermenu
+.burger-rel{
+    width: 768px;
+    height: 100vh;
+    position: fixed;
+    left: 0; top: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    z-index: 1000;
+    .burger{
+        width: 100%;
+        height: 100vh;
+        background-color:#FFFAF4;
+        padding: 59px 38px 131px;
     }
-  }
-  
+    &.active{
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+    }
+}
+.bug-close{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 71px;
+    .bugclose-btn{
+        width: 14.6px; height: 14.6px;
+        img{width: 100%; height: 100%; color: #333;}
+    }
+}
+.bug-menu{
+    .bugbtn{
+        padding-bottom: 50px;
+        cursor: pointer;
+        a{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            span{
+                font-size: 20px;
+                font-weight: bold;
+                color: #2449A4;
+            }
+            .bugarrow{width: 9px; height: 18px; margin-bottom: 5px;}
+        }
+    }
+}
+.bug-login{
+    padding-top: 30px;
+    a{
+        font-size: 12px;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        border-bottom: 0.3px solid rgba(0, 0, 0, 0.3);
+    }
+}
 
 .heartnumred,.heartnumwhite{
     display: flex;

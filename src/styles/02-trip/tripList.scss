@@ -1,60 +1,68 @@
-.tripfilter {
-    position: relative;
-    width: 200px;
-    ul{
-        position: relative;
-        border: 1px solid black;
-    }
-    li{
-        font-size: 10px;
-        color: #333333;
-        text-align: center;
-        padding-bottom: 10px;
-        cursor: pointer;
-    }
-  }
-  .triptitle{
+.trip-listpage{ margin: 92px 0 150px; }
+
+.trip-list-topimg{
+  .trip-list-title{
     font-size: 20px;
-    color: #333333;
-    font-weight: bold;
     padding-bottom: 7px;
   }
+  >img{
+    width: calc(100% + 76px); // style.scss에서 뺀 패딩 38px * 2
+    margin-left: -38px;
+    margin-right: -38px;
+    // 위 3가지 body에서 패딩 넣은거 무시하기
+    height: 248px;
+    object-fit: cover;
+  }
+}
+.trip-list-cont{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 32px 0 10px;
+  .trip-list-cont-title{
+    >h3{
+      font-size: 18px;
+    }
+    >span{
+      display: block;
+      font-weight: bold;
+      padding-top: 6px;
+    }
+  }
+}
+
+// TripFilter 컴포넌트
+.tripfilter {
+  position: relative;
   .updown {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    margin:  0 3px 0 4px;
+    .order-button {
+      background: transparent;
+      border: none;
+      font-size: 10px;
+      font-weight: bold;
+      color: #333;
+      padding-right: 6px;
+      cursor: pointer;
+    }
   }
-  
-  .order-button {
-    background: none;
-    border: none;
-    font-size: 10px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .trip_down,.trip_up {
-    cursor: pointer;
-  }
-  
   .filter-list {
     position: absolute;
-    top: 0;
-    left: 0;
+    right: 0; top: 130%;
     background: white;
-    border: 1px solid #ddd;
+    border: 1px solid #555;
     width: 68px;
     height: 92px;
-    list-style: none;
-    font-weight: bolder;
     border-radius: 10px;
-    padding: 15px 15px 0 15px;
+    padding: 15px;
+    li {
+      font-size: 10px;
+      font-weight: bold;
+      padding-bottom: 13px;
+      cursor: pointer;
+    }
   }
-  
-  .filter-list li {
-    cursor: pointer;
-    font-size: 10px;
-  }
-  
-  .filter-list li:hover {
-    text-decoration: underline;
-  }
+}

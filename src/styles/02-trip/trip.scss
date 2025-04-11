@@ -1,39 +1,57 @@
-.triptrip{
-    margin: 0 auto;
-    text-align: center;
+.trip-mainpage{
+    margin: 92px 0 150px;
+}
+.trip-main-title{
     padding: 50px 0;
     font-size: 20px;
     font-weight: bold;
-    color: #333333;
+    text-align: center;
 }
-.mb-10{
-    h2{
-        font-size: 20px;
-        padding-bottom: 7px;
-        color: #333333;
-    }
-    b{
-        font-size: 14px;
-        color: #555555;
-        padding-bottom: 7px;
+// TripSlide 컴포넌트
+.trip-main-swiper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin-bottom: 50px;
+    .trip-main-slideitem{
+        margin-right: 10px;
     }
 }
-.swiperitem{
-    b{
-        display: inline-block;
-        padding-top: 7px;
-        font-size: 14px;
+// TripSlideItem 컴포넌트
+.trip-main-slide{
+    display: block;
+    width: 100%;
+    aspect-ratio: 150 / 100; //고정 비율 유지
+    .trip-main-slide-img{
+        width: 100%; height: 100%;
+        border-radius: 10px;
+        margin-bottom: 7px;
+        object-fit: cover;
+    }
+    >span{
+        display: block;
         width: 100%;
-
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        white-space: nowrap; //줄바꿈 금지
+        overflow: hidden; //넘치는 부분 숨기기
+        text-overflow: ellipsis; //...처리
     }
 }
-.tripslide{
-    // padding: 7px 0;
-    object-fit: cover;
-}
-.mb-10{
-    padding-bottom: 50px;
+// TripContTop 컴포넌트
+.trip-main-con-top{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    .trip-main-con-title{
+        h3{
+            font-size: 18px;
+        }
+        span{
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 7px 0;
+        }
+    }
 }

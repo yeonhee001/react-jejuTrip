@@ -1,13 +1,31 @@
 import React from 'react'
 import Left_black from '../../icons/Left_black'
 import Right_black from '../../icons/Right_black'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
-function BackNext() {
+function BackNext({prevPath, nextPath, filterList}) {
+
+  const navigate  = useNavigate();
+
   return (
     <div className="backnext">
-      <NavLink to="/"> <Left_black className={'btn1'}/>이전</NavLink>
-      <NavLink to="/">이후<Right_black className={'btn2'}/></NavLink>
+      <button 
+        onClick={()=>{
+          if (prevPath) navigate(prevPath, { state: { filterList } });
+          // if(이전항목이 있다면 실행) (경로이동, {페이지 이동시 전달할 데이터})
+        }}
+      >
+        <Left_black className={'backnext-btn'}/>
+        이전
+      </button>
+      <button
+        onClick={() => {
+          if (nextPath) navigate(nextPath, { state: { filterList } });
+        }}
+      >
+        이후
+        <Right_black className={'backnext-btn'}/>
+      </button>
     </div>
   )
 }

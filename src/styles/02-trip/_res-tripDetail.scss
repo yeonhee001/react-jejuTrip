@@ -1,0 +1,16 @@
+@media (max-width:768px){
+  .trip-around-item{
+    width: 100%;
+    >span{
+      font-size: 12px;
+    }
+  }
+  }
+  @media (max-width:480px){
+  .trip-around-item{
+    width: 100%;
+    >span{
+      font-size: 10px;
+    }
+  }
+  }

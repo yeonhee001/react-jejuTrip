@@ -1,8 +1,8 @@
 import React from 'react'
 
-function List({className}) {
+function List({className, onClick}) {
   return (
-    <div className={className}>
+    <div className={className} onClick={onClick}>
       <img src='/imgs/_icons/List.svg' alt=''/>
     </div>
   )

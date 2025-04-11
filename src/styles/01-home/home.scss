@@ -1,4 +1,12 @@
-main{margin-top: 92px;}
+.mySwiper { width: 100%; overflow: hidden;}
+.mainSwiper{
+  .swiper-slide { width: 100% !important; }
+}
+.photoSwiper{
+  .swiper-slide { width: 95% !important; flex-shrink: 0;}
+}
+
+.home-main{margin: 92px 0 221px;}
 .bottom-icons{
   width: 100%;
   background-color: #fff;
@@ -28,6 +36,7 @@ main{margin-top: 92px;}
   .home-bgimg{
     width: 100%; max-height: 40vh;
     img{
+      filter: brightness(0.75);
       width: 100%; height: 40vh;
       object-fit: cover;
       border-radius: 10px;
@@ -46,12 +55,13 @@ main{margin-top: 92px;}
     >b{
       position: absolute;
       left: 0; top: 0;
-      transform: translate(27%, 23%);
+      transform: translate(32%, 23%);
       font-size: 30px;
       color: #5886BA;
     }
   }
   .home-main-text{
+    width: 70%;
     position: absolute;
     left: 0%; top: 50%;
     transform: translate(0, -50%);
@@ -66,6 +76,12 @@ main{margin-top: 92px;}
       display: block;
       font-size: 18px;
       line-height: 22px;
+      
+      display: -webkit-box;
+      -webkit-line-clamp: 2; // 최대 2줄
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }
@@ -98,20 +114,87 @@ main{margin-top: 92px;}
   }
 }
 
-.home-tripmenu{
-  margin: 70px 0;
-  .home-tripmenu-top{
+.home-weather-content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #FDF6EE;
+  border-radius: 50px;
+  .home-weather-today{
+    width: 45%;
+    background: linear-gradient(130deg, #BCDBFF, #DFEBFA);
+    border-radius: 50px;
+    padding: 14px 54px;
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 18px;
-    h2{
-      font-weight: bold;
-      font-size: 28px;
+    align-items: center;
+    justify-content: center;
+    >img{
+      width: auto; height: 61px;
+    }
+    >div{
+      margin-left: 45px;
+      >span{
+        font-size: 18px;
+      }
+      >b{
+        font-size: 24px;
+        margin-left: 12px;
+      }
+      
     }
   }
-  .home-trip{
-    width: 215px; height: 100%;
+  .home-weather-etc{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    >b{font-size: 24px;}
+    .home-weather-windy{
+      margin: 0 63px 0 87px;
+      >span{
+        font-size: 18px;
+      }
+      >b:nth-of-type(1){
+        font-size: 24px;
+        margin-left: 12px;
+      }
+      >b:nth-of-type(2){
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+.home-menu-top{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  h2, .emoji{
+    font-weight: bold;
+    font-size: 28px;
+  }
+  .emoji{
+    font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+  }
+}
+
+.home-tripmenu{
+  margin: 70px 0;
+  .home-tripContent{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 14px;
+    .home-trip{
+    width: 60%; height: 100%;
+    transition: width 0.3s ease;
+
+    &.active {
+      width: 100%; // 펼쳐졌을 때 너비
+    }
+
     .home-triptab{
       width: 100%;
       position: relative;
@@ -131,55 +214,79 @@ main{margin-top: 92px;}
         b{
           font-size: 20px;
           color: #fff;
+          display: -webkit-box; // 여러줄 자르기
+          -webkit-line-clamp: 1; // 최대 1줄
+          -webkit-box-orient: vertical; // 수직방향(줄 수)으로 설정
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
         span{
           font-size: 17px;
           display: block;
           color: #fff;
           padding-top: 3px;
+          display: -webkit-box;
+          -webkit-line-clamp: 2; // 최대 2줄
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
       }
+    }
     }
   }
 }
 
 .home-foodmenu{
   margin: 70px 0;
-  .home-foodmenu-top{
+  .home-foodContent{
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
-    margin-bottom: 18px;
-    h2{
-      font-weight: bold;
-      font-size: 28px;
-    }
-  }
-  .home-food{
-    width: 334px; height: auto;
-    .home-foodtab{
-      width: 100%;
-      >p{
-        width: 100%; height: 164px;
-        img{
-          width: 100%; height: 100%;
-          object-fit: cover;
-          border-radius: 10px;
+    flex-wrap: wrap;
+    .home-food{
+      width: 334px; height: auto;
+      .home-foodtab{
+        width: 100%;
+        >p{
+          width: 100%; height: 164px;
+          img{
+            width: 100%; height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+          }
         }
-      }
-      .home-foodtab-text{
-        padding: 10px 0 20px;
-        >b{
-          font-size: 18px;
-          padding-right: 6px;
-        }
-        >span:nth-of-type(1){
-          font-size: 12px;
-          color: #555;
-        }
-        >span:nth-of-type(2){
-          display: block;
-          padding-top: 5px;
+        .home-foodtab-texts{
+          padding: 10px 0 20px;
+          .home-foodtab-text1{
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            gap: 6px;
+            width: 100%;
+            >b{
+              flex-shrink: 1; // 제목은 줄어들지 않게
+              white-space: nowrap; //줄바꿈 금지
+              font-size: 18px;
+              padding-right: 6px;
+            }
+            >span{
+              flex: 1 1 auto; // 남는 공간 차지
+              white-space: nowrap; //줄바꿈 금지
+              overflow: hidden; //넘치는 부분 숨기기
+              text-overflow: ellipsis; //...처리
+              font-size: 12px;
+              color: #555;
+            }
+          }
+          >span{
+            display: block;
+            padding-top: 5px;
+            flex: 1 1 auto; // 남는 공간 차지
+            white-space: nowrap; //줄바꿈 금지
+            overflow: hidden; //넘치는 부분 숨기기
+            text-overflow: ellipsis; //...처리
+          }
         }
       }
     }
@@ -188,16 +295,6 @@ main{margin-top: 92px;}
 
 .home-photomenu{
   margin: 70px 0;
-  .home-photomenu-top{
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 18px;
-    h2{
-      font-weight: bold;
-      font-size: 28px;
-    }
-  }
   .home-photo{
     width: 635px; height: auto;
     .home-photo-img{

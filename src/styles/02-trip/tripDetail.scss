@@ -1,116 +1,129 @@
-.triptag{
-    width: 76px;
-    height: 38px;
-    border: 1px solid black;
-    border-radius: 7px;
-    padding: 10px 17px;
-    font-size: 12px;
-    
-    // padding: 10px 27px;
+.trip-detail-Page{margin: 92px 0 91px;}
+
+.trip-around-part{
+  margin-bottom: 32px;
+  h3{
+    font-size: 14px;
+    margin: 32px 0 7px;
+  }
+  p{
+    margin: 10px 0;
+    color: rgba(0, 0, 0, 0.3);
     // text-align: center;
+  }
 }
-.tripslide{
-    div{
-        display: block;
-    }
-    width: 100%;
-    height: 100px;
-    border-radius: 15px;
-    b{
-        display: block;
-    }
 
-}
-.backnext{
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 33px;
-    gap: 5px;
-    a{
+// TripTag 컴포넌트
+.trip-tag{
+  .trip-tag-swiper{
+    text-align: center;
+    display: inline-block;
+    .trip-tag-slide{
+      width: auto;
+      height: 38px;
+      >span{
         display: flex;
-        cursor: pointer;
+        align-items: center;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        border: 1px solid #333;
+        border-radius: 7px;
+        padding: 12px;
+        font-size: 12px;
+      }
     }
-
+  }
 }
-.swiperaround{
-    b{
-        padding-top: 7px;
-        font-size: 10px;
+// Around 컴포넌트
+.trip-around-swiper{
+  .trip-around-slide{
+    width: 100%;
+    margin-right: 10px;
+  }
+}
+// AroundItem 컴포넌트
+.trip-around-item{
+  width: 100%; 
+  aspect-ratio: 80 / 102; //고정 비율 유지
+  .trip-around-item-img{
+    width: 100%; height: 100%;
+    >img{
+      width: 100%; height: 100%;
+      border-radius: 10px;
+      object-fit: cover;
     }
-.triparoundslide{
+  }
+  >b{
+    word-break: break-word;
     display: block;
-    width: 80px;
-    height: 102px;
-    border-radius: 10px;
-
+    margin: 7px 0 3px;
+  }
+  >span{
+    display: block;
+    font-size: 12px;
+  }
 }
+// BackNext 컴포넌트
+.backnext{
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  padding-bottom: 33px;
+  gap: 5px;
+  >button{
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    .backnext-btn{
+      width: 5px; height: 10px;
+      img{
+          width: 100%; height: 100%;
+      }
+      }
+  }
 }
-
-.tripdetail{
-
-    .detail{
-
+// TripDetailItem 컴포넌트
+.trip-detail-item{
+  .trip-detail-top{
+    width: 100%;
+    position: relative;
+    .trip-detail-img{
+      >img{
+        width: calc(100% + 76px); // style.scss에서 뺀 패딩 38px * 2
+        margin-left: -38px;
+        margin-right: -38px;
+        // 위 3가지 body에서 패딩 넣은거 무시하기
+        object-fit: cover;
+        height: 411px;
+      }
     }
-    .detailimg{
-       
-        position: relative;
-        >img{
-            width: 375px;
-            height: 411px;
-        }
-        .tripdetailheart{
-            position: absolute;
-            right:5%;
-            bottom: 7%;
-        }
+    .likewhite{
+      position: absolute;
+      right: 0; bottom: 7%;
     }
-    .tripdetailtxt{
-        h2{
-            font-size: 20px;
-            color: #333333;
-            font-weight: bold;
-            padding: 32px 0 16px 0;
-        }
-        p{
-            font-size: 14px;
-            font-weight: bold;
-            padding-bottom:10px ;
-            color: #333333;
-        }
-        b{
-            padding: 10px 0;
-            font-size: 14px;
-        }
-        span{
-            padding-top: 10px;
-            display: block;
-            font-size: 14px;
-            
-        }
-    }
-
-}
-.aroundbottom{
+  }
+  .trip-detail-text{
+    margin-top: 32px;
     h3{
-        font-size: 14px;
-        font-weight: bold;
-        padding-bottom: 7px;
+      font-size: 20px;
     }
-}
-.aroundswiper{
-    img{
-        width: 80px;
-        height: 102px;
-        border-radius: 10px;
-        padding-bottom: 7px;
+    b{
+      display: block;
+      padding: 16px 0 10px;
     }
     p{
-        font-size: 14px;
-        color: #333333;
-        padding-bottom: 5px;
+      line-height: 20px;
     }
     span{
-        font-size: 10px;
-        color: #333333;
+      display: block;
+      padding: 10px 0 16px;
     }
+  }
 }
+
+
+
+@import './res-tripDetail.scss';

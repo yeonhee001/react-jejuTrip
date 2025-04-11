@@ -4,6 +4,8 @@ import axios from 'axios'
 import Search from '../../component/icons/Search'
 import SearchBar from '../../component/00-search/SearchBar'
 import Ranking from '../../component/00-search/Ranking'
+import "../../styles/00-search/searchPage.scss";
+
 import Send from '../../component/icons/Send'
 
 function SearchPage() {
