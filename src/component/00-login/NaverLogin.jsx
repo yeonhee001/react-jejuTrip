@@ -1,8 +1,27 @@
 import React from 'react'
 
 function NaverLogin() {
+  const naver_url = 'https://nid.naver.com/oauth2.0/authorize';
+
+  const naver_client_id = 'icT5QnFH3PKg3iJmEhj3';
+  const naver_redirect_uri = 'http://localhost:3000/login/authnaver';
+  const naver_response_type = 'code';
+
+  const state = crypto.randomUUID();
+  sessionStorage.setItem('naver_state', state);
+  
+  // 인가 코드 받기
+  function naver_login() {
+    // 응답
+    window.location.href = naver_url+`?client_id=${naver_client_id}&redirect_uri=${naver_redirect_uri}&response_type=${naver_response_type}&state=${state}`
+  }
+
   return (
-    <div>NaverLogin</div>
+    <>
+      <p onClick={naver_login}>
+        <img src="/imgs/login_naver_01.png" alt="로그인btn-네이버" />
+      </p>
+    </>
   )
 }
 

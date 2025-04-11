@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSwipeable } from 'react-swipeable';
 import Trash from '../icons/Trash';
 
-function SwipeAction({children}) {
+function SwipeAction({children, setTrashClick}) {
     const [swipe, setSwipe] = useState(0); // 현재 이동 거리
     const [trashbtn, setTrashbtn] = useState(false); // 스와이프 상태 관리
 
@@ -39,7 +39,7 @@ function SwipeAction({children}) {
                 }}
             >
                 <div className='children'>{children}</div>
-                <div className="trashicon" onClick={() => alert("삭제!")}><Trash/></div>
+                <div className="trashicon" onClick={setTrashClick}><Trash/></div>
             </div>
         </div>
     );

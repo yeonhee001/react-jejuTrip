@@ -18,6 +18,12 @@
 }
 .needitembox{
     margin: 32px 0;
+    position: relative;
+    .detail-swipehand{
+        position: absolute;
+        right: 5%; top: 19%;
+        transform: translate(-5%, -19%);
+    }
 }
 .Addcheckitem-form {
     display: flex;

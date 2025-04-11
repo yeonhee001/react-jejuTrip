@@ -1,10 +1,12 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import Heart_stroke_red from '../icons/Heart_stroke_red'
 import Check from '../icons/Check';
 import Activity from '../icons/Activity';
+import { useNavigate } from 'react-router-dom';
 
-function MyMenu() {
+function MyMenu({ isLoggedIn, openPopup }) {
+
+  const navigate = useNavigate();
   const mymenuContent = [
     {
       type: 'check',
@@ -26,16 +28,25 @@ function MyMenu() {
     }
   ];
 
+  const handleClick = (url) => {
+    if (!isLoggedIn) {
+      openPopup('login');
+    } else {
+      navigate(`/my/${url}`);
+    }
+  };
+
   return (
     <div className='my-menu1'>
       {
         mymenuContent.map(item => (
-          <NavLink to={`/my/${item.url}`} key={item.type}>
-            <div className={`my-menu-${item.type}`}>
-              {item.icon}
-              <span>{item.txt}</span>
-            </div>
-          </NavLink>
+          <div key={item.type} className={`my-menu-${item.type}`}
+               onClick={() => {handleClick(item.url)}}
+               style={{cursor: 'pointer'}}
+          >
+            {item.icon}
+            <span>{item.txt}</span>
+          </div>          
         ))
       }
     </div>

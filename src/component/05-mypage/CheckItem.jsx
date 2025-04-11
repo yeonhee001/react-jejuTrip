@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Checkbox, FormControlLabel, FormGroup } from '@mui/material'
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import AddCheckItem from './AddCheckItem';
 import SwipeAction from '../_common/SwipeAction';
 
-function CheckItem({ list, setList, isEdit }) {
+function CheckItem({ list, setList, isEdit, setTrashClick }) {
 
   return (
       <div>
@@ -14,7 +14,7 @@ function CheckItem({ list, setList, isEdit }) {
             {
               list.map((item, i)=>(
                 <div key={i} style={{ pointerEvents: isEdit ? 'auto' : 'none' }}>
-                  <SwipeAction>
+                  <SwipeAction setTrashClick={setTrashClick}>
                     <FormControlLabel
                       control={
                         <Checkbox

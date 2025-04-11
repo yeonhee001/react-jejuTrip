@@ -1,6 +1,9 @@
 import React from 'react'
 import "../../styles/00-login/login.scss";
 import KakaoLogin from '../../component/00-login/KakaoLogin';
+import { NavLink } from 'react-router-dom';
+import NaverLogin from '../../component/00-login/NaverLogin';
+import GoogleLogin from '../../component/00-login/GoogleLogin';
 
 function Login() {
   return (
@@ -11,14 +14,13 @@ function Login() {
       </div>
 
       <div className='loginbtns'>
-        <p>
-          <img src="/imgs/login_naver_01.png" alt="로그인btn-네이버" />
-        </p>
+        <NaverLogin/>
         <KakaoLogin/>
-        <p>
-          <img src="/imgs/login_google_01.png" alt="로그인btn-구글" />
-        </p>
-        <span>로그인 하지 않고 둘러보기 →</span>
+        <GoogleLogin/>
+        
+        <NavLink to='/'>
+          <span>로그인 하지 않고 둘러보기 →</span>
+        </NavLink>
       </div>
       
     </div>

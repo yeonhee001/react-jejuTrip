@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import TabItem from '../../component/_common/TabItem';
 import TabPage from '../../component/_common/TabPage';
 import "../../styles/05-mypage/activity.scss";
-import CmtItem from '../../component/05-mypage/CmtItem';
+import NoWritePost from '../../component/_common/NoWritePost';
+import NoWriteReply from '../../component/_common/NoWriteReply';
 
 function Activity() {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -23,12 +24,40 @@ function Activity() {
     ]
   ];
 
+  const renderContent = () => {
+    switch (selectedTab) {
+      case 0:
+        return tabContent[0].length > 0
+          ? tabContent[0].map((item) => (
+            <TabItem
+              key={item.id}
+              title={item.title} 
+              dateTime={item.dateTime} 
+            />
+          ))
+          : <NoWritePost/>
+      case 1:
+        return tabContent[1].length > 0
+        ? tabContent[1].map((item) => (
+          <TabItem
+            key={item.id}
+            title={item.title} 
+            dateTime={item.dateTime}
+            postTitle={item.postTitle}
+          />
+        ))
+        : <NoWriteReply/>
+    }
+  };
+  
+
   return (
     <div>
       <TabPage type='activity' onTabChange={setSelectedTab}/>
 
       <div className='tab-content'>
-        {
+        {renderContent()}
+        {/* {
           selectedTab === 0
           ?
           // 게시물
@@ -50,7 +79,7 @@ function Activity() {
               postTitle={item.postTitle} 
             />
           ))
-        }
+        }*/}
       </div>
     </div>
   )

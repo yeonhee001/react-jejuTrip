@@ -1,5 +1,6 @@
 import React from 'react'
 import ListItem from './ListItem'
+import SwipeHand from './SwipeHand';
 
 function ListPage({listData, page}) {
   let title = '';
@@ -34,7 +35,10 @@ function ListPage({listData, page}) {
   return (
     <div className='listpage'>
       <h2>{title}</h2> 
-      <p>{subtitle}</p>
+      <div className='listpage-subtitle'>
+        {subtitle}
+        <div className='listpage-swipehand'><SwipeHand/></div>
+      </div>
 
       {/* 연도별로 그룹화된 데이터 출력 */}
       {years.map((year) => (

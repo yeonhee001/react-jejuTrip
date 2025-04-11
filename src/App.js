@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './component/_common/Header';
 import Menu from './component/_common/Menu';
 import Home from './pages/01-home/Home';
@@ -24,16 +24,32 @@ import QnA from './pages/05-mypage/QnA';
 import Login from './pages/00-login/Login';
 import SearchPage from './pages/00-search/SearchPage';
 import SearchDetail from './pages/00-search/SearchDetail';
+import KakaoRedirect from './pages/00-login/KakaoRedirect';
+import NaverRedirect from './pages/00-login/NaverRedirect';
+import GoogleRedirect from './pages/00-login/GoogleRedirect';
+import Splash from './pages/Splash';
 
 import './styles/_style.scss';
 
 function App() {
+  // 렌더링 전에 splash로 보낼지 판단
+  const pathname = window.location.pathname;
+  const isFirstVisit = !localStorage.getItem("visited");
+  const isRoot = pathname === "/";
+
+  if (isFirstVisit && isRoot) {
+    localStorage.setItem("visited", "true");
+    window.location.replace("/splash");
+    return null; 
+  }
+
   return (
     <Router>
       <Header/>
 
       <main>
         <Routes>
+          <Route path='/splash' element={<Splash/>}/>
           <Route path='/' element={<Home/>}/>
           <Route path='/trip' element={<Trip/>}/>   
           <Route path='/trip/triplist/:type' element={<TripList/>}/>
@@ -59,6 +75,9 @@ function App() {
           <Route path='/my/qna' element={<QnA/>}/>
 
           <Route path='/login' element={<Login/>}/>
+          <Route path='/login/authkakao' element={<KakaoRedirect/>}/>
+          <Route path='/login/authnaver' element={<NaverRedirect/>}/>
+          <Route path='/login/authgoogle' element={<GoogleRedirect/>}/>
 
           <Route path='/search' element={<SearchPage/>}/>
           <Route path='/search/searchdetail' element={<SearchDetail/>}/>
