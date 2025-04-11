@@ -24,7 +24,6 @@ import QnA from './pages/05-mypage/QnA';
 import Login from './pages/00-login/Login';
 import SearchPage from './pages/00-search/SearchPage';
 import SearchDetail from './pages/00-search/SearchDetail';
-import PickPlan from './pages/04-planner/PickPlan';
 import KakaoRedirect from './pages/00-login/KakaoRedirect';
 import NaverRedirect from './pages/00-login/NaverRedirect';
 import GoogleRedirect from './pages/00-login/GoogleRedirect';
