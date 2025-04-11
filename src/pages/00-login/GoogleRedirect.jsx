@@ -1,0 +1,53 @@
+import React, { useEffect } from 'react'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom'
+
+function GoogleRedirect() {
+    const navigate = useNavigate();
+    
+    useEffect(()=>{
+        // get parameter in url
+        const search = window.location.search;
+        const param = new URLSearchParams(search);
+        const code = param.get('code');
+        const getState = param.get('state');
+        const sessionState = sessionStorage.getItem('google_state');
+
+        if (!code) return;
+
+        if (getState !== sessionState) {
+            alert('⚠️ 로그인 보안 오류! 다시 시도해주세요');
+            return;
+        }
+
+        // 백엔드로 code 전송 → 토큰 + 유저 정보 받기
+        axios({
+            method: "get",
+            url: 'http://localhost:4000/google',
+            params: { code, state: getState }
+        })
+        .then((res) => {
+            const access_token = res.data.google_access_token;
+            const google_user =  {
+                id: res.data.id,
+                name: res.data.name,
+                email: res.data.email
+            }
+    
+            sessionStorage.setItem('provider', 'google');
+            sessionStorage.setItem('access', access_token)
+            sessionStorage.setItem('user', JSON.stringify(google_user))
+    
+            navigate('/')
+        })
+        .catch((err) => {
+            console.error('구글 로그인 실패:', err)
+        });
+    }, [])
+
+    return (
+        <div>구글 로그인중입니다...</div>
+    )
+}
+
+export default GoogleRedirect

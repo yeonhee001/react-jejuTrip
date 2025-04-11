@@ -1,0 +1,46 @@
+// utils/logout.js
+import axios from 'axios';
+
+// 카카오 로그아웃 (카카오 리디렉션)
+export function kakaoLogout() {
+    const kakaoAccessToken = sessionStorage.getItem('access');
+    // 특수문자로 인한 오류 방지를 위해 인코딩 적용
+    const logoutRedirectUri = encodeURIComponent("http://localhost:3000/");
+
+    sessionStorage.clear();
+
+    if (kakaoAccessToken) {
+        const client_id = 'f86a88750c261ba4c1ffd8113fa7f753';
+        const kakaoLogoutUrl = `https://kauth.kakao.com/oauth/logout?client_id=${client_id}&logout_redirect_uri=${logoutRedirectUri}`;
+        window.location.href = kakaoLogoutUrl;
+    } else {
+        window.location.href = logoutRedirectUri;
+    }
+}
+
+// 네이버 로그아웃 (토큰 만료 방식)
+export function naverLogout(onAfterLogout) {
+    const token = sessionStorage.getItem('access');
+
+    axios.get(`http://localhost:4000/naver/logout`, {
+        params: { token }
+    })
+    .then(() => {
+        sessionStorage.clear();
+        if (typeof onAfterLogout === 'function') onAfterLogout();
+    })
+    .catch(err => {
+        console.error('네이버 로그아웃 실패:', err);
+    });
+}
+
+// 구글 로그아웃 (세션 삭제만)
+export function googleLogout(onAfterLogout) {
+    sessionStorage.clear();
+    if (typeof onAfterLogout === 'function') onAfterLogout();
+}
+
+// // 로컬 유저 또는 기타
+// export function defaultLogout() {
+//     clearSessionAndRedirect();
+// }

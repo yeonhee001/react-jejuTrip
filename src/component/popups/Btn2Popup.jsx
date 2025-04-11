@@ -2,7 +2,7 @@ import React from 'react'
 import Warning from '../icons/Warning';
 import Call from '../icons/Call';
 
-function Btn2Popup({ isOpen, setIsOpen, type }) {
+function Btn2Popup({ isOpen, setIsOpen, type, onConfirm }) {
 
   // type별 팝업 내용
   const popupContent = {
@@ -40,7 +40,7 @@ function Btn2Popup({ isOpen, setIsOpen, type }) {
       icon: <Warning className={'popup-warningicon'}/>
     },
     call: {
-      txt: '070-0707-0707',
+      txt: '1588-0000',
       btntxt1: '취소',
       btntxt2: '통화',
       icon: <Call className={'popup-callicon'}/>
@@ -73,7 +73,11 @@ function Btn2Popup({ isOpen, setIsOpen, type }) {
           <button className='btn2popup-btn' onClick={() => setIsOpen(false)}>
             {popupContent[type]?.btntxt1}
           </button>
-          <button className='btn1popup-btn' onClick={() => setIsOpen(false)}>
+          <button
+            className='btn1popup-btn'
+            onClick={() => {
+              if (onConfirm) onConfirm(); // callback 실행
+          }}>
             {popupContent[type]?.btntxt2}
           </button>
         </div>

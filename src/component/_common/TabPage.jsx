@@ -16,6 +16,10 @@ function TabPage({ type, onTabChange }) {
     plan: {
       mainTitle: '나의 일정 추가',
       tabTitle: ['지역별', '좋아요']
+    },
+    community: {
+      mainTitle: '떠나톡',
+      tabTitle: ['게시물', '갤러리']
     }
   }
 

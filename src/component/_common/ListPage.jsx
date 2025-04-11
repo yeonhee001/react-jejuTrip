@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import ListItem from './ListItem'
+<<<<<<< HEAD
 import SwipeAction from './SwipeAction'
 import Trash from '../icons/Trash';
 import Btn2Popup from '../popups/Btn2Popup';
+=======
+import SwipeHand from './SwipeHand';
+>>>>>>> origin/지호
 
 function ListPage({listData, page}) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -39,7 +43,10 @@ function ListPage({listData, page}) {
   return (
     <div className='listpage'>
       <h2>{title}</h2> 
-      <p>{subtitle}</p>
+      <div className='listpage-subtitle'>
+        {subtitle}
+        <div className='listpage-swipehand'><SwipeHand/></div>
+      </div>
 
       {/* 연도별로 그룹화된 데이터 출력 */}
       {years.map((year) => (

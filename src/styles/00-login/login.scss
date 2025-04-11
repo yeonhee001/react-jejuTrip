@@ -1,0 +1,56 @@
+.maintxt{
+    position: relative;
+    margin: 200px 0 250px;
+    h2{
+        font-size: 30px;
+        font-weight: 200;
+        line-height: 150%;
+    }
+    p{
+        position: absolute;
+        left: 45%; bottom: 0;
+        transform: translate(-45%, 0);
+        width: 185px; height: 55px;
+        > img{width: 100%; height: 100%;}
+    }
+}
+
+.loginbtns{
+    text-align: center;
+    p{cursor: pointer;}
+    .btn-kakao{
+        margin: 16px 0;
+    }
+    span{
+        text-align: right;
+        display: block;
+        margin-top: 32px;
+        color: #555;
+    }
+}
+
+.rd-background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #FDF6EE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+
+    p{
+        position: absolute;
+        width: 156px; height: 54px;
+        bottom: 10%; left: 50%;
+        transform: translate(-50%, -10%);
+        > img{width: 100%; height: 100%;}
+    }
+    span{
+        position: absolute;
+        top: 55%; left: 50%;
+        transform: translate(-50%, -55%);
+    }
+}
