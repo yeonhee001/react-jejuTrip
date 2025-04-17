@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // //쇼핑 & 맛집 & 축제 & 관광지
 // export const instance = axios.create({
-//     baseURL : "http://api.visitjeju.net/vsjApi/contents/searchlist",
+//     baseURL : "https://api.visitjeju.net/vsjApi/contents/searchlist",
     
 //     params: { // ✅ API 키 및 언어 설정을 params로 분리
 //         apiKey: "57fd439ed04e408c935a985377cbaa41",

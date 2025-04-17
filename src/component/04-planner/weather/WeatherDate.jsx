@@ -15,13 +15,13 @@ function WeatherDate() {
     baseURL : `${process.env.REACT_APP_APIURL}/weather`,
   });
 
-  // useEffect(()=>{
-  //   instance.get("./")
-  //   .then((res)=>{
-  //       setData(res.data)
-  //       setLoading(false)
-  //   })
-  // },[])
+  useEffect(()=>{
+    instance.get("./")
+    .then((res)=>{
+        setData(res.data)
+        setLoading(false)
+    })
+  },[])
 
   const weatherMap = {
     "구름많음 / 비": "구름많고 비",

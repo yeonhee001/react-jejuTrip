@@ -259,12 +259,12 @@ function Home() {
     const instance = axios.create({
       baseURL : `${process.env.REACT_APP_APIURL}/mainWeather`,
     });
-    // instance.get('./')
-    // .then((res)=>{
-    //   setMainWeather(res.data)
-    //   setWtLoading(false)
-    //   console.log(res.data);
-    // })
+    instance.get('./')
+    .then((res)=>{
+      setMainWeather(res.data)
+      setWtLoading(false)
+      console.log(res.data);
+    })
   },[])
 
   //날씨 아이콘
@@ -276,22 +276,28 @@ function Home() {
         return <img src='/imgs/weather_partly_cloudy_01.png'/>
       case "흐림":
         return <img src='/imgs/weather_cloudy_01.png'/>
-      case "흐리고 비":
+      case "흐림 / 비":
         return <img src='/imgs/weather_cloudy_rain_01.png'/>
-      case "흐리고 비나 눈":
+      case "흐림 / 비/눈":
         return <img src='/imgs/weather_sleet_01.png'/>
-      case "흐리고 눈":
+      case "흐림 / 눈":
         return <img src='/imgs/weather_snow_01.png'/>
-      case "흐리고 소나기":
+      case "흐림 / 빗방울":
+        return <img src='/imgs/weather_partly_rain.png'/>
+      case "흐림 / 눈날림":
+        return <img src='/imgs/weather_partly_snow.png'/>
+      case "흐림 / 빗방울 눈날림":
+        return <img src='/imgs/weather_partly_rain_snow.png'/>
+      case "구름 많음 / 비":
         return <img src='/imgs/weather_cloudy_rain_01.png'/>
-      case "구름많고 비":
-        return <img src='/imgs/weather_cloudy_rain_01.png'/>
-      case "구름많고 비나 눈":
+      case "구름 많음 / 비/눈":
         return <img src='/imgs/weather_sleet_01.png'/>
-      case "구름많고 눈":
+      case "구름 많음 / 빗방울":
+        return <img src='/imgs/weather_raindrop.png'/>
+      case "구름 많음 / 눈날림":
         return <img src='/imgs/weather_snow_01.png'/>
-      case "구름많고 소나기":
-        return <img src='/imgs/weather_clear_01.png'/>
+      case "구름 많음 / 빗방울 눈날림":
+        return <img src='/imgs/weather_sleet_01.png'/>
     }
   }
 
