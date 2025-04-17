@@ -272,7 +272,7 @@ function Home() {
     switch (wf){
       case "맑음":
         return <img src='/imgs/weather_clear_01.png'/>
-      case "구름 많음":
+      case "구름많음":
         return <img src='/imgs/weather_partly_cloudy_01.png'/>
       case "흐림":
         return <img src='/imgs/weather_cloudy_01.png'/>
@@ -288,15 +288,15 @@ function Home() {
         return <img src='/imgs/weather_partly_snow.png'/>
       case "흐림 / 빗방울 눈날림":
         return <img src='/imgs/weather_partly_rain_snow.png'/>
-      case "구름 많음 / 비":
+      case "구름많음 / 비":
         return <img src='/imgs/weather_cloudy_rain_01.png'/>
-      case "구름 많음 / 비/눈":
+      case "구름많음 / 비/눈":
         return <img src='/imgs/weather_sleet_01.png'/>
-      case "구름 많음 / 빗방울":
+      case "구름많음 / 빗방울":
         return <img src='/imgs/weather_raindrop.png'/>
-      case "구름 많음 / 눈날림":
+      case "구름많음 / 눈날림":
         return <img src='/imgs/weather_snow_01.png'/>
-      case "구름 많음 / 빗방울 눈날림":
+      case "구름많음 / 빗방울 눈날림":
         return <img src='/imgs/weather_sleet_01.png'/>
     }
   }
@@ -471,7 +471,7 @@ function Home() {
       </div>
 
       <div className='home-photomenu'>
-        <HomeContTop homecontTitle={'꼭 남겨야 할 인생샷 스팟 '} homecontEmoji={'📸'} to={'/community/cmphoto'}/>
+        <HomeContTop homecontTitle={'꼭 남겨야 할 인생샷 스팟 '} homecontEmoji={'📸'} to={'/community'}/>
         <div>
           <Swiper
           slidesPerView={'auto'}
