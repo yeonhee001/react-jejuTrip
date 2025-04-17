@@ -11,8 +11,8 @@ function SwipeActionMemo({children, className, setMemoClick, setTrashClick}) {
         onSwiping: (e) => {
             // 스와이프 중 → 드래그처럼 이동
             let deltaX = e.deltaX; // 이동 거리
-            if (trashbtn) deltaX -= 160; // 이미 열려있다면 80px을 빼고 계산
-            setSwipe(Math.max(Math.min(deltaX, 160), -160));
+            if (trashbtn) deltaX -= 240; // 이미 열려있다면 80px을 빼고 계산
+            setSwipe(Math.max(Math.min(deltaX, 240), -240));
             },
         onSwiped: (eventData) => {
             // 스와이프 끝났을 때 → 최종 위치 결정
@@ -29,7 +29,7 @@ function SwipeActionMemo({children, className, setMemoClick, setTrashClick}) {
     });
     
         return (
-        <div className={className} style={{overflow: "hidden"}}>
+        <div className={className} style={{overflow: "none"}}>
             <div
                 {...handlers}
                 className="swipe-container"
@@ -41,7 +41,7 @@ function SwipeActionMemo({children, className, setMemoClick, setTrashClick}) {
             >
                 <div className='children'>{children}</div>
                 <div className='memoNtrash'>
-                    <div className="memoicon" onClick={()=>{setMemoClick(true); setSwipe(0)}}><Memo/></div>
+                <div className="memoicon" onClick={()=>{setMemoClick(true); setSwipe(0)}}><Memo/></div>
                     <div className="trashicon" onClick={() => setTrashClick(true)}><Trash/></div>
                 </div>
             </div>

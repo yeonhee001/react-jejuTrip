@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
+import DataLoading from '../../component/_common/DataLoading';
 
 function GoogleRedirect() {
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ function GoogleRedirect() {
         // 백엔드로 code 전송 → 토큰 + 유저 정보 받기
         axios({
             method: "get",
-            url: 'http://localhost:4000/google',
+            url: `${process.env.REACT_APP_APIURL}/google`,
             params: { code, state: getState }
         })
         .then((res) => {
@@ -38,15 +39,21 @@ function GoogleRedirect() {
             sessionStorage.setItem('access', access_token)
             sessionStorage.setItem('user', JSON.stringify(google_user))
     
-            navigate('/')
+            setTimeout(() => {
+                navigate('/');
+            }, 1100);
         })
         .catch((err) => {
             console.error('구글 로그인 실패:', err)
         });
-    }, [])
+    }, [navigate])
 
     return (
-        <div>구글 로그인중입니다...</div>
+        <div className='rd-background'>
+            <p><img src="/imgs/logo_black.svg" alt="떠나봅서logo" /></p>
+            <DataLoading className={'rb-loading'}/>
+            <span>구글 로그인중입니다...</span>
+        </div>
     )
 }
 

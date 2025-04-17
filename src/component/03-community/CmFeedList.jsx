@@ -38,7 +38,7 @@ const CmFeedList = () => {
 
   const fetchCommentCount = async (postId) => {
     try {
-      const res = await fetch(`http://localhost:4000/reply/count/${postId}`);
+      const res = await fetch(`${process.env.REACT_APP_APIURL}/reply/count/${postId}`);
       const data = await res.json();
       return data.count || 0;
     } catch (err) {
@@ -49,7 +49,7 @@ const CmFeedList = () => {
 
   const fetchLikeCount = async (postId) => {
     try {
-      const res = await fetch(`http://localhost:4000/like/count?postId=${postId}`);
+      const res = await fetch(`${process.env.REACT_APP_APIURL}/like/count?postId=${postId}`);
       const data = await res.json();
       return data.count || 0;
     } catch (err) {
@@ -60,7 +60,7 @@ const CmFeedList = () => {
 
   const fetchUserLikedPosts = async (userId) => {
     try {
-      const res = await fetch(`http://localhost:4000/like/user-liked?userId=${userId}`);
+      const res = await fetch(`${process.env.REACT_APP_APIURL}/like/user-liked?userId=${userId}`);
       const data = await res.json();
       return data.likedPostIds || [];
     } catch (err) {
@@ -78,7 +78,7 @@ const CmFeedList = () => {
       }
 
       try {
-        const res = await fetch("http://localhost:4000/post");
+        const res = await fetch(`${process.env.REACT_APP_APIURL}/post`);
         const data = await res.json();
         const likedPostIds = await fetchUserLikedPosts(userId);
 
@@ -139,7 +139,7 @@ const CmFeedList = () => {
     try {
       const user = JSON.parse(sessionStorage.getItem("user"));
       const userId =  String(user.id);
-      const res = await fetch("http://localhost:4000/like", {
+      const res = await fetch(`${process.env.REACT_APP_APIURL}/like`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ postId, userId, liked, post }),
@@ -242,7 +242,7 @@ const CmFeedList = () => {
         )}
 
         <div className="new-post-button" onClick={() => navigate("/community/cmpostpage")}>
-          <Newpost className="cm-Newpost" />
+          <Newpost className={"cm-Newpost"} />
         </div>
       </div>
     </FormProvider>

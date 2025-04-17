@@ -14,7 +14,7 @@ const CmComment = ({ postId, showDeleteBtn, setShowDeleteBtn, comments, setComme
   const [selectedCommentIdToDelete, setSelectedCommentIdToDelete] = useState(null);
   const [isSelectPopupOpen, setIsSelectPopupOpen] = useState(false);
 
-  const BASE_URL = "http://localhost:4000";
+  const BASE_URL = `${process.env.REACT_APP_APIURL}`;
 
   // 로그인한 사용자 정보 가져오기
   const userStr = sessionStorage.getItem("user");

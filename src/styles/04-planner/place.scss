@@ -1,3 +1,40 @@
+.planner_place{
+    margin: 92px 0 150px;
+    .search_list_title{
+        font-size: 18px;
+        font-weight: bold;
+        margin: 16px 0;
+        display: flex;
+        gap: 5px;
+        >h3{
+            font-size: 18px;
+        }
+        >span{color: #5886BA;}
+    }
+    .searchItem{
+        position: relative;
+    }
+    input{display: none;}
+    input:checked+div>.tagbtn{
+        display: inline-block;
+        padding: 7px 11px;
+        color: white;
+        border: 1px solid #5886BA;
+        background-color: #5886BA;
+        border-radius: 85px;
+    }
+    .searchbtn{ //선택 버튼
+        position: absolute;
+        top: 50%; right: 0;
+        transform: translateY(-60%);
+    }
+    .place_btn{ //선택완료 버튼
+        width: 768px;
+        position: fixed;
+        left: 50%; bottom: 10%;
+        transform: translate(-50%, -65%)
+    }
+}
 .category{
     font-size: 14px;
     font-weight: normal;

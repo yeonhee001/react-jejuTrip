@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import DataLoading from '../../component/_common/DataLoading';
 
 function NaverRedirect() {
     const navigate = useNavigate();
@@ -22,7 +23,7 @@ function NaverRedirect() {
 
         axios({
             method: "get",
-            url: 'http://localhost:4000/naver',
+            url: `${process.env.REACT_APP_APIURL}/naver`,
             params: { code, state: getState }
         })
         .then(res=>{
@@ -39,15 +40,21 @@ function NaverRedirect() {
             sessionStorage.setItem('user', JSON.stringify(naver_user));
 
             // 완료 후 홈으로 이동.
-            navigate('/');
+            setTimeout(() => {
+                navigate('/');
+            }, 1100);
         })
         .catch(err => {
             console.error('네이버 로그인 실패:', err);
         });
-    }, [])
+    }, [navigate])
 
     return (
-        <div>네이버 로그인중입니다...</div>
+        <div className='rd-background'>
+            <p><img src="/imgs/logo_black.svg" alt="떠나봅서logo" /></p>
+            <DataLoading className={'rb-loading'}/>
+            <span>네이버 로그인중입니다...</span>
+        </div>
     )
 }
 

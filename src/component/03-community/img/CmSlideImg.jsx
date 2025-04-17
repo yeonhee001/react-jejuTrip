@@ -12,7 +12,7 @@ function CmSlideImg() {
       setLoading(true);
 
       try {
-        const response = await axios.get(`http://localhost:4000/post/images?page=${page}`);
+        const response = await axios.get(`${process.env.REACT_APP_APIURL}/post/images?page=${page}`);
         const posts = response.data;
         setImages((prevImages) => [...prevImages, ...posts]);
       } catch (error) {

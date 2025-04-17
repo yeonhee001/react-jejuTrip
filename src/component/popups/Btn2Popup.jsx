@@ -2,7 +2,7 @@ import React from 'react'
 import Warning from '../icons/Warning';
 import Call from '../icons/Call';
 
-function Btn2Popup({ isOpen, setIsOpen, type, onConfirm }) {
+function Btn2Popup({ isOpen, setIsOpen, type, onConfirm, onCancel, className='' }) {
 
   // type별 팝업 내용
   const popupContent = {
@@ -58,7 +58,7 @@ function Btn2Popup({ isOpen, setIsOpen, type, onConfirm }) {
   if (!isOpen) return null;
 
   return (
-    <div className='popup-box' onClick={closePopup}>
+    <div className={className ? className : 'popup-box'} onClick={closePopup}>
       <div className='popup'>
 
         <div className='popup-cont'>
@@ -70,7 +70,12 @@ function Btn2Popup({ isOpen, setIsOpen, type, onConfirm }) {
         </div>
 
         <div className='popup-btns-box'>
-          <button className='btn2popup-btn' onClick={() => setIsOpen(false)}>
+          <button 
+            className='btn2popup-btn' 
+            onClick={() => {
+              setIsOpen(false);
+              if (onCancel) onCancel();
+            }}>
             {popupContent[type]?.btntxt1}
           </button>
           <button

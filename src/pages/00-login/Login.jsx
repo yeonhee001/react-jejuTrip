@@ -7,7 +7,7 @@ import GoogleLogin from '../../component/00-login/GoogleLogin';
 
 function Login() {
   return (
-    <div>
+    <div className='login-page'>
       <div className='maintxt'>
         <h2>어디서든 제주,<br/>언제든</h2>
         <p><img src="/imgs/logo_blue.svg" alt="로고(blue)" /></p>
@@ -22,7 +22,6 @@ function Login() {
           <span>로그인 하지 않고 둘러보기 →</span>
         </NavLink>
       </div>
-      
     </div>
   )
 }

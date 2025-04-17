@@ -1,6 +1,30 @@
-.add-check-btn{
-    position: fixed;
-    right: 5%; bottom: 15%;
-    transform: translate(-5%, -15%);
-    cursor: pointer;
+.checklist-page{margin: 92px 0 150px;}
+.add-check-btn-wrap{
+    position: relative;
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+
+    .add-check-btn{
+        z-index: 999;
+        position: fixed;
+        bottom: 11.5%; right: calc((100vw - 768px) / 2 + 34px); // 화면 너비에서 가운데 정렬 + 우측 위치 조정
+        transform: translate(-11.5%, -4%);    
+        >img{
+            width: 40px; height: 40px;
+        }
+        cursor: pointer;
+    }
 }
+
+//태블릿,모바일용
+// .top-btn-wrap {
+//     max-width: auto;
+//     .top-btn{
+//         bottom: 11.5%; right: 4%;
+//         transform: translate(-11.5%, -4%);    
+//         >img{
+//             width: 40px; height: 40px;
+//         }
+//     }
+// }

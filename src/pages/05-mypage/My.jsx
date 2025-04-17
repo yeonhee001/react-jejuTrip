@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import { NavLink, useNavigate } from 'react-router-dom';
 import MyMenu from '../../component/05-mypage/MyMenu';
 import Btn1Popup from '../../component/popups/Btn1Popup';
@@ -11,6 +12,7 @@ function My() {
   const [popupType, setPopupType] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isDonePopupOpen, setIsDonePopupOpen] = useState(false);
+  const [myTrip, setMyTrip] = useState(null);
   const navigate = useNavigate();
 
   // 세션 내 access 값이 있으면 true, 없으면 false
@@ -23,6 +25,28 @@ function My() {
       setUser(JSON.parse(storedUser));
     }
   }, []);
+
+  // 나의 여행 수 가져오기
+  useEffect(() => {
+    if(user) {
+      const userId = user.id;
+      axios.get(`${process.env.REACT_APP_APIURL}/plan/user/${userId}`)
+      .then(res => {
+          const tripLth = res.data.length;
+          setMyTrip(tripLth);
+      })
+      .catch(err => {
+        if (err.response && err.response.status === 404) {
+          // 서버에서 404가 발생하면, plan이 없으므로 tripLth를 0으로 설정
+          setMyTrip(0);
+          // console.warn("No plan data found for user.");
+        } else {
+          // 그 외의 오류가 발생했을 때 처리
+          console.error("Error fetching plan:", err);
+        }
+      });
+    }
+  }, [user, myTrip])
 
   // Btn2Popup type별 팝업
   function openPopup(type) {
@@ -54,7 +78,7 @@ function My() {
     }
   }
 
-  // 기기별 통화 걸기 관리
+  // 통화 팝업 관리
   function handleCallConfirm() {
     const isMobile = /iPhone|Android/i.test(navigator.userAgent);
     setIsPopupOpen(false);
@@ -66,8 +90,13 @@ function My() {
     }
   }
 
+  // 나의 여행 팝업 관리
+  function handleTripConfirm() {
+    navigate('/planner')
+  }
+  
   return (
-    <div>
+    <div className='my-page'>
       <h2 className='tab-maintitle'>MY</h2>
 
       { user ? (
@@ -88,18 +117,21 @@ function My() {
               <p>여행</p>
               <b onClick={() => {
                   if (!isLoggedIn) openPopup('login');
+                  else if (!myTrip) openPopup('trip');
                   else navigate('/planner');
                 }}
               >
                 나의 여행 보기
               </b>
-              <span className='my-trip-num'>2</span>
+              {myTrip !== 0 && (
+                <span className='my-trip-num'>{myTrip}</span>
+              )}
               <NavLink to='/planner/pickplan'>추천 일정 보기</NavLink>
             </div>
             <div className='my-menu-help'>
               <p>고객센터</p>
               <NavLink to='/my/qna'>자주 묻는 질문</NavLink>
-              <span onClick={() => openPopup('call')}>전화 걸기</span>
+              <b onClick={() => openPopup('call')}>전화 걸기</b>
             </div>
           </div>
 
@@ -170,6 +202,8 @@ function My() {
             ? handleCallConfirm
             : popupType === 'login'
             ? () => navigate('/login')
+            : popupType === 'trip'
+            ? handleTripConfirm
             : () => setIsPopupOpen(false)
         }
       />
