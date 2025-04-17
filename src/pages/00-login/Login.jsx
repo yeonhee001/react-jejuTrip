@@ -22,7 +22,6 @@ function Login() {
           <span>로그인 하지 않고 둘러보기 →</span>
         </NavLink>
       </div>
-      
     </div>
   )
 }
