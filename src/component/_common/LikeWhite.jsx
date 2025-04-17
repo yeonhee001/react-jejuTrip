@@ -8,8 +8,8 @@ function LikeWhite({className, onClick, liked}) {
       {liked ? <Heart_fill_white className={'heart-fill-white'} /> : <Heart_stroke_white className={'heart-stroke-white'} />}
     </div>
     // 사용방법 : 
-    // 칠해진 하얀 하트 <LikeRed liked={true} />
-    // 라인만 있는 하트 <LikeRed liked={false} />
+    // 칠해진 하얀 하트 <LikeWhite liked={true} />
+    // 라인만 있는 하트 <LikeWhite liked={false} />
   )
 }
 

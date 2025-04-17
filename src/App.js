@@ -87,7 +87,7 @@ function App() {
           <Route path='/login/authgoogle' element={<GoogleRedirect/>}/>
 
           <Route path='/search' element={<SearchPage/>}/>
-          <Route path='/search/searchdetail' element={<SearchDetail/>}/>
+          <Route path='/search/searchdetail/:word' element={<SearchDetail/>}/>
         </Routes>
       </main>
 

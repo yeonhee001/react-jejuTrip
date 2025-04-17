@@ -1,8 +1,8 @@
 import React from 'react'
 
-function TagBtn({tagbtn}) {
+function TagBtn({isActive, onClick, tagbtn}) {
   return (
-    <div className='tagbtn'>{tagbtn}</div>
+    <div className={`tagbtn ${isActive ? 'active' : ''}`} onClick={onClick}>{tagbtn}</div>
   )
 }
 
