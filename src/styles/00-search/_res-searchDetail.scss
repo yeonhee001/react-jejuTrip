@@ -1,0 +1,33 @@
+@media (max-width:768px){  
+  .search-detail-top3{
+    padding: 59px 5% 0;
+    width: 100%;
+    .search-word-label{
+      >.tagbtn{
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+@media (max-width:480px){
+  .search-detail-page{
+    margin: 59px 0 150px;
+    width: 100%;
+  }
+  
+  .search-detail-top3{
+    padding: 59px 5% 0;
+    width: 100%;
+    .search-word-label{
+      >.tagbtn{
+        margin-bottom: 10px;
+        margin-right: 5px;
+        font-size: 12px;
+      }
+    }
+  }
+  .searchDetail-item{
+    margin-top: 262px;
+  }
+}

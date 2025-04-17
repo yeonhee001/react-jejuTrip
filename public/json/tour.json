@@ -3392,42 +3392,6 @@
       }
     },
     {
-      "alltag": "부모,커플,혼자,친구,아이,문화유적지",
-      "contentsid": "CONT_000000000500299",
-      "contentscd": {
-        "value": "c1",
-        "label": "관광지",
-        "refId": "contentscd\u003Ec1"
-      },
-      "title": "삼사석",
-      "region1cd": {
-        "value": "region1",
-        "label": "제주시",
-        "refId": "region\u003Eregion1"
-      },
-      "region2cd": {
-        "value": "11",
-        "label": "제주시내",
-        "refId": "region1\u003E11"
-      },
-      "address": "제주특별자치도 제주시 화북1동 1380-1",
-      "roadaddress": "제주특별자치도 제주시 화북1동 1380-1",
-      "tag": "부모,커플,혼자,친구,아이,문화유적지,자연경관,역사유적,어트랙션",
-      "introduction": "제주 삼신인(고.양.부)이 쏘았던 화살이 꽂혔던 돌멩이를 보관한 곳",
-      "latitude": 33.521027,
-      "longitude": 126.5741,
-      "postcode": null,
-      "phoneno": "064-728-2735",
-      "repPhoto": {
-        "descseo": "Samsaseok Rock",
-        "photoid": {
-          "photoid": 18265,
-          "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201804/30/1ecfaff8-353d-4a0d-a3ee-8024c7086987.jpg",
-          "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201804/30/1c8e5c5b-ecee-41ae-bd50-21ce801e7280.jpg"
-        }
-      }
-    },
-    {
       "alltag": "체험관광,액티비티,카드결제,현금결제,계좌이체,,",
       "contentsid": "CNTS_200000000011554",
       "contentscd": {
@@ -3604,6 +3568,42 @@
           "photoid": 18599,
           "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201804/30/04faf6f6-d67e-4fbb-82a6-9b9f80c7942e.jpg",
           "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201804/30/c599be10-5121-4cc3-aff9-0e8e8faa8fdf.jpg"
+        }
+      }
+    },
+    {
+      "alltag": "겨울, 스파,실내",
+      "contentsid": "CNTS_200000000010796",
+      "contentscd": {
+        "value": "c1",
+        "label": "관광지",
+        "refId": "contentscd\u003Ec1"
+      },
+      "title": "롯데호텔 브이스파",
+      "region1cd": {
+        "value": "region2",
+        "label": "서귀포시",
+        "refId": "region\u003Eregion2"
+      },
+      "region2cd": {
+        "value": "24",
+        "label": "중문",
+        "refId": "region2\u003E24"
+      },
+      "address": "제주특별자치도 서귀포시 색달동 2812-4",
+      "roadaddress": "제주특별자치도 서귀포시 중문관광로72번길 35, lobby floor 8F",
+      "tag": "겨울,스파,체험,호텔,어트랙션",
+      "introduction": "서귀포시 중문관광단지의 롯데호텔제주는 프리미엄급으로 잘 알려진 휴양시설. 이 곳 별관 1층에 위치한 브이스파는 1905년부터 명성을 이어온 스위스 프리미엄 안티에이징 브랜드 ‘발몽(Valmont)’과 딸라소 테라피의 리더, 프랑스 No.1 해양성 코스메틱 브랜드 ‘딸고(Thalgo)’를 전문으로 사용하는 고품격 스파라고 할 수 있다. 전문교육을 이수한 테라피스트의 섬세한 손길로 진행되는 다양한 프로그램과 고객 한 분만을 위한 프라이빗 서비스는 여행이나 과중한 피로에 지친 몸과 마음의 균형을 찾게 해준다.",
+      "latitude": 33.2484577,
+      "longitude": 126.4105487,
+      "postcode": null,
+      "phoneno": "064-731-4007",
+      "repPhoto": {
+        "descseo": "롯데호텔 브이스파",
+        "photoid": {
+          "photoid": 2019022575562,
+          "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/202011/03/81b8479f-e466-4697-877b-85caaaf30eef.jpg",
+          "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/202011/03/36af5821-4b0f-4449-a0c3-5576eaa2ff63.jpg"
         }
       }
     }

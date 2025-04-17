@@ -16,11 +16,11 @@ function TripSilde({slidedata=[], detailurl}) {
     >
       {
         slidedata.map((item)=>
-          <SwiperSlide className="trip-main-slideitem" key={item.contents_id || item.contentsid}>
+          <SwiperSlide className="trip-main-slideitem" key={item.contentsid}>
             <TripSildeItem 
-              img={item.img_path || item.repPhoto?.photoid?.imgpath || '/imgs/common_noimage_02.png'} 
+              img={item.repPhoto?.photoid?.imgpath || '/imgs/common_noimage_02.png'} 
               title={item.title} 
-              id={item.contents_id || item.contentsid}
+              id={item.contentsid}
               detailurl={detailurl}
             />
           </SwiperSlide>

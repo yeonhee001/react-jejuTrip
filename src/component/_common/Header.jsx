@@ -26,7 +26,8 @@ function Header() {
 
   const hiddenPaths = ["/login", "/community/cmpostpage", "/community/cmeditpage", "/community/cmsubjectpage", "/search", "/search/searchdetail", "/splash"];
   // location이 pathname을 가지고 있어서 안보이게 할 페이지를 지정
-  const hideHeader = hiddenPaths.includes(location.pathname);
+  const hideHeader = hiddenPaths.includes(location.pathname) || location.pathname.startsWith("/search/searchdetail");
+  // SearchDetail 페이지에서 검색했을 때 헤더가 안보여야하기때문에 location.pathname.startsWith 추가함
 
   if (hideHeader) return null; // 해당 경로가 true일 때 렌더링 X
 

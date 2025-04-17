@@ -1,34 +1,45 @@
 @media (max-width:768px){
-  .home-main{margin: 92px 0 148px;}
+  .home-main{margin: 92px 0 200px;}
 
   .bottom-icons{
     width: auto;
   } 
-  .home-mainimg{
-    max-height: 30vh;
-    .home-bgimg{
-      max-height: 30vh;
-      img{
-        height: 30vh;
+
+  .home-main-loading{
+    height: 35vh;
+  }
+  .home-main-wt-loading{
+    margin: 20px auto 0;
+    height: 7vh;
+  }
+
+  .mainSwiper{
+    .home-mainimg{
+      max-height: 35vh;
+      .home-bgimg{
+        max-height: 35vh;
+        img{
+          height: 35vh;
+        }
       }
-    }
-    .home-main-whimg{
-      transform: translateX(10%);
-      p{
-        width: 90%;
+      .home-main-whimg{
+        transform: translateX(10%);
+        p{
+          width: 90%;
+        }
+        >b{
+          transform: translate(34%, 33%);
+          font-size: 26px;
+        }
       }
-      >b{
-        transform: translate(37%, 40%);
-        font-size: 24px;
-      }
-    }
-    .home-main-text{
-      >b{
-        font-size: 20px;
-      }
-      span{
-        font-size: 16px;
-        line-height: 20px;
+      .home-main-text{
+        >b{
+          font-size: 20px;
+        }
+        span{
+          font-size: 16px;
+          line-height: 20px;
+        }
       }
     }
   }
@@ -52,16 +63,13 @@
   }
 
   .home-weather-content{
-    border-radius: 50px;
     .home-weather-today{
-      width: 45%;
-      border-radius: 50px;
       padding: 9px 33px;
+      gap: 10px;
       >img{
         width: auto; height: 41px;
       }
       >div{
-        margin-left: 29px;
         >span{
           font-size: 14px;
         }
@@ -72,11 +80,9 @@
       }
     }
     .home-weather-etc{
-      padding-right: 3%;
-      >b{font-size: 20px;}
+      gap: 45px;
+      >b{font-size: 20px; width: 100%;}
       .home-weather-windy{
-        margin: 0 50% 0 0;
-        padding: 0 40% 0 25%;
         >span{
           font-size: 14px;
         }
@@ -104,7 +110,7 @@
       
         .home-triptab{
           >p{
-            width: 100%; height: 206px;
+            width: 100%; height: 250px;
           }
           .home-triptab-text{
             padding: 0 0 10px 4px;
@@ -123,40 +129,119 @@
 
   .home-foodmenu{
     margin: 50px 0;
-    .home-food{
-      width: 222px; height: auto;
-      flex: 1 1 calc(50% - 5px); /* 여백 줄임 */
-      max-width: calc(50% - 5px); /* 최대 너비 제한 */
-      .home-foodtab{
-        >p{
-          width: 100%; height: 109px;
-        }
-        .home-foodtab-text{
-          padding: 10px 0 20px;
-          >b{
-            font-size: 16px;
+    .home-foodContent{
+      .home-food{
+        max-width: calc(50% - 5px); /* 최대 너비 제한 */
+        .home-foodtab{
+          display: flex;
+          flex-direction: column;
+          >p{
+            flex: 1;
+            aspect-ratio: 222 / 109;
+            width: 100%;
+            overflow: hidden;
+            >img{
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
           }
-          >span:nth-of-type(1){
-            font-size: 10px;
-            color: #555;
-          }
-          >span:nth-of-type(2){
-            font-size: 12px;
-            display: block;
-            padding-top: 5px;
+          .home-foodtab-texts{
+            padding: 10px 0 20px;
+            .home-foodtab-text1{
+              >b{
+                font-size: 16px;
+              }
+              >span{
+                font-size: 10px;
+                color: #555;
+              }
+            }
+            >span{
+              font-size: 12px;
+              display: block;
+              padding-top: 5px;
+            }
           }
         }
       }
     }
   }
 
-  .home-photomenu{
-    margin: 50px 0;
-    .home-photo{
-      width: 420px; height: auto;
-      .home-photo-img{
-        width: 100%; height: 546px;
+  .home-peoplemenu{
+    .home-people-text{
+      >p{
+        width: 298px;
       }
+      .home-people-q{
+        top: 12px; left: 14px;
+        width: 100%;
+        
+        span{
+          font-size: 20px;
+          padding-bottom: 3px;
+        }
+        span:nth-of-type(3){display: block; top: 23%; left: 0;}
+        .home-people-input{
+          height: 23px;
+          input{
+            padding-left: 16px;
+            font-size: 14px;
+            &::placeholder{
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+    .home-people-num{
+      >span{
+        bottom: 23%; left: 26%;
+        font-size: 10px;
+      }
+      >b{
+        top: 35%; right: 12%;
+        font-size: 45px;
+      }
+    }
+  }
+
+  .home-month-popup-action{
+    width: 100%;
+    .home-month-popup{
+      padding: 30px 5% 65px;
+      .popup-top{
+        font-size: 18px;
+        margin-bottom: 35px;
+        button{
+          font-size: 18px;
+          .month-close{
+            width: 15px; height: 15px;
+            margin-bottom: 5px;
+          }
+        }
+      }
+      .popup-month{
+        .month-btn{
+          margin-bottom: 18px;
+          .month-num{
+            font-size: 16px;
+            padding: 15px 50px;
+          }
+        }
+      }
+    }
+  }
+
+  .footer{
+    margin: 100px 0 150px;
+    b{
+      font-size: 12px;
+      padding-bottom: 6px;
+    }
+    p{
+      font-size: 12px;
+      line-height: 20px
     }
   }
 }
@@ -166,31 +251,43 @@
   .bottom-icons{
     width: auto;
   }
-  .home-mainimg{
-    max-height: 24vh;
-    .home-bgimg{
+
+  .home-main-loading{
+    height: 25vh;
+  }
+  .home-main-wt-loading{
+    margin: 0 auto;
+    padding-top: 50px;
+    height: 5vh;
+  }
+
+  .mainSwiper{
+    .home-mainimg{
       max-height: 24vh;
-      img{
-        height: 24vh;
+      .home-bgimg{
+        max-height: 24vh;
+        img{
+          height: 24vh;
+        }
       }
-    }
-    .home-main-whimg{
-      transform: translateX(35%);
-      p{
-        width: 65%;
+      .home-main-whimg{
+        transform: translateX(35%);
+        p{
+          width: 65%;
+        }
+        >b{
+          transform: translate(31%, 26%);
+          font-size: 20px;
+        }
       }
-      >b{
-        transform: translate(31%, 26%);
-        font-size: 20px;
-      }
-    }
-    .home-main-text{
-      >b{
-        font-size: 18px;
-      }
-      span{
-        font-size: 12px;
-        line-height: 16px;
+      .home-main-text{
+        >b{
+          font-size: 18px;
+        }
+        span{
+          font-size: 12px;
+          line-height: 16px;
+        }
       }
     }
   }
@@ -214,16 +311,12 @@
   }
 
   .home-weather-content{
-    border-radius: 50px;
     .home-weather-today{
-      width: 45%;
-      border-radius: 50px;
       padding: 7px 24px;
-      >img{
+      >p{
         width: auto; height: 30px;
       }
       >div{
-        margin-left: 22px;
         >span{
           font-size: 10px;
         }
@@ -234,11 +327,9 @@
       }
     }
     .home-weather-etc{
-      padding-right: 3%;
-      >b{font-size: 14px;}
+      gap: 35px;
+      >b{font-size: 14px; width: 100%;}
       .home-weather-windy{
-        margin: 0 50% 0 0;
-        padding: 0 30% 0 25%;
         >span{
           font-size: 10px;
         }
@@ -263,19 +354,19 @@
         &.active {
           width: 100%; // 펼쳐졌을 때 너비
         }
+      
         .home-triptab{
           >p{
             width: 100%; height: 151px;
           }
           .home-triptab-text{
-            position: absolute;
-            left: 0; bottom: 0;
-            padding: 0 0 12px 6px;
+            padding: 0 0 10px 6px;
             b{
               font-size: 12px;
             }
             span{
               font-size: 9px;
+              padding-top: 3px;
             }
           }
         }
@@ -285,38 +376,116 @@
 
   .home-foodmenu{
     margin: 50px 0;
-    .home-food{
-      width: 163px; height: auto;
-      flex: 1 1 calc(50% - 5px); /* 여백 줄임 */
-      max-width: calc(50% - 5px); /* 최대 너비 제한 */
-      .home-foodtab{
-        >p{
-          width: 100%; height: 80px;
-        }
-        .home-foodtab-text{
-          padding: 7px 0 15px;
-          >b{
-            font-size: 14px;
+    .home-foodContent{
+      .home-food{
+        .home-foodtab{
+          display: flex;
+          flex-direction: column;
+          >p{
+            flex: 1;
+            aspect-ratio: 163 / 80;
+            width: 100%;
+            overflow: hidden;
+            >img{
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
           }
-          >span:nth-of-type(1){
-            font-size: 7px;
-          }
-          >span:nth-of-type(2){
-            font-size: 10px;
-            padding-top: 5px;
+          .home-foodtab-texts{
+            padding: 7px 0 15px;
+            .home-foodtab-text1{
+              >b{
+                font-size: 14px;
+              }
+              >span{
+                font-size: 10px;
+              }
+            }
+            >span{
+              font-size: 10px;
+              padding-top: 5px;
+            }
           }
         }
       }
     }
   }
 
-  .home-photomenu{
-    margin: 50px 0;
-    .home-photo{
-      width: 310px; height: auto;
-      .home-photo-img{
-        width: 100%; height: 403px;
+  .home-peoplemenu{
+    .home-people-text{
+      >p{
+        width: 245px;
       }
+      .home-people-q{
+        top: 8px; left: 14px;
+        width: 100%;
+        
+        span{
+          font-size: 16px;
+        }
+        span:nth-of-type(3){display: block; top: 23%; left: 0;}
+        .home-people-input{
+          padding-top: 3px;
+          height: 20px;
+          input{
+            padding-left: 15px;
+            font-size: 12px;
+            &::placeholder{
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+    .home-people-num{
+      >span{
+        bottom: 21%; left: 24%;
+        font-size: 10px;
+      }
+      >b{
+        top: 35%; right: 12%;
+        font-size: 40px;
+      }
+    }
+  }
+
+  .home-month-popup-action{
+    width: 100%;
+    .home-month-popup{
+      padding: 30px 5% 65px;
+      .popup-top{
+        font-size: 14px;
+        margin-bottom: 35px;
+        button{
+          font-size: 14px;
+          .month-close{
+            width: 14px; height: 14px;
+            margin-bottom: 5px;
+          }
+        }
+      }
+      .popup-month{
+        .month-btn{
+          margin-bottom: 18px;
+          .month-num{
+            font-size: 14px;
+            padding: 12px 35px;
+          }
+        }
+      }
+    }
+  }
+
+  .footer{
+    margin: 100px 0 150px;
+    b{
+      font-size: 10px;
+      padding-bottom: 4px;
+    }
+    p{
+      font-size: 10px;
+      line-height: 16px
     }
   }
 }

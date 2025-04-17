@@ -1,0 +1,29 @@
+@media (max-width:768px){  
+  .trip-main-title{
+      font-size: 22px;
+  }
+  // TripContTop 컴포넌트
+  .trip-main-con-top{
+      .trip-main-con-title{
+          h3{
+              font-size: 18px;
+          }
+          span{
+              font-size: 14px;
+          }
+      }
+  }
+  // TripSlideItem 컴포넌트
+  .trip-main-slide{
+    >span{
+      font-size: 14px;
+    }
+  }
+}
+
+
+@media (max-width:480px){  
+  .trip-main-title{
+      font-size: 20px;
+  }
+}

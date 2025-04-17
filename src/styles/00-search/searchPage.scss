@@ -1,7 +1,8 @@
-main{margin-top: 59px;}
+.search-page{margin-top: 59px;}
 
 //Searchbar
 .searchbar{
+  justify-content: space-between;
   >button{
     background-color: transparent;
     cursor: pointer;
@@ -19,7 +20,7 @@ main{margin-top: 59px;}
     margin: 32px 0 16px;
     font-size: 18px;
   }
-  .pop-cont{
+  .popSearch-cont{
     display: flex;
     justify-content: space-between;
     >span{
@@ -42,3 +43,21 @@ main{margin-top: 59px;}
     width: 100px;
   }
 }
+
+//Tags
+.pop-tags{
+  width: 100%;
+  h2{
+    margin: 32px 0 16px;
+    font-size: 18px;
+  }
+  .popTags-cont{
+    >.tagbtn{
+      margin-bottom: 10px;
+    }
+  }
+}
+
+
+
+@import './res-searchPage.scss';

@@ -2,14 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 *{box-sizing: border-box; padding:0; margin: 0; word-break: keep-all;} 
-html{font-size: 14px; color: #333;} 
+html{font-size: 14px; color: #333; scrollbar-width: none; /* Firefox */} 
 body{ 
     // user-select: none; 
     // -webkit-user-select: none;
+    -ms-overflow-style: none; /* IE 10+ */
     -webkit-tap-highlight-color: transparent;
     margin: 0 auto; padding: 0 38px; width: 768px;
     font-family:'NanumSquare';
 }
+body::-webkit-scrollbar {display: none; /* Chrome, Safari, Opera */}
 h1,h2,h3,h4,h5,p,figure{margin: 0; padding: 0;}
 ol,ul,li{list-style: none; margin: 0; padding:0;}
 button{
@@ -232,7 +234,7 @@ input:checked + .tagbtn{
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-top: 100px;
+    margin-top: 280px;
 
     .smileIcon {
         width: 40px;
@@ -448,7 +450,7 @@ input:checked + .tagbtn{
   padding: 45px 38px 13px;
   z-index: 9998;
   h2{
-    >img{width: 97px;}
+    >img{width: 135px;}
   }
 }
 .header-back{
@@ -474,14 +476,14 @@ input:checked + .tagbtn{
   align-items: center;
   justify-content: right;
   b{
-    font-size: 16px;
+    font-size: 14px;
     padding-right: 8px;
   }
 }
 .morebtn-icon{
   img{
     display: inline-block;
-    width: 9px;
+    width: 8px;
     padding-bottom: 1px;
   }
 }
@@ -645,6 +647,23 @@ input:checked + .tagbtn{
         color: #333333;
         font-size: 14px;
         font-weight: bold;
+    }
+}
+
+//Top버튼
+.top-btn-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+    .top-btn{
+        z-index: 999;
+        position: fixed;
+        bottom: 11.5%; right: calc((100vw - 768px) / 2 + 34px); // 화면 너비에서 가운데 정렬 + 우측 위치 조정
+        transform: translate(-11.5%, -4%);    
+        >img{
+            width: 40px; height: 40px;
+        }
     }
 }
 
