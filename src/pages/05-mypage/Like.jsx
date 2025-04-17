@@ -1,67 +1,100 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import TabPage from '../../component/_common/TabPage';
 import TabItem from '../../component/_common/TabItem';
-import HeartStrokeRedn from '../../component/icons/Heart_stroke_red';
-import HeartFillRedn from '../../component/icons/Heart_fill_red';
-import NoLikePlace from '../../component/_common/NoLikePlace';
 import NoLikePost from '../../component/_common/NoLikePost';
+
+import { useNavigate, useLocation } from 'react-router-dom';
+import dayjs from 'dayjs';
+
 import '../../styles/05-mypage/like.scss';
 
 function Like() {
-  const [selectedTab, setSelectedTab] = useState(0);  // 탭 상태
-  const [likedItems, setLikedItems] = useState({});  // 좋아요 상태
-  const placeList = [];  // 장소 리스트를 빈 배열로 설정
-  const postList = [];   // 게시물 리스트를 빈 배열로 설정
+  const [selectedTab, setSelectedTab] = useState(0);
+  const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const toggleLike = (id) => {
-    setLikedItems(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  };
+  // 장소 리스트
+  const placeList = [
+    {
+      id: 1,
+      title: "관광지1",
+      imgPath: "/imgs/home_photo_01.jpg"
+    },
+    {
+      id: 2,
+      title: "관광지2",
+      imgPath: "/imgs/home_photo_02.jpg"
+    },
+    {
+      id: 3,
+      title: "관광지3",
+      imgPath: "/imgs/home_photo_03.jpg"
+    },
+    {
+      id: 4,
+      title: "관광지4",
+      imgPath: "/imgs/home_photo_04.jpg"
+    }
+  ];
 
-  const getFormattedDateTime = () => {
-    const now = new Date();
-    const yyyy = now.getFullYear();
-    const mm = String(now.getMonth() + 1).padStart(2, '0');
-    const dd = String(now.getDate()).padStart(2, '0');
-    const hh = String(now.getHours()).padStart(2, '0');
-    const mi = String(now.getMinutes()).padStart(2, '0');
-    return `${yyyy}:${mm}:${dd} ${hh}:${mi}`;
-  };
+  useEffect(() => {
+    const { id } = JSON.parse(window.sessionStorage.user);
+    axios.get(`http://localhost:4000/like/user-liked?userId=${id}`)
+      .then(res => {
+        setPosts(res.data.likedPosts);
+      });
+  }, []);
 
   return (
     <div className="like-page">
       <TabPage type={'like'} onTabChange={setSelectedTab} />
-      <TabItem />
 
       {selectedTab === 0 ? (
-        placeList.length === 0 ? (
-          <NoLikePlace />  // 장소 리스트가 비어있을 때 NoLikePlace 컴포넌트
-        ) : (
-          placeList.map(item => (
-            <div className="like-item" key={item.id}>
-              <img src={item.imgPath} alt={item.title} className="like-img" />
-              <div className="like-info">
-                <h3>{item.title}</h3>
-                <p className="like-date">{getFormattedDateTime()}</p>
-              </div>
-              <div className="like-heart" onClick={() => toggleLike(item.id)}>
-                {likedItems[item.id] ? <HeartFillRedn /> : <HeartStrokeRedn />}
-              </div>
-            </div>
-          ))
-        )
+        // 장소 탭
+        placeList.map((item) => (
+          <TabItem
+            key={item.id}
+            imgUrl={item.imgPath}
+            title={item.title}
+            dateTime="2025-04-16"
+          />
+        ))
       ) : (
-        postList.length === 0 ? (
-          <NoLikePost />  // 게시물 리스트가 비어있을 때 NoLikePost 컴포넌트
+        // 게시물 탭
+        posts.length === 0 ? (
+          <NoLikePost />
         ) : (
-          postList.map(post => (
-            <div className="like-post" key={post.id}>
-              <div className="post-content">{post.content}</div>
-              <div className="like-heart" onClick={() => toggleLike(post.id)}>
-                {likedItems[post.id] ? <HeartFillRedn /> : <HeartStrokeRedn />}
+          posts.map((item) => (
+            <div
+              key={item._id}
+              className="post-container"
+              onClick={() =>
+                navigate(`/community/cmdetail/${item._id}`, {
+                  state: { post: item }
+                })
+              }
+              style={{ cursor: 'pointer' }}
+            >
+              <h3 className="title">{item.post.title}</h3>
+              <div className="author-container">
+                <div className="author-info">
+                  <div className="username">{item.post.username || '익명'}</div>
+                  <p className="date-text">
+                    {dayjs(item.createdAt).format('YYYY.MM.DD HH:mm')}
+                  </p>
+                </div>
               </div>
+              <p className="description">{item.post.description}</p>
+
+              {item.imageUris?.length > 0 && (
+                <img
+                  src={item.imageUris[0]}
+                  className="post-image"
+                  alt="post"
+                />
+              )}
             </div>
           ))
         )

@@ -150,6 +150,9 @@ function TripList() {
 
   const getFilterData=() => {
     const data = getAllData();
+
+    const like = data.filter(item=> item.contents_id == "CONT_000000000500589");
+
     const sorted = [...data];
     if (filterOption === '오름차순') {
       sorted.sort((a, b) => a.title.localeCompare(b.title));
@@ -160,6 +163,8 @@ function TripList() {
     }
     return sorted;
   };
+
+
 
   return (
     <div className='trip-listpage'>

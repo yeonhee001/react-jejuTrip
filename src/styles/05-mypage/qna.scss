@@ -1,86 +1,69 @@
-// QnA.scss 파일
-  
-.qna-subtitle {
-  b{
-  font-size: 20px;
-  text-align:center;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  }
-}
+.qna-container {
+  padding: 24px;
+  font-family: 'Pretendard';
+  font-size: 16px;
 
-.qna-item {
-  margin-bottom: 12px;
- 
-  
-      &.open {
+  .qna-subtitle {
+    b {
+      font-size: 20px;
+      text-align: center;
+      margin-top: 50px;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-bottom: 50px;
+      display: block;
+    }
+  }
+
+  .qna-item {
     .qna-question {
       display: flex;
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
-      font-weight: 500;
+      padding: 16px 0;
+      margin-top:7px;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-bottom: 7px;
+
+      p {
+        margin: 0;
+        font-size: 17px;
+        font-weight: 500;
+      }
+
+      .arrow-icon {
+        display: flex;
+        align-items: center;
+
+        .icon {
+          width: 24px;
+          height: 24px;
+          
+        }
+      }
     }
-    
+
     .qna-answer {
-      background-color: #f5f5f5;
+      background-color: #f4f4f4;
+      padding: 20px;
+      border-radius: 8px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 24px;
+
+      p {
+        margin: 0;
+      }
     }
-    
-    .icon {
-      transform: rotate(180deg);
+
+    hr {
+      border: none;
+      height: 1px;
+      background-color: #ddd;
+      margin: 0;
     }
   }
-}
-
-.qna-question {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 12px;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  
-  p {
-    margin: 0;
-    flex: 1;
-    font-size: 16px;
-  }
-  
-  &:active {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-}
-
-.arrow-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 12px;
-  
-  .icon {
-    width: 20px;
-    height: 20px;
-    fill: #555;
-    transition: transform 0.3s ease;
-  }
-}
-
-.qna-answer {
-  padding: 16px;
-  margin-top: 4px;
-  border-radius: 8px;
-  line-height: 1.6;
-  font-size: 14px;
-  
-  p {
-    margin: 0;
-  }
-}
-
-hr {
-  border: none;
-  height: 1px;
-  background-color: #e0e0e0;
-  margin: 8px 0;
 }
