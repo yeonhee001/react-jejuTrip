@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // //쇼핑 & 맛집 & 축제 & 관광지
 // export const instance = axios.create({
-//     baseURL : "http://api.visitjeju.net/vsjApi/contents/searchlist",
+//     baseURL : "https://api.visitjeju.net/vsjApi/contents/searchlist",
     
 //     params: { // ✅ API 키 및 언어 설정을 params로 분리
 //         apiKey: "57fd439ed04e408c935a985377cbaa41",
@@ -107,7 +107,7 @@ export const plan = create((set) => ({
     //장소 추가에서 가져온 데이터 업데이트
     searchData: (storedData, idx) => {
         set((state) => {
-            const copy = structuredClone(state.planData); // 깊은 복사            
+            const copy = structuredClone(state.planData); // 깊은 복사
             copy.item.days[idx].plans = [...copy.item.days[idx].plans, ...storedData];
             
         return { planData: copy };

@@ -20,7 +20,7 @@ function SearchPage() {
 
   useEffect(()=>{
     const fetchKeywords = ()=>{
-      axios.get('http://api.odcloud.kr/api/15049993/v1/uddi:04795979-fd51-411e-ad41-95a559b706eb',{
+      axios.get('https://api.odcloud.kr/api/15049993/v1/uddi:04795979-fd51-411e-ad41-95a559b706eb',{
         params: {
           serviceKey:'UO/VNFIHUBaYIX80pdY4xpWRnNWmKO89qSyEZrhhwobVU599onCKVvNnb0jHHcbQiQ1qcLqZWP21BSzibjqC4Q=='
         },
@@ -38,7 +38,7 @@ function SearchPage() {
 
   useEffect(()=>{
     const fetchTags = ()=>{
-      axios.get('http://api.odcloud.kr/api/15049992/v1/uddi:ab253c7b-3e49-40e5-b8bb-f8a925519d1d',{
+      axios.get('https://api.odcloud.kr/api/15049992/v1/uddi:ab253c7b-3e49-40e5-b8bb-f8a925519d1d',{
         params: {
           serviceKey:'NICVW7+M1Rr/a14RcX1kdhmFrvGCRRK+b6XJJjagnrepPxv+OcjSflrZ9YEkBQKG6wBcoUNyMLi32eC//h81fg=='
         },
