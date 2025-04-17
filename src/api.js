@@ -168,11 +168,3 @@ export const mode = create((set) => ({
     exitEditMode: () => set({ isEditMode: false }),
     nullMode: () => set({ isEditMode: null })
 }));
-
-// export const party = create((set) => ({
-//     partydata:[],
-//     fetchData:async ()=>{
-//         const res = await instance3.get("/"); 
-//         set({partydata:res.data.data}); 
-//     }
-// }));

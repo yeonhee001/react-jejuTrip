@@ -48,7 +48,7 @@ function App() {
 
   return (
     <Router>
-    {!isEditMode && <Header/>}
+      {!isEditMode && <Header/>}
 
       <main>
         <Routes>

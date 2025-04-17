@@ -1,7 +1,6 @@
 import React from 'react'
 import Right_black from '../icons/Right_black'
 import { useNavigate } from 'react-router-dom';
-import SwipeAction from './SwipeAction';
 
 function ListItem({ id, title, date, page }) {
   const navigate = useNavigate();

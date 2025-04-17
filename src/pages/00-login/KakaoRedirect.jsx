@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import DataLoading from '../../component/_common/DataLoading';
 import '../../styles/00-login/login.scss'
 
 function KakaoRedirect() {;
@@ -32,16 +33,19 @@ function KakaoRedirect() {;
             sessionStorage.setItem('user', JSON.stringify(kakao_user));
 
             // 완료 후 홈으로 이동.
-            navigate('/');
+            setTimeout(() => {
+                navigate('/');
+            }, 1100);
         })
         .catch(err => {
             console.error('카카오 로그인 실패:', err);
         });
-    }, [])
+    }, [navigate])
 
     return (
         <div className='rd-background'>
             <p><img src="/imgs/logo_black.svg" alt="떠나봅서logo" /></p>
+            <DataLoading className={'rb-loading'}/>
             <span>카카오 로그인중입니다...</span>
         </div>
     )
