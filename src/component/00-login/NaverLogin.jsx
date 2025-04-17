@@ -3,8 +3,8 @@ import React from 'react'
 function NaverLogin() {
   const naver_url = 'https://nid.naver.com/oauth2.0/authorize';
 
-  const naver_client_id = process.env.NAVER_CLIENT_ID;
-  const naver_redirect_uri = `${process.env.REDIRECT_URI}/authnaver`;
+  const naver_client_id = process.env.REACT_APP_NAVER_CLIENT_ID;
+  const naver_redirect_uri = `${process.env.REACT_APP_REDIRECT_URI}/authnaver`;
   const naver_response_type = 'code';
 
   const state = crypto.randomUUID();
