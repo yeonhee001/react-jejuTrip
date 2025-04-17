@@ -5,7 +5,7 @@ import axios from 'axios';
 export function kakaoLogout() {
     const kakaoAccessToken = sessionStorage.getItem('access');
     // 특수문자로 인한 오류 방지를 위해 인코딩 적용
-    const logoutRedirectUri = encodeURIComponent(`${process.env.REACT_APP_APIURL}/`);
+    const logoutRedirectUri = encodeURIComponent(`${process.env.REACT_APP_REDIRECT_URI}/`);
 
     sessionStorage.clear();
 
