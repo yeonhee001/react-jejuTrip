@@ -35,8 +35,8 @@ function Like() {
     {
       id: 4,
       title: "관광지4",
-      imgPath: "/imgs/home_photo_04.jpg"
-    }
+      imgPath: "/imgs/home_photo_01.jpg"
+    },
   ];
 
   useEffect(() => {
