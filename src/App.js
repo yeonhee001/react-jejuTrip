@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { mode } from './api';
 import Header from './component/_common/Header';
 import Menu from './component/_common/Menu';
 import Home from './pages/01-home/Home';
@@ -34,6 +35,7 @@ import './styles/_style.scss';
 
 function App() {
   // 렌더링 전에 splash로 보낼지 판단
+  const { isEditMode } = mode();
   const pathname = window.location.pathname;
   const isFirstVisit = !localStorage.getItem("visited");
   const isRoot = pathname === "/";
@@ -46,7 +48,7 @@ function App() {
 
   return (
     <Router>
-      <Header/>
+    {!isEditMode && <Header/>}
 
       <main>
         <Routes>
@@ -71,7 +73,7 @@ function App() {
 
           <Route path='/planner' element={<PlannerList/>}/>
           <Route path='/planner/plannerdetail/:id' element={<PlannerDetail/>}/>
-          <Route path='/planner/plannerdetail/:id/place' element={<Place/>}/>
+          <Route path='/planner/plannerdetail/:id/place/:idx' element={<Place/>}/>
           <Route path='/planner/pickplan' element={<PickPlan/>}/>
 
           <Route path='/my' element={<My/>}/>
@@ -91,7 +93,7 @@ function App() {
         </Routes>
       </main>
 
-      <Menu />
+      {!isEditMode && <Menu />}
     </Router>
   );
 }

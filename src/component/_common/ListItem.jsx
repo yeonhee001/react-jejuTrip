@@ -15,15 +15,13 @@ function ListItem({ id, title, date, page }) {
   }
 
   return (
-    <SwipeAction>
-      <div className='listitem' onClick={changeLink}>
-        <div>
-          <p>{title}</p>
-          <span>{date}</span>
-        </div>
-        <Right_black className={'listitem-icon'}/>
+    <div className='listitem' onClick={changeLink}>
+      <div>
+        <p>{title}</p>
+        <span> {date.length > 1 ? `${date[0]} - ${date[date.length-1]}` : date} </span>
       </div>
-    </SwipeAction>
+      <Right_black className={'listitem-icon'}/>
+    </div>
   )
 }
 

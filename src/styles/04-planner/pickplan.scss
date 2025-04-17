@@ -1,4 +1,8 @@
 .pickplan_content{
+    .pickplan_pixed{
+        position: relative;
+    }
+    margin: 92px 0 94px;
     .pickplan_title{
         font-size: 22px;
         font-weight: bold;
@@ -13,7 +17,6 @@
 .pickplan_card{
     height: 100%;
     overflow-y: auto;
-    margin-bottom : 109.6px;
 }
 .pickplan_btn{
     margin: 20px 0;

@@ -15,23 +15,23 @@ function TripDetail() {
   const type = pathParts[3]; // 항상 이 위치가 type임
   const { id } = useParams();
 
-  const {tripData, fetchTourData} = tour();
   const {shopNfoodNpartyData, fetchCategory} = shopNfoodNparty();
   // api호출로 받아오는 데이터, 데이터를 가져오는 액션 함수
   useEffect(()=>{
-    fetchTourData();
-    fetchCategory('c2'); // shopping
-    fetchCategory('c4'); // food
-    fetchCategory('c5'); // festival
+    fetchCategory('c1'); //관광지
+    fetchCategory('c2'); //쇼핑
+    fetchCategory('c4'); //맛집
+    fetchCategory('c5'); //축제&행사
     window.scrollTo(0,0);
   },[id])
   const shoppingList = shopNfoodNpartyData.shopping;
   const foodList = shopNfoodNpartyData.food;
   const festivalList = shopNfoodNpartyData.festival;
+  const tourList = shopNfoodNpartyData.tour;
 
   const getItemById = () => {
     let list = [];
-    if (type === 'tour') list = tripData;
+    if (type === 'tour') list = tourList;
     if (type === 'food') list = foodList;
     if (type === 'festival') list = festivalList;
     if (type === 'shopping') list = shoppingList;
@@ -44,7 +44,7 @@ function TripDetail() {
   // 이전, 이후 버튼 계산
   let list = filterList || [];
   if (list.length===0){
-    if (type === 'tour') list = tripData;
+    if (type === 'tour') list = tourList;
     if (type === 'food') list = foodList;
     if (type === 'festival') list = festivalList;
     if (type === 'shopping') list = shoppingList;
@@ -99,7 +99,7 @@ function TripDetail() {
     const region = addressSelect(address); //선택한 컨텐츠의 주소값
 
     let list = [];
-    if (type === 'tour') list = tripData;
+    if (type === 'tour') list = tourList;
     if (type === 'food') list = foodList;
     if (type === 'festival') list = festivalList;
     if (type === 'shopping') list = shoppingList;

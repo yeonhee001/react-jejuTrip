@@ -18,10 +18,11 @@ function ListPage({listData, page}) {
     title = '나의 여행 보기';
     subtitle = '내 여행 리스트'
   }
+console.log(listData);
 
   // 연도별로 데이터 구분
   const groupedData = listData.reduce((acc, item) => {
-    const year = item.date.split('.')[0];
+    const year = item?.date[0].split('.')[0];
     if(!acc[year]) {
       acc[year] = [];
     }

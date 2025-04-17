@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { DateRange } from 'react-date-range';
 import { ko } from 'date-fns/locale';
-import { eachDayOfInterval, format } from 'date-fns';
+import { eachDayOfInterval, format, parse } from 'date-fns';
+import { mode, plan } from '../../api';
 import Button from '../_common/Button';
 
 import 'react-date-range/dist/styles.css';
@@ -10,6 +11,42 @@ import 'react-date-range/dist/theme/default.css';
 import '../../styles/04-planner/calendar.scss'
 
 function Calendar({btnName, type, onClick}) {
+  const allDays = JSON.parse(localStorage.getItem('allDays'));
+  const { planData } = plan();
+  const { enterEditMode, isEditMode } = mode();
+  const navigate = useNavigate();
+
+  const generateId = () => {
+      const datePart = Date.now().toString(36);
+      const randPart = Math.random().toString(36).substring(2, 5);
+      return `${datePart}${randPart}`;
+  }
+console.log(planData);
+
+  //일정 추가하러가기 버튼 눌렀을 때 실행 할 함수
+  function handleNoPlan() {
+      const newId = generateId();
+      const title = `나의 제주 여행 ${planData.length+1}`;
+      const date = allDays;
+
+      enterEditMode()
+      navigate(`/planner/plannerdetail/${newId}`, {
+      //useLocation.state로 빈 배열 값 보내주기
+      state: {
+        isEdit: true,
+        id: newId,
+        title,
+        date: date,
+        item: {
+          days: date.map((day) => ({
+            day: format(parse(day, 'yyyy.MM.dd', new Date()), 'M.d/eee', { locale: ko }),
+            plans: [],
+          }))
+        }
+      }
+      });
+  };
+  
   const [range, setRange] = useState([
     {
       startDate: new Date(),
@@ -17,7 +54,7 @@ function Calendar({btnName, type, onClick}) {
       key: 'selection'
     }
   ]);
-  
+
   const handleChange = (item) => {
     const start = item.selection.startDate;
     const end = item.selection.endDate;
@@ -25,25 +62,20 @@ function Calendar({btnName, type, onClick}) {
     // 상태 업데이트
     setRange([item.selection]);
 
-    // ✨ 중간 날짜들만 추출
+    // 중간 날짜들만 추출
     const allDates = eachDayOfInterval({ start, end });
     const apiMiddleDates = allDates
       .slice(1, -1) // 첫날, 마지막날 제외
-      .map((date) => format(date, 'yyyyMMdd'));
+      .map((date) => format(date, 'yyyy.MM.dd'));
 
-    const apiStart = format(start, 'yyyyMMdd');
-    const apiEnd = format(end, 'yyyyMMdd');
-
-    let apiDays = [apiStart, ...apiMiddleDates, apiEnd]
-
-    const startDay = format(start, 'yyyy.MM.dd');
-    const endDay = format(end, 'yyyy.MM.dd');
-
-    let days = [startDay, endDay]
+      
+      const startDay = format(start, 'yyyy.MM.dd');
+      const endDay = format(end, 'yyyy.MM.dd');
+      
+      let allDays = [startDay, ...apiMiddleDates, endDay]
 
     // localStorage에 저장
-    localStorage.setItem('apiDays', JSON.stringify(apiDays));
-    localStorage.setItem('days', JSON.stringify(days));
+    localStorage.setItem('allDays', JSON.stringify(allDays));
     
   };
 
@@ -65,7 +97,7 @@ function Calendar({btnName, type, onClick}) {
         />
       </div>
       {type == "list" ?
-        <NavLink to={"/planner/plannerdetail/:id"} className="calendar_button"><Button className={"calendar_button"}>{format(range[0].startDate, 'yyyy.MM.dd')} - {format(range[0].endDate, 'yyyy.MM.dd')} / {btnName}</Button></NavLink>
+        <button onClick={handleNoPlan} className="calendar_button"><Button className={"calendar_button"}>{format(range[0].startDate, 'yyyy.MM.dd')} - {format(range[0].endDate, 'yyyy.MM.dd')} / {btnName}</Button></button>
         :
         <button onClick={onClick} className="calendar_button"><Button className={"calendar_button"}>{format(range[0].startDate, 'yyyy.MM.dd')} - {format(range[0].endDate, 'yyyy.MM.dd')} / {btnName}</Button></button>
       }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -7,39 +7,45 @@ import Select from '@mui/material/Select';
 import PickPlanItem from '../../component/04-planner/PickPlanItem';
 
 import "../../styles/04-planner/pickplan.scss";
-import axios from 'axios';
+import TagBtn from '../../component/_common/TagBtn';
+import { mode, plan } from '../../api';
+import Button from '../../component/_common/Button';
 
 function PickPlan() {
+    const { pinkPlanData, planData } = plan();
+    const { nullMode, isEditMode } = mode();
     const [dates, setDates] = useState('');
     const [select, setSelect] = useState('');
-    const [data, setData] = useState([]);
+    const [data, setData] = useState('');
+
+    //parseInt() : 문자열에서 앞에 있는 숫자만 뽑아서 정수로 바꿔줌
+    const nights = parseInt(dates);
+    const days = nights + 1;
+
+    const button = []
+    for(let i=1; i<=days; i++){
+        button.push(i)
+    }
+    useEffect(()=>{
+        pinkPlanData()
+    }, [])
+    
+    const tagBtn = useRef([]);
+    const scroll = (idx) => {
+        const target = tagBtn?.current[idx];  // 이동할 대상 요소
+        const targetOffsetTop = target.offsetTop;  // 해당 요소의 상단 위치
+      
+        window.scrollTo({
+          top: targetOffsetTop -100,  // 해당 요소로 스크롤
+          behavior: 'smooth',    // 부드러운 스크롤
+        });
+      };
 
     const handleChange = (e) => {
         setDates(e.target.value);
         setSelect(e.target.value);
+        nullMode();
     };
-
-    const instance = axios.create({
-        baseURL : "http://localhost:3030",
-      });
-    
-    useEffect(()=>{
-        Promise.all([
-            instance.get('/1n2d'),
-            instance.get('/2n3d'),
-            instance.get('/3n4d'),
-            instance.get('/4n5d'),
-            instance.get('/5n6d'),
-        ])
-        .then(res=>{
-            const n1d2 = res[0].data;
-            const n2d3 = res[1].data;
-            const n3d4 = res[2].data;
-            const n4d5 = res[3].data;
-            const n5d6 = res[4].data;
-            setData({n1d2,n2d3,n3d4,n4d5,n5d6});
-        })
-    },[])
 
     return (
         <div className='pickplan_content'>
@@ -64,22 +70,51 @@ function PickPlan() {
             </Box>
             <p className='pickplan_title'><span>추천 일정</span> 입니다.</p>
             <p>떠나봅서에서 추천한 일정으로 여행을 떠나보세요.</p>
-
+            <div className="pickplan_btn">
+                {button?.map((day, idx) => (
+                <button onClick={()=>{scroll(idx)}} key={day}>
+                    <TagBtn tagbtn={`Day ${day}`}/>
+                </button>
+                ))}
+            </div>
+            
             {select === "1days" &&
-            <PickPlanItem selectedDay={dates} data={data.n1d2[0]}/>
+            <>
+                <PickPlanItem planData={planData[0].n1d2[0]} tagBtn={tagBtn}/>
+                <button onClick={()=>{
+                }} className='cardbtn'><Button btn={"전체 일정 가져가기"} className={"planner_save"}/>
+                </button>
+            </>
             }
             {select === "2days" &&
-            <PickPlanItem selectedDay={dates} data={data.n2d3[0]}/>
+            <>
+                <PickPlanItem  planData={planData[1].n2d3[0]} tagBtn={tagBtn}/>
+                <button onClick={()=>{
+                }} className='cardbtn'><Button btn={"전체 일정 가져가기"} className={"planner_save"}/></button>
+            </>
             }
             {select === "3days" &&
-            <PickPlanItem selectedDay={dates} data={data.n3d4[0]}/>
+            <>
+                <PickPlanItem  planData={planData[2].n3d4[0]} tagBtn={tagBtn}/>
+                <button onClick={()=>{
+                }} className='cardbtn'><Button btn={"전체 일정 가져가기"} className={"planner_save"}/></button>
+            </>
             }
             {select === "4days" &&
-            <PickPlanItem selectedDay={dates} data={data.n4d5[0]}/>
+            <>
+                <PickPlanItem  planData={planData[3].n4d5[0]} tagBtn={tagBtn}/>
+                <button onClick={()=>{
+                }} className='cardbtn'><Button btn={"전체 일정 가져가기"} className={"planner_save"}/></button>
+            </>
             }
             {select === "5days" &&
-            <PickPlanItem selectedDay={dates} data={data.n5d6[0]}/>
+            <>
+                <PickPlanItem  planData={planData[4].n5d6[0]} tagBtn={tagBtn}/>
+                <button onClick={()=>{
+                }} className='cardbtn'><Button btn={"전체 일정 가져가기"} className={"planner_save"}/></button>
+            </>
             }
+            
         </div>
     )
 }
