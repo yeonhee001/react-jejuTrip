@@ -4,7 +4,7 @@ import axios from 'axios';
 // 카카오 로그아웃 (카카오 리디렉션)
 export function kakaoLogout() {
     const kakaoAccessToken = sessionStorage.getItem('access');
-    const logoutRedirectUri = process.env.REACT_APP_REDIRECT_URI;
+    const logoutRedirectUri = process.env.REACT_APP_LOGOUT_REDIRECT_URI;
 
     sessionStorage.clear();
 
