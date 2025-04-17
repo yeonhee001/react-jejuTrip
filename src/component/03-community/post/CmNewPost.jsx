@@ -54,7 +54,7 @@ function CmNewPost({ onClose = () => {} }) {
     let res;
     try {
       if (selectedImages.length > 0) {
-        res = await axios.post("http://localhost:4000/post/images", formdata, {
+        res = await axios.post(`${process.env.REACT_APP_APIURL}/post/images`, formdata, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -81,7 +81,7 @@ function CmNewPost({ onClose = () => {} }) {
     };
 
     try {
-      const response = await axios.post("http://localhost:4000/post", postData);
+      const response = await axios.post(`${process.env.REACT_APP_APIURL}/post`, postData);
       reset();
       onClose();
       navigate("/community", { state: { newPost: response.data } });

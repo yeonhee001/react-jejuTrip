@@ -12,7 +12,7 @@ function WeatherDate() {
   const [loading, setLoading] = useState(true);
 
   const instance = axios.create({
-    baseURL : "http://localhost:4000/weather",
+    baseURL : `${process.env.REACT_APP_APIURL}/weather`,
   });
 
   // useEffect(()=>{

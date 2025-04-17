@@ -4,7 +4,7 @@ function NaverLogin() {
   const naver_url = 'https://nid.naver.com/oauth2.0/authorize';
 
   const naver_client_id = 'icT5QnFH3PKg3iJmEhj3';
-  const naver_redirect_uri = 'http://localhost:3000/login/authnaver';
+  const naver_redirect_uri = `${process.env.REACT_APP_APIURL}/login/authnaver`;
   const naver_response_type = 'code';
 
   const state = crypto.randomUUID();

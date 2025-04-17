@@ -4,7 +4,7 @@ function GoogleLogin() {
   const google_url = 'https://accounts.google.com/o/oauth2/v2/auth';
 
   const google_client_id = '1052969226706-hjrov0sppsubs5s32a29e9fjqo13k8tg.apps.googleusercontent.com';
-  const google_redirect_uri = 'http://localhost:3000/login/authgoogle';
+  const google_redirect_uri = `${process.env.REACT_APP_APIURL}/login/authgoogle`;
   const google_response_type = 'code';
   const google_scope = 'profile email';
   const google_access_type = 'offline';

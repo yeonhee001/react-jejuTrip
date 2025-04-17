@@ -257,7 +257,7 @@ function Home() {
   // 날씨
   useEffect(()=>{
     const instance = axios.create({
-      baseURL : "http://localhost:4000/mainWeather",
+      baseURL : `${process.env.REACT_APP_APIURL}/mainWeather`,
     });
     // instance.get('./')
     // .then((res)=>{
@@ -333,7 +333,7 @@ function Home() {
   // db 관련 커뮤니티 목록에서 이미지 가져오기
   useEffect(()=>{
     const fetchPostImg = async ()=>{
-      const res = await fetch('http://localhost:4000/post');
+      const res = await fetch(`${process.env.REACT_APP_APIURL}/post`);
       if(res.ok){
         const result = await res.json();
         const img = result.filter(post=>post.subject==='떠나팁')

@@ -62,7 +62,7 @@ function Activity() {
   // 서버 데이터 가져오기
   useEffect(()=>{
     // 게시물
-    axios.get(`http://localhost:4000/post/user/${userId}`)
+    axios.get(`${process.env.REACT_APP_APIURL}/post/user/${userId}`)
     .then(res => {
       if(res.data && res.data.length > 0) {
         setPostData(res.data);
@@ -79,7 +79,7 @@ function Activity() {
     });
 
     // 댓글
-    axios.get(`http://localhost:4000/reply/user/${userId}`)
+    axios.get(`${process.env.REACT_APP_APIURL}/reply/user/${userId}`)
     .then(async res => {
       if (res.data && res.data.length > 0) {
         const getCommentData = res.data;
@@ -93,7 +93,7 @@ function Activity() {
         await Promise.all(
           uniquePostIds.map(async (postId) => {
             try {
-              const postRes = await axios.get(`http://localhost:4000/post/update/${postId}`);
+              const postRes = await axios.get(`${process.env.REACT_APP_APIURL}/post/update/${postId}`);
               postIdToTitle[postId] = postRes.data.title || '제목 없음';
             } catch (err) {
               console.error(`게시글 ${postId} 불러오기 실패`, err);

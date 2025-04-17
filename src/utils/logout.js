@@ -5,7 +5,7 @@ import axios from 'axios';
 export function kakaoLogout() {
     const kakaoAccessToken = sessionStorage.getItem('access');
     // 특수문자로 인한 오류 방지를 위해 인코딩 적용
-    const logoutRedirectUri = encodeURIComponent("http://localhost:3000/");
+    const logoutRedirectUri = encodeURIComponent(`${process.env.REACT_APP_APIURL}/`);
 
     sessionStorage.clear();
 
@@ -22,7 +22,7 @@ export function kakaoLogout() {
 export function naverLogout(onAfterLogout) {
     const token = sessionStorage.getItem('access');
 
-    axios.get(`http://localhost:4000/naver/logout`, {
+    axios.get(`${process.env.REACT_APP_APIURL}/naver/logout`, {
         params: { token }
     })
     .then(() => {

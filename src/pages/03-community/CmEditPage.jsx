@@ -19,7 +19,7 @@ function CmEditPage() {
 
   const handlePostUpdate = async (updatedPost) => {
     try {
-      const response = await fetch(`http://localhost:4000/post/${post._id}`, {
+      const response = await fetch(`${process.env.REACT_APP_APIURL}/post/${post._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

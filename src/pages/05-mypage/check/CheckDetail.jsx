@@ -64,7 +64,7 @@ function CheckDetail() {
     }
 
     // 기존 데이터 불러오기
-    axios.get(`http://localhost:4000/check/user/${userId}/${id}`)
+    axios.get(`${process.env.REACT_APP_APIURL}/check/user/${userId}/${id}`)
     .then(res => {
       const allData = res.data;
 
@@ -143,7 +143,7 @@ function CheckDetail() {
 
   // 새 체크리스트 추가
   function saveCheckData(newList) {
-    axios.post('http://localhost:4000/check', { userId, newList })
+    axios.post(`${process.env.REACT_APP_APIURL}/check`, { userId, newList })
     .catch(err => {
       console.error(err);
       alert('저장에 실패했습니다.');
@@ -152,7 +152,7 @@ function CheckDetail() {
 
   // 기존 체크리스트 수정 및 삭제
   function updateCheckData(newList) {
-    axios.put('http://localhost:4000/check', { userId, newList })
+    axios.put(`${process.env.REACT_APP_APIURL}/check`, { userId, newList })
     .catch(err => {
       console.error(err);
       alert('수정에 실패했습니다.');
