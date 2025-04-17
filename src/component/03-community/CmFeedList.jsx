@@ -242,7 +242,7 @@ const CmFeedList = () => {
         )}
 
         <div className="new-post-button" onClick={() => navigate("/community/cmpostpage")}>
-          <Newpost className="cm-Newpost" />
+          <Newpost className={"cm-Newpost"} />
         </div>
       </div>
     </FormProvider>
