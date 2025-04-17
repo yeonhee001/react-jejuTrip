@@ -8,9 +8,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import dayjs from 'dayjs';
 
 import '../../styles/05-mypage/like.scss';
-import PlaceItem from '../../component/_common/PlaceItem';
-import { shopNfoodNparty } from '../../api';
-
 
 function Like() {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -50,38 +47,6 @@ function Like() {
       });
   }, []);
 
-  const {shopNfoodNpartyData, fetchCategory} = shopNfoodNparty();
-  useEffect(()=>{
-    fetchCategory('c1'); //관광지
-    fetchCategory('c2'); //쇼핑
-    fetchCategory('c4'); //맛집
-    fetchCategory('c5'); //축제행사
-  },[])
-  const tourList = shopNfoodNpartyData?.tour;
-  const shoppingList = shopNfoodNpartyData?.shopping;
-  const foodList = shopNfoodNpartyData?.food;
-  const festivalList = shopNfoodNpartyData?.festival;
-
-  const allContents = [
-    ...(tourList || []), 
-    ...(shoppingList || []), 
-    ...(foodList || []), 
-    ...(festivalList || [])
-  ];
-  
-  useEffect(()=>{
-    const userLikePost = async ()=>{
-      const res = await fetch(`http://localhost:4000/triplike/liked-posts?userId=${userId}`);
-      console.log(myLikedData);
-      const data = await res.json();
-      setLikePosts(data.likedPostIds);
-    };
-    if(userId) userLikePost();
-  },[userId])
-
-  
-  const myLikedData = allContents.filter(item => likePosts.includes(item.contentsid));
- 
   return (
     <div className="like-page">
       <TabPage type={'like'} onTabChange={setSelectedTab} />
