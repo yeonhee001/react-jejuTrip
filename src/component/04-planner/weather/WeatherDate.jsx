@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import WeatherItem from './WeatherItem'
 import axios from 'axios';
@@ -12,16 +12,16 @@ function WeatherDate() {
   const [loading, setLoading] = useState(true);
 
   const instance = axios.create({
-    baseURL : "http://localhost:4000/weather",
+    baseURL : `${process.env.REACT_APP_APIURL}/weather`,
   });
 
-  // useEffect(()=>{
-  //   instance.get("./")
-  //   .then((res)=>{
-  //       setData(res.data)
-  //       setLoading(false)
-  //   })
-  // },[])
+  useEffect(()=>{
+    instance.get("./")
+    .then((res)=>{
+        setData(res.data)
+        setLoading(false)
+    })
+  },[])
 
   const weatherMap = {
     "구름많음 / 비": "구름많고 비",

@@ -257,14 +257,14 @@ function Home() {
   // 날씨
   useEffect(()=>{
     const instance = axios.create({
-      baseURL : "http://localhost:4000/mainWeather",
+      baseURL : `${process.env.REACT_APP_APIURL}/mainWeather`,
     });
-    // instance.get('./')
-    // .then((res)=>{
-    //   setMainWeather(res.data)
-    //   setWtLoading(false)
-    //   console.log(res.data);
-    // })
+    instance.get('./')
+    .then((res)=>{
+      setMainWeather(res.data)
+      setWtLoading(false)
+      console.log(res.data);
+    })
   },[])
 
   //날씨 아이콘
@@ -272,33 +272,39 @@ function Home() {
     switch (wf){
       case "맑음":
         return <img src='/imgs/weather_clear_01.png'/>
-      case "구름 많음":
+      case "구름많음":
         return <img src='/imgs/weather_partly_cloudy_01.png'/>
       case "흐림":
         return <img src='/imgs/weather_cloudy_01.png'/>
-      case "흐리고 비":
+      case "흐림 / 비":
         return <img src='/imgs/weather_cloudy_rain_01.png'/>
-      case "흐리고 비나 눈":
+      case "흐림 / 비/눈":
         return <img src='/imgs/weather_sleet_01.png'/>
-      case "흐리고 눈":
+      case "흐림 / 눈":
         return <img src='/imgs/weather_snow_01.png'/>
-      case "흐리고 소나기":
+      case "흐림 / 빗방울":
+        return <img src='/imgs/weather_partly_rain.png'/>
+      case "흐림 / 눈날림":
+        return <img src='/imgs/weather_partly_snow.png'/>
+      case "흐림 / 빗방울 눈날림":
+        return <img src='/imgs/weather_partly_rain_snow.png'/>
+      case "구름많음 / 비":
         return <img src='/imgs/weather_cloudy_rain_01.png'/>
-      case "구름많고 비":
-        return <img src='/imgs/weather_cloudy_rain_01.png'/>
-      case "구름많고 비나 눈":
+      case "구름많음 / 비/눈":
         return <img src='/imgs/weather_sleet_01.png'/>
-      case "구름많고 눈":
+      case "구름많음 / 빗방울":
+        return <img src='/imgs/weather_raindrop.png'/>
+      case "구름많음 / 눈날림":
         return <img src='/imgs/weather_snow_01.png'/>
-      case "구름많고 소나기":
-        return <img src='/imgs/weather_clear_01.png'/>
+      case "구름많음 / 빗방울 눈날림":
+        return <img src='/imgs/weather_sleet_01.png'/>
     }
   }
 
   // 관광객수 api 불러오기
   useEffect(()=>{
     const fetchPeople = ()=>{
-      axios.get('http://api.odcloud.kr/api/3083546/v1/uddi:4a4ea6e8-33e6-45c3-9c19-b8efe36ffd3b',{
+      axios.get('https://api.odcloud.kr/api/3083546/v1/uddi:4a4ea6e8-33e6-45c3-9c19-b8efe36ffd3b',{
         params: {
           serviceKey:'UO/VNFIHUBaYIX80pdY4xpWRnNWmKO89qSyEZrhhwobVU599onCKVvNnb0jHHcbQiQ1qcLqZWP21BSzibjqC4Q==',
           perPage: 100,
@@ -333,7 +339,7 @@ function Home() {
   // db 관련 커뮤니티 목록에서 이미지 가져오기
   useEffect(()=>{
     const fetchPostImg = async ()=>{
-      const res = await fetch('http://localhost:4000/post');
+      const res = await fetch(`${process.env.REACT_APP_APIURL}/post`);
       if(res.ok){
         const result = await res.json();
         const img = result.filter(post=>post.subject==='떠나팁')
@@ -465,7 +471,7 @@ function Home() {
       </div>
 
       <div className='home-photomenu'>
-        <HomeContTop homecontTitle={'꼭 남겨야 할 인생샷 스팟 '} homecontEmoji={'📸'} to={'/community/cmphoto'}/>
+        <HomeContTop homecontTitle={'꼭 남겨야 할 인생샷 스팟 '} homecontEmoji={'📸'} to={'/community'}/>
         <div>
           <Swiper
           slidesPerView={'auto'}

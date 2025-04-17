@@ -3,8 +3,8 @@ import React from 'react'
 function KakaoLogin() {
   const kakao_url = 'https://kauth.kakao.com/oauth/authorize';
 
-  const kakao_client_id = 'f86a88750c261ba4c1ffd8113fa7f753';
-  const kakao_redirect_uri = 'http://localhost:3000/login/authkakao';
+  const kakao_client_id = process.env.REACT_APP_KAKAO_CLIENT_ID;
+  const kakao_redirect_uri = `${process.env.REACT_APP_REDIRECT_URI}/authkakao`;
   const kakao_response_type = 'code';
   
   // 인가 코드 받기

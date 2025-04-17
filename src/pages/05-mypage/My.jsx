@@ -30,7 +30,7 @@ function My() {
   useEffect(() => {
     if(user) {
       const userId = user.id;
-      axios.get(`http://localhost:4000/plan/user/${userId}`)
+      axios.get(`${process.env.REACT_APP_APIURL}/plan/user/${userId}`)
       .then(res => {
           const tripLth = res.data.length;
           setMyTrip(tripLth);

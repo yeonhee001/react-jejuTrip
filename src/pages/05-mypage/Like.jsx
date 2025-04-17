@@ -41,7 +41,7 @@ function Like() {
 
   useEffect(() => {
     const { id } = JSON.parse(window.sessionStorage.user);
-    axios.get(`http://localhost:4000/like/user-liked?userId=${id}`)
+    axios.get(`${process.env.REACT_APP_APIURL}/like/user-liked?userId=${id}`)
       .then(res => {
         setPosts(res.data.likedPosts);
       });

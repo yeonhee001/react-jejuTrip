@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // //쇼핑 & 맛집 & 축제 & 관광지
 // export const instance = axios.create({
-//     baseURL : "http://api.visitjeju.net/vsjApi/contents/searchlist",
+//     baseURL : "https://api.visitjeju.net/vsjApi/contents/searchlist",
     
 //     params: { // ✅ API 키 및 언어 설정을 params로 분리
 //         apiKey: "57fd439ed04e408c935a985377cbaa41",
@@ -88,16 +88,16 @@ export const plan = create((set) => ({
     },
     //불러오기
     fetchPlanData:async (userId, id)=>{
-        const res = await axios.get(`http://localhost:4000/plan/user/${userId}/${id}`)
+        const res = await axios.get(`${process.env.REACT_APP_APIURL}/plan/user/${userId}/${id}`)
         set({ planData: res.data })
     },
     //List 불러오기
     PlanListData:async (userId)=>{
-        const res = await axios.get(`http://localhost:4000/plan/user/${userId}`)
+        const res = await axios.get(`${process.env.REACT_APP_APIURL}/plan/user/${userId}`)
         set({ planData: res.data })
     },
     pinkPlanData : async ()=>{
-        const res = await axios.get(`http://localhost:4000/pickplan/`)
+        const res = await axios.get(`${process.env.REACT_APP_APIURL}/pickplan/`)
         set({ planData: res.data })
     },
     //달력에서 가져온 데이터 덮어쓰기
@@ -107,7 +107,7 @@ export const plan = create((set) => ({
     //장소 추가에서 가져온 데이터 업데이트
     searchData: (storedData, idx) => {
         set((state) => {
-            const copy = structuredClone(state.planData); // 깊은 복사            
+            const copy = structuredClone(state.planData); // 깊은 복사
             copy.item.days[idx].plans = [...copy.item.days[idx].plans, ...storedData];
             
         return { planData: copy };
@@ -116,7 +116,7 @@ export const plan = create((set) => ({
     //추가
     newPlan : async (userId, newList) => {
         try {
-            await axios.post('http://localhost:4000/plan/', {
+            await axios.post(`${process.env.REACT_APP_APIURL}/plan/`, {
                 userId,
                 newList
             });
@@ -133,7 +133,7 @@ export const plan = create((set) => ({
     //수정
     updatePlan: async (userId, newList) => {
         try {
-            await axios.put('http://localhost:4000/plan/', {
+            await axios.put(`${process.env.REACT_APP_APIURL}/plan/`, {
                 userId,
                 newList
             });
@@ -150,7 +150,7 @@ export const plan = create((set) => ({
     },
     //삭제
     removePlan: async (id, userId) => {
-        const res = await axios.delete(`http://localhost:4000/plan/del?id=${id}&userId=${userId}`);
+        const res = await axios.delete(`${process.env.REACT_APP_APIURL}/plan/del?id=${id}&userId=${userId}`);
         set((state) => {
             
             const newData = Object.fromEntries(

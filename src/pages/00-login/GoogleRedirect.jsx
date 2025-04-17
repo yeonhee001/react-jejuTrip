@@ -24,7 +24,7 @@ function GoogleRedirect() {
         // 백엔드로 code 전송 → 토큰 + 유저 정보 받기
         axios({
             method: "get",
-            url: 'http://localhost:4000/google',
+            url: `${process.env.REACT_APP_APIURL}/google`,
             params: { code, state: getState }
         })
         .then((res) => {

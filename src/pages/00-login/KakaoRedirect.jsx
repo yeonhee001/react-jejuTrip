@@ -17,7 +17,7 @@ function KakaoRedirect() {;
 
         axios({
             method: "get",
-            url: 'http://localhost:4000/kakao',
+            url: `${process.env.REACT_APP_APIURL}/kakao`,
             params: {code}
         })
         .then(res=>{

@@ -180,7 +180,7 @@ function TripDetail() {
       liked: !liked
     };
 
-    const response = await fetch('http://localhost:4000/triplike', {
+    const response = await fetch(`${process.env.REACT_APP_APIURL}/triplike`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(triplike),
@@ -196,7 +196,7 @@ function TripDetail() {
   useEffect(() => {
     const fetchLiked = async () => {
       if (!userId || !postId) return;
-      const response = await fetch(`http://localhost:4000/triplike?userId=${userId}&postId=${postId}`);
+      const response = await fetch(`${process.env.REACT_APP_APIURL}/triplike?userId=${userId}&postId=${postId}`);
       if(response.ok) {
         const result = await response.json();
         setLiked(result.liked);

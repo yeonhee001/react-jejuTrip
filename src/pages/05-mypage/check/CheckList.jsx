@@ -26,7 +26,7 @@ function CheckList() {
 
   // 체크리스트 데이터 가져오기
   useEffect(()=>{
-    axios.get(`http://localhost:4000/check/user/${userId}`)
+    axios.get(`${process.env.REACT_APP_APIURL}/check/user/${userId}`)
     .then(res=>{
       if(res.data && res.data.length > 0) {
         setCheckData(res.data);
@@ -45,7 +45,7 @@ function CheckList() {
 
   // 나의 여행 데이터 가져오기
   useEffect(()=>{
-    axios.get(`http://localhost:4000/plan/user/${userId}`)
+    axios.get(`${process.env.REACT_APP_APIURL}/plan/user/${userId}`)
     .then(res=>{
       // 연결된 체크리스트가 없는 여행만 필터링
       const filteredData = res.data.filter(plan => plan.checkId === '');
@@ -65,7 +65,7 @@ function CheckList() {
     const { id } = deleteTarget;
     
     if (id !== null) {
-      axios.put('http://localhost:4000/check/del', { userId, checkId: id })
+      axios.put(`${process.env.REACT_APP_APIURL}/check/del`, { userId, checkId: id })
         .then(() => {
           setCheckData(prevData => prevData.filter(item => item.id !== id));
           setTrashClick({});

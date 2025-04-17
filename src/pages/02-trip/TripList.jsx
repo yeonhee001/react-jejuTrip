@@ -200,7 +200,7 @@ function TripList() {
       const listData = getAllData();
       const postIds = listData.map(item=>item.contentsid); // 현재 리스트의 모든 게시물의 아이디값을 배열로 만듦
 
-      const res = await fetch('http://localhost:4000/triplike/count-mult', {
+      const res = await fetch(`${process.env.REACT_APP_APIURL}/triplike/count-mult`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -228,7 +228,7 @@ function TripList() {
   useEffect(() => {
     const fetchUserLikedPosts = async () => {
       if (!userId) return;
-      const res = await fetch(`http://localhost:4000/triplike/liked-posts?userId=${userId}`);
+      const res = await fetch(`${process.env.REACT_APP_APIURL}/triplike/liked-posts?userId=${userId}`);
       const data = await res.json(); //해당 서버에서 게시물 좋아요 누른 아이디값 가지고 옴
       setLikedPosts(data.likedPostIds || []);
     };
