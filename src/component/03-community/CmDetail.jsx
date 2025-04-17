@@ -10,11 +10,10 @@ const CmDetail = ({children, post}) => {
       <div>
         <h2 className="title">{post.title}</h2>
         <div className="author-info2">
-          <div className="nickname">{post.nickname}</div>
+          <div className="nickname">{post.username}</div>
           <p className="date-text">{dayjs(post.createdAt).format("YYYY.MM.DD HH:mm")}</p>
         </div>
         <p className="description">{post.description}</p>
-        {/* <img src="" width="400" /> */}
       </div>
       {children}
     </div>

@@ -1,214 +1,195 @@
 // ========================================아이패드========================================
 @media (max-width: 768px){
-  .cm-title{
-    font-size: 28px;
+
+.cm-title{
+  font-size: 24px;
+}
+.title {
+  font-size: 22px;
+}
+.nickname{
+  font-size: 14px;
+}
+.date-text{
+  font-size: 14px;
+}
+.description {
+  font-size: 20px;
+}
+.vote-text, .comment-text {
+  font-size: 16px;
+}
+.new-post-button { 
+  max-width: auto;
+  .cm-Newpost{
+    bottom: 11.5%; right: 4%;
+    transform: translate(-11.5%, -4%);    
+    >img{
+      width: 40px; height: 40px;
+    }
   }
-    .title {
-        font-size: 26px;
-        margin-bottom: 14px;
-    }
-    .author-container{
-        margin-bottom: 24px;
-    }
-    .nickname{
-        font-size: 18px;
-    }
-    .date-text{
-        font-size: 18px;
-    }
-    .description {
-        font-size: 22px;
-        margin-bottom: 20px;
-    }
-    .vote-text, .comment-text {
-        font-size: 20px;
-    }
-    .new-post-button{
-        right: 20px; 
-    }
-    .author-info2{
-        margin-bottom: 20px;
-    }
-    .submitButton{
-        font-size: 22px;
-    }
-    .newtitle{
-        font-size: 26px !important;
-    }
-    .subjectText{
-        font-size: 22px !important;
-    }
-    .inputTitle{
-        font-size: 22px !important;
-    }
-    .inputDescription{
-        font-size: 18px !important;
-    }
-    .like-group span, .comment-group span{
-        font-size: 20px;
-    }
-    .divider {
-        margin-top: 24px;
-    }
-    .comment{
-        font-size: 22px;
-        margin-top: 24px;
-    }
-    .comment-username{
-        font-size: 22px;
-        margin-top: 24px;
-    }
-    .comment-text2{
-        font-size: 22px;
-        margin-top: 14px;
-    }
-    .delete-text{
-        font-size: 20px;
-    }
-    .comment-input-container {
-        width: 95%;
-      }
-      .send-btn{
-        margin-right: 10px;
-      }
-      .cursor-pointer1{
-        font-size: 20px;
-      }
-      .cursor-pointer2{
-        font-size: 20px;
-      }
-      .cm-delete-btn{
-        font-size: 20px;
-      }
-      .cm-subject .container{
-        width: 90%;
-      }
-      .cm-subject .subject-list .subject-item .subject-label .text{
-        font-size: 22px;
-      }
-      .cm-subject .subject-list .subject-item .description{
-        font-size: 18px;
-        margin-top: 15px;
-      }
-      .post-image{
-        margin-bottom: 24px;
-      }
-      .close-button {
-        margin-top: 180px;
-        margin-left: 180px;
-      }
-      .Sb-Close{
-        margin-top: -10px;
-        margin-left: 20px;
-      }
-      .cm-subject .sbtitle{
-        font-size: 26px;
-      }
+}
+.submitButton{
+  font-size: 18px;
+}
+.newtitle{
+  font-size: 22px !important;
+}
+.subjectText{
+  font-size: 18px !important;
+}
+.inputTitle{
+  font-size: 20px !important;
+}
+.inputDescription{
+  font-size: 16px !important;
+}
+.like-group span, .comment-group span{
+  font-size: 16px;
+}
+.comment{
+  font-size: 18px;
+}
+.comment-username{
+  font-size: 18px;
+}
+.comment-text2{
+  font-size: 18px;
+}
+.delete-text{
+  font-size: 16px;
+}
+.comment-input-container {
+  width: 100%;
+}
+.send-btn{
+  margin-right: 10px;
+}
+.cursor-pointer1{
+  font-size: 16px;
+}
+.cursor-pointer2{
+  font-size: 16px;
+}
+.cm-delete-btn{
+  font-size: 16px;
+}
+.cm-subject .container{
+  width: 100%;
+}
+.subject-list .subject-item .subject-label .text {
+  font-size: 18px;
+}
+.cm-subject .subject-list .subject-item .description{
+  font-size: 14px;
+}
+.close-button {
+  margin-top: 180px;
+  margin-left: 180px;
+}
+.Sb-Close{
+  margin-top: -170px;
+  margin-left:-170px;
+}
+.cm-subject .sbtitle{
+  font-size: 22px;
+  }
 }
   // ========================================모바일========================================
-  @media (max-width:480px){
-    .cm-title{
-      font-size: 24px;
+
+@media (max-width:480px){
+
+.cm-title{
+  font-size: 16px;
+}
+.title {
+  font-size: 18px;
+}
+.nickname{
+  font-size: 10px;
+}
+.date-text{
+  font-size: 10px;
+}
+.description {
+  font-size: 14px;
+}
+.vote-text, .comment-text {
+  font-size: 12px;
+}
+.new-post-button { 
+  max-width: auto;
+  .cm-Newpost{
+    bottom: 11.5%; right: 4%;
+    transform: translate(-11.5%, -4%);    
+    >img{
+    width: 40px; height: 40px;
     }
-    .title {
-        font-size: 22px;
-        margin-bottom: 10px;
-    }
-    .author-container{
-        margin-bottom: 20px;
-    }
-    .nickname{
-        font-size: 14px;
-    }
-    .date-text{
-        font-size: 14px;
-    }
-    .description {
-        font-size: 18px;
-        margin-bottom: 20px;
-    }
-    .vote-text, .comment-text {
-        font-size: 16px;
-    }
-    .new-post-button{
-        right: 20px; 
-    }
-    .author-info2{
-        margin-bottom: 20px;
-    }
-    .submitButton{
-        font-size: 18px;
-    }
-    .newtitle{
-        font-size: 22px !important;
-    }
-    .subjectText{
-        font-size: 18px !important;
-    }
-    .inputTitle{
-        font-size: 18px !important;
-    }
-    .inputDescription{
-        font-size: 14px !important;
-    }
-    .like-group span, .comment-group span{
-        font-size: 16px;
-    }
-    .divider {
-        margin-top: 20px;
-    }
-    .comment{
-        font-size: 18px;
-        margin-top: 20px;
-    }
-    .comment-username{
-        font-size: 18px;
-        margin-top: 20px;
-    }
-    .comment-text2{
-        font-size: 16px;
-        margin-top: 10px;
-    }
-    .delete-text{
-        font-size: 16px;
-    }
-    .comment-input-container {
-        width: 95%;
-      }
-      .send-btn{
-        margin-right: 10px;
-      }
-      .cursor-pointer1{
-        font-size: 16px;
-      }
-      .cursor-pointer2{
-        font-size: 16px;
-      }
-      .cm-delete-btn{
-        font-size: 16px;
-      }
-      .container  {
-        width: 100%;
-      }
-      .cm-subject .subject-list .subject-item .subject-label .text{
-        font-size: 18px;
-      }
-      .cm-subject .subject-list .subject-item .description{
-        font-size: 14px;
-        margin-top: 11px;
-      }
-      .post-image{
-        margin-bottom: 20px;
-      }
-      .close-button {
-        margin-top: 250px;
-        margin-left: 250px;
-      }
-      .cm-subject .sbtitle{
-        font-size: 22px;
-      }
-      .Sb-Close{
-        margin-top: -15px;
-        margin-left: 10px;
-      }
   }
+}
+.submitButton{
+  font-size: 14px;
+}
+.newtitle{
+  font-size: 18px !important;
+}
+.subjectText{
+  font-size: 14px !important;
+}
+.inputTitle{
+  font-size: 16px !important;
+}
+.inputDescription{
+  font-size: 12px !important;
+}
+.like-group span, .comment-group span{
+  font-size: 12px;
+}
+.comment{
+  font-size: 14px;
+}
+.comment-username{
+  font-size: 14px;
+}
+.comment-text2{
+  font-size: 14px;
+}
+.delete-text{
+  font-size: 12px;
+}
+.comment-input-container {
+  width: 100%;
+}
+.send-btn{
+  margin-right: 10px;
+}
+.cursor-pointer1{
+  font-size: 12px;
+}
+.cursor-pointer2{
+  font-size: 12px;
+}
+.cm-delete-btn{
+  font-size: 12px;
+}
+.container{
+  width: 100%;
+}
+.subject-list .subject-item .subject-label .text{
+  font-size: 14px;
+}
+.cm-subject .subject-list .subject-item .description{
+  font-size: 10px;
+}
+.close-button {
+  margin-top: 250px;
+  margin-left: 250px;
+}
+.cm-subject .sbtitle{
+  font-size: 18px;
+}
+.Sb-Close{
+  margin-top: -245px;
+  margin-left: -240px;
+  }
+}

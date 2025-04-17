@@ -6,8 +6,13 @@ import Dot from '../../component/icons/Dot';
 import Heart_fill_red from '../../component/icons/Heart_fill_red';
 import Heart_stroke_red from '../../component/icons/Heart_stroke_red';
 import Comment from '../../component/icons/Comment';
-import "../../styles/03-community/cmDetail.scss";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
 import Btn2Popup from '../../component/popups/Btn2Popup';
+import Btn1Popup from '../../component/popups/Btn1Popup'; 
+import "../../styles/03-community/cmDetail.scss";
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 const init = [];
 
@@ -15,13 +20,16 @@ function CmDetail() {
   const navigate = useNavigate();
   const location = useLocation();
   const post = location.state?.post;
-  const loggedInUserId = localStorage.getItem("userId") || "test-user-123";
+  const loggedInUserId = JSON.parse(sessionStorage.getItem("user"));
 
   const [showDeleteBtn, setShowDeleteBtn] = useState(false);
   const [comments, setComments] = useState(init);
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
-  const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);  // 삭제 팝업 상태 추가
+  const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
+  const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
+
+  const isAuthor = loggedInUserId.id === post?.userId; // 작성자인지 확인
 
   const handleDotClick = () => {
     setShowDeleteBtn((prev) => !prev);
@@ -44,7 +52,6 @@ function CmDetail() {
           liked: newLiked,
         }),
       });
-      // 좋아요 상태를 localStorage에 저장
       localStorage.setItem(`liked-${post._id}`, JSON.stringify(newLiked));
     } catch (error) {
       console.error("좋아요 서버 요청 실패:", error);
@@ -58,7 +65,9 @@ function CmDetail() {
       });
 
       if (response.ok) {
-        navigate("/community"); // 게시물 삭제 후 게시물 목록으로 이동
+        setIsDeletePopupOpen(false);
+        setIsDeleteConfirmOpen(true);
+      
       } else {
         console.error("게시물 삭제 실패");
       }
@@ -67,15 +76,12 @@ function CmDetail() {
     }
   };
 
-  // 좋아요 상태와 수 불러오기
   useEffect(() => {
     if (!post || !loggedInUserId) return;
 
-    // localStorage에서 좋아요 상태 불러오기
     const savedLiked = JSON.parse(localStorage.getItem(`liked-${post._id}`)) || false;
     setLiked(savedLiked);
 
-    // 서버에서 좋아요 수 불러오기
     fetch(`http://localhost:4000/like/count?postId=${post._id}`)
       .then(res => res.json())
       .then(data => {
@@ -89,26 +95,54 @@ function CmDetail() {
   }
 
   return (
-    <div className="p-4">
+    <div className="p-4" style={{ margin: "92px 0 150px" }}>
       <Detail post={post}>
-        <div className="interaction-container">
-          <div className="like-group" onClick={handleLikeClick}>
-            {liked ? <Heart_fill_red className={"user-heart"} /> : <Heart_stroke_red className={"user-heart2"} />}
-            <span className="like-count">
-              {likeCount === 0 ? "좋아요" : likeCount}
-            </span>
+        {post.imageUrls && (
+          <div className="mt-4">
+            <Swiper
+              spaceBetween={10}
+              slidesPerView={1}
+              pagination={{ clickable: true }}
+              modules={[Pagination]}
+              loop
+            >
+              {post.imageUrls.map((url, index) => (
+                <SwiperSlide key={index}>
+                  <img
+                    src={url}
+                    className="swiper-image"
+                    alt={`Post Image ${index + 1}`}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
-          <div className="comment-group">
-            <Comment className={"user-commnet"} />
-            <span className="comment-count">
-              {comments.length === 0 ? "댓글" : comments.length}
-            </span>
-          </div>
+        )}
+      </Detail>
+
+      <div className="interaction-container">
+        <div className="like-group" onClick={handleLikeClick}>
+          {post.hasVote ? (
+            <Heart_fill_red className={"fe-heart"} />
+          ) : (
+            <Heart_stroke_red className={"fe-heart2"} />
+          )}
+          <span className="like-count">
+            {likeCount === 0 ? "좋아요" : likeCount}
+          </span>
+        </div>
+        <div className="comment-group">
+          <Comment className={"user-commnet"} />
+          <span className="comment-count">
+            {comments.length === 0 ? "댓글" : comments.length}
+          </span>
+        </div>
+        {isAuthor && (
           <div className="dot" onClick={handleDotClick}>
             <Dot className={"user-dot"} />
           </div>
-        </div>
-      </Detail>
+        )}
+      </div>
 
       <CmComment
         postId={post._id}
@@ -118,28 +152,40 @@ function CmDetail() {
         setShowDeleteBtn={setShowDeleteBtn}
       />
 
-      <div className="cusor">
-        <div className="comment-actions">
-          <span
-            className="cursor-pointer1"
-            onClick={() => navigate("/community/cmeditpage", { state: { post } })}
-          >
-            수정
-          </span>
-          <span
-            className="cursor-pointer2"
-            onClick={() => setIsDeletePopupOpen(true)} 
-          >
-            삭제
-          </span>
+      {isAuthor && (
+        <div className="cusor">
+          <div className="comment-actions">
+            <span
+              className="cursor-pointer1"
+              onClick={() => navigate("/community/cmeditpage", { state: { post } })}
+            >
+              수정
+            </span>
+            <span
+              className="cursor-pointer2"
+              onClick={() => setIsDeletePopupOpen(true)}
+            >
+              삭제
+            </span>
+          </div>
         </div>
-      </div>
+      )}
 
       <Btn2Popup
         isOpen={isDeletePopupOpen}
         setIsOpen={setIsDeletePopupOpen}
         type="delete"
-        onConfirm={handleDelete} // 예 버튼 클릭 시 handleDelete 실행
+        onConfirm={handleDelete}
+      />
+
+      <Btn1Popup
+        isOpen={isDeleteConfirmOpen}
+        setIsOpen={setIsDeleteConfirmOpen}
+        type="delete"
+        onConfirm={() => {
+          setIsDeleteConfirmOpen(false);
+          navigate("/community");
+        }}
       />
     </div>
   );
