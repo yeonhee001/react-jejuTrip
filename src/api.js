@@ -84,20 +84,9 @@ export const tour = create((set) => ({
     }
 }));
 
-// export const party = create((set) => ({
-//     partydata:[],
-//     fetchData:async ()=>{
-//         const res = await instance3.get("/"); 
-//         set({partydata:res.data.data}); 
-//     }
-//     // data: null,
-//     // loading: false,
-//     // allList: ()=>{
-//     //     set({loading:false})
-//     //     instance3.get('/')
-//     //     .then(res=>{
-//     //         let fData = res.data
-//     //         set({data:fData, loading:true})
-//     //     })
-//     // },
-// }));
+export const mode = create((set) => ({
+    isEditMode: false,
+    enterEditMode: () => set({ isEditMode: true }),
+    exitEditMode: () => set({ isEditMode: false }),
+    nullMode: () => set({ isEditMode: null })
+}));

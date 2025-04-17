@@ -1,16 +1,17 @@
+.login-page{margin: 92px 0 150px;}
 .maintxt{
     position: relative;
-    margin: 200px 0 250px;
+    margin: 160px auto 220px;
+    width: 337px;
     h2{
-        font-size: 30px;
+        font-size: 34px;
         font-weight: 200;
         line-height: 150%;
     }
     p{
         position: absolute;
-        left: 45%; bottom: 0;
-        transform: translate(-45%, 0);
-        width: 185px; height: 55px;
+        left: 90px; bottom: 0;
+        width: 200px; height: 65px;
         > img{width: 100%; height: 100%;}
     }
 }
@@ -23,9 +24,11 @@
     }
     span{
         text-align: right;
-        display: block;
+        display: inline-block;
+        width: 337px;
         margin-top: 32px;
         color: #555;
+        font-size: 18px;
     }
 }
 
@@ -40,12 +43,21 @@
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    text-align: center;
+    font-size: 18px;
 
+    .rb-loading{
+        gap: 30px;
+        margin-bottom: 20px;
+        .dot{
+            width: 30px; height: auto;
+        }
+    }
     p{
         position: absolute;
         width: 156px; height: 54px;
-        bottom: 10%; left: 50%;
-        transform: translate(-50%, -10%);
+        bottom: 5%; left: 50%;
+        transform: translate(-50%, -5%);
         > img{width: 100%; height: 100%;}
     }
     span{
@@ -53,4 +65,32 @@
         top: 55%; left: 50%;
         transform: translate(-50%, -55%);
     }
+}
+
+
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+
+
+@media (max-width:768px){
+    .maintxt{
+        h2{font-size: 34px;}
+    }
+
+}
+@media (max-width:480px){
+    .maintxt{
+        h2{font-size: 30px;}
+        p{
+            left: 80px; bottom: 0;
+            width: 190px; height: 60px;
+        }
+    }
+    .loginbtns{
+        span{font-size: 14px;}
+    }
+    .rd-background{font-size: 14px;}
 }

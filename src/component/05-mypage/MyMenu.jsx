@@ -17,7 +17,7 @@ function MyMenu({ isLoggedIn, openPopup }) {
     {
       type: 'like',
       url: 'like',
-      icon: <Heart_stroke_red className={'my-menuicon'}/>,
+      icon: <Heart_stroke_red className={'my-menuicon-like'}/>,
       txt: '좋아요'
     },
     {

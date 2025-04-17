@@ -1,0 +1,72 @@
+@media (max-width:768px){
+    .my-login{
+        > p{
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+        > span{color: rgba(0, 0, 0, 0.3); font-weight: bold;}
+    }
+    .my-menu1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 50px;
+        margin-top: 32px;
+        span{font-weight: bold;}
+        .my-menuicon, .my-menuicon-like{
+            width: 30px; height: 30px;
+            margin-bottom: 16px;
+            >img{width: 100%; height: 100%; object-fit: fill;}
+        }
+        .my-menuicon-like{width: 35px;}
+        .my-menu-check, .my-menu-like, .my-menu-activity{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    .my-menu2{
+        margin: 16px 0 32px 0;
+    
+        .my-menu-trip, .my-menu-help{
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+            >a, b{
+                display: block;
+                font-weight: bold;
+                cursor: pointer;
+            }
+            >p{font-size: 12px; color: rgba(0, 0, 0, 0.3);}
+        }
+        .my-menu-trip{
+            position: relative;
+            b{margin: 16px 0;}
+            .my-trip-num{
+                position: absolute;
+                left: 28%; top: 49%;
+                transform: translate(-28%, -49%);
+                color: #5886BA;
+            }
+        }
+        .my-menu-help{
+            a{margin: 16px 0;}
+            span{font-weight: bold;}
+        }
+    }
+    .my-login-out{
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.3);
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+// @media (max-width:480px){
+//     .trip-around-item{
+//       width: 100%;
+//       >span{
+//         font-size: 10px;
+//       }
+//     }
+//     }

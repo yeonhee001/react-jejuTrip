@@ -4,21 +4,60 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import Close from '../icons/Close';
 import Btn1Popup from './Btn1Popup';
 import { format } from 'date-fns';
+import { mode } from '../../api';
 
-function GetTripPopup({ isOpen, setIsOpen, listData }) {
+function GetTripPopup({ isOpen, setIsOpen, planData, checkData }) {
     const [selectedValue, setSelectedValue] = useState('');
     const [openSelectPopup, setOpenSelectPopup] = useState(false);
+    const { enterEditMode } = mode();
 
     const navigate = useNavigate();
 
+    const generateId = () => {
+        const datePart = Date.now().toString(36);
+        const randPart = Math.random().toString(36).substring(2, 5);
+        return `${datePart}${randPart}`;
+    }
+
     // 여행 선택 후 체크리스트 생성
-    const handleConfirm = () => {
-        if(!selectedValue) {
-            setOpenSelectPopup(true);
-        } else {
-            setIsOpen(false);
-            navigate(`/my/checklist/checkdetail/${selectedValue}`, { state: { isEdit: true } });
-        }
+    function handleSelectPlan() {
+        const selectedPlan = planData.find(item => item.id === selectedValue);
+        const newId = generateId();
+        const date = format(new Date(), 'yyyy.MM.dd');
+
+        // Zustand에서 직접 편집 모드로 전환
+        enterEditMode();
+
+        setIsOpen(false);
+        navigate(`/my/checklist/checkdetail/${newId}`, { 
+            state: { 
+                isEdit: true,
+                id: newId,
+                planId: selectedPlan.id,
+                title: selectedPlan.title,
+                date: [date]
+            } 
+        });
+    };
+
+    // 여행 선택하지 않고 체크리스트 생성
+    function handleNoPlan() {
+        const newId = generateId();
+        const title = `체크리스트 ${checkData.length + 1}`;
+        const date = format(new Date(), 'yyyy.MM.dd');
+
+        // Zustand에서 직접 편집 모드로 전환
+        enterEditMode();
+
+        setIsOpen(false);
+        navigate(`/my/checklist/checkdetail/${newId}`, { 
+            state: { 
+                isEdit: true,
+                id: newId,
+                title,
+                date: [date]
+            } 
+        });
     };
 
     // 팝업 배경 클릭 시 팝업 닫힘
@@ -29,7 +68,7 @@ function GetTripPopup({ isOpen, setIsOpen, listData }) {
     }
 
     // 팝업이 닫혀있으면 랜더링 하지 않음.
-    if (!isOpen) return null;
+    if (!isOpen) return null;    
     
     return (
         <>
@@ -57,7 +96,7 @@ function GetTripPopup({ isOpen, setIsOpen, listData }) {
                                 sx: { zIndex: 10002 }, // ✅ 팝업보다 앞에 배치
                                 }}
                             >
-                                {listData.map((item, i) => (
+                                {planData.map((item, i) => (
                                     <MenuItem key={i} value={item.id}>{item.title}</MenuItem>
                                 ))}
                             </Select>
@@ -65,7 +104,7 @@ function GetTripPopup({ isOpen, setIsOpen, listData }) {
             
                         <button
                             className='no-select-btn'
-                            onClick = {''}
+                            onClick = {()=>handleNoPlan()}
                         >
                             여행 선택하지 않고 추가하기 →
                         </button>
@@ -75,7 +114,7 @@ function GetTripPopup({ isOpen, setIsOpen, listData }) {
                         <button className='btn2popup-btn' onClick={() => setIsOpen(false)}>
                         취소
                         </button>
-                        <button className='btn1popup-btn' onClick={handleConfirm}>
+                        <button className='btn1popup-btn' onClick={() => handleSelectPlan()}>
                         확인
                         </button>
                     </div>

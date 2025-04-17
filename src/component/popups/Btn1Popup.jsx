@@ -1,7 +1,7 @@
 import React from 'react'
 import Warning from '../icons/Warning';
 
-function Btn1Popup({ isOpen, setIsOpen, type, onConfirm }) {
+function Btn1Popup({ isOpen, setIsOpen, type, onConfirm, className='' }) {
 
   // type별 팝업 내용
   const popupContent = {
@@ -31,7 +31,7 @@ function Btn1Popup({ isOpen, setIsOpen, type, onConfirm }) {
   if (!isOpen) return null;
   
   return (
-    <div className='popup-box' onClick={closePopup}>
+    <div className={className ? className : 'popup-box'} onClick={closePopup}>
       <div className='popup'>
 
         <div className='popup-cont'>

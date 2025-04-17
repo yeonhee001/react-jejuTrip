@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import ListItem from './ListItem'
-import SwipeAction from './SwipeAction'
-import Trash from '../icons/Trash';
+import Btn1Popup from '../popups/Btn1Popup';
 import Btn2Popup from '../popups/Btn2Popup';
+import SwipeAction from './SwipeAction'
 import SwipeHand from './SwipeHand';
 
-function ListPage({listData, page}) {
+function ListPage({listData, page, trashClick, trash, onConfirm }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isDonePopupOpen, setIsDonePopupOpen] = useState(false);
+  const [openSwipeId, setOpenSwipeId] = useState(null);
 
   let title = '';
   let subtitle = '';
@@ -21,7 +23,7 @@ function ListPage({listData, page}) {
 
   // 연도별로 데이터 구분
   const groupedData = listData.reduce((acc, item) => {
-    const year = item.date.split('.')[0];
+    const year = item.date[0].split('.')[0];
     if(!acc[year]) {
       acc[year] = [];
     }
@@ -36,32 +38,60 @@ function ListPage({listData, page}) {
   }
   years.sort((a,b)=>b-a);
   
-  
   return (
     <div className='listpage'>
       <h2>{title}</h2> 
       <div className='listpage-subtitle'>
         {subtitle}
-        <div className='listpage-swipehand'><SwipeHand/></div>
+        {listData.length !== 0 && (
+          <div className='listpage-swipehand'>
+            <SwipeHand />
+          </div>
+        )}
       </div>
 
       {/* 연도별로 그룹화된 데이터 출력 */}
       {years.map((year) => (
         <div key={year} style={{marginBottom: '32px'}}>
           <h3>{year}</h3> {/* 연도 출력 */}
-          {groupedData[year].map((item) => (
-            <SwipeAction>
-              <ListItem
-                key={item.id}
-                id={item.id}
-                title={item.title}
-                date={item.date}
-                page={page}
-              />
-              <div className="trashicon" onClick={() => setIsPopupOpen(true)}><Trash/></div>
-            </SwipeAction>
+          {groupedData[year].map((item, i) => (
+            !trashClick[item.id] && (
+              <SwipeAction 
+                key={item.id} 
+                setTrashClick={() => {
+                  setOpenSwipeId(item.id);
+                  trash(item.id)
+                }} 
+                setIsPopupOpen={setIsPopupOpen}
+                resetSwipe={openSwipeId === item.id}
+              >
+                  <ListItem
+                    id={item.id}
+                    title={item.title}
+                    date={item.date}
+                    page={page}
+                  />
+              </SwipeAction>
+            )
           ))}
-          <Btn2Popup isOpen={isPopupOpen} setIsOpen={setIsPopupOpen} type={"delete"}/>
+          <Btn2Popup 
+            isOpen={isPopupOpen} 
+            setIsOpen={setIsPopupOpen} 
+            type={'delete'} 
+            onCancel={() => {
+              setOpenSwipeId(null);
+            }}
+            onConfirm={() => {
+              onConfirm();
+              setIsPopupOpen(false);
+              setIsDonePopupOpen(true);
+            }}
+          />
+          <Btn1Popup
+            isOpen={isDonePopupOpen}
+            setIsOpen={setIsDonePopupOpen}
+            type={'delete'}
+          />
         </div>
       ))}
     </div> 

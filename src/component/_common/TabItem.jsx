@@ -1,7 +1,7 @@
 import React from 'react'
 
 function TabItem({ imgUrl, title, dateTime }) {
-  const imgSrc = imgUrl ? imgUrl :'/imgs/common_noimage_01.png';
+  const imgSrc = imgUrl ? imgUrl :'/imgs/common_noimage_02.png';
   
   return (
     <div className='tabitem'>
