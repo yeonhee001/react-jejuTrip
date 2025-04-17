@@ -298,7 +298,7 @@ function Home() {
   // 관광객수 api 불러오기
   useEffect(()=>{
     const fetchPeople = ()=>{
-      axios.get('http://api.odcloud.kr/api/3083546/v1/uddi:4a4ea6e8-33e6-45c3-9c19-b8efe36ffd3b',{
+      axios.get('https://api.odcloud.kr/api/3083546/v1/uddi:4a4ea6e8-33e6-45c3-9c19-b8efe36ffd3b',{
         params: {
           serviceKey:'UO/VNFIHUBaYIX80pdY4xpWRnNWmKO89qSyEZrhhwobVU599onCKVvNnb0jHHcbQiQ1qcLqZWP21BSzibjqC4Q==',
           perPage: 100,
