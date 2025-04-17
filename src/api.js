@@ -107,7 +107,7 @@ export const plan = create((set) => ({
     //장소 추가에서 가져온 데이터 업데이트
     searchData: (storedData, idx) => {
         set((state) => {
-            const copy = structuredClone(state.planData); // 깊은 복사            
+            const copy = structuredClone(state.planData); // 깊은 복사
             copy.item.days[idx].plans = [...copy.item.days[idx].plans, ...storedData];
             
         return { planData: copy };
