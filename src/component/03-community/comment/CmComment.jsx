@@ -14,8 +14,18 @@ const CmComment = ({ postId, showDeleteBtn, setShowDeleteBtn, comments, setComme
   const [selectedCommentIdToDelete, setSelectedCommentIdToDelete] = useState(null);
   const [isSelectPopupOpen, setIsSelectPopupOpen] = useState(false);
 
-  const loggedInUserId = localStorage.getItem("userId") || "testUser123";
   const BASE_URL = "http://localhost:4000";
+
+  // 로그인한 사용자 정보 가져오기
+  const userStr = sessionStorage.getItem("user");
+  let loggedInUser = null;
+  if (userStr) {
+    try {
+      loggedInUser = JSON.parse(userStr);
+    } catch (err) {
+      console.error("로그인 정보 오류:", err);
+    }
+  }
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -40,10 +50,15 @@ const CmComment = ({ postId, showDeleteBtn, setShowDeleteBtn, comments, setComme
     const inputValue = inputRef.current?.value.trim();
     if (!inputValue) return;
 
+    if (!userStr) {
+      alert("로그인이 필요합니다.");
+      return;
+    }
+
     const newCommentData = {
       postId,
-      userId: loggedInUserId,
-      username: "사용자",
+      userId: loggedInUser.id,
+      username: loggedInUser.name || "익명",
       text: inputValue,
       createdAt: new Date().toISOString(),
     };
@@ -82,7 +97,7 @@ const CmComment = ({ postId, showDeleteBtn, setShowDeleteBtn, comments, setComme
 
   const confirmDelete = () => {
     if (selectedCommentIdToDelete) {
-      handleDeleteComment(selectedCommentIdToDelete); // 삭제 처리 함수 호출
+      handleDeleteComment(selectedCommentIdToDelete);
       setSelectedCommentIdToDelete(null);
     }
     setIsDeletePopupOpen(false);
@@ -101,13 +116,13 @@ const CmComment = ({ postId, showDeleteBtn, setShowDeleteBtn, comments, setComme
       setIsSelectPopupOpen(true);
     } else {
       console.log("선택된 댓글 ID들:", activeCircleCommentIds);
-      // 여기에서 실제 삭제 처리 구현 가능
+      // 실제 삭제 처리 구현 가능
     }
   };
 
   return (
     <div>
-      <div className="divider" />
+      <div className="divider3" />
       <div className="comment">댓글</div>
 
       <div className="comment-list">
@@ -119,7 +134,19 @@ const CmComment = ({ postId, showDeleteBtn, setShowDeleteBtn, comments, setComme
             <div className="comment-line">
               <p className="comment-text2">{comment.text}</p>
 
-              {showDeleteBtn ? (
+              {!showDeleteBtn && loggedInUser?.id === comment.userId && (
+                <span
+                  className="delete-text"
+                  onClick={() => {
+                    setSelectedCommentIdToDelete(comment._id);
+                    setIsDeletePopupOpen(true);
+                  }}
+                >
+                  삭제
+                </span>
+              )}
+
+              {showDeleteBtn && (
                 <div
                   className="co-circle"
                   onClick={() => toggleSelectComment(comment._id)}
@@ -130,16 +157,6 @@ const CmComment = ({ postId, showDeleteBtn, setShowDeleteBtn, comments, setComme
                     <Cicle />
                   )}
                 </div>
-              ) : (
-                <span
-                  className="delete-text"
-                  onClick={() => {
-                    setSelectedCommentIdToDelete(comment._id);
-                    setIsDeletePopupOpen(true);
-                  }}
-                >
-                  삭제
-                </span>
               )}
             </div>
           </div>
@@ -172,7 +189,7 @@ const CmComment = ({ postId, showDeleteBtn, setShowDeleteBtn, comments, setComme
         isOpen={isDeletePopupOpen}
         setIsOpen={setIsDeletePopupOpen}
         type="delete"
-        onConfirm={confirmDelete} // 삭제 확인시 삭제 처리 함수 호출
+        onConfirm={confirmDelete}
       />
 
       <Btn1Popup

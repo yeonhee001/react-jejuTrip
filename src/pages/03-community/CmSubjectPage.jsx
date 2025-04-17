@@ -12,7 +12,7 @@ function CmSubjectPage() {
   return (
     <FormProvider {...methods}>
       <>
-        <Box style={{ backgroundColor: "rgba(0, 0, 0, 0.2)"}}>
+        <Box style={{ backgroundColor: "rgba(0, 0, 0, 0.2)",  margin: "92px 0 150px"}}>
           <CmNewPost />
           <CmSubject />
         </Box>

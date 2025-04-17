@@ -5,7 +5,7 @@ import CmNewPost from "../../component/03-community/post/CmNewPost";
 import "../../styles/03-community/cmPostPage.scss";
 import "../../styles/03-community/_res-community.scss";
 
-export default function CmPostPage() {
+function CmPostPage() {
   const navigate = useNavigate();
   const postForm = useForm({
     defaultValues: {
@@ -36,9 +36,11 @@ export default function CmPostPage() {
 
   return (
     <FormProvider {...postForm}>
-      <form onSubmit={postForm.handleSubmit(onSubmit)}>
+      <form onSubmit={postForm.handleSubmit(onSubmit)}  className="cm-post-page">
         <CmNewPost />
       </form>
     </FormProvider>
   );
 }
+
+export default CmPostPage

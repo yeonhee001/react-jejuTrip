@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { Box, Typography } from "@mui/material";
 import Right_black from "../../icons/Right_black";
-import Photo from "../../icons/Photo";
 import Warning from "../../icons/Warning";
-import Close from "../../icons/Close";
+import Close from "../../icons/Close"; 
 import CmSubject from "../cmSubject";
 import Btn2Popup from "../../popups/Btn2Popup";
+import PopupAction from "../../_common/PopupAction";
+import Photo from "../../icons/Photo";
 
 function CmEditPost({ postData, onClose = () => {}, onSubmit }) {
   const { control, setFocus, handleSubmit, reset } = useFormContext();
@@ -17,7 +18,8 @@ function CmEditPost({ postData, onClose = () => {}, onSubmit }) {
   const [selectedItem, setSelectedItem] = useState("주제선택");
   const [showSubjectAlert, setShowSubjectAlert] = useState(false);
   const [isExitPopupOpen, setIsExitPopupOpen] = useState(false);
-
+  const [imageUrls, setImageUrls] = useState(postData?.imageUrls || []); // 이미지 삭제를 위한 상태 변수
+  
   useEffect(() => {
     if (postData) {
       reset({
@@ -25,6 +27,7 @@ function CmEditPost({ postData, onClose = () => {}, onSubmit }) {
         description: postData.description,
       });
       setSelectedItem(postData.subject || "주제선택");
+      setImageUrls(postData.imageUrls || []); // 이미지 URL 초기화
     }
   }, [postData, reset]);
 
@@ -50,6 +53,7 @@ function CmEditPost({ postData, onClose = () => {}, onSubmit }) {
           description: data.description,
           subject: selectedItem,
           updatedAt: new Date().toISOString(),
+          imageUrls: imageUrls, // 이미지 URL을 업데이트된 배열로 설정
         };
         onSubmit(updatedPost); // Call parent handler
         reset();
@@ -67,14 +71,19 @@ function CmEditPost({ postData, onClose = () => {}, onSubmit }) {
     if (isDirty) {
       setIsExitPopupOpen(true);
     } else {
-      navigate(`/community/cmdetail/${postData?.id}`);
+      navigate(`/community/cmdetail/${postData?._id}`);
     }
   };
 
   const handleExitConfirm = () => {
     setIsExitPopupOpen(false);
     reset();
-    navigate(`/community/cmdetail/${postData?.id}`);
+    navigate(-1);
+  };
+
+  // 이미지 삭제 핸들러
+  const handleDeleteImage = (index) => {
+    setImageUrls((prevUrls) => prevUrls.filter((_, idx) => idx !== index)); // 해당 인덱스의 이미지 삭제
   };
 
   return (
@@ -116,9 +125,29 @@ function CmEditPost({ postData, onClose = () => {}, onSubmit }) {
       </Box>
 
       <Box className="photoContainer">
-        <Box className="photoBox">
-          <Photo className={"nw-photo"} />
-        </Box>
+        {/* 이미지가 없을 때 아이콘 보여주기 */}
+        {imageUrls.length === 0 && (
+          <Box className="photoBox">
+            <Photo className="nw-photo" />
+            </Box>
+          )}
+        {/* 이미지와 삭제 아이콘을 표시 */}
+        {imageUrls.map((url, index) => (
+          <Box key={index} className="photoImage" style={{ position: "relative" }}>
+            <img src={url} alt={`post-image-${index}`} className="nw-photo2" />
+            <div 
+              onClick={() => handleDeleteImage(index)} 
+              style={{
+                position: "absolute", 
+                top: 5, 
+                right: 5, 
+                cursor: "pointer"
+              }}
+            >
+              <Close className="deleteIcon" />
+            </div>
+          </Box>
+        ))}
       </Box>
 
       <Box className="divider" />
@@ -164,18 +193,23 @@ function CmEditPost({ postData, onClose = () => {}, onSubmit }) {
       />
 
       {isSubjectOpen && (
-        <div className="modalOverlay" onClick={() => setIsSubjectOpen(false)}>
+        <PopupAction
+          useState={isSubjectOpen} 
+          onClose={() => setIsSubjectOpen(false)}
+        >
           <div onClick={(e) => e.stopPropagation()}>
-            <CmSubject
-              selectedItem={selectedItem}
-              setSelectedItem={(item) => {
-                setSelectedItem(item);
-                setShowSubjectAlert(false);
-              }}
-              onClose={() => setIsSubjectOpen(false)}
-            />
+            <div className="subjectWrapper">
+              <CmSubject
+                selectedItem={selectedItem}
+                setSelectedItem={(item) => {
+                  setSelectedItem(item);
+                  setShowSubjectAlert(false);
+                }}
+                onClose={() => setIsSubjectOpen(false)}
+              />
+            </div>
           </div>
-        </div>
+        </PopupAction>
       )}
 
       <Btn2Popup
