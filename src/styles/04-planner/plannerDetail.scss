@@ -2,6 +2,9 @@
     position: relative;
     margin: 92px 0 150px;
 }
+.tagbtn{
+    font-size: 18px;
+}
 .checkdetail-icon-close{
     position: absolute;
     left: 0; top: -40px;
@@ -122,7 +125,7 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                font-size: 14px;
+                font-size: 14px; 
                 margin-bottom: 16px;
                 //Day 1 4/3 목
                 .ticketdate{
@@ -215,9 +218,13 @@
 }
 //메모&삭제 슬라이드
 .swipeactionmemo{
+    margin: 10px 0;
     width: 100%;
     p:nth-of-type(1){
         margin: 7px 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     p:nth-of-type(2){
         font-size: 11px;
@@ -226,6 +233,7 @@
     .title{
         font-size: 14px;
         font-weight: bold;
+        margin :0 
     }
     .memoNtrash{
     height: 100px;
@@ -249,12 +257,14 @@
     width: 100%;
     .memo_close{
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 30%;
+        right: 10%;
+        transform: translate(-50%, -50%);
     }
     .memo_text{
         position: absolute;
-        left: 6%; top: 62%;
+        left: 13%;
+        top: 54%;
         width: 50%;
         transform: translate(0%, -50%);
         background-color: transparent;
@@ -267,6 +277,10 @@
     width: 100%;
     margin: 0 auto 16px;
 }
+//선택완료
 .place_btn{
+    font-size: 18px;
     width: 100%;
 }
+
+@import './res-planner.scss';

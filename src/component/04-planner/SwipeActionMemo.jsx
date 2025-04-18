@@ -42,7 +42,7 @@ function SwipeActionMemo({children, className, setMemoClick, setTrashClick}) {
                 <div className='children'>{children}</div>
                 <div className='memoNtrash'>
                 <div className="memoicon" onClick={()=>{setMemoClick(true); setSwipe(0)}}><Memo/></div>
-                    <div className="trashicon" onClick={() => setTrashClick(true)}><Trash/></div>
+                    <div className="trashicon" onClick={() =>{ setTrashClick(true); setSwipe(0)}}><Trash/></div>
                 </div>
             </div>
         </div>

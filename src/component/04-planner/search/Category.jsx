@@ -1,24 +1,42 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-import { plan, shopNfoodNparty } from '../../../api';
+import { mode, plan, shopNfoodNparty } from '../../../api';
 import CategoryItem from './CategoryItem'
 import Button from '../../_common/Button';
 import NoSearch from '../../_common/NoSearch';
 import SearchItem from './SearchItem';
+import Close from '../../icons/Close';
+import Btn1Popup from '../../popups/Btn1Popup';
 
 function Category() {
     const { searchData } = plan();
     const { shopNfoodNpartyData, fetchCategory } = shopNfoodNparty()
-    const [selectedBtn, setSelectedBtn] = useState(false);
+    const [selectedBtn, setSelectedBtn] = useState(false); //선택 완료 버튼
     const [citySelect, setcitySelect] = useState(''); //제주 선택
     const [catSelect, setCatSelect] = useState(''); //카테고리 선택
     const [searchListItem, setSearchListItem] = useState([]); //검색 결과 선택 (input)
-
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    
     const navigate = useNavigate();
     const location = useLocation();
     const path = location.pathname.split("/").filter(Boolean)
     const idx = path[4]
 
+    //새로고침 절대 못해
+    useEffect(() => {
+        const blockKey = (e) => {
+          if ((e.key === 'F5') || (e.ctrlKey && e.key === 'r')) {
+            e.preventDefault();
+          }
+        };
+      
+        window.addEventListener('keydown', blockKey);
+      
+        return () => {
+          window.removeEventListener('keydown', blockKey);
+        };
+      }, []);
+    
     const checkbox = (item) => {
         const selectList = {
             "contents_id": item.contentsid,
@@ -88,6 +106,7 @@ function Category() {
         </div>
         ):(
         <> {/* 카테고리 선택 */}
+        
         <div className='place_search'>
             <CategoryItem data={search} category="제주" title={["제주시", "서귀포시"]} onClick={(city)=>{setcitySelect(city)}}/>
             <CategoryItem data={search} category="카테고리" title={["카테고리"]} onClick={(cat)=>{setCatSelect(cat)}}/>
@@ -108,8 +127,12 @@ function Category() {
             <Button 
             btn={selectedBtn? `선택 완료 / ${searchListItem.length}개` : "선택 완료"} 
             className={"place_btn"}/></button>
+
+        <Btn1Popup isOpen={isPopupOpen} setIsOpen={setIsPopupOpen} type={"select"}/>
     </div>
+    
     )
+    
 }
 
 export default Category

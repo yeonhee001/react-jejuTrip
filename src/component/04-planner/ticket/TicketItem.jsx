@@ -1,16 +1,16 @@
 import React from 'react'
+import { mode } from '../../../api';
 import TicketEdit from './TicketEdit';
 import TicketRead from './TicketRead';
 import TicketPick from './TicketPick';
-import { mode } from '../../../api';
 
-function TicketItem({idx, topbarright, btnName, ticketdate, data, setEdit}) {
+function TicketItem({idx, topbarright, btnName, ticketdate, data }) {
     const { isEditMode } = mode();
 
     return (
     <>
     { isEditMode === true && ( //수정모드 
-        <TicketEdit idx={idx} topbarright={topbarright} ticketdate={ticketdate} btnName={btnName} setEdit={setEdit}/>
+        <TicketEdit idx={idx} topbarright={topbarright} ticketdate={ticketdate} btnName={btnName}/>
     )}
     { isEditMode === false && ( //읽기모드
         <TicketRead idx={idx} topbarright={topbarright} ticketdate={ticketdate}/>

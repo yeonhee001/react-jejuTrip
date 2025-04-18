@@ -7,7 +7,6 @@ function CategoryItem({data, category, title, onClick }) {
     return (
         <form>
             <div className='searchbox'>
-                <h2 className='category'>{category}</h2>
                 {title.map((item, i) =>
                 <div key={i}>
                     <h3 className='address'>{item}</h3>

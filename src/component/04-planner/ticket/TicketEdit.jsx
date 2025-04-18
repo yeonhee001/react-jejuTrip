@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import Plane from '../../icons/Plane';
 import SwipeActionMemo from '../SwipeActionMemo';
 import CardItem from '../CardItem';
 import Close from '../../icons/Close';
 import Button from '../../_common/Button';
-import { plan } from '../../../api';
+import { mode, plan } from '../../../api';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import SvgLine from './SvgLine';
 
-function TicketEdit({idx, btnName, ticketdate, setEdit}) {
+function TicketEdit({idx, btnName, ticketdate}) {
     const { planData, setPlanData } = plan();
+    const { enterEditMode } = mode();
     const [drag, setDrag] = useState(false); // 일정 순서 버튼 클릭 상태
     const [memoClick, setMemoClick] = useState({}); // 메모 버튼 클릭 상태
     const [trashClick, setTrashClick] = useState({}); // 삭제 버튼 클릭 상태
@@ -26,10 +27,12 @@ function TicketEdit({idx, btnName, ticketdate, setEdit}) {
     };
     
     const trash = (index) => {
-        setTrashClick((prev) => ({
-          ...prev, //기존 값 유지
-          [index]: !prev[index], //index값만 변경
-        }));
+        // 배열에서 해당 아이템 삭제
+        const updatedPlans = planData.item.days[idx].plans.filter((_, i) => i !== index);
+    
+        const updated = structuredClone(planData);
+        updated.item.days[idx].plans = updatedPlans;
+        setPlanData(updated); // 상태 업데이트
     };
 
     //순서변경 버튼 함수
@@ -50,7 +53,7 @@ function TicketEdit({idx, btnName, ticketdate, setEdit}) {
     const updated = structuredClone(planData);
     updated.item.days[idx].plans = items;
     setPlanData(updated); // 상태 업데이트
-    setEdit(true)
+    enterEditMode()
     };
 
     return (
@@ -105,7 +108,6 @@ function TicketEdit({idx, btnName, ticketdate, setEdit}) {
                     ):( //여기가 바로 편집 모드
                         <>
                             {planData?.item?.days[idx]?.plans?.map((item, i)=>(
-                                !trashClick[i] &&  (
                                 <SwipeActionMemo className={"swipeactionmemo"} setMemoClick={()=>{memo(i)}} setTrashClick={()=>{trash(i)}}>
                                 <ul className='tickebox' key={i}> {/* Day 1 */}
                                     <li className='liItem'>
@@ -125,7 +127,6 @@ function TicketEdit({idx, btnName, ticketdate, setEdit}) {
                                     </li>
                                 </ul>
                                 </SwipeActionMemo>
-                                )
                             ))}
                         </>
                     )}

@@ -16,7 +16,6 @@ function PickPlan() {
     const { nullMode, isEditMode } = mode();
     const [dates, setDates] = useState('');
     const [select, setSelect] = useState('');
-    const [data, setData] = useState('');
 
     //parseInt() : 문자열에서 앞에 있는 숫자만 뽑아서 정수로 바꿔줌
     const nights = parseInt(dates);
@@ -34,12 +33,12 @@ function PickPlan() {
     const scroll = (idx) => {
         const target = tagBtn?.current[idx];  // 이동할 대상 요소
         const targetOffsetTop = target.offsetTop;  // 해당 요소의 상단 위치
-      
+
         window.scrollTo({
           top: targetOffsetTop -100,  // 해당 요소로 스크롤
           behavior: 'smooth',    // 부드러운 스크롤
         });
-      };
+    };
 
     const handleChange = (e) => {
         setDates(e.target.value);

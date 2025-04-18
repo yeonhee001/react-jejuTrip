@@ -12,7 +12,7 @@ function SearchItem({item, searchListItem, checkbox}) {
     checked={searchListItem.some(i => i.contents_id === item.contentsid)}
     onChange={() => checkbox(item)}/>
         <div className='searchItem'>
-          <TagBtn tagbtn={"선택"} className={"searchbtn"}/>
+          <div><TagBtn tagbtn={"선택"} className={"searchbtn"}/></div>
           <PlaceItem
           title={item.title}
           roadaddress={item.roadaddress}

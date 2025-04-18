@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
-import Button from '../../_common/Button'
 import CardItem from '../CardItem'
 import Plane from '../../icons/Plane'
 import Btn2Popup from '../../popups/Btn2Popup';
@@ -27,7 +26,6 @@ function TicketPick({idx, topbarright, ticketdate, btnName, data}) {
                     "축제/행사" : "festival",
                     "쇼핑": "shopping",
                 };
-                const id = item.contents_id;
                 const type = labelToKey[item.contents_label]
             return (
                 <ul className="tickebox" key={i}>
@@ -40,7 +38,7 @@ function TicketPick({idx, topbarright, ticketdate, btnName, data}) {
                             <line x1="1" y1="0" x2="1" y2="100%" stroke="rgba(0, 0, 0, 0.3)" stroke-width="2"/>
                         </svg>
                         </div>
-                        <NavLink to={`/trip/triplist/${type}/tripdetail/${id}`}>
+                        <NavLink to={`/trip/triplist/${type}/tripdetail/${item.contents_id}`}>
                         <CardItem item={item} />
                         </NavLink>
                     </li>

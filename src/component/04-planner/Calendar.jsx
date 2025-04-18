@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { DateRange } from 'react-date-range';
 import { ko } from 'date-fns/locale';
 import { eachDayOfInterval, format, parse } from 'date-fns';
@@ -12,8 +12,9 @@ import '../../styles/04-planner/calendar.scss'
 
 function Calendar({btnName, type, onClick}) {
   const allDays = JSON.parse(localStorage.getItem('allDays'));
-  const { planData } = plan();
+  const { planData, editModeDate} = plan();
   const { enterEditMode, isEditMode } = mode();
+  const { id } = useParams(); // url에서 id 가져오기
   const navigate = useNavigate();
 
   const generateId = () => {
@@ -21,13 +22,22 @@ function Calendar({btnName, type, onClick}) {
       const randPart = Math.random().toString(36).substring(2, 5);
       return `${datePart}${randPart}`;
   }
-console.log(planData);
 
   //일정 추가하러가기 버튼 눌렀을 때 실행 할 함수
+  function generateTitle(planData) {
+    // 객체의 값들 중 title만 추출
+    const titles = Object.values(planData).map(item => item.title);
+    let i = 1;
+    while (titles.includes(`나의 제주 여행 ${i}`)) {
+      i++;
+    }
+    return `나의 제주 여행 ${i}`;
+  }
+  const date = allDays;
+
   function handleNoPlan() {
       const newId = generateId();
-      const title = `나의 제주 여행 ${planData.length+1}`;
-      const date = allDays;
+      const title = generateTitle(planData);
 
       enterEditMode()
       navigate(`/planner/plannerdetail/${newId}`, {
@@ -46,6 +56,23 @@ console.log(planData);
       }
       });
   };
+
+  //편집 모드에서 날짜 선택 했을 때
+  function changeDate () {
+    const state = {
+      id: id,
+      title : planData?.title,
+      date: date,
+      item: {
+        days: date.map((day) => ({
+          day: format(parse(day, 'yyyy.MM.dd', new Date()), 'M.d/eee', { locale: ko }),
+          plans: [],
+        }))
+      }
+    }
+    localStorage.setItem('state', JSON.stringify(state));
+    editModeDate(state)
+  }
   
   const [range, setRange] = useState([
     {
@@ -76,8 +103,9 @@ console.log(planData);
 
     // localStorage에 저장
     localStorage.setItem('allDays', JSON.stringify(allDays));
-    
   };
+
+  
 
   return (
     <div className="calendar">
@@ -99,7 +127,7 @@ console.log(planData);
       {type == "list" ?
         <button onClick={handleNoPlan} className="calendar_button"><Button className={"calendar_button"}>{format(range[0].startDate, 'yyyy.MM.dd')} - {format(range[0].endDate, 'yyyy.MM.dd')} / {btnName}</Button></button>
         :
-        <button onClick={onClick} className="calendar_button"><Button className={"calendar_button"}>{format(range[0].startDate, 'yyyy.MM.dd')} - {format(range[0].endDate, 'yyyy.MM.dd')} / {btnName}</Button></button>
+        <button onClick={()=>{onClick(); changeDate();}} className="calendar_button"><Button className={"calendar_button"}>{format(range[0].startDate, 'yyyy.MM.dd')} - {format(range[0].endDate, 'yyyy.MM.dd')} / {btnName}</Button></button>
       }
         </div>
   );

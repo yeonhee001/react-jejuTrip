@@ -1,0 +1,75 @@
+@media (max-width:768px){
+    .swipeactionmemo{
+        //타이틀
+        .title{font-size: 20px;}
+        //설명
+        p:nth-of-type(1){font-size: 17px;margin: 4px 0;}
+        //태그
+        p:nth-of-type(2){font-size: 15px;}
+        
+    }
+    .planner_content{
+        position: relative;
+        .hand{
+            position: absolute;
+            top: 27%;
+            right: 5%;
+            transform: translate(-50%, -50%);
+            z-index: 99;
+        }
+        .planner{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            button{
+                font-size: 18px;
+                color: #2288FD;
+            }
+        }
+        .trip_date{
+            font-size: 18px;
+        }
+        .planner_tagbtn{
+            margin-bottom: 16px;
+        }
+    }
+
+    .planner_memo{
+        position: relative;
+        width: 100%;
+        .memo_close{
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        .memo_text{
+            position: absolute;
+            left: 6%; top: 62%;
+            width: 50%;
+            transform: translate(0%, -50%);
+            background-color: transparent;
+            resize: none;
+            outline: none;
+        }
+    }
+
+    .topbar{
+        //Day 1 4/3 목
+        .ticketdate{font-size: 16px;}
+        >span{font-size: 16px;}
+    }
+    //일정 순서 변경
+    .topbarright{font-size: 18px;}
+    //장소 추가
+    .ticketbtn{font-size: 18px;}
+    //전체 일정 저장하기
+    .planner_save{font-size: 18px;}
+    //지역별
+    .address{font-size: 16px;}
+    //선택완료
+    .place_btn{font-size: 18px;}
+}
+@media (max-width:480px){
+
+}
+

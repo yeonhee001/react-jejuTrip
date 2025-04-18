@@ -3,6 +3,7 @@ import Plane from '../../icons/Plane'
 import CardItem from '../CardItem'
 import { plan } from '../../../api';
 import SvgLine from './SvgLine';
+import { NavLink } from 'react-router-dom';
 
 function TicketRead({idx, topbarright, ticketdate}) {
     const { planData } = plan();
@@ -18,7 +19,16 @@ function TicketRead({idx, topbarright, ticketdate}) {
                         <Plane className={"plane"}/>
                         <span className='topbarright'>{topbarright}</span>
                     </div>
-                    {planData?.item?.days[idx]?.plans?.map((item, i)=>
+                    {planData?.item?.days[idx]?.plans?.map((item, i)=>{
+                     const labelToKey = {
+                        "관광지": "tour",
+                        "음식점": "food",
+                        "축제/행사" : "festival",
+                        "쇼핑": "shopping",
+                    };
+                    const type = labelToKey[item.contents_label]
+
+                    return(
                     <ul className='tickebox' key={i}> {/* Day 1 */}
                         <li className='liItem'>
                             <div className='liLine'>
@@ -27,10 +37,12 @@ function TicketRead({idx, topbarright, ticketdate}) {
                                     <line x1="1" y1="0" x2="1" y2="100%" stroke="rgba(0, 0, 0, 0.3)" stroke-width="2"/>
                                 </svg>
                             </div>
-                            <CardItem item={item}/>
+                            <NavLink to={`/trip/triplist/${type}/tripdetail/${item.contents_id}`}>
+                                <CardItem item={item}/>
+                            </NavLink>
                         </li>
                     </ul>
-                    )}
+                    )})}
                 </div>
             </div>
             <SvgLine/>
