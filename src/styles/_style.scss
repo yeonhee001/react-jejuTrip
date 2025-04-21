@@ -2,7 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 *{box-sizing: border-box; padding:0; margin: 0; word-break: keep-all;} 
-html{font-size: 14px; color: #333; scrollbar-width: none; /* Firefox */} 
+html{font-size: 14px; color: #333; 
+    scrollbar-width: none; /* Firefox */
+} 
 body{ 
     // user-select: none; 
     // -webkit-user-select: none;
@@ -570,8 +572,17 @@ input:checked + .tagbtn{
                 text-overflow: ellipsis;
                 max-width: 100%; // 너비 제한 필수
             }
-            >p{font-size: 16px; padding:5px 0;}
+            >p{
+                font-size: 16px;
+                padding-top: 5px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2; /* 두 줄까지 표시 */
+                -webkit-box-orient: vertical;
+            }
             .place-tag{
+                padding-top: 5px;
                 >span{
                     font-size: 14px;
                 }
@@ -629,6 +640,21 @@ input:checked + .tagbtn{
         }
     }
 }
+.bugbtn{
+    padding-bottom: 50px;
+    cursor: pointer;
+    .bugbus{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        span{
+            font-size: 20px;
+            font-weight: bold;
+            color: #2449A4;
+        }
+        .bugarrow{width: 9px; height: 18px; margin-bottom: 5px;}
+    }
+}
 .bug-login{
     padding-top: 30px;
     a, span{
@@ -660,8 +686,8 @@ input:checked + .tagbtn{
     .top-btn{
         z-index: 999;
         position: fixed;
-        bottom: 11.5%; right: calc((100vw - 768px) / 2 + 34px); // 화면 너비에서 가운데 정렬 + 우측 위치 조정
-        transform: translate(-11.5%, -4%);    
+        bottom: 13%; right: calc((100vw - 768px) / 2 + 34px); // 화면 너비에서 가운데 정렬 + 우측 위치 조정
+        transform: translate(-13%, -4%);    
         >img{
             width: 40px; height: 40px;
         }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import TabMenu from './TabMenu';
 
-function TabPage({ type, onTabChange }) {
+function TabPage({ type, onTabChange, selectedTab }) {
   // 제목 입력, 선택된 탭 기억, 탭에 따라 내용 
 
   const tab = {
@@ -26,7 +26,7 @@ function TabPage({ type, onTabChange }) {
   return (
     <>
       <h2 className='tab-maintitle'>{tab[type].mainTitle}</h2>
-      <TabMenu tabTitle={tab[type].tabTitle} onTabChange={onTabChange}/>
+      <TabMenu tabTitle={tab[type].tabTitle} onTabChange={onTabChange} selectedTab={selectedTab}/>
     </>
   )
 }

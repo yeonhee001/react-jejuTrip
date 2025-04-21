@@ -263,7 +263,7 @@ function Home() {
     .then((res)=>{
       setMainWeather(res.data)
       setWtLoading(false)
-      console.log(res.data);
+      // console.log(res.data);
     })
   },[])
 
@@ -471,7 +471,7 @@ function Home() {
       </div>
 
       <div className='home-photomenu'>
-        <HomeContTop homecontTitle={'꼭 남겨야 할 인생샷 스팟 '} homecontEmoji={'📸'} to={'/community'}/>
+        <HomeContTop homecontTitle={'꼭 남겨야 할 인생샷 스팟 '} homecontEmoji={'📸'} to={'/community'} state={{setSelectedTab: 1}}/>
         <div>
           <Swiper
           slidesPerView={'auto'}
@@ -481,7 +481,7 @@ function Home() {
             {
               imgPost.map((item, i)=>
                 <SwiperSlide key={i}>
-                  <HomePhoto className={'home-photo'} img={item}/>
+                  <HomePhoto className={'home-photo'} img={item} state={{setSelectedTab: 1}}/>
                 </SwiperSlide>
               )
             }
