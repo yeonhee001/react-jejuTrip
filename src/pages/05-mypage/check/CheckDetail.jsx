@@ -265,6 +265,11 @@ function CheckDetail() {
           onConfirm={() => {
             setIsSavePopupOpen(false)
             exitEditMode();
+
+            // 새 체크리스트인 경우          
+            if (isNewChecklist) {
+              navigate(-1);
+            }
           }}
         />
       )}
@@ -283,8 +288,8 @@ function CheckDetail() {
             setEtcList(JSON.parse(JSON.stringify(originData?.item?.Etc || [])));
 
             // 새 체크리스트인 경우          
-            if (location.state?.isEdit === true) {
-              navigate(-1); 
+            if (isNewChecklist) {
+              navigate(-1);
             }
           }}
         />

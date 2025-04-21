@@ -4,9 +4,9 @@ const NoCheck = () => {
   
     return (
 
-    <div className="NoSearch">
+    <div className="NoWriteReply">
       <Smile className={"smileIcon"}/>
-      <b>체크리스트가 없습니다.</b>
+      <b>작성한 체크리스트가 없습니다.</b>
       <span>새로운 항목을 추가하여 나만의 목록을 만들어보아요!</span>
     </div>
 )

@@ -1,136 +1,126 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import CmtItem from '../../component/05-mypage/CmtItem';
 import TabPage from '../../component/_common/TabPage';
 import TabItem from '../../component/_common/TabItem';
-import CmtItem from '../../component/05-mypage/CmtItem';
 import NoWritePost from '../../component/_common/NoWritePost';
 import NoWriteReply from '../../component/_common/NoWriteReply';
-import "../../styles/05-mypage/activity.scss";
-import axios from 'axios';
+import DataLoading from '../../component/_common/DataLoading';
 import { format } from 'date-fns';
+import "../../styles/05-mypage/activity.scss";
 
 function Activity() {
+  const navigate = useNavigate();
+
   const [selectedTab, setSelectedTab] = useState(0);
   const [postData, setPostData] = useState([]);
-  const [cmtData, setcmtData] = useState([]);
+  const [cmtData, setCmtData] = useState([]);
+  const [cmtOriginData, setCmtOriginData] = useState([]);
+
+  const [loading, setLoading] = useState(true);
 
   const userId = String(JSON.parse(sessionStorage.getItem('user'))?.id);
-
-  // test data
-  // const tabContent = [
-  //   [
-  //     { id: 1, imgUrl: '/imgs/home_trippeople_01.png', title: '떠나톡 게시물 1', dateTime: '2025.04.01 14:05' },
-  //     { id: 2, imgUrl: '/imgs/weather_cloudy_01.png', title: '떠나톡 게시물 2', dateTime: '2025.04.02 10:30' },
-  //     { id: 3, imgUrl: '', title: '떠나톡 게시물 3', dateTime: '2025.04.03 18:20' }, // 이미지 없는 경우
-  //     { id: 4, imgUrl: '', title: '떠나톡 게시물 4', dateTime: '2025.04.05 18:22' },
-  //   ],
-  //   [
-  //     { id: 101, title: '떠나봅서 자주 묻는 질문에 있어요!', dateTime: '2025.04.01 14:05', postTitle: '제주도 궁금해요' },
-  //     { id: 102, title: '그런 건 직접 알아보는 게 좋을 것 같아요.', dateTime: '2025.04.02 10:30', postTitle: '2박3일 가는데 여행경비 얼마나 들까요?' },
-  //     { id: 103, title: '사진이 멋지네요! 멋지네요! 사진이 멋지네요! 멋지네요! 사진이 멋지네요! 멋지네요! 저도 먹고 싶어요.', dateTime: '2025.04.03 18:20', postTitle: '제주도 맛집 추천해드릴게요' },
-  //     { id: 104, title: '저도 먹고 싶어요.....', dateTime: '2025.04.03 18:20', postTitle: '제주도 어때요' },
-  //   ]
-  // ];
 
   const renderContent = () => {
     switch (selectedTab) {
       case 0:
-        return postData.length > 0
-          ? postData.map((item, i) => (
-            <TabItem
-              key={i}
-              imgUrl={item.imageUrls[0]}
-              title={item.title} 
-              dateTime={format(item.createdAt, 'yyyy.MM.dd')} 
-            />
+        const sortedPosts = [...postData].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        return sortedPosts.length > 0
+          ? sortedPosts.map((item) => (
+            <div
+              key={item._id}
+              onClick={() => navigate(`/community/cmdetail/${item._id}`,  { state: { post: item } })}
+            >
+              <TabItem
+                imgUrl={item.imageUrls[0]}
+                title={item.title}
+                dateTime={format(item.createdAt, 'yyyy.MM.dd')}
+              />
+            </div>
           ))
           : <NoWritePost/>
       case 1:
-        return cmtData.length > 0
-        ? cmtData.map((item, i) => (
-          <CmtItem
-            key={i}
-            title={item.text} 
-            dateTime={format(item.createdAt, 'yyyy.MM.dd')}
-            postTitle={item.postTitle}
-          />
+        const sortedCmts = [...cmtData].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        return sortedCmts.length > 0
+        ? sortedCmts.map((item) => (
+          <div
+            key={item._id}
+            className='tab-content-reply'
+            onClick={async () => {
+              try {
+                const res = await axios.get(`${process.env.REACT_APP_APIURL}/post/update/${item.postId}`);
+                const cmtToPostData = res.data;
+                navigate(`/community/cmdetail/${item.postId}`, { state: { post: cmtToPostData } });
+              } catch (err) {
+                console.error('게시물 데이터 불러오기 실패:', err);
+              }
+            }}
+          >
+            <CmtItem
+              title={item.text}
+              dateTime={format(item.createdAt, 'yyyy.MM.dd') + '  ' + format(item.createdAt, 'hh:mm')}
+              postTitle={item.postTitle}
+            />
+          </div>
         ))
         : <NoWriteReply/>
     }
   };
   
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        // 사용자별 게시물
+        const postRes = await axios.get(`${process.env.REACT_APP_APIURL}/post/user/${userId}`);
+        setPostData(postRes.data || []);
 
-  // 서버 데이터 가져오기
-  useEffect(()=>{
-    // 게시물
-    axios.get(`${process.env.REACT_APP_APIURL}/post/user/${userId}`)
-    .then(res => {
-      if(res.data && res.data.length > 0) {
-        setPostData(res.data);
-      } else {
-        setPostData([]);
-      }
-    })
-    .catch(err => {
-      if (err.response && err.response.status === 404) {
-        setPostData([]);
-      } else {
-        console.error("Error fetching plan:", err);
-      }
-    });
-
-    // 댓글
-    axios.get(`${process.env.REACT_APP_APIURL}/reply/user/${userId}`)
-    .then(async res => {
-      if (res.data && res.data.length > 0) {
-        const getCommentData = res.data;
+        // 댓글
+        const cmtRes = await axios.get(`${process.env.REACT_APP_APIURL}/reply/user/${userId}`);
+        const getCommentData = cmtRes.data || [];
+        setCmtOriginData(getCommentData);
   
-        // 1. 중복 제거된 postId 배열 생성
         const uniquePostIds = [...new Set(getCommentData.map(item => item.postId))];
-  
-        // 2. postId -> postTitle 매핑 객체
         const postIdToTitle = {};
   
         await Promise.all(
           uniquePostIds.map(async (postId) => {
             try {
-              const postRes = await axios.get(`${process.env.REACT_APP_APIURL}/post/update/${postId}`);
-              postIdToTitle[postId] = postRes.data.title || '제목 없음';
-            } catch (err) {
-              console.error(`게시글 ${postId} 불러오기 실패`, err);
+              const postDetailRes = await axios.get(`${process.env.REACT_APP_APIURL}/post/update/${postId}`);
+              postIdToTitle[postId] = postDetailRes.data.title || '제목 없음';
+            } catch {
               postIdToTitle[postId] = '제목 없음';
             }
           })
         );
-  
-        // 3. 댓글 데이터에 postTitle 추가
+
         const updatedComments = getCommentData.map(comment => ({
           ...comment,
           postTitle: postIdToTitle[comment.postId] || '제목 없음',
         }));
-  
-        setcmtData(updatedComments);
-      } else {
-        setcmtData([]);
+        setCmtData(updatedComments);
+      } catch (err) {
+        console.error(err);
+        setPostData([]);
+        setCmtData([]);
+      } finally {
+        setLoading(false); // ✅ 데이터를 다 가져온 후에만 로딩 종료
       }
-    })
-    .catch(err => {
-      if (err.response && err.response.status === 404) {
-        setcmtData([]);
-      } else {
-        console.error("Error fetching plan:", err);
-      }
-    });
-  },[userId])
+    }
+    fetchData();
+  }, [userId]);
   
-
   return (
-    <div className='activity-page'>
-      <TabPage type='activity' onTabChange={setSelectedTab}/>
-
-      <div className='tab-content'>
-        {renderContent()}
+    <>
+      <div className='activity-page'>
+        <TabPage type='activity' onTabChange={setSelectedTab}/>
+        <div className='tab-content'>
+          {loading ? <DataLoading className={'activity-loading'}/> : 
+            renderContent()
+          }
+        </div>
       </div>
-    </div>
+    </>
   )
 } 
 

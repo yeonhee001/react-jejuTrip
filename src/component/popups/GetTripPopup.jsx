@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import Close from '../icons/Close';
-import Btn1Popup from './Btn1Popup';
 import { format } from 'date-fns';
 import { mode } from '../../api';
+import Close from '../icons/Close';
+import Btn1Popup from './Btn1Popup';
 
 function GetTripPopup({ isOpen, setIsOpen, planData, checkData }) {
     const [selectedValue, setSelectedValue] = useState('');
@@ -19,12 +19,29 @@ function GetTripPopup({ isOpen, setIsOpen, planData, checkData }) {
         return `${datePart}${randPart}`;
     }
 
+    function generateTitle(checkData) {
+        const titles = checkData.map(item => item.title);
+        let i = 1;
+        while (titles.includes(`체크리스트 ${i}`)) {
+            i++;
+        }
+        return `체크리스트 ${i}`;
+    }
+
+    function checkSelect() {
+        if(selectedValue) {
+            handleSelectPlan();
+        } else {
+            setOpenSelectPopup(true);
+        }
+    }
+
     // 여행 선택 후 체크리스트 생성
     function handleSelectPlan() {
         const selectedPlan = planData.find(item => item.id === selectedValue);
         const newId = generateId();
         const date = format(new Date(), 'yyyy.MM.dd');
-
+        
         // Zustand에서 직접 편집 모드로 전환
         enterEditMode();
 
@@ -43,7 +60,7 @@ function GetTripPopup({ isOpen, setIsOpen, planData, checkData }) {
     // 여행 선택하지 않고 체크리스트 생성
     function handleNoPlan() {
         const newId = generateId();
-        const title = `체크리스트 ${checkData.length + 1}`;
+        const title = generateTitle(checkData);
         const date = format(new Date(), 'yyyy.MM.dd');
 
         // Zustand에서 직접 편집 모드로 전환
@@ -58,6 +75,7 @@ function GetTripPopup({ isOpen, setIsOpen, planData, checkData }) {
                 date: [date]
             } 
         });
+
     };
 
     // 팝업 배경 클릭 시 팝업 닫힘
@@ -90,14 +108,16 @@ function GetTripPopup({ isOpen, setIsOpen, planData, checkData }) {
                                 labelId="dropdown-label"
                                 id="dropdown"
                                 value={selectedValue}
-                                label="옵션 선택"
+                                label="선택"
                                 onChange={(e) => setSelectedValue(e.target.value)}
                                 MenuProps={{
-                                sx: { zIndex: 10002 }, // ✅ 팝업보다 앞에 배치
+                                    sx: { zIndex: 10002 }, // ✅ 팝업보다 앞에 배치
                                 }}
                             >
                                 {planData.map((item, i) => (
-                                    <MenuItem key={i} value={item.id}>{item.title}</MenuItem>
+                                    <MenuItem key={i} value={item.id} className='popup-select-item'>
+                                        {item.title}
+                                    </MenuItem>
                                 ))}
                             </Select>
                         </FormControl>
@@ -114,7 +134,7 @@ function GetTripPopup({ isOpen, setIsOpen, planData, checkData }) {
                         <button className='btn2popup-btn' onClick={() => setIsOpen(false)}>
                         취소
                         </button>
-                        <button className='btn1popup-btn' onClick={() => handleSelectPlan()}>
+                        <button className='btn1popup-btn' onClick={checkSelect}>
                         확인
                         </button>
                     </div>
@@ -126,7 +146,6 @@ function GetTripPopup({ isOpen, setIsOpen, planData, checkData }) {
                     isOpen={true}
                     setIsOpen={() => setOpenSelectPopup(false)}
                     type={'select'}
-                    onConfirm={() => setOpenSelectPopup(false)}
                 />
             )}
         </>

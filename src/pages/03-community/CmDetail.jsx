@@ -41,7 +41,7 @@ function CmDetail() {
     setLikeCount((prevCount) => newLiked ? prevCount + 1 : prevCount - 1);
 
     try {
-      await fetch(`${process.env.REACT_APP_APIURL}/like`, {
+      await fetch("http://localhost:4000/like", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -60,7 +60,7 @@ function CmDetail() {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_APIURL}/post/${post._id}`, {
+      const response = await fetch(`http://localhost:4000/post/${post._id}`, {
         method: 'DELETE',
       });
 
@@ -82,7 +82,7 @@ function CmDetail() {
     const savedLiked = JSON.parse(localStorage.getItem(`liked-${post._id}`)) || false;
     setLiked(savedLiked);
 
-    fetch(`${process.env.REACT_APP_APIURL}/like/count?postId=${post._id}`)
+    fetch(`http://localhost:4000/like/count?postId=${post._id}`)
       .then(res => res.json())
       .then(data => {
         setLikeCount(data.count);

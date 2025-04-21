@@ -15,10 +15,11 @@
             }
         }
         .pagetitle{
-            font-size: 18px;
+            font-size: 20px;
             margin-bottom: 7px;
         }
         .mytriptitle{
+            font-size: 16px;
             color: rgba(0, 0, 0, 0.3);
         }
         .detailbtn{
@@ -26,6 +27,7 @@
             display: block;
             right: 0; top: 50%;
             transform: translate(0, -50%);
+            font-size: 16px;
             color: #2288FD;
             cursor: pointer;
         }
@@ -35,8 +37,8 @@
         position: relative;
         .detail-swipehand{
             position: absolute;
-            right: 5%; top: 19%;
-            transform: translate(-5%, -19%);
+            right: 3%; top: 19%;
+            transform: translate(-3%, -19%);
         }
     }
     .Addcheckitem-form {
@@ -51,14 +53,14 @@
         margin-left: -2px;
     
         .add-icon {
-          font-size: 21px; // 체크박스랑 비슷하게
-          color: #2288FD;
+            font-size: 21px; // 체크박스랑 비슷하게
+            color: #2288FD;
         }
     }
     .Addcheckitem-input {
         flex: 1; // 남은 공간 꽉 채움
         padding: 12px 0;
-        font-size: 14px;
+        font-size: 16px;
         border: none;
         background: transparent;
         outline: none;
@@ -67,9 +69,16 @@
         &::placeholder {
             color: rgba(0, 0, 0, 0.3);
         }
-        
         &:focus {
             border-bottom: 2px solid #2288FD;
         }
     }
 }
+
+// checkitem
+.checkitem {
+    .MuiFormControlLabel-label {font-size: 16px;}
+}
+
+
+@import './res-check.scss'
