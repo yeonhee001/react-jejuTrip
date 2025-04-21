@@ -5,7 +5,6 @@ import CmSlideImg from '../../component/03-community/img/CmSlideImg';
 import "../../styles/03-community/cmList.scss";
 import TabPage from '../../component/_common/TabPage';
 import "../../styles/03-community/_res-community.scss";
-import { useLocation } from 'react-router-dom';
 
 function CmList() {
   const [selectedTab, setSelectedTab] = useState(0);
