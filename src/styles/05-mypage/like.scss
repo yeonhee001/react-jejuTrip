@@ -1,20 +1,16 @@
 .like-page {
 
-  margin-top:50px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 50px;
+  margin:92px 0 150px;
 }
 
 .like-item, .like-post {
   display: flex;
   align-items: center;
   background-color: #fafafa;
-  padding: 12px;
   margin-top:16px;
+  margin-bottom:16px;
   margin-left:10px;
   margin-right:10px;
-  margin-bottom:16px;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   position: relative; /* 상대적인 위치로 설정 */
@@ -25,7 +21,7 @@
   height: 80px;
   border-radius: 10px;
   object-fit: cover;
-  margin-right: 16px;
+  margin-right: 10px;
 }
 
 .like-info {
@@ -34,7 +30,7 @@
 
 .like-info h3 {
   font-size: 18px;
-  margin-bottom: 8px;
+  margin-bottom: 7px;
 }
 
 .like-date {
