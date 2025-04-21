@@ -7,7 +7,7 @@ import DataLoading from '../../_common/DataLoading';
 
 import "swiper/css";
 
-function WeatherDate() {
+function WeatherDays() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -54,7 +54,7 @@ function WeatherDate() {
           </>
         )}
       <Swiper 
-      slidesPerView={5}
+      slidesPerView={4}
       className="mySwiper">
         {
           data?.map((item)=>
@@ -75,4 +75,4 @@ function WeatherDate() {
   )
 }
 
-export default WeatherDate
+export default WeatherDays

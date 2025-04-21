@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { useSwipeable } from 'react-swipeable';
 import Trash from '../icons/Trash';
-import Memo from '../icons/Memo';
 
-function SwipeActionMemo({children, className, setMemoClick, setTrashClick}) {
+function SwipeActionMemo({children, className, setTrashClick}) {
     const [swipe, setSwipe] = useState(0); // 현재 이동 거리
     const [trashbtn, setTrashbtn] = useState(false); // 스와이프 상태 관리
 
@@ -41,8 +40,7 @@ function SwipeActionMemo({children, className, setMemoClick, setTrashClick}) {
             >
                 <div className='children'>{children}</div>
                 <div className='memoNtrash'>
-                <div className="memoicon" onClick={()=>{setMemoClick(true); setSwipe(0)}}><Memo/></div>
-                    <div className="trashicon" onClick={() => setTrashClick(true)}><Trash/></div>
+                    <div className="trashicon" onClick={() =>{ setTrashClick(true); setSwipe(0)}}><Trash/></div>
                 </div>
             </div>
         </div>

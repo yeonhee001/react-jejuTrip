@@ -20,7 +20,6 @@ function ListPage({listData, page, trashClick, trash, onConfirm }) {
     title = '나의 여행 보기';
     subtitle = '내 여행 리스트'
   }
-console.log(listData);
 
   // 연도별로 데이터 구분
   const groupedData = listData.reduce((acc, item) => {
@@ -56,7 +55,7 @@ console.log(listData);
         <div key={year} style={{marginBottom: '32px'}}>
           <h3>{year}</h3> {/* 연도 출력 */}
           {groupedData[year].map((item, i) => (
-            !trashClick[item.id] && (
+            !trashClick?.[item.id] && (
               <SwipeAction 
                 key={item.id} 
                 setTrashClick={() => {

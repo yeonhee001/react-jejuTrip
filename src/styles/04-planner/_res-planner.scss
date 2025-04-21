@@ -1,0 +1,256 @@
+@media (max-width:768px){
+    .swipeactionmemo{
+        //타이틀
+        .title{font-size: 20px;}
+        //설명
+        p:nth-of-type(1){font-size: 17px;margin: 4px 0;}
+        //태그
+        p:nth-of-type(2){font-size: 15px;}
+        
+    }
+    .calendar_popup{
+        width: 100%;
+    }
+    
+    .planner_content{
+        position: relative;
+        .hand{
+            position: absolute;
+        
+            right: 5%;
+            transform: translate(-50%, -50%);
+            z-index: 99;
+        }
+        .planner{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            button{
+                font-size: 18px;
+                color: #2288FD;
+            }
+        }
+        .trip_date{
+            font-size: 18px;
+        }
+        .planner_tagbtn{
+            margin-bottom: 16px;
+        }
+    }
+
+    .planner_memo{
+        position: relative;
+        width: 100%;
+        .memo_close{
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        .memo_text{
+            position: absolute;
+            left: 6%; top: 62%;
+            width: 50%;
+            transform: translate(0%, -50%);
+            background-color: transparent;
+            resize: none;
+            outline: none;
+        }
+    }
+
+    .topbar{
+        //Day 1 4/3 목
+        .ticketdate{font-size: 16px;}
+        >span{font-size: 16px;}
+    }
+    //일정 순서 변경
+    .right_box{
+        width: 95.35px !important;
+        .topBarBtn{
+            display: inline-block;
+            width: 100%;
+            font-size: 16px;
+            color: #2288FD;
+        }
+    }
+
+    //선택 완료, 장소 추가, 전체 저장
+    .place_btn, .ticketbtn{font-size: 16px;}
+
+    .place_btn{ //선택완료 버튼
+        width: 100% !important;
+        font-size: 16px;
+    }
+
+    //전체 일정 저장하기
+    .cardbtn{
+        width: 100%;
+        .planner_save{
+            width: 100%;
+            font-size: 18px;
+        }
+    }
+
+    //지역별
+    .address{font-size: 16px;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:480px){
+    //날씨
+    .weather_content{
+        h2{font-size: 18px;}
+        .weathertemp, .weather_date{ 
+            font-size: 15px !important; 
+        }
+        .weather_wf{
+            font-size: 22px;
+            .weather_text{
+                font-size: 18px;
+            }
+        }
+    }
+    //로딩 중
+    .detail_loading>b{
+        font-size: 18px;
+    }
+    //타이틀, 날씨
+    .planner_title, .planner_weather{font-size: 18px !important;}
+
+    //태그 버튼
+    .ticketbtn, .city_name, .Likebtn, .searchbtn, .calendar_button,
+    .planner_tagbtn>a>div, .planner_tagbtn>button>div,
+    .pickplan_btn>button>div
+    {font-size: 14px;}
+
+    //전체 일정 저장하기
+    .cardbtn{
+        width: 100%;
+        .planner_save{
+            width: 100%;
+            font-size: 14px;
+        }
+    }
+
+    .calendar_popup{
+        width: 100%;
+        .calendar_top{
+            gap: 32.6%;
+        }
+    }
+    //편집 버튼 
+    .planner_content{
+        .trip_date{font-size: 16px;}
+        .planner{
+            button{
+                font-size: 14px;
+            }
+        }
+    }
+    .topbar{
+        font-size: 14px; 
+        margin-bottom: 16px;
+        //Day 1 4/3 목
+        .ticketdate{
+            font-size: 14px;
+        }
+        //비행기 아이콘
+        .plane{
+            max-width: 40%;
+            position: relative;
+            margin: 0 auto;
+            >img{width: 70%;}
+        }
+        //수정버튼
+        .right_box{
+            width: 83.45px !important;
+            .topBarBtn{
+                display: inline-block;
+                width: 100%;
+                font-size: 14px;
+                color: #2288FD;
+            }
+        }
+        >span{
+            font-size: 14px;
+        }
+    }
+    .tickebox{
+        .liLine{
+            height: 90px;
+            .liNum{
+                width: 20px; height: 20px;
+                border-radius: 50%;
+                background-color: #4E7CB2;
+                position: absolute;
+                top: 50%; left: 0;
+                transform: translate(-50%, -50%);
+            }
+            span{
+                font-size: 10px;
+                display: block;
+                width: 20px; height: 20px;
+                color: #fff;
+                padding: 20%;
+                text-align: center;
+            }
+        
+        }
+    }
+    .swipeactionmemo{
+        //타이틀
+        .title{font-size: 16px;}
+        //설명
+        p:nth-of-type(1){font-size: 12px;margin: 4px 0;}
+        //태그
+        p:nth-of-type(2){font-size: 10px;}
+        .memoNtrash{
+            .trashicon{
+                right: -180px !important;
+            }
+        }
+        
+    }
+    .searchbox{
+        .city_name{
+            margin-bottom: 10px;
+        }
+    }    
+    
+    .place_btn{ //선택완료 버튼
+        width: 100% !important;
+        font-size: 14px;
+    }
+
+    //추천 일정
+    .pickplan_content{
+        margin: 92px 0 94px;
+        .pickplan_title{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .pickplan_title_span{
+            font-size: 18px;
+            color: #2288FD;
+        }
+        p:last-of-type{
+            margin: 7px 0 16px;
+        }
+    }
+}
+

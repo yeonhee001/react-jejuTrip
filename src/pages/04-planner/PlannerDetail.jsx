@@ -1,79 +1,100 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { format, parse } from 'date-fns'
 import { ko } from 'date-fns/locale'
 import { mode, plan } from '../../api'
-import TagBtn from '../../component/_common/TagBtn'
-import Button from '../../component/_common/Button'
-import SwipeHand from '../../component/_common/SwipeHand'
-import TicketItem from '../../component/04-planner/ticket/TicketItem'
-import WeatherDate from '../../component/04-planner/weather/WeatherDate'
-import Close from '../../component/icons/Close'
-import PopupAction from '../../component/_common/PopupAction'
-import Calendar from '../../component/04-planner/Calendar'
+import axios from 'axios'
+import WeatherDays from '../../component/04-planner/weather/WeatherDays'
 import Btn2Popup from '../../component/popups/Btn2Popup'
 import Btn1Popup from '../../component/popups/Btn1Popup'
+import CalendarPopup from '../../component/04-planner/calendar/CalendarPopup'
+import PlannerTitle from '../../component/04-planner/plannerDetail/PlannerTitle'
+import PlannerDay from '../../component/04-planner/plannerDetail/PlannerDay'
+import PlannerTagBtn from '../../component/04-planner/plannerDetail/PlannerTagBtn'
+import PlannerTicket from '../../component/04-planner/plannerDetail/PlannerTicket'
+import Button from '../../component/_common/Button'
+import Close from '../../component/icons/Close'
+import Top from '../../component/icons/Top'
 
 import "../../styles/04-planner/plannerDetail.scss";
 
 function PlannerDetail() {
     const { planData, fetchPlanData, newPlan, updatePlan, removePlan, setPlanData } = plan();
-    const { enterEditMode, exitEditMode, nullMode, isEditMode } = mode();
+    const { enterEditMode, exitEditMode, isEditMode } = mode();
     const { id } = useParams(); // url에서 id 가져오기
+
     const userId = String(JSON.parse(sessionStorage.getItem('user'))?.id);
+    const searchListItem = JSON.parse(localStorage.getItem('searchListItem'));
+    const allDays = JSON.parse(localStorage.getItem('allDays'));
+    const edit = JSON.parse(localStorage.getItem('edit'));
 
     const location = useLocation();
     const navigate = useNavigate();
-console.log(isEditMode == false);
 
-    useEffect(() => {
-        if (location.state?.isEdit === true && isEditMode == false) {
-        const { isEdit, ...rest } = location.state;
-        setPlanData(rest);
-        enterEditMode(); // isEditMode를 true로 변경하는 함수
-        } else if (isEditMode == false) {
-        fetchPlanData(userId, id);
-        }
-    }, [userId, id, location?.state]);
-    
-    const [edit, setEdit] = useState(false)
-    const searchListItem = JSON.parse(localStorage.getItem('searchListItem')); //장소 추가 아이템
-    const [title, setTitle] = useState(planData.title ? planData.title : "나의 제주 여행"); 
-    const [eTitle, setETitle] = useState(title); //input에 입력하는 임시 값
-    const [tripDay, setTripDay] = useState(() => {
-        if (planData?.date) return planData.date;
-        const allDays = JSON.parse(localStorage.getItem('allDays'));
-        return allDays;
-    }); // 실제 화면에 보여지는 날짜
-    const [tempDays, setTempDays] = useState(tripDay); // 달력에서 선택한 임시 날짜
+    const [eTitle, setETitle] = useState(""); //input에 입력하는 임시 값
+    const [tripDay, setTripDay] = useState([]); // 실제 화면에 보여지는 날짜
     const [calendar, setCalendar] = useState(false); //캘린더 열고 닫고
-    const [isPopupOpen, setIsPopupOpen] = useState(false) //삭제 팝업
-    const [isPopupOpen2, setIsPopupOpen2] = useState(false) //저장 팝업
-    const [isPopupOpen3, setIsPopupOpen3] = useState(false) //수정 중 나가기 팝업
-    const [isPopupOpen4, setIsPopupOpen4] = useState(false) //수정 중 나가기 팝업
-    const [isPopupOpen5, setIsPopupOpen5] = useState(false) //수정 중 나가기 팝업
+    const [isEdit, setIsEdit] = useState(location.state?.isEdit ?? false); //캘린더에서 받아 온 값
+    const [isPopupOpenDelete, setIsPopupOpenDelete] = useState(false) //삭제 팝업
+    const [isPopupOpenSave, setIsPopupOpenSave] = useState(false) //저장 팝업
+    const [isPopupOpenExit, setIsPopupOpenExit] = useState(false) //수정 중 나가기 팝업
+    const [isPopupOpenCheckList, setIsPopupOpenCheckList] = useState(false)
+    const [isPopupOpenPickPlan, setIsPopupOpenPickPlan] = useState(false)
+    const [checkData, setCheckData] = useState([]) //수정 중 나가기 팝업
 
     const ticketDate = tripDay?.map(day =>
         format(parse(day, 'yyyy.MM.dd', new Date()), 'M.d/eee', { locale: ko })
     );
 
-    useEffect(() => {
-        if (planData?.title) {
-            setTitle(planData?.title);
+    useEffect(()=>{
+        if(edit){
+            enterEditMode()
+            localStorage.removeItem('edit');
         }
-    }, [planData?.title]);
+    },[])
+
+    useEffect(() => {
+        if (isEdit === true && !searchListItem) {
+            const { isEdit, ...rest } = location.state;
+            setPlanData(rest);
+            enterEditMode(); // isEditMode를 true로 변경하는 함수
+        }
+        else if (isEditMode === false || isEditMode === null) {
+            exitEditMode();
+            fetchPlanData(userId, id);
+        }
+    }, [userId, id, location?.state, isEditMode]);
+
     
     useEffect(() => {
-        if (planData?.date) {
+        if (planData?.date){
             setTripDay(planData.date);
+            if(allDays){
+                setTripDay(allDays)
+            }
         }
-    }, [planData?.date]);
+        if (planData?.title) setETitle(planData.title);
+    }, [planData?.date, calendar]);
+    
+    useEffect(() => {
+        if(eTitle){
+            localStorage.setItem(`editTitle-${id}`, eTitle);
+        }
+    }, [eTitle]);
+
+    useEffect(() => {
+        const savedTitle = localStorage.getItem(`editTitle-${id}`);
+        if (savedTitle) {
+            setETitle(savedTitle);
+        } else {
+            setETitle(planData?.title);
+        }
+    }, [planData]);
     
     // 기존 여행 일정 수정
     function updateCheckData(newList) {
         updatePlan(userId, newList)
     .catch(err => {
-        console.error(err);
         alert('수정에 실패했습니다.');
     });
     }
@@ -83,32 +104,31 @@ console.log(isEditMode == false);
         const isDataChanged = planData?.item?.days?.length
 
         if(isDataChanged) {
-            setIsPopupOpen2(true);
+            setIsPopupOpenSave(true);
 
         const newList = {
             ...planData,
-            title : title,
+            title : eTitle,
             date : tripDay,
-            checkId : "",
             days : [{
                 day : ticketDate,
                 plans : [searchListItem]
             }]
         };
 
-        if (!location.state?.isEdit === true) {
+        if (location.state?.isEdit !== true) {
             // 기존 체크리스트일 경우 PUT
             updateCheckData(newList);
             localStorage.removeItem('allDays');
-            fetchPlanData(userId, id);
-            setEdit(false)
+            localStorage.removeItem(`editTitle-${id}`);
+            setIsEdit(false)
             exitEditMode();
         } else {
             // 새 체크리스트일 경우 POST
-            console.log(planData?.userId);
+            localStorage.removeItem('allDays');
+            localStorage.removeItem(`editTitle-${id}`);
             await newPlan(userId, newList);
-            fetchPlanData(userId, id);
-            setEdit(false)
+            setIsEdit(false)
             exitEditMode();
         }
         }
@@ -116,172 +136,124 @@ console.log(isEditMode == false);
 
     // 편집 모드 나가기
     function handleClose() {
-        if(edit) {
-            setIsPopupOpen3(true);
+        if(isEditMode == true) {
+            setIsPopupOpenExit(true);
         } else {
             exitEditMode();
+            navigate(-1)
         }
     }
-    
+
+    //이건 체크리스트 데이터 비교하려면 필요행
+    useEffect(()=>{
+        axios.get(`${process.env.REACT_APP_APIURL}/check/user/${userId}`)
+        .then(res=>{
+            setCheckData(res.data);
+        })
+    },[])
+
     return (
         <div className='planner_detail'>
             <div className='weather_content'>
                 <h2>제주시 날씨는</h2>
-                <WeatherDate/>
+                <WeatherDays/>
             </div>
             {isEditMode ?(
             <> {/* 편집모드 */}
-            <div className='checkdetail-icon-close' onClick={handleClose} >
-                <Close/>
-            </div>
+            <div className='checkdetail-icon-close' onClick={handleClose}><Close/></div>
             <div className='planner_content'>
-                <div className='planner'>
-                    <input
-                        value={title}
-                        onChange={(e) => {setTitle(e.target.value);  setEdit(true)}}
-                        onBlur={() => setETitle(false)}
-                        className="planner_title"
-                        />
-                    <button onClick={()=>{enterEditMode()}}>{isEditMode ? '편집 중' : '편집'}</button>
-                </div>
-                <button onClick={() => {
-                    setCalendar((prev) => !prev);
-                    setEdit(true);
-                    }} 
-                    className='trip_date'>
-                    { tripDay && `${tripDay[0]} - ${tripDay[tripDay.length-1]}`}
-                </button>
+                <PlannerTitle eTitle={eTitle} setETitle={setETitle} />
+                <PlannerDay setCalendar={setCalendar} tripDay={tripDay}/>
                 {calendar && <div className="overlay"/>}
-                <PopupAction className={"calendar_popup"} useState={calendar}>
-                    <div className="calendar_top">
-                        <button onClick={()=>{setCalendar(false); setTripDay(tempDays);}}><Close className={"calendar_close"}/></button>
-                        <h2>여행 일정 등록</h2>
-                    </div>
-                    <div className="calendar_content">
-                        <Calendar
-                        type={'detail'}
-                        btnName={"여행 일정 수정하기"}
-                        onClick={() => {
-                            setTripDay(tempDays);
-                            setCalendar(false)                            
-                            }}/>
-                    </div>
-                </PopupAction>
-                <div className='planner_tagbtn'>
-                    <NavLink
-                    to = "/my/checklist"
-                    onClick={(e) => {
-                    if (edit) {
-                        e.preventDefault();  
-                        setIsPopupOpen4(true);
-                    }}}>
-                        <TagBtn tagbtn={"체크리스트"}/></NavLink>
-                    <NavLink to = "/planner/pickplan"
-                    onClick={(e) => {
-                        if (edit) {
-                            e.preventDefault();
-                            setIsPopupOpen5(true);
-                        }}}>
-                    <TagBtn tagbtn={"추천 일정 보러가기"}/>
-                    </NavLink>
-                    <button onClick={() => {setIsPopupOpen(true);}}><TagBtn tagbtn={"전체 일정 삭제"}/></button>
-                </div>
-                <div className='ticket_content'>
-                    <div className='hand'><SwipeHand/></div>
-                    { tripDay?.map((day, idx)=>
-                        <div key={idx}>
-                        <TicketItem
-                            idx={idx}
-                            topbarright={"일정 순서 변경"}
-                            btnName={"장소 추가"}
-                            ticketdate={ticketDate[idx]}
-                            setEdit={setEdit}
-                        />
-                    </div>
-                    )}
-                </div>
+                <CalendarPopup calendar={calendar} setCalendar={setCalendar}/>
+                <PlannerTagBtn 
+                    id={id} 
+                    userId={userId} 
+                    checkData={checkData} 
+                    setCheckData={setCheckData} 
+                    setIsPopupOpenDelete={setIsPopupOpenDelete} 
+                    setIsPopupOpenCheckList={setIsPopupOpenCheckList}
+                    setIsPopupOpenPickPlan={setIsPopupOpenPickPlan}
+                />
+                <PlannerTicket tripDay={tripDay} ticketDate={ticketDate}/>
             </div>
             <button onClick={()=>{
+                if(!planData?.item?.days[0]?.plans.length){
+                    return
+                }
                     if(isEditMode == true){
                         openSavePopup()
+                        localStorage.removeItem('searchListItem')
+                        exitEditMode();
                     }else{
                         exitEditMode();
                     }
-                }} className='cardbtn'><Button btn={"전체 일정 저장하기"} className={"planner_save"}/></button>
+                }} className='cardbtn'><Button btn={"전체 일정 저장하기"} className={"planner_save"}/>
+            </button>
             </>
             ):(
             <> {/* 읽기모드 */}
             <div className='planner_content'>
-                <div className='planner'>
-                    <h2 className="planner_title">{planData.title}</h2>
-                    <button onClick={()=>{enterEditMode()}}>{isEditMode ? '편집 중' : '편집'}</button>
-                </div>
-                <div className='trip_date'>{ tripDay && `${tripDay[0]} - ${tripDay[tripDay.length-1]}`}</div>
-                <div className='planner_tagbtn'>
-                    <NavLink to="/my/checklist"><TagBtn tagbtn={"체크리스트"}/></NavLink>
-                    <NavLink
-                        onClick={() => {nullMode();}}
-                        to="/planner/pickplan"
-                    >
-                        <TagBtn tagbtn={"추천 일정 보러가기"}/>
-                    </NavLink>
-                    <button onClick={() => setIsPopupOpen(true)}><TagBtn tagbtn={"전체 일정 삭제"}/></button>
-                </div>
-                <div className='ticket_content'>
-                    { tripDay?.map((day, idx)=>
-                        <div key={idx}>
-                        <TicketItem
-                        idx={idx}
-                        topbarright={""}
-                        ticketdate={ticketDate[idx]}   
-                        />
-                    </div>
-                    
-                    )}
-                </div>
+                <PlannerTitle eTitle={eTitle} setETitle={setETitle} planData={planData}/>
+                <PlannerDay tripDay={tripDay}/>
+                <PlannerTagBtn 
+                    id={id} 
+                    userId={userId} 
+                    checkData={checkData} 
+                    setCheckData={setCheckData} 
+                    setIsPopupOpenDelete={setIsPopupOpenDelete}
+                />
+            <PlannerTicket tripDay={tripDay} ticketDate={ticketDate}/>
             </div>
             </>
-            )}
+        )}
 
-
-        { edit &&
-            <>
-                <Btn2Popup
-                    isOpen={isPopupOpen3}
-                    setIsOpen={setIsPopupOpen3}
-                    type={"exit"}
-                    onConfirm={() => {
-                        setIsPopupOpen3(false)
-                        exitEditMode();
-                        }}/>
-                <Btn2Popup
-                    isOpen={isPopupOpen4}
-                    setIsOpen={setIsPopupOpen4}
-                    type={"exit"}
-                    onConfirm={() => {
-                        setIsPopupOpen4(false)
-                        navigate(`/my/checklist`)
-                        }}/>
-                <Btn2Popup
-                    isOpen={isPopupOpen5}
-                    setIsOpen={setIsPopupOpen5}
-                    type={"exit"}
-                    onConfirm={() => {
-                        setIsPopupOpen5(false)
-                        navigate(`/planner/pickplan`)
-                        }}/>
-            </>
-                }
-        <Btn2Popup
-        isOpen={isPopupOpen}
-        setIsOpen={setIsPopupOpen}
-        type={"delete"}
-        onConfirm={() => {
+        <Btn1Popup //저장 안내 팝업
+            isOpen={isPopupOpenSave} 
+            setIsOpen={setIsPopupOpenSave} type={"save"}/>
+        <Btn2Popup //수정 중 나가기 팝업
+            isOpen={isPopupOpenExit}
+            setIsOpen={setIsPopupOpenExit}
+            type={"exit"}
+            onConfirm={() => {
+                setIsPopupOpenExit(false)
+                exitEditMode();
+                localStorage.removeItem('searchListItem');
+            }}
+            onCancel={()=>{localStorage.removeItem('searchListItem');}}
+            />
+        <Btn2Popup //삭제 안내 팝업
+            isOpen={isPopupOpenDelete}
+            setIsOpen={setIsPopupOpenDelete}
+            type={"delete"}
+            onConfirm={() => {
                 removePlan(id, userId)
                 navigate(`/planner`)
-                setIsPopupOpen(false)
-                }}/>
-        <Btn1Popup isOpen={isPopupOpen2} setIsOpen={setIsPopupOpen2} type={"save"}/>
+                setIsPopupOpenDelete(false)
+            }}
+            />
+        <Btn2Popup //수정 중 체크리스트 팝업
+            isOpen={isPopupOpenCheckList}
+            setIsOpen={setIsPopupOpenCheckList}
+            type={"exit"}
+            onConfirm={() => {
+                setIsPopupOpenCheckList(false)
+                navigate(`/my/checklist`);
+                localStorage.removeItem('searchListItem');
+            }}
+        />
+        <Btn2Popup //수정 중 추천일정 팝업
+            isOpen={isPopupOpenPickPlan}
+            setIsOpen={setIsPopupOpenPickPlan}
+            type={"exit"}
+            onConfirm={() => {
+                setIsPopupOpenPickPlan(false)
+                navigate(`/planner/pickplan`);
+                localStorage.removeItem('searchListItem');
+            }}
+            onCancel={()=>{localStorage.removeItem('searchListItem');}}
+        />
+        <Top/>
         </div>
     )
 }
