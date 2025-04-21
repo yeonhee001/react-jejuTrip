@@ -51,13 +51,13 @@ function Like() {
       
       try {
         // 관광지 좋아요 데이터 가져오기
-        const res = await fetch(`http://localhost:4000/triplike/liked-posts?userId=${userId}`);
+        const res = await fetch(`${process.env.REACT_APP_APIURL}/triplike/liked-posts?userId=${userId}`);
         if(!res.ok) throw new Error('관광지 좋아요 데이터를 가져오는데 실패했습니다');
         const data = await res.json();
         setLikePosts(data.likedPostIds || []);
         
         // 커뮤니티 게시물 좋아요 데이터 가져오기
-        const res2 = await fetch(`http://localhost:4000/like/user-liked?userId=${userId}`);
+        const res2 = await fetch(`${process.env.REACT_APP_APIURL}/like/user-liked?userId=${userId}`);
         if(!res2.ok) throw new Error('커뮤니티 좋아요 데이터를 가져오는데 실패했습니다');
         const data2 = await res2.json();
         
