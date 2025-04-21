@@ -12,12 +12,6 @@
   gap: 20px; 
   position: relative;
 }
-.close-button { 
-  position: absolute; 
-  top: 10px; 
-  left: 10px; 
-  cursor: pointer;
-}
 .post-container { 
   width: 100%; 
   max-width: 600px; 
@@ -26,17 +20,18 @@
   flex-direction: column;
 }
 .title { 
-  font-size: 26px;
+  font-size: 20px;
   font-family: 'NanumSquareBold';
   color: #333333;
-  margin: 16px 0;
+  margin-top: 16px;
   align-self: flex-start;
 }
 .author-container { 
   display: flex; 
   align-items: center; 
-  gap: 10px; 
-  margin-bottom: 16px;
+  gap: 10px;
+  margin-top: 7px;
+  margin-bottom: 14px;
 }
 .author-info { 
   display: flex; 
@@ -44,17 +39,17 @@
   gap: 7px;
 }
 .nickname { 
-  font-size: 18px;
+  font-size: 14px;
   font-family: 'NanumSquare';
   color: #333333;
 }
 .date-text { 
-  font-size: 18px;
+  font-size: 14px;
   font-family: 'NanumSquare';
   color: #333333;
 }
 .description { 
-  font-size: 22px;
+  font-size: 18px;
   font-family: 'NanumSquare';
   color: #333333;
 }
@@ -62,7 +57,7 @@
   width: 100%; 
   max-width: 100%;
   position: relative;
-  max-height: 30vh;
+  height: 30vh;
   object-fit: cover;
   border-radius: 10px;
   margin: 16px 0;
@@ -70,11 +65,11 @@
 .interaction-container { 
   display: flex; 
   justify-content: flex-start; 
-  font-size: 20px;
+  font-size: 14px;
   font-family: 'NanumSquare';
   color: #333333; 
   gap: 16px;
-  margin-top: 16px;
+  margin-top: 14px;
 }
 .vote-text, .comment-text { 
   display: flex; 
@@ -123,6 +118,26 @@
       width: 50%;
       display: inline-block;
       text-align: center;
+  }
+}
+.tab-maintitle{
+  font-size: 26px!important;
+}
+.add-check-btn-wrap2{
+  position: relative;
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+  .add-check-btn2{
+    z-index: 999;
+    position: fixed;
+    bottom: 18%;
+    right: 0%;
+    transform: translate(-13%, -4%);
+    >img{
+      width: 50px; height: 50px;
+    }
+    cursor: pointer;
   }
 }
 

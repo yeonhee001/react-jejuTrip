@@ -18,13 +18,13 @@
   color: #2288FD;
   background: none;
   border: none;
-  font-size: 22px;
+  font-size: 16px;
   font-family: 'NanumSquare';
 }
 .newtitle {
   text-align: center;
   margin-top: 19px;
-  font-size: 26px !important;
+  font-size: 22px !important;
   font-family: 'NanumSquareBold' !important;
   color: #333333
 }
@@ -41,9 +41,17 @@
   width: 100%;
   cursor: pointer;
 }
+.subjectErrorText {
+  color: #d32f2f;
+  font-size: 10.5px !important;
+  font-family: 'NanumSquare' !important;
+  margin-top: 7px !important;
+  display: flex;
+  align-items: center;
+}
 .subjectText {
   text-align: left;
-  font-size: 22px !important;
+  font-size: 18px !important;
   font-family: 'NanumSquareBold' !important;
   color: #333333;
 }
@@ -103,13 +111,13 @@
   z-index: 1000;
 }
 .inputTitle {
-  font-size: 24px !important;
+  font-size: 18px !important;
   font-family: 'NanumSquareBold' !important;
   margin-top: 23px;
   color: #333333 !important;
 }
 .inputDescription {
-  font-size: 22px !important;
+  font-size: 16px !important;
   font-family: 'NanumSquare' !important;
   margin-top: 13px;
   color: #333333 !important;
@@ -127,10 +135,11 @@
   align-items: center;
   gap: 8px;
   font-weight: bold;
-  font-size: 24px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   z-index: 1000;
   animation: fadeInOut 3s ease-in-out;
+  font-size: 20px;
+  font-family:'NanumSquare';
 }
 .alertIcon {
   font-size: 20px;

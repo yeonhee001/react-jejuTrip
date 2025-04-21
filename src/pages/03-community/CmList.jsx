@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import CmFeedList from '../../component/03-community/CmFeedList'
-import CmSlideImg from '../../component/03-community/img/CmSlideImg'
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import CmFeedList from '../../component/03-community/CmFeedList';
+import CmSlideImg from '../../component/03-community/img/CmSlideImg';
 import "../../styles/03-community/cmList.scss";
 import TabPage from '../../component/_common/TabPage';
 import "../../styles/03-community/_res-community.scss";
@@ -8,23 +9,34 @@ import { useLocation } from 'react-router-dom';
 
 function CmList() {
   const [selectedTab, setSelectedTab] = useState(0);
+  const [loginPopupOpen, setLoginPopupOpen] = useState(false);
   const location = useLocation();
-  
-  useEffect(()=>{
-    if(location.state?.setSelectedTab === 1){
+
+  useEffect(() => {
+    if (location.state?.setSelectedTab === 1) {
       setSelectedTab(1);
-    } else if(location.state?.setSelectedTab === 0) {
+    } else if (location.state?.setSelectedTab === 0) {
       setSelectedTab(0);
     }
-    window.scrollTo(0,0);
-  },[location.state])
+    window.scrollTo(0, 0);
+  }, [location.state]);
 
   return (
     <div style={{ margin: "92px 0 150px" }}>
-      <TabPage type={'community'} onTabChange={setSelectedTab} selectedTab={selectedTab} />
-      {selectedTab === 0 ? <CmFeedList /> : <CmSlideImg />}
+      {!loginPopupOpen && (
+        <TabPage
+          type="community"
+          onTabChange={setSelectedTab}
+          selectedTab={selectedTab}
+        />
+      )}
+      {selectedTab === 0 ? (
+        <CmFeedList setLoginPopupOpenFromParent={setLoginPopupOpen} />
+      ) : (
+        <CmSlideImg />
+      )}
     </div>
-  )
+  );
 }
 
-export default CmList
+export default CmList;

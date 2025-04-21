@@ -19,7 +19,7 @@ const init = [];
 function CmDetail() {
   const navigate = useNavigate();
   const location = useLocation();
-  const post = location.state?.post;
+  const post =  JSON.parse(localStorage.post);
   const loggedInUserId = JSON.parse(sessionStorage.getItem("user"));
 
   const [showDeleteBtn, setShowDeleteBtn] = useState(false);
@@ -35,26 +35,31 @@ function CmDetail() {
     setShowDeleteBtn((prev) => !prev);
   };
 
-  const handleLikeClick = async () => {
-    const newLiked = !liked;
-    setLiked(newLiked);
-    setLikeCount((prevCount) => newLiked ? prevCount + 1 : prevCount - 1);
 
+  const handleLikeClick = async (e) => {
+    e.stopPropagation();
+        const updatedPost = {
+          ...post,
+          hasVote: !post.hasVote,
+          likeCount: post.hasVote ? post.likeCount - 1 : post.likeCount + 1,
+        };
+        localStorage.post = JSON.stringify(updatedPost);
+        updateLikeStatus(post._id, updatedPost.hasVote, updatedPost);
+  };
+
+  const updateLikeStatus = async (postId, liked, updatedPost) => {
     try {
-      await fetch("http://localhost:4000/like", {
+      const user = JSON.parse(sessionStorage.getItem("user"));
+      const userId = String(user.id);
+      const res = await fetch(`${process.env.REACT_APP_APIURL}/like`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          postId: post._id,
-          userId: loggedInUserId,
-          liked: newLiked,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ postId, userId, liked, post }),
       });
-      localStorage.setItem(`liked-${post._id}`, JSON.stringify(newLiked));
+      setLikeCount(updatedPost.likeCount)
+      if (!res.ok) throw new Error("좋아요 상태 업데이트 실패");
     } catch (error) {
-      console.error("좋아요 서버 요청 실패:", error);
+      console.error("좋아요 상태 업데이트 오류:", error);
     }
   };
 
@@ -104,7 +109,7 @@ function CmDetail() {
               slidesPerView={1}
               pagination={{ clickable: true }}
               modules={[Pagination]}
-              loop
+              loop={post.imageUrls.length > 1}
             >
               {post.imageUrls.map((url, index) => (
                 <SwiperSlide key={index}>

@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { Box, Typography } from "@mui/material";
 import Right_black from "../../icons/Right_black";
-import Warning from "../../icons/Warning";
 import Close from "../../icons/Close";
 import CmSubject from "../cmSubject";
 import Btn2Popup from "../../popups/Btn2Popup";
@@ -19,8 +18,8 @@ function CmNewPost({ onClose = () => {} }) {
   const [selectedItem, setSelectedItem] = useState("주제선택");
   const [showSubjectAlert, setShowSubjectAlert] = useState(false);
   const [isExitPopupOpen, setIsExitPopupOpen] = useState(false);
-  const [selectedImages, setSelectedImages] = useState([]); // 이미지 미리보기 배열
-  const [imageUrls, setImageUrls] = useState([]); // 업로드된 이미지 URL 저장
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [imageUrls, setImageUrls] = useState([]);
 
   const title = useWatch({ control, name: "title" });
   const description = useWatch({ control, name: "description" });
@@ -29,7 +28,6 @@ function CmNewPost({ onClose = () => {} }) {
     e.preventDefault();
     let shouldShowAlert = false;
 
-    // 주제 선택이 안된 경우 경고 표시
     if (selectedItem === "주제선택") {
       setShowSubjectAlert(true);
       shouldShowAlert = true;
@@ -37,7 +35,6 @@ function CmNewPost({ onClose = () => {} }) {
       setShowSubjectAlert(false);
     }
 
-    // 제출 처리
     handleSubmit((data) => {
       if (!shouldShowAlert) {
         onSubmit(data);
@@ -46,10 +43,9 @@ function CmNewPost({ onClose = () => {} }) {
   };
 
   const onSubmit = async (data) => {
-    const userId = localStorage.getItem("userId"); 
-
+    const userId = localStorage.getItem("userId");
     const formdata = new FormData();
-    selectedImages.forEach(img => formdata.append('images', img)); // 이미지가 있으면 FormData에 추가
+    selectedImages.forEach((img) => formdata.append("images", img));
 
     let res;
     try {
@@ -62,7 +58,6 @@ function CmNewPost({ onClose = () => {} }) {
       }
     } catch (err) {
       console.error("이미지 업로드 실패:", err.response?.data || err.message);
-
       if (err.response?.status === 429) {
         alert("요청이 너무 많아 이미지 업로드가 잠시 제한되었습니다. 잠시 후 다시 시도해주세요.");
       } else {
@@ -77,7 +72,7 @@ function CmNewPost({ onClose = () => {} }) {
       description: data.description,
       subject: selectedItem,
       createdAt: new Date().toISOString(),
-      imageUrls: res?.data || [], // 이미지 URL이 없으면 빈 배열로 처리
+      imageUrls: res?.data || [],
     };
 
     try {
@@ -121,34 +116,36 @@ function CmNewPost({ onClose = () => {} }) {
         새 게시물
       </Typography>
 
-      {showSubjectAlert && (
-        <div className="alertBox">
-          <Warning className="alertIcon" />
-          주제를 선택해주세요
-        </div>
-      )}
-
       <Box className="subjectContainer">
         <Box
-          className="subjectBox"
+          className={`subjectBox ${showSubjectAlert ? "subjectBox-error" : ""}`}
           onClick={() => {
             setIsSubjectOpen(true);
             setShowSubjectAlert(false);
           }}
         >
-          <Typography className="subjectText" variant="body1">
+          <Typography
+            className={`subjectText ${
+              selectedItem === "주제선택" ? "subjectText-placeholder" : ""
+            }`}
+            variant="body1"
+          >
             {selectedItem}
           </Typography>
           <Right_black className="nw-Right" />
         </Box>
+        {showSubjectAlert && (
+          <Typography className="subjectErrorText">
+            주제를 선택해주세요.
+          </Typography>
+        )}
         <Box className="divider" />
       </Box>
 
-      {/* 이미지 업로드 컴포넌트 */}
       <CmUploadImg
         selectedImages={selectedImages}
         setSelectedImages={setSelectedImages}
-        setImageUrls={setImageUrls} // 부모 컴포넌트로 이미지 URL 전달
+        setImageUrls={setImageUrls}
         imageUrls={imageUrls}
       />
 
@@ -202,14 +199,16 @@ function CmNewPost({ onClose = () => {} }) {
           />
         )}
       />
-
+      
+      {isSubjectOpen && <div className="overlay"/>}
       {isSubjectOpen && (
-        <PopupAction
+        <PopupAction 
+          className="cm-subject"
           useState={isSubjectOpen}
           onClose={() => setIsSubjectOpen(false)}
         >
           <div className="subjectWrapper">
-            <CmSubject
+            <CmSubject 
               selectedItem={selectedItem}
               setSelectedItem={(item) => {
                 setSelectedItem(item);

@@ -18,8 +18,8 @@ function CmEditPost({ postData, onClose = () => {}, onSubmit }) {
   const [selectedItem, setSelectedItem] = useState("주제선택");
   const [showSubjectAlert, setShowSubjectAlert] = useState(false);
   const [isExitPopupOpen, setIsExitPopupOpen] = useState(false);
-  const [imageUrls, setImageUrls] = useState(postData?.imageUrls || []); // 이미지 삭제를 위한 상태 변수
-  
+  const [imageUrls, setImageUrls] = useState(postData?.imageUrls || []);
+
   useEffect(() => {
     if (postData) {
       reset({
@@ -27,7 +27,7 @@ function CmEditPost({ postData, onClose = () => {}, onSubmit }) {
         description: postData.description,
       });
       setSelectedItem(postData.subject || "주제선택");
-      setImageUrls(postData.imageUrls || []); // 이미지 URL 초기화
+      setImageUrls(postData.imageUrls || []);
     }
   }, [postData, reset]);
 
@@ -53,11 +53,11 @@ function CmEditPost({ postData, onClose = () => {}, onSubmit }) {
           description: data.description,
           subject: selectedItem,
           updatedAt: new Date().toISOString(),
-          imageUrls: imageUrls, // 이미지 URL을 업데이트된 배열로 설정
+          imageUrls: imageUrls,
         };
-        onSubmit(updatedPost); // Call parent handler
+        onSubmit(updatedPost);
         reset();
-        onClose();
+        navigate("/community"); 
       }
     })();
   };
@@ -81,9 +81,8 @@ function CmEditPost({ postData, onClose = () => {}, onSubmit }) {
     navigate(-1);
   };
 
-  // 이미지 삭제 핸들러
   const handleDeleteImage = (index) => {
-    setImageUrls((prevUrls) => prevUrls.filter((_, idx) => idx !== index)); // 해당 인덱스의 이미지 삭제
+    setImageUrls((prevUrls) => prevUrls.filter((_, idx) => idx !== index));
   };
 
   return (
@@ -125,13 +124,11 @@ function CmEditPost({ postData, onClose = () => {}, onSubmit }) {
       </Box>
 
       <Box className="photoContainer">
-        {/* 이미지가 없을 때 아이콘 보여주기 */}
         {imageUrls.length === 0 && (
           <Box className="photoBox">
             <Photo className="nw-photo" />
-            </Box>
-          )}
-        {/* 이미지와 삭제 아이콘을 표시 */}
+          </Box>
+        )}
         {imageUrls.map((url, index) => (
           <Box key={index} className="photoImage" style={{ position: "relative" }}>
             <img src={url} alt={`post-image-${index}`} className="nw-photo2" />
@@ -191,23 +188,23 @@ function CmEditPost({ postData, onClose = () => {}, onSubmit }) {
           />
         )}
       />
-
+      
+      {isSubjectOpen && <div className="overlay" />}
       {isSubjectOpen && (
-        <PopupAction
-          useState={isSubjectOpen} 
+        <PopupAction 
+          className="cm-subject"
+          useState={isSubjectOpen}
           onClose={() => setIsSubjectOpen(false)}
         >
-          <div onClick={(e) => e.stopPropagation()}>
-            <div className="subjectWrapper">
-              <CmSubject
-                selectedItem={selectedItem}
-                setSelectedItem={(item) => {
-                  setSelectedItem(item);
-                  setShowSubjectAlert(false);
-                }}
-                onClose={() => setIsSubjectOpen(false)}
-              />
-            </div>
+          <div className="subjectWrapper">
+            <CmSubject 
+              selectedItem={selectedItem}
+              setSelectedItem={(item) => {
+                setSelectedItem(item);
+                setShowSubjectAlert(false);
+              }}
+              onClose={() => setIsSubjectOpen(false)}
+            />
           </div>
         </PopupAction>
       )}
