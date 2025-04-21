@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import DataLoading from '../../_common/DataLoading';
+import { useNavigate } from 'react-router-dom';
+import Top from '../../icons/Top';
 
 function CmSlideImg() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
+  const imageContainerRef = useRef(null);
+
 
   useEffect(() => {
     const loadImages = async () => {
@@ -14,6 +20,7 @@ function CmSlideImg() {
       try {
         const response = await axios.get(`http://localhost:4000/post/images?page=${page}`);
         const posts = response.data;
+        console.log(posts)
         setImages((prevImages) => [...prevImages, ...posts]);
       } catch (error) {
         console.error('이미지 불러오기 중 오류 발생:', error);
@@ -34,7 +41,9 @@ function CmSlideImg() {
 
   const layoutPattern = ['left-big', 'two-horizontal', 'right-big', 'two-horizontal'];
 
-  const createGroups = (images) => {
+  
+
+  const createGroups = () => {
     const groups = [];
     let i = 0;
     let patternIndex = 0;
@@ -46,67 +55,97 @@ function CmSlideImg() {
         groups.push({ layout: pattern, images: images.slice(i, i + 3) });
         i += 3;
       } else if (pattern === 'two-horizontal' && i + 2 <= images.length) {
-        groups.push({ layout: pattern, images: images.slice(i, i + 2) });
+        groups.push({ layout: pattern, images: images.slice(i, i + 2)});
         i += 2;
       } else {
         break;
       }
 
+
       patternIndex++;
     }
-
     return groups;
   };
 
-  const groupedImages = createGroups(images);
+  const groupedImages = createGroups();
+  const handleClick = (id,item) => {
+    localStorage.post = JSON.stringify(item);
+    navigate(`/community/cmdetail/${id}`);
+  };
+
+  const scrollToTop = () => {
+    if (imageContainerRef.current) {
+      imageContainerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
-    <div className="image-container" onScroll={handleScroll}>
-      {groupedImages.map((group, index) => {
-        const { layout, images } = group;
+    <>
+      <div
+        className="image-container"
+        onScroll={handleScroll}
+        ref={imageContainerRef}
+      >
+        {groupedImages.map((group, index) => {
+          const { layout, images} = group;
 
-        if (layout === 'left-big') {
-          return (
-            <div key={index} className="image-card">
-              <div className="left-image">
-                <img src={images[0]} alt={`그룹 ${index}-0`} />
-              </div>
-              <div className="right-images">
-                <img src={images[1]} alt={`그룹 ${index}-1`} />
-                <img src={images[2]} alt={`그룹 ${index}-2`} />
-              </div>
-            </div>
+          const renderImage = (imgObj) => (
+                      
+            <img
+              key={imgObj.id}
+              src={imgObj.imageUrl}
+              alt={`그룹 ${index}-${imgObj.id}`}
+              onClick={() => handleClick(imgObj.id, imgObj.post)}
+              style={{ cursor: 'pointer' }}
+            />
           );
-        }
 
-        if (layout === 'right-big') {
-          return (
-            <div key={index} className="image-card">
-              <div className="left-images">
-                <img src={images[0]} alt={`그룹 ${index}-0`} />
-                <img src={images[1]} alt={`그룹 ${index}-1`} />
+          if (layout === 'left-big') {
+            return (
+              <div key={index} className="image-card">
+                <div className="left-image">{renderImage(images[0])}</div>
+                <div className="right-images">
+                  {renderImage(images[1])}
+                  {renderImage(images[2])}
+                </div>
               </div>
-              <div className="right-image">
-                <img src={images[2]} alt={`그룹 ${index}-2`} />
+            );
+          }
+
+          if (layout === 'right-big') {
+            return (
+              <div key={index} className="image-card">
+                <div className="left-images">
+                  {renderImage(images[0])}
+                  {renderImage(images[1])}
+                </div>
+                <div className="right-image">{renderImage(images[2])}</div>
               </div>
-            </div>
-          );
-        }
+            );
+          }
 
-        if (layout === 'two-horizontal') {
-          return (
-            <div key={index} className="image-card horizontal">
-              <img src={images[0]} alt={`그룹 ${index}-0`} />
-              <img src={images[1]} alt={`그룹 ${index}-1`} />
-            </div>
-          );
-        }
+          if (layout === 'two-horizontal') {
+            return (
+              <div key={index} className="image-card horizontal">
+                {renderImage(images[0], 0)}
+                {renderImage(images[1], 1)}
+              </div>
+            );
+          }
 
-        return null;
-      })}
+          return null;
+        })}
 
-      {loading && <div className="loading">불러오는 중...</div>}
-    </div>
+        {loading && <DataLoading className="list_loading" />}
+      </div>
+
+      {/* Top 버튼 영역 */}
+      <div className="add-check-btn-wrap3">
+        <div className="add-check-btn3" onClick={scrollToTop}>
+          <Top /> 
+        </div>
+      </div>
+    </>
   );
 }
 

@@ -4,7 +4,6 @@ import ChCicle from "../../icons/ChCicle";
 import CmDeleteBtn from "../CmDeleteBtn";
 import Send from "../../icons/Send";
 import Btn2Popup from "../../popups/Btn2Popup";
-import Btn1Popup from "../../popups/Btn1Popup";
 
 const CmComment = ({ postId, showDeleteBtn, setShowDeleteBtn, comments, setComments }) => {
   const inputRef = useRef(null);
@@ -115,8 +114,6 @@ const CmComment = ({ postId, showDeleteBtn, setShowDeleteBtn, comments, setComme
     if (activeCircleCommentIds.length === 0) {
       setIsSelectPopupOpen(true);
     } else {
-      console.log("선택된 댓글 ID들:", activeCircleCommentIds);
-      // 실제 삭제 처리 구현 가능
     }
   };
 
@@ -190,13 +187,6 @@ const CmComment = ({ postId, showDeleteBtn, setShowDeleteBtn, comments, setComme
         setIsOpen={setIsDeletePopupOpen}
         type="delete"
         onConfirm={confirmDelete}
-      />
-
-      <Btn1Popup
-        isOpen={isSelectPopupOpen}
-        setIsOpen={setIsSelectPopupOpen}
-        type="select"
-        onConfirm={() => setIsSelectPopupOpen(false)}
       />
     </div>
   );

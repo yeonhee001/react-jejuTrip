@@ -1,6 +1,4 @@
 .image-container {
-    height: 100vh;
-    overflow-y: auto;
     overflow-x: hidden; 
     padding: 10px;
     box-sizing: border-box;
@@ -11,7 +9,7 @@
 .image-card {
     display: flex;
     gap: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     height: 220px;
     overflow: hidden;
 }
@@ -54,3 +52,22 @@
     border-radius: 10px;
     display: block;
 }
+.add-check-btn-wrap3{
+    position: relative;
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+    .add-check-btn3{
+    z-index: 999;
+    position: fixed;
+    bottom: 11%;
+    right: 0%;
+    transform: translate(-13%, -4%);
+    >img{
+    width: 50px; height: 50px;
+    }
+    cursor: pointer;
+    }
+  }
+
+@import "./_res-community.scss";

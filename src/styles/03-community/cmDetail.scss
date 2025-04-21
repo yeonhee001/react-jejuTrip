@@ -2,14 +2,15 @@
   display: flex;
   align-items: center;
   gap: 10px; 
-  margin-bottom: 16px;
+  margin-bottom: 14px;
+  margin-top: 7px;
 }
 .comment {
-  font-size: 22px;
+  font-size: 18px;
   margin-top: 16px;
 }
 .comment-text2{
-  font-size: 20px;
+  font-size: 16px;
   color: #333333;
   font-family: 'NanumSquare';
   margin-top: 6px;
@@ -36,7 +37,7 @@
 }
 .comment-username {
   font-family: 'NanumSquareBold';
-  font-size: 22px;
+  font-size: 16px;
   margin-top: 16px;
   display: inline-block;
 }
@@ -50,13 +51,12 @@
   display: flex;
 }
 .cursor-pointer1 {
-  color: blue;
+  color:  #2449A4;
   font-size: 20px;
   font-family: 'NanumSquare';
 }
 .cursor-pointer2 {
-  color: red;
-  margin: 0 7px;
+  color: #FF3658;
   font-size: 20px;
   font-family: 'NanumSquare';
 }
@@ -125,7 +125,7 @@
   }
   span {
     margin-left: 6px;
-    font-size: 20px;
+    font-size: 14px;
     font-family: 'NanumSquare';
     color: #333333;
   }
@@ -136,7 +136,11 @@
   font-family: 'NanumSquare';
 }
 .send-btn{
-  margin-left: 40px;
+  margin-right: 10px;
+}
+.send-btn img {
+  width: 27px;
+  height: 27px;
 }
 .popup-wrapper {
   position: fixed;
@@ -162,14 +166,18 @@
 }
 .swiper-pagination {
   position: relative !important;
-  bottom: 0 !important;
   text-align: center;
+  margin-top: -5px;
 }
 .swiper-pagination-bullet {
-  background-color: #5886BA !important; 
+  background-color: #5886BA !important;
+  width: 6px;
+  height: 6px;
 }
 .swiper-pagination-bullet-active {
   background-color: #2449A4 !important; 
+  width: 6px;
+  height: 6px;
 }
 .swiper-image{
   margin: 16px 0;

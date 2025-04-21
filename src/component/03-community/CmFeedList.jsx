@@ -13,18 +13,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import Login from "../../pages/00-login/Login";
-import DataLoading from "../_common/DataLoading"; 
+import DataLoading from "../_common/DataLoading";
+import Btn2Popup from "../popups/Btn2Popup";
+import Top from "../icons/Top";
 
 dayjs.extend(customParseFormat);
 
-const CmFeedList = () => {
+const CmFeedList = ({ setLoginPopupOpenFromParent }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const methods = useForm();
   const [posts, setPosts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("전체");
-  const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const [loginPopupOpen, setLoginPopupOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const getLoggedInUserId = () => {
@@ -73,9 +74,12 @@ const CmFeedList = () => {
     const fetchPosts = async () => {
       const userId = getLoggedInUserId();
       if (!userId) {
-        setShowLoginPopup(true);
+        setLoginPopupOpen(true);
+        setLoginPopupOpenFromParent(true);
         return;
       }
+
+      setLoginPopupOpenFromParent(false);
 
       try {
         const res = await fetch(`${process.env.REACT_APP_APIURL}/post`);
@@ -138,7 +142,7 @@ const CmFeedList = () => {
   const updateLikeStatus = async (postId, liked, post) => {
     try {
       const user = JSON.parse(sessionStorage.getItem("user"));
-      const userId =  String(user.id);
+      const userId = String(user.id);
       const res = await fetch(`${process.env.REACT_APP_APIURL}/like`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -154,21 +158,27 @@ const CmFeedList = () => {
     setSelectedCategory(category);
   };
 
-  const closeLoginPopup = () => {
-    setShowLoginPopup(false);
+  const handleLoginConfirm = () => {
+    navigate("/login");
   };
 
-  if (showLoginPopup) {
-    return <Login closePopup={closeLoginPopup} />;
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  if (loginPopupOpen) {
+    return (
+      <Btn2Popup
+        isOpen={loginPopupOpen}
+        setIsOpen={setLoginPopupOpen}
+        type="login"
+        onConfirm={handleLoginConfirm}
+      />
+    );
   }
 
   if (loading) {
-    return (
-      <div className="feed-list">
-        <b>소통 준비 중</b>
-        <DataLoading className={"list_loading"} />
-      </div>
-    );
+    return <DataLoading className={"list_loading"} />;
   }
 
   return (
@@ -191,11 +201,10 @@ const CmFeedList = () => {
             <div
               key={item._id}
               className="post-container"
-              onClick={() =>
-                navigate(`/community/cmdetail/${item._id}`, {
-                  state: { post: item },
-                })
-              }
+              onClick={() =>{
+                navigate(`/community/cmdetail/${item._id}`);
+                localStorage.post = JSON.stringify(item);
+              }}
               style={{ cursor: "pointer" }}
             >
               <h3 className="title">{item.title}</h3>
@@ -213,7 +222,7 @@ const CmFeedList = () => {
                     slidesPerView={1}
                     pagination={{ clickable: true }}
                     modules={[Pagination]}
-                    loop
+                    loop={(Array.isArray(item.imageUrls) ? item.imageUrls.length : 1) > 1}
                     className="custom-swiper"
                   >
                     {(Array.isArray(item.imageUrls) ? item.imageUrls : [item.imageUrls]).map((url, index) => (
@@ -243,6 +252,13 @@ const CmFeedList = () => {
 
         <div className="new-post-button" onClick={() => navigate("/community/cmpostpage")}>
           <Newpost className={"cm-Newpost"} />
+        </div>
+
+        {/* Top 버튼 영역 */}
+        <div className="add-check-btn-wrap2">
+          <div className="add-check-btn2" onClick={scrollToTop}>
+            <Top />
+          </div>
         </div>
       </div>
     </FormProvider>

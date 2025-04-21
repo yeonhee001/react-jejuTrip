@@ -30,24 +30,21 @@ function CmEditPage() {
       if (!response.ok) throw new Error("게시물 수정 실패");
 
       const data = await response.json();
-      alert("게시물이 수정되었습니다.");
 
-      navigate(`/community/cmdetail/${post._id}`, {
-        state: { post: updatedPost },
-      });
+      navigate(`/community/cmdetail/${post._id}`);
+      localStorage.post = JSON.stringify(updatedPost);
     } catch (error) {
       console.error("게시물 수정 에러:", error);
-      alert("게시물 수정에 실패했습니다.");
     }
   };
 
   return (
     <div style={{ margin: "92px 0 150px" }}>
-    <FormProvider {...postForm}>
-      <form onSubmit={postForm.handleSubmit(handlePostUpdate)}>
-        <CmEditPost postData={post} onSubmit={handlePostUpdate} />
-      </form>
-    </FormProvider>
+      <FormProvider {...postForm}>
+        <form onSubmit={postForm.handleSubmit(handlePostUpdate)}>
+          <CmEditPost postData={post} onSubmit={handlePostUpdate} />
+        </form>
+      </FormProvider>
     </div>
   );
 }
