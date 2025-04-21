@@ -1,11 +1,12 @@
 import React from 'react'
 import Plane from '../../icons/Plane'
-import CardItem from '../CardItem'
+import CardItem from './CardItem'
 import { plan } from '../../../api';
-import SvgLine from './SvgLine';
+import SvgMiddleLine from './SvgMiddleLine';
 import { NavLink } from 'react-router-dom';
+import SvgVerticalLine from './SvgVerticalLine';
 
-function TicketRead({idx, topbarright, ticketdate}) {
+function TicketRead({idx, topBarBtn, ticketdate}) {
     const { planData } = plan();
     
     return (
@@ -17,10 +18,10 @@ function TicketRead({idx, topbarright, ticketdate}) {
                         <span>{`Day ${idx+1}`}</span>
                         <span className='ticketdate'>{ticketdate}</span>
                         <Plane className={"plane"}/>
-                        <span className='topbarright'>{topbarright}</span>
+                        <div className='right_box'><span className='topBarBtn'>{topBarBtn}</span></div>
                     </div>
                     {planData?.item?.days[idx]?.plans?.map((item, i)=>{
-                     const labelToKey = {
+                    const labelToKey = {
                         "관광지": "tour",
                         "음식점": "food",
                         "축제/행사" : "festival",
@@ -29,13 +30,11 @@ function TicketRead({idx, topbarright, ticketdate}) {
                     const type = labelToKey[item.contents_label]
 
                     return(
-                    <ul className='tickebox' key={i}> {/* Day 1 */}
+                    <ul className='tickebox' key={`item-${i}`}> {/* Day 1 */}
                         <li className='liItem'>
                             <div className='liLine'>
                             <div className='liNum'><span>{i+1}</span></div>
-                                <svg width="2" height="100%" xmlns="http://www.w3.org/2000/svg">
-                                    <line x1="1" y1="0" x2="1" y2="100%" stroke="rgba(0, 0, 0, 0.3)" stroke-width="2"/>
-                                </svg>
+                            <SvgVerticalLine/>
                             </div>
                             <NavLink to={`/trip/triplist/${type}/tripdetail/${item.contents_id}`}>
                                 <CardItem item={item}/>
@@ -45,7 +44,7 @@ function TicketRead({idx, topbarright, ticketdate}) {
                     )})}
                 </div>
             </div>
-            <SvgLine/>
+            <SvgMiddleLine/>
             <div className='ticketbottom'>
                 <div className='ticketpadding'>
                     <div className='barcode'>

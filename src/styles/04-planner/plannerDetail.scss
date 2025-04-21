@@ -15,25 +15,29 @@
         object-fit: fill;
     }
 }
-//날씨
+.planner_title:focus{outline: none;}
+.planner_title, .planner_weather{font-weight: bold; font-size: 22px !important;}
+
+//로딩 중
 .detail_loading{
     b{
+        display: inline-block;
         font-size: 22px;
+        margin-bottom: 16px;
         span{ color: #2288FD;}
     }
 }
 .weather_loading{
     width: 50%;
     margin: 0 auto;
-    height: 219.8px;
+    height: 120px;
     img{
         width: 50%;
         display: inline-block;
         text-align: center;
     }
 }
-.planner_title:focus{outline: none;}
-.planner_title, .planner_weather{font-weight: bold; font-size: 22px !important;}
+//날씨
 .weather_content{
     margin: 0 auto 50px;
     font-weight: bold;
@@ -53,7 +57,7 @@
         img{
             display: block;
             margin: 0 auto;
-            width: 75%;
+            width: 50%;
         }
     }
     .weather_wf{
@@ -71,12 +75,13 @@
     position: relative;
     .hand{
         position: absolute;
-        top: 27%;
+        top: 1000%;
         right: 5%;
         transform: translate(-50%, -50%);
         z-index: 99;
     }
     .planner{
+        position: relative;
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
@@ -138,8 +143,13 @@
                     margin: 0 auto;
                 }
                 //수정버튼
-                .topbarright{
-                    color: #2288FD;
+                .right_box{
+                    width: 79.45px;
+                    .topBarBtn{
+                        display: inline-block;
+                        width: 100%;
+                        color: #2288FD;
+                    }
                 }
             }
             //ul
@@ -150,8 +160,10 @@
                     align-items: center;
                     gap: 5%;
                 }
-                .vertical-line {
-                    min-height: 100px;
+                .svg_vertical_line{
+                    flex-grow: 1;
+                    flex-shrink: 1; /* 줄어들 수 있게 */
+                    height: 100%;
                 }
                 .content{
                     box-shadow:""
@@ -180,7 +192,7 @@
             }
         }
         //중앙 점선
-        .svgline{
+        .svg_middle_line{
             position: relative;
             display: flex;
             align-items: center;
@@ -218,7 +230,6 @@
 }
 //메모&삭제 슬라이드
 .swipeactionmemo{
-    margin: 10px 0;
     width: 100%;
     p:nth-of-type(1){
         margin: 7px 0;

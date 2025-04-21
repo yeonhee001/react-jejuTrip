@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-import { mode, plan, shopNfoodNparty } from '../../../api';
+import { plan, shopNfoodNparty } from '../../../api';
 import CategoryItem from './CategoryItem'
 import Button from '../../_common/Button';
 import NoSearch from '../../_common/NoSearch';
 import SearchItem from './SearchItem';
-import Close from '../../icons/Close';
 import Btn1Popup from '../../popups/Btn1Popup';
 
-function Category() {
+function Category({selectedTab}) {
     const { searchData } = plan();
     const { shopNfoodNpartyData, fetchCategory } = shopNfoodNparty()
     const [selectedBtn, setSelectedBtn] = useState(false); //선택 완료 버튼
@@ -16,6 +15,7 @@ function Category() {
     const [catSelect, setCatSelect] = useState(''); //카테고리 선택
     const [searchListItem, setSearchListItem] = useState([]); //검색 결과 선택 (input)
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [listCount, setListCount] = useState(30); // 리스트 갯수 처음 30개만 보임
     
     const navigate = useNavigate();
     const location = useLocation();
@@ -25,17 +25,17 @@ function Category() {
     //새로고침 절대 못해
     useEffect(() => {
         const blockKey = (e) => {
-          if ((e.key === 'F5') || (e.ctrlKey && e.key === 'r')) {
+            if ((e.key === 'F5') || (e.ctrlKey && e.key === 'r')) {
             e.preventDefault();
-          }
+            }
         };
-      
+
         window.addEventListener('keydown', blockKey);
-      
+
         return () => {
-          window.removeEventListener('keydown', blockKey);
+            window.removeEventListener('keydown', blockKey);
         };
-      }, []);
+    }, []);
     
     const checkbox = (item) => {
         const selectList = {
@@ -58,7 +58,7 @@ function Category() {
 
     const search = {
         "제주시" : ["구좌", "애월", "우도", "제주시내", "조천", "추자도", "한경", "한림"],
-        "서귀포시" : ["가파도", "남원", "대정", "마라도", "성산", "안덕", "중문", "표선"],
+        "서귀포시" : ["가파도", "남원", "대정", "마라도", "서귀포시내", "성산", "안덕", "중문", "표선"],
         "카테고리" : ["관광지", "맛집", "축제&행사", "쇼핑"]
     }
 
@@ -67,6 +67,21 @@ function Category() {
         fetchCategory('c2'); //쇼핑
         fetchCategory('c4'); //맛집
         fetchCategory('c5'); //축제&행사
+    },[])
+    
+    useEffect(()=>{
+    const handleScroll=()=>{
+        const scrollY = window.scrollY; // 스크롤의 상단 값
+        const windowHeight = window.innerHeight; // 한 화면에서 보여지는 브라우저 화면 높이
+        const fullHeight = document.body.offsetHeight; // 전체 페이지 높이(스크롤포함)
+
+        if(scrollY + windowHeight >= fullHeight-50) { // 사용자가 현재 보고 있는 화면의 가장 아래 위치 지점 >= 전체 페이지 바닥 -50px (바닥 근처에 왔을 때)
+        setListCount((prev) => prev + 30);
+        }
+    };
+
+    window.addEventListener('scroll', handleScroll); //스크롤 이벤트가 발생할 때마다 함수 실행
+    return () => window.removeEventListener('scroll', handleScroll); //정리하기 : 스크롤 한번에 setListCount가 두세번 호출하지 않기 위해
     },[])
     
     const shoppingList = shopNfoodNpartyData.shopping;
@@ -85,6 +100,7 @@ function Category() {
     const List = categoryList[catSelect]?.filter((item) =>
         item.region2cd?.label?.includes(citySelect)
     );
+    
     return (
     <div>
         {selectedBtn ? (
@@ -94,12 +110,13 @@ function Category() {
             </div>
             {List.length == 0 ? (<NoSearch/>) : (
             <> {/* 검색 결과 */}
-                {List.map(item=>
+                {List.slice(0, listCount).map(item=>
                     <SearchItem 
-                    item={item} 
                     key={item.contentsid} 
+                    item={item} 
                     searchListItem={searchListItem}
                     checkbox={checkbox}
+                    selectedTab={selectedTab}
                 />)}
             </>
             )}
@@ -117,11 +134,15 @@ function Category() {
         className='place_btn' 
         onClick={() => {
             if (selectedBtn && searchListItem) {
-                localStorage.getItem('searchListItem', JSON.stringify(searchListItem))
+                localStorage.setItem('searchListItem', JSON.stringify(searchListItem))
                 searchData(searchListItem, idx);
-                navigate(-1);
+                navigate(-1)
             } else {
-                setSelectedBtn(true);
+                if(!citySelect || !catSelect){
+                    setIsPopupOpen(true)
+                }else{
+                    setSelectedBtn(true);
+                }
             }
         }}>
             <Button 

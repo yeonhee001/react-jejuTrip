@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { plan, shopNfoodNparty } from '../../../api';
+import { useLocation, useNavigate } from 'react-router-dom';
 import NoLikePlace from '../../_common/NoLikePlace';
 import Button from '../../_common/Button';
 import Btn1Popup from '../../popups/Btn1Popup';
-import PlannerLikeItem from './PlannerLikeItem';
-import { useLocation, useNavigate } from 'react-router-dom';
+import SearchItem from './SearchItem';
 
-function PlannerLike() {
-    const { planData, LikeData } = plan();
+function PlannerLike({selectedTab}) {
+    const { LikeData } = plan();
     const [likePosts, setLikePosts] = useState([]); // 좋아요 누른 게시물들 가져오기
     const user = JSON.parse(sessionStorage.getItem('user'));
     const userId = user?.id;
@@ -40,8 +40,8 @@ function PlannerLike() {
     
     useEffect(()=>{
       const userLikePost = async ()=>{
-        const res = await fetch(`http://localhost:4000/triplike/liked-posts?userId=${userId}`);
-        console.log(myLikedData);
+        const res = await fetch(`${process.env.REACT_APP_APIURL}/triplike/liked-posts?userId=${userId}`);
+
         const data = await res.json();
         setLikePosts(data.likedPostIds);
       };
@@ -75,12 +75,13 @@ function PlannerLike() {
       ) : (
         <>
           {myLikedData.map((item, idx) => (
-              <PlannerLikeItem
+              <SearchItem
+              key={item.contentsid}
               item={item}
               idx={idx}
-              setCheckItem={setCheckItem}
-              checkItem={checkItem}
-              clickbtn={clickbtn}
+              searchListItem={checkItem}
+              checkbox={clickbtn}
+              selectedTab={selectedTab}
               />
             ))
           }
@@ -88,6 +89,7 @@ function PlannerLike() {
           <button 
           className='place_btn' 
           onClick={() => {
+            localStorage.setItem('searchListItem', JSON.stringify(checkItem))
             LikeData(checkItem, idx);
             navigate(-1);
           }}>

@@ -1,5 +1,14 @@
 .planner_place{
+    position: relative;
     margin: 92px 0 150px;
+    .Place_back{
+        position: absolute;
+        left: 0;
+        top: -83px;
+        width: 14px;
+        height: 14px;
+        cursor: pointer;
+    }
     .search_list_title{
         font-size: 18px;
         font-weight: bold;
@@ -10,9 +19,13 @@
             font-size: 18px;
         }
         >span{color: #5886BA;}
-    }
+    }   
     .searchItem{
         position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row-reverse
     }
     input{display: none;}
     input:checked+div>div>.tagbtn{
@@ -23,16 +36,11 @@
         background-color: #5886BA;
         border-radius: 85px;
     }
-    .searchbtn{ //선택 버튼
-        position: absolute;
-        top: 50%; right: 0;
-        transform: translateY(-60%);
-    }
     .place_btn{ //선택완료 버튼
         width: 768px;
         position: fixed;
-        left: 50%; bottom: 0;
-        transform: translate(-50%, -70%)
+        left: 50%; bottom: 40px;
+        transform: translateX(-50%);
     }
 }
 .category{
@@ -51,12 +59,17 @@
 .taginput{
     display: none;
 }
+.city_name{
+    margin-bottom: 10px;
+}
 .LikeItem{
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: row-reverse
 }
-
+.searchbtn{
+    margin-bottom: 10px;
+}
 
 @import './res-planner.scss';

@@ -1,4 +1,7 @@
-.plannerList{position: relative; margin-bottom: 109.5px;}
+.plannerList{
+    position: relative; 
+    margin: 92px 0 150px;
+}
 .planner_new{
     position: fixed;
     bottom: 15%; right: 5%;
@@ -20,8 +23,13 @@
         width: 90%;
         margin: 30px auto;
         display: flex;
-        gap: 39%;
+        position: relative;
         align-items: center;
+        >h2{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
         .calendar_close{
             img{
                 vertical-align: text-top;

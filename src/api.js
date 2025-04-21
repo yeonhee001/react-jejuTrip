@@ -178,6 +178,7 @@ export const plan = create((set) => ({
     },
     //삭제
     removePlan: async (id, userId) => {
+        try { 
         const res = await axios.delete(`${process.env.REACT_APP_APIURL}/plan/del?id=${id}&userId=${userId}`);
         set((state) => {
             
@@ -187,6 +188,9 @@ export const plan = create((set) => ({
             
             return { planData: newData };
         });
+    } catch (err) {
+        console.error('🔥에러 발생🔥');
+    }
     }
 }));
 

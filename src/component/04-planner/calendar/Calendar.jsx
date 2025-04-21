@@ -3,12 +3,11 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { DateRange } from 'react-date-range';
 import { ko } from 'date-fns/locale';
 import { eachDayOfInterval, format, parse } from 'date-fns';
-import { mode, plan } from '../../api';
-import Button from '../_common/Button';
-
+import { mode, plan } from '../../../api';
+import Button from '../../_common/Button';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
-import '../../styles/04-planner/calendar.scss'
+import '../../../styles/04-planner/calendar.scss'
 
 function Calendar({btnName, type, onClick}) {
   const allDays = JSON.parse(localStorage.getItem('allDays'));
@@ -23,7 +22,6 @@ function Calendar({btnName, type, onClick}) {
       return `${datePart}${randPart}`;
   }
 
-  //일정 추가하러가기 버튼 눌렀을 때 실행 할 함수
   function generateTitle(planData) {
     // 객체의 값들 중 title만 추출
     const titles = Object.values(planData).map(item => item.title);
@@ -34,7 +32,8 @@ function Calendar({btnName, type, onClick}) {
     return `나의 제주 여행 ${i}`;
   }
   const date = allDays;
-
+  
+  //일정 추가하러가기 버튼 눌렀을 때 실행 할 함수
   function handleNoPlan() {
       const newId = generateId();
       const title = generateTitle(planData);
@@ -105,8 +104,6 @@ function Calendar({btnName, type, onClick}) {
     localStorage.setItem('allDays', JSON.stringify(allDays));
   };
 
-  
-
   return (
     <div className="calendar">
       <div style={{ height: '63vh', overflowY: 'hidden' }}>
@@ -124,12 +121,15 @@ function Calendar({btnName, type, onClick}) {
           maxDate={new Date(2025, 11, 31)} // 2025년 12월 31일까지 선택 가능
         />
       </div>
-      {type == "list" ?
-        <button onClick={handleNoPlan} className="calendar_button"><Button className={"calendar_button"}>{format(range[0].startDate, 'yyyy.MM.dd')} - {format(range[0].endDate, 'yyyy.MM.dd')} / {btnName}</Button></button>
-        :
-        <button onClick={()=>{onClick(); changeDate();}} className="calendar_button"><Button className={"calendar_button"}>{format(range[0].startDate, 'yyyy.MM.dd')} - {format(range[0].endDate, 'yyyy.MM.dd')} / {btnName}</Button></button>
-      }
-        </div>
+        <button 
+        onClick={ type == "list" ? handleNoPlan : ()=>{onClick(); changeDate();}} 
+        className="calendar_button"
+        >
+          <Button className={"calendar_button"}>
+            {format(range[0].startDate, 'yyyy.MM.dd')} - {format(range[0].endDate, 'yyyy.MM.dd')} / {btnName}
+          </Button>
+        </button>
+      </div>
   );
 }
 
