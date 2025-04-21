@@ -16,7 +16,8 @@ function KakaoLogin() {
   return (
     <>
       <p className='btn-kakao' onClick={kakao_login}>
-        <img src="/imgs/login_kakao_01.png" alt="로그인btn-카카오" />
+        <img src="/imgs/login_kakao_01.png" alt="로그인btn-카카오" className='login-pc'/>
+        <img src="/imgs/login_kakao_02.png" alt="로그인btn(mob)-카카오" className='login-mobile'/>
       </p>
     </>
   )

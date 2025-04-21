@@ -19,7 +19,8 @@ function NaverLogin() {
   return (
     <>
       <p onClick={naver_login}>
-        <img src="/imgs/login_naver_01.png" alt="로그인btn-네이버" />
+        <img src="/imgs/login_naver_01.png" alt="로그인btn-네이버" className='login-pc'/>
+        <img src="/imgs/login_naver_02.png" alt="로그인btn(mob)-네이버" className='login-mobile'/>
       </p>
     </>
   )

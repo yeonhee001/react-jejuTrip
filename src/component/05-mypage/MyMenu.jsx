@@ -1,5 +1,5 @@
 import React from 'react'
-import Heart_stroke_red from '../icons/Heart_stroke_red'
+import My_like from '../icons/My_like';
 import Check from '../icons/Check';
 import Activity from '../icons/Activity';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +17,7 @@ function MyMenu({ isLoggedIn, openPopup }) {
     {
       type: 'like',
       url: 'like',
-      icon: <Heart_stroke_red className={'my-menuicon-like'}/>,
+      icon: <My_like className={'my-menuicon-like'}/>,
       txt: '좋아요'
     },
     {

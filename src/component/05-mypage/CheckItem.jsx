@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Checkbox, FormControlLabel, FormGroup } from '@mui/material'
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import AddCheckItem from './AddCheckItem';
 import SwipeAction from '../_common/SwipeAction';
+import "../../styles/05-mypage/check/checkDetail.scss";
 
 function CheckItem({ list, setList, isEdit, type, trashClick, trash, setIsPopupOpen }) {
 
@@ -13,9 +14,8 @@ function CheckItem({ list, setList, isEdit, type, trashClick, trash, setIsPopupO
           {
             list.map((item, i)=>(
               !trashClick[i] && (
-                <div style={{ pointerEvents: isEdit ? 'auto' : 'none' }}>
+                <div key={`${i}-${Math.random()}`} style={{ pointerEvents: isEdit ? 'auto' : 'none' }}>
                   <SwipeAction 
-                    key={`${i}-${Math.random()}`}
                     setTrashClick={() => trash(i, type)} 
                     setIsPopupOpen={setIsPopupOpen}
                   >
@@ -44,6 +44,7 @@ function CheckItem({ list, setList, isEdit, type, trashClick, trash, setIsPopupO
                           fontFamily: 'NanumSquare, Roboto'
                         },
                       }}
+                      className='checkitem'
                     />
                   </SwipeAction>
                 </div>
