@@ -20,7 +20,7 @@ function Around({arounddata}) {
       delay: 3000,
       disableOnInteraction: false,
     }}
-    loop={true}
+    loop={arounddata.length > 4}
     >
       {
         arounddata.slice(0,8).map((item)=>

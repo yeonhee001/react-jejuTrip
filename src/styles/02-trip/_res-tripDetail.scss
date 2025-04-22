@@ -55,6 +55,9 @@
     .trip-detail-top{
       .trip-detail-img{
         >img{
+          width: calc(100% + 10%); // style.scss에서 뺀 패딩 38px * 2
+          margin-left: -5%;
+          margin-right: -5%;
           height: 520px;
         }
       }

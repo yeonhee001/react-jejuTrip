@@ -5,10 +5,14 @@ import Search from '../../component/icons/Search'
 import SearchBar from '../../component/00-search/SearchBar'
 import Ranking from '../../component/00-search/Ranking'
 import TagBtn from '../../component/_common/TagBtn'
+import DataLoading from '../../component/_common/DataLoading'
 import "../../styles/00-search/searchPage.scss";
 
 
 function SearchPage() {
+  const [loading, setLoading] = useState(true); // 데이터 로딩
+  const [keywordLoading, setKeywordLoading] = useState(true); // 데이터 로딩
+  const [tagLoading, setTagLoading] = useState(true); // 데이터 로딩
   const [keywords, setKeywords] = useState([]);
   const [tags, setTags] = useState([]);
   const [searchInput, setSearchInput] = useState('');
@@ -27,10 +31,12 @@ function SearchPage() {
       })
       .then((res)=>{
         setKeywords(res.data.data)
-        // console.log(res.data.data);
       })
       .catch((error) => {
         console.error("인기 검색어 불러오기 실패", error);
+      })
+      .finally(() => {
+        setKeywordLoading(false);
       });
     };
     fetchKeywords();
@@ -48,11 +54,27 @@ function SearchPage() {
       })
       .catch((error) => {
         console.error("인기 태그 불러오기 실패", error);
+      })
+      .finally(() => {
+        setTagLoading(false);
       });
     };
     fetchTags();
   },[])
 
+  useEffect(()=>{
+    if(!keywordLoading && !tagLoading){
+      setLoading(false);
+    }
+  },[keywordLoading, tagLoading])
+
+  if(loading){
+    return (
+      <div className='search-loading-contain'>
+        <DataLoading className={'search-loading'}/>
+      </div>
+    )
+  }
   return (
     <div className='search-page'>
       <SearchBar showBackBtn={true} placeholder={"궁금해 제주?!"} submitbtn={<Search className={'search-btn'}/>} onClick={() => navigate(-1)}
@@ -63,6 +85,8 @@ function SearchPage() {
           wordClick(searchInput);
         }
       }}/>
+
+
 
       <div className='pop-search'>
         <h2>인기 검색어</h2>
@@ -89,7 +113,7 @@ function SearchPage() {
         <div className='popTags-cont'>
           {
             tags.map((item)=>
-              <TagBtn key={item.일련번호} tagbtn={item.태그명} onClick={()=>wordClick(item.태그명)}/>
+              <TagBtn className={'search-tagbtn'} key={item.일련번호} tagbtn={item.태그명} onClick={()=>wordClick(item.태그명)}/>
             )
           }
         </div>

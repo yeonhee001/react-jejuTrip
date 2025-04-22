@@ -1,4 +1,4 @@
-.search-page{margin-top: 59px;}
+.search-page{margin: 59px 0 100px;}
 
 //Searchbar
 .searchbar{
@@ -33,12 +33,12 @@
   display: flex;
   align-items: center;
   b{
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     color: #5886BA;
   }
   span{
-    font-size: 14px;
+    font-size: 16px;
     margin-left: 14px;
     width: 100px;
   }
@@ -52,9 +52,20 @@
     font-size: 18px;
   }
   .popTags-cont{
-    >.tagbtn{
+    >.search-tagbtn{
+      font-size: 16px;
       margin-bottom: 10px;
     }
+  }
+}
+
+//loading
+.search-loading-contain{
+  margin-top: 150px;
+  .search-loading{
+    width:50%;
+    margin: 0 auto;
+    height: 120px;
   }
 }
 

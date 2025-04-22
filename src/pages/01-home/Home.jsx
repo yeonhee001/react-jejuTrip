@@ -16,6 +16,7 @@ import PopupAction from '../../component/_common/PopupAction';
 import Month from '../../component/01-home/Month';
 import MonthPeople from '../../component/01-home/MonthPeople';
 import DataLoading from '../../component/_common/DataLoading';
+import Btn2Popup from '../../component/popups/Btn2Popup';
 import Top from '../../component/icons/Top';
 
 // Import Swiper styles
@@ -54,6 +55,9 @@ function Home() {
   const [selectedPeopleCount, setSelectedPeopleCount] = useState(null); //선택한 관광객 전체 데이터
   const [mainWeather, setMainWeather] = useState([]); //선택한 관광객 전체 데이터
   const [imgPost, setImgPost] = useState([]); //선택한 관광객 전체 데이터
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const isLoggedIn = !!sessionStorage.getItem('access'); // 세션 내 access 값이 있으면 true, 없으면 false
+  const user = JSON.parse(sessionStorage.getItem('user'));
   const navigate = useNavigate();
   
 
@@ -301,6 +305,15 @@ function Home() {
     }
   }
 
+  // 인생샷 클릭했을 때 로그인 확인하기
+  const photoClick = (target)=>{
+    if(!isLoggedIn){
+      setIsPopupOpen(true);
+    }else if(target ==='top' || target ==='photo'){
+      navigate('/community', { state: { setSelectedTab: 1 } });
+    }
+  }
+
   // 관광객수 api 불러오기
   useEffect(()=>{
     const fetchPeople = ()=>{
@@ -436,6 +449,9 @@ function Home() {
         <HomeContTop homecontTitle={'오늘, 이곳 어때? '} homecontEmoji={'🚗'} to={'/trip/triplist/tour'}/>
         <div className='home-tripContent'>
           {
+            loading ? (
+              <DataLoading className={'home-main-loading'}/>
+            ) : 
             selectedTrips.map((item, i)=>
               <HomeTrip 
                 key={item.contentsid}
@@ -455,6 +471,9 @@ function Home() {
         <div className='home-foodContent'>
     {/* {console.log("✅ selectedFoods check:", selectedFoods, 'length:', selectedFoods.length)} */}
           {
+            loading ? (
+              <DataLoading className={'home-main-loading'}/>
+            ) : 
             selectedFoods.map((item) => 
                 <HomeFood 
                   key={item.contentsid}
@@ -471,7 +490,16 @@ function Home() {
       </div>
 
       <div className='home-photomenu'>
-        <HomeContTop homecontTitle={'꼭 남겨야 할 인생샷 스팟 '} homecontEmoji={'📸'} to={'/community'} state={{setSelectedTab: 1}}/>
+        <HomeContTop 
+        homecontTitle={'꼭 남겨야 할 인생샷 스팟 '} homecontEmoji={'📸'} 
+        to={'/community'} state={{setSelectedTab: 1}}
+        onClick={()=>photoClick('top')}/>
+        
+        {isPopupOpen && (
+          <Btn2Popup isOpen={isPopupOpen} setIsOpen={setIsPopupOpen} type={'login'} 
+          onConfirm={() => navigate('/login')}/>
+        )}
+
         <div>
           <Swiper
           slidesPerView={'auto'}
@@ -481,7 +509,7 @@ function Home() {
             {
               imgPost.map((item, i)=>
                 <SwiperSlide key={i}>
-                  <HomePhoto className={'home-photo'} img={item} state={{setSelectedTab: 1}}/>
+                  <HomePhoto className={'home-photo'} to={'/community'} img={item} state={{setSelectedTab: 1}} onClick={()=>photoClick('photo')}/>
                 </SwiperSlide>
               )
             }

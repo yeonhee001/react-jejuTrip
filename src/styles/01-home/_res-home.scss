@@ -257,10 +257,17 @@
       }
       .popup-month{
         .month-btn{
+          flex: 0 0 23%;
+          width: 23%;
           margin-bottom: 18px;
           .month-num{
+            text-align: center;
             font-size: 16px;
             padding: 15px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
           }
         }
       }
@@ -425,7 +432,7 @@
           >p{
             flex: 1;
             aspect-ratio: 163 / 80;
-            width: 100%;
+            width: 100%; height: auto;
             overflow: hidden;
             >img{
               width: 100%;
@@ -538,6 +545,7 @@
       }
       .popup-month{
         .month-btn{
+          width: auto;
           margin-bottom: 18px;
           .month-num{
             font-size: 14px;
