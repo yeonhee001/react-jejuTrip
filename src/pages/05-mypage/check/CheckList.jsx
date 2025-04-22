@@ -27,6 +27,13 @@ function CheckList() {
     setDeleteTarget({ id });
   };
 
+  // 데이터 로딩
+  useEffect(()=>{
+    setTimeout(()=>{
+      setLoading(false)
+    }, 1200)
+  })
+
   // 체크리스트 데이터 가져오기
   useEffect(()=>{
     setLoading(true);
@@ -34,7 +41,6 @@ function CheckList() {
     axios.get(`${process.env.REACT_APP_APIURL}/check/user/${userId}`)
     .then(res=>{
       if(res.data && res.data.length > 0) {
-
         // 연결된 여행이 있는 체크리스트만 필터링
         const filteredData = res.data.filter(check => check.planId !== null);
         setIsPlanCheckData(filteredData);
@@ -115,6 +121,7 @@ function CheckList() {
       <div>
         {!loading && checkData.length === 0 && <NoCheck />}
       </div>
+
 
       <div onClick={() => setIsPopupOpen(true)} className='add-check-btn-wrap'>
         <Newpost className={'add-check-btn'}/>

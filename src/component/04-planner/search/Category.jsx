@@ -90,6 +90,21 @@ function Category({selectedTab}) {
     return () => window.removeEventListener('scroll', handleScroll); //정리하기 : 스크롤 한번에 setListCount가 두세번 호출하지 않기 위해
     },[])
     
+    useEffect(()=>{
+    const handleScroll=()=>{
+        const scrollY = window.scrollY; // 스크롤의 상단 값
+        const windowHeight = window.innerHeight; // 한 화면에서 보여지는 브라우저 화면 높이
+        const fullHeight = document.body.offsetHeight; // 전체 페이지 높이(스크롤포함)
+
+        if(scrollY + windowHeight >= fullHeight-50) { // 사용자가 현재 보고 있는 화면의 가장 아래 위치 지점 >= 전체 페이지 바닥 -50px (바닥 근처에 왔을 때)
+        setListCount((prev) => prev + 30);
+        }
+    };
+
+    window.addEventListener('scroll', handleScroll); //스크롤 이벤트가 발생할 때마다 함수 실행
+    return () => window.removeEventListener('scroll', handleScroll); //정리하기 : 스크롤 한번에 setListCount가 두세번 호출하지 않기 위해
+    },[])
+    
     const shoppingList = shopNfoodNpartyData.shopping;
     const foodList = shopNfoodNpartyData.food;
     const festivalList = shopNfoodNpartyData.festival;

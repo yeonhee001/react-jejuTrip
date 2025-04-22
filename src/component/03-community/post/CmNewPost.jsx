@@ -71,6 +71,7 @@ function CmNewPost({ onClose = () => {} }) {
       title: data.title,
       description: data.description,
       subject: selectedItem,
+      hasVote:false,
       createdAt: new Date().toISOString(),
       imageUrls: res?.data || [],
     };

@@ -68,9 +68,22 @@ function CmSlideImg() {
   };
 
   const groupedImages = createGroups();
-  const handleClick = (id,item) => {
-    localStorage.post = JSON.stringify(item);
-    navigate(`/community/cmdetail/${id}`);
+  const handleClick = async (id,item) => {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    const userId =  user?.id.toString() || null;
+    try {
+      const res = await fetch(`${process.env.REACT_APP_APIURL}/like/user-liked?userId=${userId}`);
+      const data = await res.json();
+      let hasVote = data.likedPostIds.includes(item._id);
+
+      localStorage.post = JSON.stringify({...item,hasVote});
+      navigate(`/community/cmdetail/${id}`);
+    } catch (err) {
+      console.error("유저 좋아요 목록 조회 실패:", err);
+      
+    }
+    
+    
   };
 
   const scrollToTop = () => {

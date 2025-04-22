@@ -162,6 +162,10 @@ const CmFeedList = ({ setLoginPopupOpenFromParent }) => {
     navigate("/login");
   };
 
+  const handleLoginCancel = () => {
+    navigate(-1); // 이전 페이지로 이동
+  };
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -173,6 +177,7 @@ const CmFeedList = ({ setLoginPopupOpenFromParent }) => {
         setIsOpen={setLoginPopupOpen}
         type="login"
         onConfirm={handleLoginConfirm}
+        onCancel={handleLoginCancel} // "아니요" 누르면 뒤로 가기
       />
     );
   }
@@ -201,7 +206,7 @@ const CmFeedList = ({ setLoginPopupOpenFromParent }) => {
             <div
               key={item._id}
               className="post-container"
-              onClick={() =>{
+              onClick={() => {
                 navigate(`/community/cmdetail/${item._id}`);
                 localStorage.post = JSON.stringify(item);
               }}

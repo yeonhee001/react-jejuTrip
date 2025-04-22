@@ -30,15 +30,15 @@ function TicketRead({idx, topBarBtn, ticketdate}) {
                         const type = labelToKey[list.contents_label];
                         return (
                             <ul className='tickebox' key={`item-${i}`}>
-                            <li className='liItem'>
-                                <div className='liLine'>
-                                <div className='liNum'><span>{i + 1}</span></div>
-                                <SvgVerticalLine />
-                                </div>
-                                <NavLink to={`/trip/triplist/${type}/tripdetail/${list.contents_id}`}>
-                                <CardItem item={list} />
-                                </NavLink>
-                            </li>
+                                <li className='liItem'>
+                                    <div className='liLine'>
+                                    <div className='liNum'><span>{i + 1}</span></div>
+                                    <SvgVerticalLine />
+                                    </div>
+                                    <NavLink to={`/trip/triplist/${type}/tripdetail/${list.contents_id}`}>
+                                    <CardItem item={list} />
+                                    </NavLink>
+                                </li>
                             </ul>
                         );
                         })}
