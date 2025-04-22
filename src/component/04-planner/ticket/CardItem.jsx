@@ -1,6 +1,7 @@
 import React from 'react'
 
 function CardItem({item}) {
+
   return (
     <div className='swipeactionmemo'>
         <h2 className='title'>{item.title}</h2>

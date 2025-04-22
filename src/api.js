@@ -75,27 +75,31 @@ export const plan = create((set) => ({
         try {
             const res = await axios.get(`${process.env.REACT_APP_APIURL}/plan/user/${userId}`);
             set({ planData: res.data });
+            return res.data; // ✅ 추가!
             } catch (err) {
                 if (err.response && err.response.status === 404) {
-                set({ planData: [{
-                    userId : "",
-                    allList : [
-                        {
-                            id : "",
-                            title : "",
-                            date : [],
-                            item : {
-                                days : [{
-                                    day : "",
-                                    plans : []
+                    const emptyData = {
+                        userId: "",
+                        allList: [
+                            {
+                            id: "",
+                            title: "",
+                            date: [],
+                            item: {
+                                days: [{
+                                day: "",
+                                plans: []
                                 }]
                             }
-                        }
-                    ]
-                }] })
-        } else {
-            console.error("Error fetching plan:", err);
-        }
+                            }
+                        ]
+                        };
+                set({ planData: emptyData });
+                return emptyData; // ✅ 요 리턴이 빠졌던 거!
+            } else {
+                console.error("Error fetching plan:", err);
+                throw err; // ✅ 예기치 못한 에러는 위로 던지는 게 좋아!
+            }
         }
     },
     pinkPlanData : async ()=>{

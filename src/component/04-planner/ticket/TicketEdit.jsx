@@ -47,7 +47,7 @@ function TicketEdit({idx, btnName, ticketdate}) {
     setPlanData(updated); // 상태 업데이트
     enterEditMode()
     };
-
+    
     return (
     <div className="ticketline" style={{overflow:'hidden', borderRadius:"10px"}}>
         <div className='ticket'>
@@ -87,7 +87,7 @@ function TicketEdit({idx, btnName, ticketdate}) {
                                         <SvgVerticalLine/>
                                     </div>
                                     <CardItem item={item} />
-                                    <List/>
+                                    <List className={"plnner_drag"}/>
                                     </li>
                                 </ul>
                                 )}
@@ -100,18 +100,22 @@ function TicketEdit({idx, btnName, ticketdate}) {
                     </DragDropContext>
                     ):( //여기가 바로 편집 모드
                         <>
-                            {planData?.item?.days[idx]?.plans?.map((item, i)=>(
-                                <SwipeActionMemo key={`item-${i}`} className={"swipeactionmemo"} setTrashClick={()=>{trash(i)}}>
+                            {planData?.item?.days[idx]?.plans?.map((item, i) => (
+                            <SwipeActionMemo
+                                key={`item-${i}`}
+                                className={"swipeactionmemo"}
+                                setTrashClick={() => { trash(i); }}
+                            >
                                 <ul className='tickebox'> {/* Day 1 */}
-                                    <li className='liItem'>
-                                        <div className='liLine'>
-                                            <div className='liNum'><span>{ i + 1 }</span></div>
-                                            <SvgVerticalLine/>
-                                        </div>
-                                        <CardItem item={item}/>
-                                    </li>
+                                <li className='liItem'>
+                                    <div className='liLine'>
+                                    <div className='liNum'><span>{i + 1}</span></div>
+                                    <SvgVerticalLine />
+                                    </div>
+                                    <CardItem item={item} />
+                                </li>
                                 </ul>
-                                </SwipeActionMemo>
+                            </SwipeActionMemo>
                             ))}
                         </>
                     )}

@@ -45,7 +45,7 @@ function PlannerDetail() {
     const ticketDate = tripDay?.map(day =>
         format(parse(day, 'yyyy.MM.dd', new Date()), 'M.d/eee', { locale: ko })
     );
-
+    
     useEffect(()=>{
         if(edit){
             enterEditMode()
@@ -65,7 +65,6 @@ function PlannerDetail() {
         }
     }, [userId, id, location?.state, isEditMode]);
 
-    
     useEffect(() => {
         if (planData?.date){
             setTripDay(planData.date);
@@ -97,49 +96,46 @@ function PlannerDetail() {
     .catch(err => {
         alert('수정에 실패했습니다.');
     });
-    }
+}
 
-    // 데이터 변경사항 확인하여 팝업 발생 관리
-    async function openSavePopup() {
+// 데이터 변경사항 확인하여 팝업 발생 관리
+async function openSavePopup() {
         const isDataChanged = planData?.item?.days?.length
+        
+        const newData = {
+            ...planData,
+            title: eTitle,
+            date: tripDay
+        };
 
         if(isDataChanged) {
             setIsPopupOpenSave(true);
-
-        const newList = {
-            ...planData,
-            title : eTitle,
-            date : tripDay,
-            days : [{
-                day : ticketDate,
-                plans : [searchListItem]
-            }]
-        };
-
+            
         if (location.state?.isEdit !== true) {
             // 기존 체크리스트일 경우 PUT
-            updateCheckData(newList);
+            updateCheckData(newData);
             localStorage.removeItem('allDays');
             localStorage.removeItem(`editTitle-${id}`);
-            setIsEdit(false)
             exitEditMode();
         } else {
             // 새 체크리스트일 경우 POST
             localStorage.removeItem('allDays');
             localStorage.removeItem(`editTitle-${id}`);
-            await newPlan(userId, newList);
+            await newPlan(userId, newData);
             setIsEdit(false)
             exitEditMode();
+            
         }
         }
     }
 
     // 편집 모드 나가기
     function handleClose() {
-        if(isEditMode == true) {
+        if(isEditMode == true || location.state?.isEdit == true) {
             setIsPopupOpenExit(true);
         } else {
             exitEditMode();
+            setIsEdit(false)
             navigate(-1)
         }
     }
@@ -210,7 +206,15 @@ function PlannerDetail() {
 
         <Btn1Popup //저장 안내 팝업
             isOpen={isPopupOpenSave} 
-            setIsOpen={setIsPopupOpenSave} type={"save"}/>
+            setIsOpen={setIsPopupOpenSave} type={"save"}
+            onConfirm={() => {
+                if(location.state?.isEdit == true){
+                    navigate(`/planner`);
+                }else{
+                    setIsPopupOpenSave(false);
+                }
+            }}
+            />
         <Btn2Popup //수정 중 나가기 팝업
             isOpen={isPopupOpenExit}
             setIsOpen={setIsPopupOpenExit}

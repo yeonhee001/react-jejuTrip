@@ -1,3 +1,7 @@
+.searchLoading{
+    width: 50%;
+    margin: 15% auto;
+}
 .planner_place{
     position: relative;
     margin: 92px 0 150px;
@@ -36,11 +40,17 @@
         background-color: #5886BA;
         border-radius: 85px;
     }
-    .place_btn{ //선택완료 버튼
+    .place_btn_fixed{
         width: 768px;
+        background-color: white;
+        border-radius: 7px;
+        height: 84px;
         position: fixed;
-        left: 50%; bottom: 40px;
+        left: 50%; bottom: 0;
         transform: translateX(-50%);
+        .place_btn{ //선택완료 버튼
+            width: 100%;
+        }
     }
 }
 .category{

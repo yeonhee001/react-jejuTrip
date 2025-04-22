@@ -8,7 +8,7 @@ import SvgVerticalLine from './SvgVerticalLine';
 
 function TicketRead({idx, topBarBtn, ticketdate}) {
     const { planData } = plan();
-    
+
     return (
     <div className="ticketline" style={{overflow:'hidden', borderRadius:"10px"}}>
         <div className='ticket'>
@@ -20,28 +20,28 @@ function TicketRead({idx, topBarBtn, ticketdate}) {
                         <Plane className={"plane"}/>
                         <div className='right_box'><span className='topBarBtn'>{topBarBtn}</span></div>
                     </div>
-                    {planData?.item?.days[idx]?.plans?.map((item, i)=>{
-                    const labelToKey = {
-                        "관광지": "tour",
-                        "음식점": "food",
-                        "축제/행사" : "festival",
-                        "쇼핑": "shopping",
-                    };
-                    const type = labelToKey[item.contents_label]
-
-                    return(
-                    <ul className='tickebox' key={`item-${i}`}> {/* Day 1 */}
-                        <li className='liItem'>
-                            <div className='liLine'>
-                            <div className='liNum'><span>{i+1}</span></div>
-                            <SvgVerticalLine/>
-                            </div>
-                            <NavLink to={`/trip/triplist/${type}/tripdetail/${item.contents_id}`}>
-                                <CardItem item={item}/>
-                            </NavLink>
-                        </li>
-                    </ul>
-                    )})}
+                    {planData?.item?.days[idx]?.plans?.map((list, i) => {
+                        const labelToKey = {
+                            "관광지": "tour",
+                            "음식점": "food",
+                            "축제/행사": "festival",
+                            "쇼핑": "shopping",
+                        };
+                        const type = labelToKey[list.contents_label];
+                        return (
+                            <ul className='tickebox' key={`item-${i}`}>
+                            <li className='liItem'>
+                                <div className='liLine'>
+                                <div className='liNum'><span>{i + 1}</span></div>
+                                <SvgVerticalLine />
+                                </div>
+                                <NavLink to={`/trip/triplist/${type}/tripdetail/${list.contents_id}`}>
+                                <CardItem item={list} />
+                                </NavLink>
+                            </li>
+                            </ul>
+                        );
+                        })}
                 </div>
             </div>
             <SvgMiddleLine/>

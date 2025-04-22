@@ -6,6 +6,7 @@ import Category from '../../component/04-planner/search/Category';
 import PlannerLike from '../../component/04-planner/search/PlannerLike';
 import Arrow from '../../component/icons/Arrow';
 import "../../styles/04-planner/place.scss";
+import Top from '../../component/icons/Top';
 
 function Place() {
     // selectedTab 이용해서 탭 별 내용 넣으세요,,,! Activity.jsx 참고
@@ -31,6 +32,7 @@ function Place() {
         <PlannerLike selectedTab={selectedTab}/>
         }
         </div>
+        <Top/>
         </>
     )
 }

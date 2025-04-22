@@ -21,6 +21,7 @@ function PlannerList() {
     const [calendar, setCalendar] = useState(false);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [successful, setSuccessful] = useState(false);
+    const [isDonePopupOpen, setIsDonePopupOpen] = useState(false);
     const [trashClick, setTrashClick] = useState({});
     const [deleteTarget, setDeleteTarget] = useState({ index: null, type: null });
     
@@ -38,13 +39,14 @@ function PlannerList() {
             return;
         }
         PlanListData(userId)
-        .then(() => {
-            if( planData?.item?.days[0]?.plans.length == 0 || planData?.item?.days[0]?.plans.length == undefined){
-                setCalendar(true); // 달력 오픈
-                setLoading(false)
+        .then((res) => {
+            if (!res || res?.length === 0) {
+              setCalendar(true); // 데이터 없으면 달력 열기
+            } else {
+              setCalendar(false); // 데이터 있으면 달력 닫기
             }
-        }
-    );
+            setLoading(false);
+        });
     }, [userId, successful]);
 
     const trash = (id) => {   
@@ -60,31 +62,35 @@ function PlannerList() {
     function deletePlanData() {
         const { id } = deleteTarget;
         const stingID = String(userId)
-
         if (id !== null) {
             removePlan(id, stingID);
             setTrashClick({});
-            setSuccessful((prev) => !prev)
+            setSuccessful((prev) => !prev);
         }
     }
-    
+
     if(loading){<DataLoading/>; return}
     return (
         <div className='plannerList'>
             { userId &&
                 <>
-                { userId && planData.length > 0 &&
+                { userId && planData?.length > 0 &&
                     <>
-                    <ListPage 
-                        page={"plan"} 
+                    <ListPage
+                        page={"plan"}
                         listData={planData}
                         trashClick={trashClick}
                         trash={(id) => trash(id)}
-                        onConfirm={deletePlanData}
-                    />
+                        onConfirm={() => {
+                            deletePlanData();
+                            setIsDonePopupOpen(true); // 여기서 열기
+                        }}
+                        isDonePopupOpen={isDonePopupOpen}
+                        setIsDonePopupOpen={setIsDonePopupOpen}
+                        />
                     <button onClick={()=>{setCalendar(true)}}><Newpost className={"planner_new"}/></button>
                     </>
-                    }
+                }
                     <>
                     {calendar && <div className="overlay"/>}
                     <PopupAction className={"calendar_popup"} useState={calendar}>
@@ -108,7 +114,6 @@ function PlannerList() {
                 navigate(-1)
                 setIsPopupOpen(false)
             }}
-            
             />
         </div>
     )
