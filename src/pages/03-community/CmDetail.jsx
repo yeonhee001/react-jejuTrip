@@ -65,7 +65,7 @@ function CmDetail() {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/post/${post._id}`, {
+      const response = await fetch(`${process.env.REACT_APP_APIURL}/post/${post._id}`, {
         method: 'DELETE',
       });
 
@@ -87,7 +87,7 @@ function CmDetail() {
     const savedLiked = JSON.parse(localStorage.getItem(`liked-${post._id}`)) || false;
     setLiked(savedLiked);
 
-    fetch(`http://localhost:4000/like/count?postId=${post._id}`)
+    fetch(`${process.env.REACT_APP_APIURL}/like/count?postId=${post._id}`)
       .then(res => res.json())
       .then(data => {
         setLikeCount(data.count);
