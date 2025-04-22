@@ -4,23 +4,20 @@ import Btn1Popup from '../popups/Btn1Popup';
 import Btn2Popup from '../popups/Btn2Popup';
 import SwipeAction from './SwipeAction'
 import SwipeHand from './SwipeHand';
+import DataLoading from './DataLoading';
 
-function ListPage({listData, page, trashClick, trash, onConfirm }) {
+function ListPage({listData, page, trashClick, trash, onConfirm, loading = false }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isDonePopupOpen, setIsDonePopupOpen] = useState(false);
   const [openSwipeId, setOpenSwipeId] = useState(null);
 
   let title = '';
-  let subtitle = '';
 
   if(page === 'check') {
     title = '체크리스트';
-    subtitle = '내 체크리스트'
   } else if(page === 'plan') {
     title = '나의 여행 보기';
-    subtitle = '내 여행 리스트'
   }
-console.log(listData);
 
   // 연도별로 데이터 구분
   const groupedData = listData.reduce((acc, item) => {
@@ -31,72 +28,80 @@ console.log(listData);
     acc[year].push(item);
     return acc;
   }, {});
+  const years = Object.keys(groupedData).sort((a,b)=>b-a); // 연도 배열
 
-  const years = Object.keys(groupedData); // 연도 배열
-  
-  function compareNumbers(a, b) {
-    return a - b;
-  }
-  years.sort((a,b)=>b-a);
+  // 각 연도 안 데이터 최신순 정렬
+  years.forEach((year) => {
+    groupedData[year].sort((a, b) => {
+      const aDate = new Date(a.date[0].replace(/\./g, '-'));
+      const bDate = new Date(b.date[0].replace(/\./g, '-'));
+      return bDate - aDate;
+    });
+  });
   
   return (
     <div className='listpage'>
-      <h2>{title}</h2> 
-      <div className='listpage-subtitle'>
-        {subtitle}
-        {listData.length !== 0 && (
-          <div className='listpage-swipehand'>
-            <SwipeHand />
-          </div>
-        )}
-      </div>
+      <h2>{title}</h2>
+      {loading ? (
+        <DataLoading className={'listpage-loading'}/>
+      ) : (
+        <>
+          {listData.length !== 0 && (
+            <div className='listpage-swipehand-wrap'>
+              <div className='listpage-swipehand'>
+                <SwipeHand />
+              </div>
+            </div>
+          )}
 
-      {/* 연도별로 그룹화된 데이터 출력 */}
-      {years.map((year) => (
-        <div key={year} style={{marginBottom: '32px'}}>
-          <h3>{year}</h3> {/* 연도 출력 */}
-          {groupedData[year].map((item, i) => (
-            !trashClick[item.id] && (
-              <SwipeAction 
-                key={item.id} 
-                setTrashClick={() => {
-                  setOpenSwipeId(item.id);
-                  trash(item.id)
-                }} 
-                setIsPopupOpen={setIsPopupOpen}
-                resetSwipe={openSwipeId === item.id}
-              >
-                  <ListItem
-                    id={item.id}
-                    title={item.title}
-                    date={item.date}
-                    page={page}
-                  />
-              </SwipeAction>
-            )
+          {years.map((year) => (
+            <div key={year} className='listpage-year'>
+              <h3>{year}</h3>
+              {groupedData[year].map((item) => (
+                !trashClick?.[item.id] && (
+                  <SwipeAction
+                    key={item.id}
+                    setTrashClick={() => {
+                      setOpenSwipeId(item.id);
+                      trash(item.id);
+                    }}
+                    setIsPopupOpen={setIsPopupOpen}
+                    resetSwipe={openSwipeId === item.id}
+                  >
+                    <ListItem
+                      id={item.id}
+                      title={item.title}
+                      date={item.date}
+                      page={page}
+                    />
+                  </SwipeAction>
+                )
+              ))}
+            </div>
           ))}
-          <Btn2Popup 
-            isOpen={isPopupOpen} 
-            setIsOpen={setIsPopupOpen} 
-            type={'delete'} 
-            onCancel={() => {
-              setOpenSwipeId(null);
-            }}
-            onConfirm={() => {
-              onConfirm();
-              setIsPopupOpen(false);
-              setIsDonePopupOpen(true);
-            }}
-          />
-          <Btn1Popup
-            isOpen={isDonePopupOpen}
-            setIsOpen={setIsDonePopupOpen}
-            type={'delete'}
-          />
-        </div>
-      ))}
-    </div> 
-  )
+        </>
+      )}
+
+      <Btn2Popup
+        isOpen={isPopupOpen}
+        setIsOpen={setIsPopupOpen}
+        type={'delete'}
+        onCancel={() => {
+          setOpenSwipeId(null);
+        }}
+        onConfirm={() => {
+          onConfirm();
+          setIsPopupOpen(false);
+          setIsDonePopupOpen(true);
+        }}
+      />
+      <Btn1Popup
+        isOpen={isDonePopupOpen}
+        setIsOpen={setIsDonePopupOpen}
+        type={'delete'}
+      />
+    </div>
+  );
 }
 
 export default ListPage

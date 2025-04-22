@@ -1,35 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
+import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
+import { mode, plan } from '../../../api';
 import Plane from '../../icons/Plane';
 import SwipeActionMemo from '../SwipeActionMemo';
-import CardItem from '../CardItem';
-import Close from '../../icons/Close';
+import CardItem from './CardItem';
 import Button from '../../_common/Button';
-import { plan } from '../../../api';
-import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
-import SvgLine from './SvgLine';
+import List from '../../icons/List';
+import SvgMiddleLine from './SvgMiddleLine';
+import SvgVerticalLine from './SvgVerticalLine';
 
-function TicketEdit({idx, btnName, ticketdate, setEdit}) {
+function TicketEdit({idx, btnName, ticketdate}) {
     const { planData, setPlanData } = plan();
+    const { enterEditMode } = mode();
     const [drag, setDrag] = useState(false); // 일정 순서 버튼 클릭 상태
-    const [memoClick, setMemoClick] = useState({}); // 메모 버튼 클릭 상태
-    const [trashClick, setTrashClick] = useState({}); // 삭제 버튼 클릭 상태
     const { id } = useParams(); // url에서 id 가져오기
 
     const path = btnName === "장소 추가" ? `/planner/plannerdetail/${id}/place/${idx}` : "#"
-
-    const memo = (index) => {
-        setMemoClick((prev) => ({
-          ...prev, //기존 값 유지
-          [index]: !prev[index], //index값만 변경
-        }));
-    };
     
     const trash = (index) => {
-        setTrashClick((prev) => ({
-          ...prev, //기존 값 유지
-          [index]: !prev[index], //index값만 변경
-        }));
+        // 배열에서 해당 아이템 삭제
+        const updatedPlans = planData.item.days[idx].plans.filter((_, i) => i !== index);
+    
+        const updated = structuredClone(planData);
+        updated.item.days[idx].plans = updatedPlans;
+        setPlanData(updated); // 상태 업데이트
     };
 
     //순서변경 버튼 함수
@@ -50,7 +45,7 @@ function TicketEdit({idx, btnName, ticketdate, setEdit}) {
     const updated = structuredClone(planData);
     updated.item.days[idx].plans = items;
     setPlanData(updated); // 상태 업데이트
-    setEdit(true)
+    enterEditMode()
     };
 
     return (
@@ -62,9 +57,11 @@ function TicketEdit({idx, btnName, ticketdate, setEdit}) {
                         <span>{`Day ${idx+1}`}</span>
                         <span className='ticketdate'>{ticketdate}</span>
                         <Plane className={"plane"}/>
-                        <button className='topbarright'
-                        onClick={handleToggleDrag}
-                        >{drag ? "완료" : "일정 순서 변경"}</button>
+                        <div className='right_box'>
+                            <button className='topBarBtn'onClick={handleToggleDrag}>
+                                {drag ? "완료" : "일정 순서 변경"}
+                            </button>
+                        </div>
                     </div>
                     {drag ? ( //여기는 순서변경 모드
                     <DragDropContext onDragEnd={handleDragEnd}>
@@ -87,11 +84,10 @@ function TicketEdit({idx, btnName, ticketdate, setEdit}) {
                                     <li className='liItem'>
                                     <div className='liLine'>
                                         <div className='liNum'><span>{i + 1}</span></div>
-                                        <svg width="2" height="100%" xmlns="http://www.w3.org/2000/svg">
-                                        <line x1="1" y1="0" x2="1" y2="100%" stroke="rgba(0, 0, 0, 0.3)" strokeWidth="2" />
-                                        </svg>
+                                        <SvgVerticalLine/>
                                     </div>
                                     <CardItem item={item} />
+                                    <List/>
                                     </li>
                                 </ul>
                                 )}
@@ -105,33 +101,23 @@ function TicketEdit({idx, btnName, ticketdate, setEdit}) {
                     ):( //여기가 바로 편집 모드
                         <>
                             {planData?.item?.days[idx]?.plans?.map((item, i)=>(
-                                !trashClick[i] &&  (
-                                <SwipeActionMemo className={"swipeactionmemo"} setMemoClick={()=>{memo(i)}} setTrashClick={()=>{trash(i)}}>
-                                <ul className='tickebox' key={i}> {/* Day 1 */}
+                                <SwipeActionMemo key={`item-${i}`} className={"swipeactionmemo"} setTrashClick={()=>{trash(i)}}>
+                                <ul className='tickebox'> {/* Day 1 */}
                                     <li className='liItem'>
                                         <div className='liLine'>
                                             <div className='liNum'><span>{ i + 1 }</span></div>
-                                            <svg width="2" height="100%" xmlns="http://www.w3.org/2000/svg">
-                                                <line x1="1" y1="0" x2="1" y2="100%" stroke="rgba(0, 0, 0, 0.3)" stroke-width="2"/>
-                                            </svg>
+                                            <SvgVerticalLine/>
                                         </div>
                                         <CardItem item={item}/>
-                                        {memoClick[i] &&
-                                        <div className='planner_memo'>
-                                            <p><img src='/imgs/planner_memo_01.svg'/></p>
-                                            <button className='memo_close'><Close/></button>
-                                            <textarea className='memo_text' placeholder='잊기 쉬운 간단한 내용을 기록해보세요'/>
-                                        </div>}
                                     </li>
                                 </ul>
                                 </SwipeActionMemo>
-                                )
                             ))}
                         </>
                     )}
                 </div>
             </div>
-            <SvgLine/>
+            <SvgMiddleLine/>
             <div className='ticketbottom'>
                 <div className='ticketpadding'>
                     <NavLink to={path} className='ticketbtn'>

@@ -21,7 +21,8 @@ function GoogleLogin() {
 
   return (
     <p onClick={google_login}>
-      <img src="/imgs/login_google_01.png" alt="로그인btn-구글" />
+      <img src="/imgs/login_google_01.png" alt="로그인btn-구글" className='login-pc'/>
+      <img src="/imgs/login_google_02.png" alt="로그인btn(mob)-구글" className='login-mobile'/>
     </p>
   )
 }

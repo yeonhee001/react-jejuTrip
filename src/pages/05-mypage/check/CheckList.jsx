@@ -9,9 +9,11 @@ import "../../../styles/05-mypage/check/checkList.scss";
 function CheckList() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);                       // 팝업 상태 관리
   const [checkData, setCheckData] = useState([]);                              // 체크리스트 데이터 상태
+  const [isPlanCheckData, setIsPlanCheckData] = useState([]);                  // 여행 없는 체크리스트 데이터 상태
   const [planData, setPlanData] = useState([]);                                // 여행 일정 데이터 상태
   const [trashClick, setTrashClick] = useState({});                            // 삭제 버튼 클릭 상태
   const [deleteTarget, setDeleteTarget] = useState({ index: null, type: null });
+  const [loading, setLoading] = useState(true);
 
   const userId = String(JSON.parse(sessionStorage.getItem('user'))?.id);
 
@@ -24,11 +26,21 @@ function CheckList() {
     setDeleteTarget({ id });
   };
 
+  // 데이터 로딩
+  useEffect(()=>{
+    setTimeout(()=>{
+      setLoading(false)
+    }, 1200)
+  })
+
   // 체크리스트 데이터 가져오기
   useEffect(()=>{
     axios.get(`${process.env.REACT_APP_APIURL}/check/user/${userId}`)
     .then(res=>{
       if(res.data && res.data.length > 0) {
+        // 연결된 여행이 있는 체크리스트만 필터링
+        const filteredData = res.data.filter(check => check.planId !== null);
+        setIsPlanCheckData(filteredData);
         setCheckData(res.data);
       } else {
         setCheckData([]);
@@ -45,20 +57,26 @@ function CheckList() {
 
   // 나의 여행 데이터 가져오기
   useEffect(()=>{
+    // isPlanCheckData가 준비된 후에 실행되도록 조건 추가
+    if (!userId) return;
+
     axios.get(`${process.env.REACT_APP_APIURL}/plan/user/${userId}`)
-    .then(res=>{
-      // 연결된 체크리스트가 없는 여행만 필터링
-      const filteredData = res.data.filter(plan => plan.checkId === '');
-      setPlanData(filteredData);
-    })
-    .catch(err => {
-      if (err.response && err.response.status === 404) {
-        setPlanData([]);
-      } else {
-        console.error("Error fetching plan:", err);
-      }
-    });
-  },[userId])
+      .then(res=>{
+        // 연결된 체크리스트에 포함된 planId 배열 만들기
+        const connectedPlanIds = isPlanCheckData.map(check => check.planId);
+        // 연결되지 않은 여행만 필터링
+        const filteredData = res.data.filter(plan => !connectedPlanIds.includes(plan.id));
+        setPlanData(filteredData);
+      })
+      .catch(err => {
+        if (err.response && err.response.status === 404) {
+          setPlanData([]);
+        } else {
+          console.error("Error fetching plan:", err);
+        }
+      });
+  }, [userId, isPlanCheckData]);
+
   
   // 체크리스트 삭제
   function deleteCheckData() {
@@ -81,17 +99,18 @@ function CheckList() {
   
   return (
     <div className='checklist-page'>
-      <ListPage 
-        listData={checkData} 
-        page="check" 
-        trashClick={trashClick} 
+      <ListPage
+        listData={checkData}
+        page="check"
+        trashClick={trashClick}
         trash={(id) => trash(id)}
         onConfirm={deleteCheckData}
+        loading={loading}
       />
-
       <div>
-        {checkData && checkData.length === 0 && <NoCheck />}
+        {!loading && checkData.length === 0 && <NoCheck />}
       </div>
+
 
       <div onClick={() => setIsPopupOpen(true)} className='add-check-btn-wrap'>
         <Newpost className={'add-check-btn'}/>

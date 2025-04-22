@@ -1,32 +1,17 @@
 import { create } from 'zustand';
 import axios from 'axios';
 
-// //쇼핑 & 맛집 & 축제 & 관광지
-// export const instance = axios.create({
-//     baseURL : "https://api.visitjeju.net/vsjApi/contents/searchlist",
+//쇼핑 & 맛집 & 축제 & 관광지
+export const instance = axios.create({
+    baseURL : "https://api.visitjeju.net/vsjApi/contents/searchList",
     
-//     params: { // ✅ API 키 및 언어 설정을 params로 분리
-//         apiKey: "57fd439ed04e408c935a985377cbaa41",
-//         locale: "kr",
-//     }
-// });
+    params: { // ✅ API 키 및 언어 설정을 params로 분리
+        apiKey: "57fd439ed04e408c935a985377cbaa41",
+        locale: "kr",
+        page: "22"
+    }
+});
 
-
-// export const shopNfoodNparty = create((set) => ({
-//     shopNfoodNpartydata:[],
-//     loading: false,
-//     fetchCategory: async (category)=>{
-//         set({loading: true})
-//         try{
-//             const res = await instance.get("/",{
-//                 params: {category},
-//             });   <-------여기 try 값 안에 내용만 교체하면 될거임
-//             set({shopNfoodNpartydata:res.data.items, loading: false});
-//         } catch (err){
-//             console.error("API 요청 에러:", err);
-//         }
-//     }
-// }));    --json파일사용중, 아래 내용 버리고 이걸로 변경해야함--
 export const shopNfoodNparty = create((set) => ({
     shopNfoodNpartyData:{
         tour: [],
@@ -47,7 +32,11 @@ export const shopNfoodNparty = create((set) => ({
         const fileName = categoryMap[category];
 
         try{
-            const res = await axios.get(`/json/${fileName}.json`);
+            const res = await instance.get("/",{
+                params: {
+                    category: category,
+                }
+            });
             set((state)=>({
                 shopNfoodNpartyData:{
                     ...state.shopNfoodNpartyData, [fileName] : res.data.items},
@@ -58,15 +47,6 @@ export const shopNfoodNparty = create((set) => ({
     }
 }));
 
-export const tour = create((set) => ({
-    tripData:[],
-    fetchTourData:async ()=>{
-        const res = await axios.get("/json/tour.json"); 
-        set({tripData:res.data.info});
-        // console.log(res.data.info);
-    }
-}));
-
 //여행 일정
 export const plan = create((set) => ({
     planData:{
@@ -74,7 +54,6 @@ export const plan = create((set) => ({
         allList : [
             {
                 id : "",
-                checkId : "",
                 title : "",
                 date : [],
                 item : {
@@ -92,9 +71,32 @@ export const plan = create((set) => ({
         set({ planData: res.data })
     },
     //List 불러오기
-    PlanListData:async (userId)=>{
-        const res = await axios.get(`${process.env.REACT_APP_APIURL}/plan/user/${userId}`)
-        set({ planData: res.data })
+    PlanListData: async (userId) => {
+        try {
+            const res = await axios.get(`${process.env.REACT_APP_APIURL}/plan/user/${userId}`);
+            set({ planData: res.data });
+            } catch (err) {
+                if (err.response && err.response.status === 404) {
+                set({ planData: [{
+                    userId : "",
+                    allList : [
+                        {
+                            id : "",
+                            title : "",
+                            date : [],
+                            item : {
+                                days : [{
+                                    day : "",
+                                    plans : []
+                                }]
+                            }
+                        }
+                    ]
+                }] })
+        } else {
+            console.error("Error fetching plan:", err);
+        }
+        }
     },
     pinkPlanData : async ()=>{
         const res = await axios.get(`${process.env.REACT_APP_APIURL}/pickplan/`)
@@ -104,10 +106,22 @@ export const plan = create((set) => ({
     setPlanData: (newItem) => {
         set({ planData: newItem });
     },
+    editModeDate: (editdate) => {
+        set({ planData: editdate });
+    },
     //장소 추가에서 가져온 데이터 업데이트
     searchData: (storedData, idx) => {
         set((state) => {
-            const copy = structuredClone(state.planData); // 깊은 복사
+            const copy = structuredClone(state.planData); // 깊은 복사            
+            copy.item.days[idx].plans = [...copy.item.days[idx].plans, ...storedData];
+            
+        return { planData: copy };
+        }) 
+    },
+    //좋아요 장소
+    LikeData: (storedData, idx) => {
+        set((state) => {
+            const copy = structuredClone(state.planData); // 깊은 복사            
             copy.item.days[idx].plans = [...copy.item.days[idx].plans, ...storedData];
             
         return { planData: copy };
@@ -137,19 +151,14 @@ export const plan = create((set) => ({
                 userId,
                 newList
             });
-            // 저장 후 상태 반영 (원하는 로직에 맞게 조정 가능)
-            set((state) => ({
-                planData: state.planData.map(item =>
-                    item.id === newList.id ? newList : item
-                )
-            }));
+            set({planData:newList})
         } catch (err) {
-            console.error(err);
-            alert('수정에 실패했습니다.');
+            console.error('🔥에러 발생🔥');
         }
     },
     //삭제
     removePlan: async (id, userId) => {
+        try { 
         const res = await axios.delete(`${process.env.REACT_APP_APIURL}/plan/del?id=${id}&userId=${userId}`);
         set((state) => {
             
@@ -159,6 +168,9 @@ export const plan = create((set) => ({
             
             return { planData: newData };
         });
+    } catch (err) {
+        console.error('🔥에러 발생🔥');
+    }
     }
 }));
 

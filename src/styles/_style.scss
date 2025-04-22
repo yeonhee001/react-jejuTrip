@@ -2,7 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 *{box-sizing: border-box; padding:0; margin: 0; word-break: keep-all;} 
-html{font-size: 14px; color: #333; scrollbar-width: none; /* Firefox */} 
+html{font-size: 14px; color: #333; 
+    scrollbar-width: none; /* Firefox */
+} 
 body{ 
     // user-select: none; 
     // -webkit-user-select: none;
@@ -247,7 +249,6 @@ input:checked + .tagbtn{
     }
 }
 
-
 // toggle
 .toggle{
     width: 100%;
@@ -255,24 +256,30 @@ input:checked + .tagbtn{
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    > b{font-size: 18px;}
 }
 .toggle-icon{
-    width: 16px; height: 8px;
+    width: 18px; height: 10px;
     img{width: 100%; height: 100%;}
 }
 
 // tab
+.tab-maintitle{
+    text-align: center;
+    font-size: 26px;
+    margin: 142px 0 70px;
+}
 .tabmenu{
     display: flex;
     align-items: center;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bold;
     text-align: center;
     color: rgba(0, 0, 0, 0.3);
     > div{
         width: 50%;
-        margin-bottom: 16px;
-        padding-bottom: 16px;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.3);
         cursor: pointer;
         &.active{
@@ -284,25 +291,21 @@ input:checked + .tagbtn{
 .tabitem{
     display: flex;
     align-items: center;
-    column-gap: 16px;
-    margin-bottom: 10px;
+    column-gap: 20px;
+    margin-bottom: 16px;
+    cursor: pointer;
     > p{
         flex-shrink: 0; // 이미지 크기 유지
-        width: 114px; height: 84px;
+        width: 150px; height: 110px;
         img{width: 100%; height: 100%; border-radius: 10px;}
     }
     > div{
         flex: 1; // 남은 공간 차지
         min-width: 0; // 텍스트 줄바꿈
         word-break: break-all;
-        p{font-weight: bold; margin-bottom: 7px;}
-        span{font-size: 12px; color: rgba(0, 0, 0, 0.3);}
+        p{font-size: 18px; font-weight: bold; margin-bottom: 7px;}
+        span{font-size: 14px; color: rgba(0, 0, 0, 0.3);}
     }
-}
-.tab-maintitle{
-    text-align: center;
-    font-size: 20px;
-    margin: 142px 0 50px;
 }
 
 // list
@@ -314,31 +317,44 @@ input:checked + .tagbtn{
     padding: 16px 0;
     cursor: pointer;
     > div{
-        p{font-weight: bold; margin-bottom: 7px;}
-        span{font-size: 12px; color: rgba(0, 0, 0, 0.3);}
+        p{font-size: 18px; font-weight: bold; margin-bottom: 7px;}
+        span{font-size: 14px; color: rgba(0, 0, 0, 0.3);}
     }
 }
 .listitem-icon{
-    width: 8px; height: 16px;
+    width: 10px; height: 18px;
     margin-right: 7px;
     > img{width: 100%; height: 100%;}
 }
 .listpage{
     h2{
-        margin: 142px 0 50px;
+        margin: 142px 0 70px;
         text-align: center;
-        font-size: 20px;
+        font-size: 26px;
     }
-    .listpage-subtitle{
-        font-size: 18px;
-        margin-bottom: 32px;
+    .listpage-swipehand-wrap{
         position: relative;
-
+        
         .listpage-swipehand{
             position: absolute;
-            right: 9%; bottom: -185%;
-            transform: translate(-9%, 185%);
+            right: 9%; bottom: -225%;
+            transform: translate(-9%, 225%);
         }
+        
+    }
+    .listpage-year{
+        margin-bottom: 44px;
+        >h3{
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+        > div:last-of-type .listitem{
+            &:last-child{border-bottom: none;}
+        }
+    }
+    .listpage-loading{
+        margin: 120px auto;
+        width: 300px;
     }
 }
 
@@ -358,21 +374,30 @@ input:checked + .tagbtn{
     min-width: 320px;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 7px;
+    border-radius: 10px;
 }
 .popup{
-    padding: 25px;
+    padding: 30px;
     .popup-cont{
         display: flex;
-        gap: 10px;
-        font-size: 12px; 
+        gap: 16px;
+        font-size: 16px; 
         p{
+            white-space: pre-line;
             span{
                 display: block;
                 color: rgba(0, 0, 0, 0.3);
                 margin-top: 10px;
             }
         }
+    }
+    .popup-warningicon{
+        width: 28px;
+        >img{width: 100%;}
+    }
+    .popup-callicon{
+        width: 28px;
+        >img{width: 100%;}
     }
 }
 .closepopup{
@@ -381,8 +406,11 @@ input:checked + .tagbtn{
         padding: 16px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.3);
         font-weight: bold;
+        font-size: 18px;
     }
     .popup-closeicon{
+        width: 15px;
+        >img{width: 100%;}
         position: absolute;
         right: 4%; top: 50%;
         transform: translate(-4%, -50%);
@@ -390,25 +418,15 @@ input:checked + .tagbtn{
     }
     .popup-cont{
         padding: 16px;
-        font-size: 12px;
+        font-size: 16px;
         .no-select-btn{
             color: rgba(0, 0, 0, 0.3);
             text-decoration: underline;
             display: block;
-            font-size: 12px;
+            font-size: 14px;
             cursor: pointer;
         }
     }
-    input{
-        width: 90%;
-        outline: 1px solid rgba(0, 0, 0, 0.3);
-        border-radius: 7px;
-        padding: 10px 14px;
-        margin: 0 auto;
-        display: block;
-        &:focus{outline: 2px solid #5886BA;}
-    }
-    
 }
 .closepopup-btns-box, .popup-btns-box{
     display: flex;
@@ -427,7 +445,7 @@ input:checked + .tagbtn{
     padding: 10px 17px;
     border-radius: 7px;
     border: 1px solid #5886BA;
-    font-size: 12px;
+    font-size: 16px;
     cursor: pointer;
 }
 .btn1popup-btn{
@@ -570,8 +588,17 @@ input:checked + .tagbtn{
                 text-overflow: ellipsis;
                 max-width: 100%; // 너비 제한 필수
             }
-            >p{font-size: 16px; padding:5px 0;}
+            >p{
+                font-size: 16px;
+                padding-top: 5px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2; /* 두 줄까지 표시 */
+                -webkit-box-orient: vertical;
+            }
             .place-tag{
+                padding-top: 5px;
                 >span{
                     font-size: 14px;
                 }
@@ -629,6 +656,21 @@ input:checked + .tagbtn{
         }
     }
 }
+.bugbtn{
+    padding-bottom: 50px;
+    cursor: pointer;
+    .bugbus{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        span{
+            font-size: 20px;
+            font-weight: bold;
+            color: #2449A4;
+        }
+        .bugarrow{width: 9px; height: 18px; margin-bottom: 5px;}
+    }
+}
 .bug-login{
     padding-top: 30px;
     a, span{
@@ -660,8 +702,8 @@ input:checked + .tagbtn{
     .top-btn{
         z-index: 999;
         position: fixed;
-        bottom: 11.5%; right: calc((100vw - 768px) / 2 + 34px); // 화면 너비에서 가운데 정렬 + 우측 위치 조정
-        transform: translate(-11.5%, -4%);    
+        bottom: 13%; right: calc((100vw - 768px) / 2 + 34px); // 화면 너비에서 가운데 정렬 + 우측 위치 조정
+        transform: translate(-13%, -4%);    
         >img{
             width: 40px; height: 40px;
         }

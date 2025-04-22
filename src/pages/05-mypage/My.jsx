@@ -80,13 +80,13 @@ function My() {
 
   // 통화 팝업 관리
   function handleCallConfirm() {
-    const isMobile = /iPhone|Android/i.test(navigator.userAgent);
+    const isMobile = /iPhone|Android|iPad/i.test(navigator.userAgent);
     setIsPopupOpen(false);
 
     if(isMobile) {
       window.location.href = 'tel:15880000';
     } else {
-      alert('※ 웹 브라우저 환경에서는 통화 연결이 어렵습니다. 1588-0000 으로 전화해주세요.');
+      alert('※ 웹 브라우저 환경에서는 통화 연결이 어렵습니다. \n1588-0000 으로 전화해주세요.');
     }
   }
 

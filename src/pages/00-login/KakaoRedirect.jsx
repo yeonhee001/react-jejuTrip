@@ -23,7 +23,7 @@ function KakaoRedirect() {;
         .then(res=>{
             const access_token = res.data.kakao_access_token;
             const kakao_user = {
-                id: res.data.id,
+                id: String(res.data.id),
                 name: res.data.properties?.nickname
             }
             

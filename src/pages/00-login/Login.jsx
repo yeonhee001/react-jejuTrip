@@ -13,13 +13,17 @@ function Login() {
         <p><img src="/imgs/logo_blue.svg" alt="로고(blue)" /></p>
       </div>
 
-      <div className='loginbtns'>
-        <NaverLogin/>
-        <KakaoLogin/>
-        <GoogleLogin/>
+      <div className='maincont'>
+        <div className='loginbtns'>
+          <NaverLogin/>
+          <KakaoLogin/>
+          <GoogleLogin/>
+        </div>
+
+        <hr/>
         
         <NavLink to='/'>
-          <span>로그인 하지 않고 둘러보기 →</span>
+          <span>로그인하지 않고 둘러보기 →</span>
         </NavLink>
       </div>
     </div>

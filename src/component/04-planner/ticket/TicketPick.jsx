@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
-import Button from '../../_common/Button'
-import CardItem from '../CardItem'
+import CardItem from './CardItem'
 import Plane from '../../icons/Plane'
 import Btn2Popup from '../../popups/Btn2Popup';
-import SvgLine from './SvgLine';
+import SvgMiddleLine from './SvgMiddleLine';
+import SvgVerticalLine from './SvgVerticalLine';
 
-function TicketPick({idx, topbarright, ticketdate, btnName, data}) {
+function TicketPick({idx, topBarBtn, ticketdate, data}) {
+    
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     return (
@@ -18,29 +19,28 @@ function TicketPick({idx, topbarright, ticketdate, btnName, data}) {
                 <span>{`Day ${idx+1}`}</span>
                 <span className='ticketdate'>{ticketdate}</span>
                 <Plane className={"plane"}/>
-                <button className='topbarright'>{topbarright}</button>
+                <div className='right_box_pick'><button className='topBarBtn'>{topBarBtn}</button></div>
             </div>
             {data?.days[idx]?.plans?.map((item, i) => {
-                const labelToKey = {
-                    "관광지": "tour",
-                    "음식점": "food",
-                    "축제/행사" : "festival",
-                    "쇼핑": "shopping",
-                };
-                const id = item.contents_id;
-                const type = labelToKey[item.contents_label]
+                
+                let type;
+                switch(item.contents_label){
+                  case '관광지' : type='tour'; break;
+                  case '쇼핑' : type='shopping'; break;
+                  case '음식점' : type='food'; break;
+                  case '축제&행사' : type='festival'; break;
+                }
+
             return (
-                <ul className="tickebox" key={i}>
+                <ul className="tickebox" key={`item-${i}`}>
                     <li className="liItem">
                         <div className="liLine">
                         <div className="liNum">
                             <span>{i + 1}</span>
                         </div>
-                        <svg width="2" height="100%" xmlns="http://www.w3.org/2000/svg">
-                            <line x1="1" y1="0" x2="1" y2="100%" stroke="rgba(0, 0, 0, 0.3)" stroke-width="2"/>
-                        </svg>
+                        <SvgVerticalLine/>
                         </div>
-                        <NavLink to={`/trip/triplist/${type}/tripdetail/${id}`}>
+                        <NavLink to={`/trip/triplist/${type}/tripdetail/${item.contents_id}`}>
                         <CardItem item={item} />
                         </NavLink>
                     </li>
@@ -49,7 +49,7 @@ function TicketPick({idx, topbarright, ticketdate, btnName, data}) {
             })}
             </div>
             </div>
-           <SvgLine/>
+           <SvgMiddleLine/>
             <div className='ticketbottom'>
                 <div className='ticketpadding'>
                     <div className='barcode'>

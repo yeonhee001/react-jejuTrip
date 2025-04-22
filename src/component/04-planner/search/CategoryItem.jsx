@@ -7,21 +7,20 @@ function CategoryItem({data, category, title, onClick }) {
     return (
         <form>
             <div className='searchbox'>
-                <h2 className='category'>{category}</h2>
                 {title.map((item, i) =>
                 <div key={i}>
                     <h3 className='address'>{item}</h3>
                     {data[item].map((city)=>
-                    <label>
+                    <label key={city}>
                         <input 
-                        className="taginput" 
-                        type="radio" 
+                        className="taginput"
+                        type="radio"
                         name={item} 
                         checked={check === city} 
                         onChange={() => setCheck(city)} 
                         onClick={() => onClick(city)}
                         />
-                        <TagBtn tagbtn={city} />
+                        <TagBtn className={"city_name"} tagbtn={city}/>
                     </label>
                     )}
                 </div>

@@ -12,7 +12,7 @@ function QnA() {
       id: 1,
       question: '떠나봅서는 무슨 뜻인가요?',
       answer:
-        "떠나봅서는 표준어로 '떠나 봅시다' 혹은 '출발 합시다'라는 뜻으로<br />여행을 떠나자는 의미 입니다.",
+        "떠나봅서는 표준어로 '떠나 봅시다' 혹은 '출발 합시다' 라는 뜻으로<br />여행을 떠나자는 의미 입니다.",
     },
     {
       id: 2,
@@ -29,7 +29,7 @@ function QnA() {
       id: 4,
       question: '게시글/댓글을 신고하고 싶어요',
       answer:
-        '고객센터 문의 주시면 빠른 답변 드리겠습니다.<br />고객센터 1588-0000.',
+        '고객센에 문의 주시면 빠른 답변 드리겠습니다.<br />고객센터 1588-0000.',
     },
     {
       id: 5,
@@ -61,7 +61,7 @@ function QnA() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  return (
+  return (  
     <div className="qna-container">
       <div className="qna-subtitle">
         <b>자주 묻는 질문</b>

@@ -9,7 +9,14 @@
 .rdrDateDisplayWrapper {
     display: none !important;
 }
+.rdrInfiniteMonths {
+    overflow-y: auto;
+    scrollbar-width: none;
+}
 
+.rdrInfiniteMonths::-webkit-scrollbar {
+    display: none;
+}
 .rdrCalendarWrapper {
     width: 50%;
     max-width: 50%; /* 혹시 내부에서 max-width 지정되어 있다면 이것도 줘 */
@@ -17,7 +24,6 @@
     color: #000000;
     font-size: 12px;
 }
-
 
 //선택 날짜 바깥 부분
 .rdrDateDisplayWrapper{
@@ -466,3 +472,5 @@ border-radius: 85px;
     color: #849095;
     padding: 1.5em;
 }
+
+@import './res-planner.scss';

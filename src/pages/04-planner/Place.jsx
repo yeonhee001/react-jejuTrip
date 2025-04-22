@@ -1,25 +1,37 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { mode } from '../../api';
 import TabPage from '../../component/_common/TabPage';
 import Category from '../../component/04-planner/search/Category';
+import PlannerLike from '../../component/04-planner/search/PlannerLike';
+import Arrow from '../../component/icons/Arrow';
 import "../../styles/04-planner/place.scss";
 
 function Place() {
     // selectedTab 이용해서 탭 별 내용 넣으세요,,,! Activity.jsx 참고
+    const { enterEditMode } = mode();
     const [selectedTab, setSelectedTab] = useState(0);
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        enterEditMode()
+    },[])
 
     return (
+        <>
         <div className='planner_place'>
-            <TabPage type={'plan'} onTabChange={setSelectedTab}/>
-            {
-            selectedTab === 0
-            ?
-            // 지역별
-            <Category/>
-            :
-            // 좋아요
-            <div>좋아요 내가 함</div>
-            }
+        <div className='Place_back'><Arrow className={'header-back'} onClick={()=>{navigate(-1); enterEditMode()}}/></div>
+        <TabPage type={'plan'} onTabChange={setSelectedTab}/>
+        {
+        selectedTab === 0 ?
+        // 지역별
+        <Category selectedTab={selectedTab}/>
+        :
+        // 좋아요
+        <PlannerLike selectedTab={selectedTab}/>
+        }
         </div>
+        </>
     )
 }
 

@@ -1,7 +1,4 @@
 @media (max-width:768px){  
-  .trip-main-title{
-      font-size: 22px;
-  }
   // TripContTop 컴포넌트
   .trip-main-con-top{
       .trip-main-con-title{
@@ -24,6 +21,7 @@
 
 @media (max-width:480px){  
   .trip-main-title{
-      font-size: 20px;
+    padding: 0 0 50px;
+    font-size: 20px;
   }
 }

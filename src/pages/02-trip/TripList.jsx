@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, use } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { shopNfoodNparty } from '../../api';
 import TripPlaceItem from '../../component/02-trip/tripList/TripPlaceItem';
@@ -158,9 +158,6 @@ function TripList() {
 
   const getFilterData=() => {
     const data = getAllData();
-
-    const like = data.filter(item=> item.contents_id == "CONT_000000000500589");
-
     const sorted = [...data];
     if (filterOption === '오름차순') {
       sorted.sort((a, b) => a.title.localeCompare(b.title));
@@ -194,48 +191,51 @@ function TripList() {
 
   
   // db관련 : 좋아요 버튼을 눌렀을 때 숫자가 화면에 보여짐
-  useEffect(() => {
-    const fetchLikeData = async () => {
-      // if (!userId) return;
-      const listData = getAllData();
-      const postIds = listData.map(item=>item.contentsid); // 현재 리스트의 모든 게시물의 아이디값을 배열로 만듦
+  const fetchLikeData = async (postIds) => {
+    // if (!userId) return;
+    
+    const res = await fetch(`${process.env.REACT_APP_APIURL}/triplike/count-mult`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ postIds })
+    }); //서버에 게시물 id값을 보내서 좋아요 갯수 요청함
+    
+    const result = await res.json();
+    
+    const likeMap = {};
+    result.forEach(item => {
+      likeMap[item.postId] = item.count;
+    }); // 가지고 온 좋아요 갯수를 아이디값과 함께 저장
+    
+    setLikeData(prev => ({ ...prev, ...likeMap }));
+  };
 
-      const res = await fetch(`${process.env.REACT_APP_APIURL}/triplike/count-mult`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ postIds })
-      }); //서버에 게시물 id값을 보내서 좋아요 갯수 요청함
-
-      const result = await res.json();
-
-      const likeMap = {};
-      result.forEach(item => {
-        likeMap[item.postId] = item.count;
-      }); // 가지고 온 좋아요 갯수를 아이디값과 함께 저장
-
-      setLikeData(likeMap);
-      setLikeLoading(false);
-    };
-  
+  useEffect(()=>{ //좋아요 로딩시간이 느려서 빠르게 가져오기 위해 
     if (!loading) {
-      fetchLikeData();
+      const listData = getAllData().slice(0, listCount);
+      const postIds = listData.map(item=>item.contentsid); // 현재 리스트의 모든 게시물의 아이디값을 배열로 만듦
+      fetchLikeData(postIds).then(() => setLikeLoading(false));
     }
-  }, [loading, type]);
+  },[loading, listCount, type ])
+
 
   // db관련 : 사용자가 좋아요 누른 게시물 찾아서 리스트에 표시함
-  useEffect(() => {
-    const fetchUserLikedPosts = async () => {
-      if (!userId) return;
-      const res = await fetch(`${process.env.REACT_APP_APIURL}/triplike/liked-posts?userId=${userId}`);
-      const data = await res.json(); //해당 서버에서 게시물 좋아요 누른 아이디값 가지고 옴
-      setLikedPosts(data.likedPostIds || []);
-    };
+  const fetchUserLikedPosts = async () => {
+    if (!userId) return;
+    const res = await fetch(`${process.env.REACT_APP_APIURL}/triplike/liked-posts?userId=${userId}`);
+    const data = await res.json();
+    
+    setLikedPosts(data.likedPostIds || []);
   
-    fetchUserLikedPosts();
-  }, [userId, type]);
-  
+    // 추가: 좋아요 숫자도 불러오기
+    const likedPostIds = data.likedPostIds || [];
+    if (likedPostIds.length > 0) {
+      fetchLikeData(likedPostIds);
+    }
+  };
+  fetchUserLikedPosts();
 
   return (
     <div className='trip-listpage'>

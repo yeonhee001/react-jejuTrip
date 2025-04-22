@@ -1,6 +1,9 @@
 @media (max-width:768px){  
   .trip-list-topimg{
     >img{
+      width: calc(100% + 10%); // style.scss에서 뺀 패딩 38px * 2
+      margin-left: -5%;
+      margin-right: -5%;
       height: 350px;
     }
   }
@@ -17,6 +20,13 @@
   }
 
   .place-item-all{
+    .place-tag{
+      display: inline-block;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .place-like-count{
       padding-left: 12px;
       span{
@@ -34,7 +44,7 @@
       }
     }
     .filter-list {
-      width: 73px;
+      width: 78px;
       padding: 15px;
       li {
         font-size: 12px;
@@ -70,6 +80,13 @@
     .place{
       width: 96%;
     }
+    .place-tag{
+      display: inline-block;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .place-like-count{
       width: 4%;
       padding-bottom: 10px;
@@ -86,7 +103,7 @@
       }
     }
     .filter-list {
-      width: 65px;
+      width: 68px;
       padding: 13px;
       li {
         font-size: 10px;

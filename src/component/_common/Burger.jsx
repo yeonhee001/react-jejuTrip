@@ -86,11 +86,14 @@ function Burger({onClose, isOpen}) {
                 <Right_blue className={'bugarrow'}/>
               </NavLink>
             </li>
-            <li className='bugbtn' onClick={onClose}>
-              <NavLink to="https://bus.jeju.go.kr/search/line">
-                <span>버스시간표</span>
+            <li className='bugbtn' onClick={() => {
+              window.open('https://bus.jeju.go.kr/search/line', '_blank', 'noopener,noreferrer');
+              onClose();
+            }}>
+              <div className='bugbus'>
+                <span>버스정보</span>
                 <Right_blue className={'bugarrow'}/>
-              </NavLink>
+              </div>
             </li>
             <li className='bugbtn' onClick={onClose}>
               <NavLink to="/my">

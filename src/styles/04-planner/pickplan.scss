@@ -6,12 +6,15 @@
     .pickplan_title{
         font-size: 22px;
         font-weight: bold;
-        span{
+        >span{
             color: #2288FD;
         }
     }
     p:last-of-type{
         margin: 7px 0 16px;
+    }
+    .right_box_pick{
+        width: 35.8px;
     }
 }
 .pickplan_card{
@@ -19,5 +22,10 @@
     overflow-y: auto;
 }
 .pickplan_btn{
+    >button>div{
+        font-size: 18px;
+    }
     margin: 20px 0;
 }
+
+@import './res-planner.scss';

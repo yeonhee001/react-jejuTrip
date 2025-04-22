@@ -15,11 +15,11 @@
 
   .mainSwiper{
     .home-mainimg{
-      max-height: 35vh;
+      max-height: 280px;
       .home-bgimg{
-        max-height: 35vh;
+        max-height: 280px;
         img{
-          height: 35vh;
+          height: 280px;
         }
       }
       .home-main-whimg{
@@ -63,11 +63,13 @@
   }
 
   .home-weather-content{
+    height: 80px;
     .home-weather-today{
-      padding: 9px 33px;
+      padding: 9px 25px;
       gap: 10px;
+      height: 80px;
       >img{
-        width: auto; height: 41px;
+        width: auto; height: auto;
       }
       >div{
         >span{
@@ -80,7 +82,7 @@
       }
     }
     .home-weather-etc{
-      gap: 45px;
+      gap: 30px;
       >b{font-size: 20px; width: 100%;}
       .home-weather-windy{
         >span{
@@ -131,6 +133,8 @@
     margin: 50px 0;
     .home-foodContent{
       .home-food{
+        width: 100%;
+        margin-bottom: 10px;
         max-width: calc(50% - 5px); /* 최대 너비 제한 */
         .home-foodtab{
           display: flex;
@@ -161,6 +165,36 @@
               font-size: 12px;
               display: block;
               padding-top: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .home-photomenu{
+    margin: 70px 0;
+    .photoSwiper{
+      width: 100% !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      overflow: visible;
+      .swiper-wrapper {
+        padding-right: 0 !important;
+        .swiper-slide {
+          width: 95% !important; 
+          flex-shrink: 0;
+          // margin-right: 0 !important;
+          .home-photo{
+            max-width: 580px; height: auto;
+            .home-photo-img{
+              width: 100%;
+              aspect-ratio: 4 / 5;
+              img{
+                width: 100%; height: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+              }
             }
           }
         }
@@ -245,6 +279,9 @@
     }
   }
 }
+
+
+
 @media (max-width:480px){
   .home-main{margin: 92px 0 108px;}
 
@@ -263,11 +300,11 @@
 
   .mainSwiper{
     .home-mainimg{
-      max-height: 24vh;
+      max-height: 195px;
       .home-bgimg{
-        max-height: 24vh;
+        max-height: 195px;
         img{
-          height: 24vh;
+          height: 195px;
         }
       }
       .home-main-whimg{
@@ -311,34 +348,36 @@
   }
 
   .home-weather-content{
+    height: 46px;
     .home-weather-today{
       padding: 7px 24px;
+      height: 46px;
       >p{
-        width: auto; height: 30px;
+        width: 38%; height: auto;
       }
       >div{
         >span{
-          font-size: 10px;
+          font-size: 8px;
         }
         >b{
-          font-size: 14px;
+          font-size: 11px;
           margin-left: 3px;
         }
       }
     }
     .home-weather-etc{
-      gap: 35px;
-      >b{font-size: 14px; width: 100%;}
+      gap: 40px;
+      >b{font-size: 12px; width: 100%;}
       .home-weather-windy{
         >span{
-          font-size: 10px;
+          font-size: 8px;
         }
         >b:nth-of-type(1){
-          font-size: 14px;
+          font-size: 12px;
           margin-left: 3px;
         }
         >b:nth-of-type(2){
-          font-size: 9px;
+          font-size: 7px;
         }
       }
     }
@@ -378,6 +417,8 @@
     margin: 50px 0;
     .home-foodContent{
       .home-food{
+        width: 100%;
+        margin-bottom: 10px;
         .home-foodtab{
           display: flex;
           flex-direction: column;
@@ -405,6 +446,36 @@
             >span{
               font-size: 10px;
               padding-top: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .home-photomenu{
+    margin: 70px 0;
+    .photoSwiper{
+      width: 100% !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      overflow: visible;
+      .swiper-wrapper {
+        padding-right: 0 !important;
+        .swiper-slide {
+          width: 95% !important; 
+          flex-shrink: 0;
+          // margin-right: 0 !important;
+          .home-photo{
+            max-width: 500px; height: auto;
+            .home-photo-img{
+              width: 100%;
+              aspect-ratio: 4 / 5;
+              img{
+                width: 100%; height: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+              }
             }
           }
         }
@@ -445,7 +516,7 @@
       }
       >b{
         top: 35%; right: 12%;
-        font-size: 40px;
+        font-size: 35px;
       }
     }
   }

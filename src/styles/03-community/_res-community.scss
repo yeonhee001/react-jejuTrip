@@ -1,16 +1,13 @@
 // ========================================아이패드========================================
 @media (max-width: 768px){
-.divider2{
-  width: auto;
-  }
 .post-container{
   max-width: auto;
   }
   .new-post-button { 
     max-width: auto;
     .cm-Newpost{
-      bottom: 11.5%; right: 0.2%;
-      transform: translate(-11.5%, -4%);    
+      bottom: 13.5%; right: 0.2%;
+      transform: translate(-12.5%, -4%);    
         >img{
           width: 40px; height: 40px;
         }
@@ -51,7 +48,7 @@
 .new-post-button { 
   max-width: auto;
   .cm-Newpost{
-    bottom: 11.5%;  right: 0.2%;
+    bottom: 13.5%;  right: 0.2%;
     transform: translate(-11.5%, -4%);    
     >img{
     width: 36px; height: 36px;
@@ -127,10 +124,7 @@
   font-size: 12px;
 }
 .tagbtn{
-  font-size: 12px;
-}
-.divider2 { 
-  width: auto;
+  font-size: 14px !important;
 }
 .cm-subject{
   width: 100%;
@@ -140,5 +134,6 @@
 }
 .tagbtn.undefined{
   margin-top: 5px;
+  font-size: 14px !important;
   }
 }
