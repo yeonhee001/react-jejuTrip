@@ -6,9 +6,8 @@ import SwipeAction from './SwipeAction'
 import SwipeHand from './SwipeHand';
 import DataLoading from './DataLoading';
 
-function ListPage({listData, page, trashClick, trash, onConfirm, loading = false }) {
+function ListPage({listData, page, trashClick, trash, onConfirm, isDonePopupOpen, setIsDonePopupOpen, loading = false }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [isDonePopupOpen, setIsDonePopupOpen] = useState(false);
   const [openSwipeId, setOpenSwipeId] = useState(null);
 
   let title = '';
@@ -92,7 +91,6 @@ function ListPage({listData, page, trashClick, trash, onConfirm, loading = false
         onConfirm={() => {
           onConfirm();
           setIsPopupOpen(false);
-          setIsDonePopupOpen(true);
         }}
       />
       <Btn1Popup

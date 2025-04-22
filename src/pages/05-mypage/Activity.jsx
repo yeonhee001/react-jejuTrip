@@ -30,7 +30,10 @@ function Activity() {
           ? sortedPosts.map((item) => (
             <div
               key={item._id}
-              onClick={() => navigate(`/community/cmdetail/${item._id}`,  { state: { post: item } })}
+              onClick={() => {
+                navigate(`/community/cmdetail/${item._id}`)
+                localStorage.setItem('post', JSON.stringify(item));
+              }}
             >
               <TabItem
                 imgUrl={item.imageUrls[0]}
@@ -51,7 +54,8 @@ function Activity() {
               try {
                 const res = await axios.get(`${process.env.REACT_APP_APIURL}/post/update/${item.postId}`);
                 const cmtToPostData = res.data;
-                navigate(`/community/cmdetail/${item.postId}`, { state: { post: cmtToPostData } });
+                navigate(`/community/cmdetail/${item.postId}`);
+                localStorage.setItem('post', JSON.stringify(cmtToPostData));
               } catch (err) {
                 console.error('게시물 데이터 불러오기 실패:', err);
               }

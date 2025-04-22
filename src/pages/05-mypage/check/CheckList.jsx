@@ -7,7 +7,8 @@ import NoCheck from '../../../component/_common/NoCheck';
 import "../../../styles/05-mypage/check/checkList.scss";
 
 function CheckList() {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);                       // 팝업 상태 관리
+  const [isPopupOpen, setIsPopupOpen] = useState(false);                       // 여행 선택 팝업 상태 관리
+  const [isDonePopupOpen, setIsDonePopupOpen] = useState(false);               // 삭제 완료 팝업 상태 관리
   const [checkData, setCheckData] = useState([]);                              // 체크리스트 데이터 상태
   const [isPlanCheckData, setIsPlanCheckData] = useState([]);                  // 여행 없는 체크리스트 데이터 상태
   const [planData, setPlanData] = useState([]);                                // 여행 일정 데이터 상태
@@ -26,18 +27,14 @@ function CheckList() {
     setDeleteTarget({ id });
   };
 
-  // 데이터 로딩
-  useEffect(()=>{
-    setTimeout(()=>{
-      setLoading(false)
-    }, 1200)
-  })
-
   // 체크리스트 데이터 가져오기
   useEffect(()=>{
+    setLoading(true);
+
     axios.get(`${process.env.REACT_APP_APIURL}/check/user/${userId}`)
     .then(res=>{
       if(res.data && res.data.length > 0) {
+
         // 연결된 여행이 있는 체크리스트만 필터링
         const filteredData = res.data.filter(check => check.planId !== null);
         setIsPlanCheckData(filteredData);
@@ -52,6 +49,9 @@ function CheckList() {
       } else {
         console.error("Error fetching plan:", err);
       }
+    })
+    .finally(() => {
+      setLoading(false); // 요청 끝나면 로딩 false
     });
   },[userId])
 
@@ -104,13 +104,17 @@ function CheckList() {
         page="check"
         trashClick={trashClick}
         trash={(id) => trash(id)}
-        onConfirm={deleteCheckData}
+        onConfirm={() => {
+          deleteCheckData();
+          setIsDonePopupOpen(true);
+        }}
+        isDonePopupOpen={isDonePopupOpen}
+        setIsDonePopupOpen={setIsDonePopupOpen}
         loading={loading}
       />
       <div>
         {!loading && checkData.length === 0 && <NoCheck />}
       </div>
-
 
       <div onClick={() => setIsPopupOpen(true)} className='add-check-btn-wrap'>
         <Newpost className={'add-check-btn'}/>
