@@ -5,6 +5,7 @@ import NoLikePlace from '../../_common/NoLikePlace';
 import Button from '../../_common/Button';
 import Btn1Popup from '../../popups/Btn1Popup';
 import SearchItem from './SearchItem';
+import DataLoading from '../../_common/DataLoading';
 
 function PlannerLike({selectedTab}) {
     const { LikeData } = plan();
@@ -12,15 +13,22 @@ function PlannerLike({selectedTab}) {
     const user = JSON.parse(sessionStorage.getItem('user'));
     const userId = user?.id;
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [checkItem, setCheckItem] = useState([]);
   
     const {shopNfoodNpartyData, fetchCategory} = shopNfoodNparty();
-    useEffect(()=>{
-      fetchCategory('c1'); //관광지
-      fetchCategory('c2'); //쇼핑
-      fetchCategory('c4'); //맛집
-      fetchCategory('c5'); //축제행사
-    },[])
+
+    useEffect(() => {
+        Promise.all([
+          fetchCategory('c1'), // 관광지
+          fetchCategory('c2'), // 쇼핑
+          fetchCategory('c4'), // 맛집
+          fetchCategory('c5'), // 축제&행사
+        ]).then(([res1, res2, res3, res4]) => {
+            setLoading(false)
+        });
+      }, []);
+      
     const tourList = shopNfoodNpartyData?.tour;
     const shoppingList = shopNfoodNpartyData?.shopping;
     const foodList = shopNfoodNpartyData?.food;
@@ -70,9 +78,12 @@ function PlannerLike({selectedTab}) {
   const myLikedData = allContents.filter(item => likePosts.includes(item.contentsid));
     
   return (
-    myLikedData.length === 0 ? (
-        <NoLikePlace/>  // 게시물 리스트가 비어있을 때 NoLikePlace 컴포넌트
-      ) : (
+    loading ? (
+    <DataLoading  className={"searchLoading"}/>
+    ):(
+      myLikedData.length === 0 ? (
+          <NoLikePlace/>  // 게시물 리스트가 비어있을 때 NoLikePlace 컴포넌트
+        ) : (
         <>
           {myLikedData.map((item, idx) => (
               <SearchItem
@@ -86,20 +97,22 @@ function PlannerLike({selectedTab}) {
             ))
           }
 
-          <button 
-          className='place_btn' 
-          onClick={() => {
-            localStorage.setItem('searchListItem', JSON.stringify(checkItem))
-            LikeData(checkItem, idx);
-            navigate(-1);
-          }}>
-              <Button 
-              btn={ `선택 완료 / ${checkItem.length}개`} 
-              className={"place_btn"}/></button>
-
+          <div className='place_btn_fixed'>
+            <button
+            className='place_btn'
+            onClick={() => {
+              localStorage.setItem('searchListItem', JSON.stringify(checkItem))
+              LikeData(checkItem, idx);
+              navigate(-1);
+            }}>
+                <Button
+                btn={ `선택 완료 / ${checkItem.length}개`}
+                className={"place_btn"}/></button>
+          </div>
           <Btn1Popup isOpen={isPopupOpen} setIsOpen={setIsPopupOpen} type={"select"}/>
         </>     
       )
+    )
   )
 }
 

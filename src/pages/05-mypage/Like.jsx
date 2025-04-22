@@ -64,11 +64,14 @@ function Like() {
         // 유효한 게시물만 필터링
         let filtered = [];
         if (data2 && data2.likedPosts && Array.isArray(data2.likedPosts)) {
+          console.log("dd");
+          
           filtered = data2.likedPosts.filter(item => 
             item && 
             item.post && 
             item.post._id
           );
+          console.log(filtered);
           
           // 각 post 객체에 thumbnail 속성이 없으면 imageUrls[0]로 설정
           filtered = filtered.map(item => {

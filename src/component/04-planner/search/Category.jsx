@@ -6,6 +6,7 @@ import Button from '../../_common/Button';
 import NoSearch from '../../_common/NoSearch';
 import SearchItem from './SearchItem';
 import Btn1Popup from '../../popups/Btn1Popup';
+import DataLoading from '../../_common/DataLoading';
 
 function Category({selectedTab}) {
     const { searchData } = plan();
@@ -15,6 +16,7 @@ function Category({selectedTab}) {
     const [catSelect, setCatSelect] = useState(''); //카테고리 선택
     const [searchListItem, setSearchListItem] = useState([]); //검색 결과 선택 (input)
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [listCount, setListCount] = useState(30); // 리스트 갯수 처음 30개만 보임
     
     const navigate = useNavigate();
@@ -62,12 +64,16 @@ function Category({selectedTab}) {
         "카테고리" : ["관광지", "맛집", "축제&행사", "쇼핑"]
     }
 
-    useEffect(()=>{
-        fetchCategory('c1'); //관광지
-        fetchCategory('c2'); //쇼핑
-        fetchCategory('c4'); //맛집
-        fetchCategory('c5'); //축제&행사
-    },[])
+    useEffect(() => {
+        Promise.all([
+          fetchCategory('c1'), // 관광지
+          fetchCategory('c2'), // 쇼핑
+          fetchCategory('c4'), // 맛집
+          fetchCategory('c5'), // 축제&행사
+        ]).then(([res1, res2, res3, res4]) => {
+            setLoading(false)
+        });
+      }, []);
     
     useEffect(()=>{
     const handleScroll=()=>{
@@ -108,17 +114,24 @@ function Category({selectedTab}) {
             <div className='search_list_title'>
                 <h3>{`${citySelect} / ${catSelect}`}</h3><span>{`${List.length}`}</span>
             </div>
-            {List.length == 0 ? (<NoSearch/>) : (
-            <> {/* 검색 결과 */}
-                {List.slice(0, listCount).map(item=>
-                    <SearchItem 
-                    key={item.contentsid} 
-                    item={item} 
+            {loading ? (
+            <DataLoading className={"searchLoading"}/>
+            ) : ( /* 검색 결과 */
+            List.length === 0 ? (
+                <NoSearch />
+            ) : (
+                <>
+                {List.slice(0, listCount).map(item => (
+                    <SearchItem
+                    key={item.contentsid}
+                    item={item}
                     searchListItem={searchListItem}
                     checkbox={checkbox}
                     selectedTab={selectedTab}
-                />)}
-            </>
+                    />
+                ))}
+                </>
+            )
             )}
         </div>
         ):(
@@ -130,24 +143,26 @@ function Category({selectedTab}) {
         </div>
         </>
         )}
-        <button 
-        className='place_btn' 
-        onClick={() => {
-            if (selectedBtn && searchListItem) {
-                localStorage.setItem('searchListItem', JSON.stringify(searchListItem))
-                searchData(searchListItem, idx);
-                navigate(-1)
-            } else {
-                if(!citySelect || !catSelect){
-                    setIsPopupOpen(true)
-                }else{
-                    setSelectedBtn(true);
+        <div className='place_btn_fixed'>
+            <button
+            className='place_btn'
+            onClick={() => {
+                if (selectedBtn && searchListItem) {
+                    localStorage.setItem('searchListItem', JSON.stringify(searchListItem))
+                    searchData(searchListItem, idx);
+                    navigate(-1)
+                } else {
+                    if(!citySelect || !catSelect){
+                        setIsPopupOpen(true)
+                    }else{
+                        setSelectedBtn(true);
+                    }
                 }
-            }
-        }}>
-            <Button 
-            btn={selectedBtn? `선택 완료 / ${searchListItem.length}개` : "선택 완료"} 
-            className={"place_btn"}/></button>
+            }}>
+                <Button
+                btn={selectedBtn? `선택 완료 / ${searchListItem.length}개` : "선택 완료"}
+                className={"place_btn"}/></button>
+        </div>
 
         <Btn1Popup isOpen={isPopupOpen} setIsOpen={setIsPopupOpen} type={"select"}/>
     </div>

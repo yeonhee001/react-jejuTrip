@@ -156,6 +156,7 @@
             .tickebox{
                 //li
                 .liItem{
+                    position: relative;
                     display: flex;
                     align-items: center;
                     gap: 5%;
@@ -188,6 +189,12 @@
                         text-align: center;
                     }
                 
+                }
+                .plnner_drag{
+                    position: absolute;
+                    top: 50%;
+                    right: 0;
+                    transform: translateY(-50%);
                 }
             }
         }
@@ -236,6 +243,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        width: 85%;
     }
     p:nth-of-type(2){
         font-size: 11px;

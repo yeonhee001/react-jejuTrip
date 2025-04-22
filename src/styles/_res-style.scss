@@ -98,6 +98,10 @@
         }
     }
   }
+  .add-check-btn-wrap {
+    max-width: auto;
+    .add-check-btn{right: 4%;}
+  }
 }
 
 
@@ -258,7 +262,9 @@
         }
     }
   }
-
+  .tagbtn{
+    font-size: 14px;
+  }
   //Top버튼
   .top-btn-wrap {
     max-width: auto;

@@ -2,6 +2,8 @@ import React from 'react'
 import TicketItem from './ticket/TicketItem';
 
 function PickPlanItem({planData, tagBtn}) {
+  console.log(planData);
+  
   return (
     <div className='pickplan_item'>
       <div className='pickplan_card'>

@@ -3,7 +3,6 @@ import { mode } from '../../../api';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import TagBtn from '../../_common/TagBtn';
-import Btn2Popup from '../../popups/Btn2Popup';
 
 function PlannerTagBtn({id, userId, checkData, setCheckData, setIsPopupOpenDelete, setIsPopupOpenCheckList, setIsPopupOpenPickPlan }) {
     const { isEditMode } = mode();
@@ -15,15 +14,18 @@ function PlannerTagBtn({id, userId, checkData, setCheckData, setIsPopupOpenDelet
         axios.get(`${process.env.REACT_APP_APIURL}/check/user/${userId}`)
         .then(res=>{
             setCheckData(res.data);
-            if(id == checkData[0]?.planId){
-                navigate(`/my/checklist/checkDetail/${checkData[0]?.id}`);
-            }
-        })
-    }
+            checkData.forEach(item => {
+                if(id == item?.planId){
+                    navigate(`/my/checklist/checkDetail/${item?.id}`);
+                }
+            })
+    })
+}
 
+console.log(checkData);
   return (
     <div className='planner_tagbtn'>
-        { id == checkData[0]?.planId &&
+        { checkData.filter(item=>item.planId == id).length==1 &&
         <NavLink
         to={isEditMode ? "/planner/pickplan" : undefined}
         onClick={(e) => {

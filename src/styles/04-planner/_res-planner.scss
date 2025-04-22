@@ -92,6 +92,14 @@
 
     //지역별
     .address{font-size: 16px;}
+
+    .place_btn_fixed{
+        width: 100% !important;
+        border-radius: 7px !important;
+        .place_btn{ //선택완료 버튼
+            font-size: 16px !important;
+        }
+    }
 }
 
 
@@ -250,6 +258,17 @@
         }
         p:last-of-type{
             margin: 7px 0 16px;
+        }
+    }
+
+    .place_btn_fixed{
+        width: 100%;
+        position: fixed;
+        left: 50%; bottom: 0;
+        transform: translateX(-50%);
+        .place_btn{ //선택완료 버튼
+            width: 100%;
+            font-size: 16px;
         }
     }
 }
