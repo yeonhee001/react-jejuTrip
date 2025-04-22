@@ -145,7 +145,6 @@ export const plan = create((set) => ({
 
         } catch (err) {
             console.error(err);
-            alert('추가 못했다요');
         }
     },
     //수정
