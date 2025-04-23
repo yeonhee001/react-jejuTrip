@@ -20,7 +20,6 @@ function CmSlideImg() {
       try {
         const response = await axios.get(`${process.env.REACT_APP_APIURL}/post/images?page=${page}`);
         const posts = response.data;
-        console.log(posts)
         setImages((prevImages) => [...prevImages, ...posts]);
       } catch (error) {
         console.error('이미지 불러오기 중 오류 발생:', error);

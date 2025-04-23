@@ -147,9 +147,13 @@ function Like() {
             return (
               <div
                 key={`post-${index}`}
-                onClick={() => {
+                onClick={async() => {
                   if (item.post && item.post._id) {
-                    localStorage.setItem('post', JSON.stringify(item.post));
+                      const res = await fetch(`${process.env.REACT_APP_APIURL}/like/user-liked?userId=${userId}`);
+                      const data = await res.json();
+                      let hasVote = data.likedPostIds.includes(item.post._id);
+                
+                      localStorage.post = JSON.stringify({...item.post,hasVote});
                     window.location.href = `/community/cmdetail/${item.post._id}`;
                   }
                 }}
