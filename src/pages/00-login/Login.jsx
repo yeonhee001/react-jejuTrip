@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
 import KakaoLogin from '../../component/00-login/KakaoLogin';
 import NaverLogin from '../../component/00-login/NaverLogin';
@@ -6,6 +6,10 @@ import GoogleLogin from '../../component/00-login/GoogleLogin';
 import "../../styles/00-login/login.scss";
 
 function Login() {
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  },[])
+  
   return (
     <div className='login-page'>
       <div className='maintxt'>

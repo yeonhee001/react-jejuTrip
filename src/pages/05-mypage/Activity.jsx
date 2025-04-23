@@ -21,6 +21,7 @@ function Activity() {
   const [loading, setLoading] = useState(true);
 
   const userId = String(JSON.parse(sessionStorage.getItem('user'))?.id);
+  
 
   const renderContent = () => {
     switch (selectedTab) {
@@ -30,9 +31,13 @@ function Activity() {
           ? sortedPosts.map((item) => (
             <div
               key={item._id}
-              onClick={() => {
+              onClick={async() => {
+                const res = await fetch(`${process.env.REACT_APP_APIURL}/like/user-liked?userId=${userId}`);
+                const data = await res.json();
+                let hasVote = data.likedPostIds.includes(item._id);
+                
+                localStorage.post = JSON.stringify({...item,hasVote});
                 navigate(`/community/cmdetail/${item._id}`)
-                localStorage.setItem('post', JSON.stringify(item));
               }}
             >
               <TabItem
@@ -45,17 +50,20 @@ function Activity() {
           : <NoWritePost/>
       case 1:
         const sortedCmts = [...cmtData].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        
         return sortedCmts.length > 0
-        ? sortedCmts.map((item) => (
+        ? sortedCmts.map((item, i) => (
           <div
             key={item._id}
             className='tab-content-reply'
             onClick={async () => {
               try {
-                const res = await axios.get(`${process.env.REACT_APP_APIURL}/post/update/${item.postId}`);
-                const cmtToPostData = res.data;
-                navigate(`/community/cmdetail/${item.postId}`);
-                localStorage.setItem('post', JSON.stringify(cmtToPostData));
+                const res = await fetch(`${process.env.REACT_APP_APIURL}/like/user-liked?userId=${userId}`);
+                const data = await res.json();
+                let hasVote = data.likedPostIds.includes(item.postInfo._id);
+                
+                localStorage.post = JSON.stringify({...item.postInfo,hasVote});
+                navigate(`/community/cmdetail/${item.postInfo._id}`)
               } catch (err) {
                 console.error('게시물 데이터 불러오기 실패:', err);
               }
@@ -84,23 +92,24 @@ function Activity() {
         const getCommentData = cmtRes.data || [];
         setCmtOriginData(getCommentData);
   
+        // post id만 추출
         const uniquePostIds = [...new Set(getCommentData.map(item => item.postId))];
-        const postIdToTitle = {};
+        const postIdToPostDetail = {};
   
         await Promise.all(
           uniquePostIds.map(async (postId) => {
             try {
-              const postDetailRes = await axios.get(`${process.env.REACT_APP_APIURL}/post/update/${postId}`);
-              postIdToTitle[postId] = postDetailRes.data.title || '제목 없음';
+              const res = await axios.get(`${process.env.REACT_APP_APIURL}/post/update/${postId}`);
+              postIdToPostDetail[postId] = res.data;
             } catch {
-              postIdToTitle[postId] = '제목 없음';
+              postIdToPostDetail[postId] = {title: '제목 없음', createdAt: 'null'};
             }
           })
         );
 
         const updatedComments = getCommentData.map(comment => ({
           ...comment,
-          postTitle: postIdToTitle[comment.postId] || '제목 없음',
+          postInfo: postIdToPostDetail[comment.postId] || {},
         }));
         setCmtData(updatedComments);
       } catch (err) {

@@ -4,12 +4,11 @@ import ListPage from '../../../component/_common/ListPage';
 import GetTripPopup from '../../../component/popups/GetTripPopup';
 import Newpost from '../../../component/icons/Newpost';
 import NoCheck from '../../../component/_common/NoCheck';
-import "../../../styles/05-mypage/check/checkList.scss";
 
 function CheckList() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);                       // 여행 선택 팝업 상태 관리
   const [isDonePopupOpen, setIsDonePopupOpen] = useState(false);               // 삭제 완료 팝업 상태 관리
-  const [checkData, setCheckData] = useState([]);                              // 체크리스트 데이터 상태
+  const [checkData, setCheckData] = useState(null);                              // 체크리스트 데이터 상태
   const [isPlanCheckData, setIsPlanCheckData] = useState([]);                  // 여행 없는 체크리스트 데이터 상태
   const [planData, setPlanData] = useState([]);                                // 여행 일정 데이터 상태
   const [trashClick, setTrashClick] = useState({});                            // 삭제 버튼 클릭 상태
@@ -104,9 +103,9 @@ function CheckList() {
   }
   
   return (
-    <div className='checklist-page'>
+    <div style={{padding: '92px 0 150px'}}>
       <ListPage
-        listData={checkData}
+        listData={checkData || []}
         page="check"
         trashClick={trashClick}
         trash={(id) => trash(id)}
@@ -119,7 +118,7 @@ function CheckList() {
         loading={loading}
       />
       <div>
-        {!loading && checkData.length === 0 && <NoCheck />}
+        {!loading && checkData !== null && checkData.length === 0 && <NoCheck />}
       </div>
 
 
