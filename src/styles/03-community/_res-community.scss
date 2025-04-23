@@ -6,7 +6,7 @@
   .new-post-button { 
     max-width: auto;
     .cm-Newpost{
-      bottom: 13%; right: 0.2%;
+      bottom: 13%; right: 4%;
       transform: translate(-12.5%, -4%);    
         >img{
           width: 40px; height: 40px;
@@ -15,7 +15,7 @@
     }
 .add-check-btn-wrap2{
   .add-check-btn2{
-    bottom: 20%;
+    bottom: 20%; right: 4%;
     }
 }
 .add-check-btn-wrap3{
@@ -44,7 +44,7 @@
   font-size: 18px;
 }
 .nickname{
-  font-size: 10px;
+  font-size: 12px;
 }
 .date-text{
   font-size: 12px;
@@ -58,7 +58,7 @@
 .new-post-button { 
   max-width: auto;
   .cm-Newpost{
-    bottom: 16%;  right: 0.2%;
+    bottom: 16%;  right: 4%;
     transform: translate(-11.5%, -4%);    
     >img{
     width: 36px; height: 36px;

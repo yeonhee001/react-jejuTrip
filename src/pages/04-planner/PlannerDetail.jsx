@@ -148,8 +148,6 @@ async function openSavePopup() {
         })
     },[])
 
-    if(!tripDay) {setTripDay( "첫째 날 - 마지막 날")}
-    
     return (
         <div className='planner_detail' style={{padding:"92px 0"}}>
             <div className='weather_content'>
@@ -161,7 +159,7 @@ async function openSavePopup() {
             <div className='checkdetail-icon-close' onClick={handleClose}><Close/></div>
             <div className='planner_content'>
                 <PlannerTitle eTitle={eTitle} setETitle={setETitle} />
-                <PlannerDay setCalendar={setCalendar} tripDay={tripDay}/>
+                <PlannerDay setCalendar={setCalendar} tripDay={tripDay} setTripDay={setTripDay}/>
                 {calendar && <div className="overlay"/>}
                 <CalendarPopup calendar={calendar} setCalendar={setCalendar}/>
                 <PlannerTagBtn 
@@ -193,7 +191,7 @@ async function openSavePopup() {
             <> {/* 읽기모드 */}
             <div className='planner_content readonly'>
                 <PlannerTitle eTitle={eTitle} setETitle={setETitle} planData={planData}/>
-                <PlannerDay tripDay={tripDay}/>
+                <PlannerDay tripDay={tripDay} setTripDay={setTripDay}/>
                 <PlannerTagBtn 
                     id={id} 
                     userId={userId} 

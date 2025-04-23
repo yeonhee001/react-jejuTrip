@@ -12,10 +12,20 @@ function PlannerDay({setCalendar, tripDay}) {
                 enterEditMode();
                 }}
                 className='trip_date'>
-                { tripDay && `${tripDay[0]} - ${tripDay[tripDay.length-1]}`}
+                { tripDay.length == 0 ? (
+                    '첫째 날 - 마지막 날'
+                ):(
+                    `${tripDay[0]} - ${tripDay[tripDay.length-1]}`
+                )}
             </button>
         ):(
-            <div className='trip_date'>{ tripDay && `${tripDay[0]} - ${tripDay[tripDay.length-1]}`}</div>
+            <div className='trip_date'>
+                { tripDay.length == 0 ? (
+                '첫째 날 - 마지막 날'
+                ):(
+                    `${tripDay[0]} - ${tripDay[tripDay.length-1]}`
+                )}
+            </div>
         )}
         </>
     )

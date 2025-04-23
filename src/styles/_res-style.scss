@@ -117,6 +117,7 @@
 
   // tab
   .tab-maintitle{
+    margin: 0 0 50px;
     font-size: 20px;
   }
   .tabmenu{
@@ -143,6 +144,7 @@
   }
   .listpage{
     h2{
+      margin: 0 0 50px;
       font-size: 20px;
     }
     .listpage-year{
@@ -255,8 +257,8 @@
   .top-btn-wrap {
     max-width: auto;
     .top-btn{
-        bottom: 14.5%; right: 4%;
-        transform: translate(-13%, -4%);    
+        bottom: 11%; right: 4%;
+        transform: translate(-11%, -4%);    
         >img{
             width: 36px; height: 36px;
         }

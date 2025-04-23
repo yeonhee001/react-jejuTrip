@@ -46,19 +46,21 @@
 }
 .cusor {
   position: absolute;
-  top: 0;
+  top: 109px;
   right: 0;
   display: flex;
 }
 .cursor-pointer1 {
-  color:  #2449A4;
+  color:  #2288FD;
   font-size: 20px;
   font-family: 'NanumSquare';
+  font-size: 14px;
 }
 .cursor-pointer2 {
   color: #FF3658;
   font-size: 20px;
   font-family: 'NanumSquare';
+  font-size: 14px;
 }
 .comment-item {
   display: flex;

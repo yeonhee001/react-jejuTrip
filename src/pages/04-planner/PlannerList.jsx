@@ -19,7 +19,7 @@ function PlannerList() {
     const userId = storedUser?.id;
     
     const { planData, PlanListData, removePlan } = plan();
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [calendar, setCalendar] = useState(false);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [successful, setSuccessful] = useState(false);
@@ -30,8 +30,6 @@ function PlannerList() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        setLoading(true);
-
         if (!userId) {
             setIsPopupOpen(true);
             return;
@@ -94,6 +92,7 @@ function PlannerList() {
                         page={"plan"}
                         listData={planData}
                         trashClick={trashClick}
+                        loading={loading}
                         trash={(id) => trash(id)}
                         onConfirm={() => {
                             deletePlanData();
