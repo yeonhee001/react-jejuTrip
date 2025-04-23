@@ -173,28 +173,13 @@
   }
 
   .home-photomenu{
-    margin: 70px 0;
-    .photoSwiper{
-      width: 100% !important;
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-      overflow: visible;
-      .swiper-wrapper {
-        padding-right: 0 !important;
-        .swiper-slide {
-          width: 95% !important; 
-          flex-shrink: 0;
-          // margin-right: 0 !important;
-          .home-photo{
-            max-width: 580px; height: auto;
-            .home-photo-img{
-              width: 100%;
-              aspect-ratio: 4 / 5;
-              img{
-                width: 100%; height: 100%;
-                object-fit: cover;
-                border-radius: 10px;
-              }
+    .photoswiper-wrapper{
+      .photoSwiper{
+        .swiper-wrapper {
+          .swiper-slide {
+            width: 85% !important; 
+            .home-photo{
+              height: auto;
             }
           }
         }
@@ -360,7 +345,7 @@
       padding: 7px 24px;
       height: 46px;
       >p{
-        width: 38%; height: auto;
+        width: 30%; height: auto;
       }
       >div{
         >span{
@@ -425,10 +410,15 @@
     .home-foodContent{
       .home-food{
         width: 100%;
+        min-height: 130px;
         margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
         .home-foodtab{
           display: flex;
           flex-direction: column;
+          flex: 1 1 auto;
           >p{
             flex: 1;
             aspect-ratio: 163 / 80;
@@ -461,28 +451,13 @@
   }
 
   .home-photomenu{
-    margin: 70px 0;
-    .photoSwiper{
-      width: 100% !important;
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-      overflow: visible;
-      .swiper-wrapper {
-        padding-right: 0 !important;
-        .swiper-slide {
-          width: 95% !important; 
-          flex-shrink: 0;
-          // margin-right: 0 !important;
-          .home-photo{
-            max-width: 500px; height: auto;
-            .home-photo-img{
-              width: 100%;
-              aspect-ratio: 4 / 5;
-              img{
-                width: 100%; height: 100%;
-                object-fit: cover;
-                border-radius: 10px;
-              }
+    .photoswiper-wrapper{
+      .photoSwiper{
+        .swiper-wrapper {
+          .swiper-slide {
+            width: 85% !important; 
+            .home-photo{
+              max-width: 500px; height: auto;
             }
           }
         }
@@ -523,7 +498,7 @@
       }
       >b{
         top: 35%; right: 12%;
-        font-size: 35px;
+        font-size: 30px;
       }
     }
   }

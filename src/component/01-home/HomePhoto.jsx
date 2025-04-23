@@ -10,7 +10,7 @@ function HomePhoto({className, onClick, to, state, img}) {
     <div className={className}>
       <NavLink to={to} state={state} onClick={handleMoreBtn}>
         <p className='home-photo-img'>
-          <img src={img} alt="" />
+          <img src={img.imageUrl} alt="" />
         </p>
       </NavLink>
     </div>

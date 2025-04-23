@@ -151,6 +151,7 @@
   }
   .emoji{
     font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+    font-weight: normal;
   }
 }
 
@@ -323,26 +324,31 @@
 
 .home-photomenu{
   margin: 70px 0;
-  .photoSwiper{
-    width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    // overflow: visible;
-    .swiper-wrapper {
-      padding-right: 0 !important;
-      .swiper-slide {
-        width: 95% !important; 
-        flex-shrink: 0;
-        // margin-right: 0 !important;
-        .home-photo{
-          max-width: 635px; height: auto;
-          .home-photo-img{
-            width: 100%;
-            aspect-ratio: 4 / 5;
-            img{
-              width: 100%; height: 100%;
-              object-fit: cover;
-              border-radius: 10px;
+  .photoswiper-wrapper{
+    // margin-left: calc(-1 * var(--body-padding, 20px)); /* 👈 body 패딩만큼 왼쪽으로 빼기 */
+    margin-right: calc(-1 * var(--body-padding, 36px)); /* 👈 오른쪽도 빼기 */
+    overflow: hidden; /* 잘라버리기 */
+    .photoSwiper{
+      width: 100% !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      position: relative;
+      overflow: visible;
+      .swiper-wrapper {
+        padding-right: 0 !important;
+        .swiper-slide {
+          width: 95% !important; 
+          flex-shrink: 0;
+          .home-photo{
+            max-width: 692px; height: auto;
+            .home-photo-img{
+              width: 100%;
+              aspect-ratio: 3 / 4;
+              img{
+                width: 100%; height: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+              }
             }
           }
         }
