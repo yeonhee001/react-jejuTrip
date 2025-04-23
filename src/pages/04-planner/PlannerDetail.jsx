@@ -148,6 +148,8 @@ async function openSavePopup() {
         })
     },[])
 
+    if(!tripDay) {setTripDay( "첫째 날 - 마지막 날")}
+    
     return (
         <div className='planner_detail' style={{padding:"92px 0"}}>
             <div className='weather_content'>

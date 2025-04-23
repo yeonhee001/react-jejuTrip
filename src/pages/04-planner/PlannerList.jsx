@@ -19,7 +19,7 @@ function PlannerList() {
     const userId = storedUser?.id;
     
     const { planData, PlanListData, removePlan } = plan();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [calendar, setCalendar] = useState(false);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [successful, setSuccessful] = useState(false);
