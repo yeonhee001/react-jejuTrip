@@ -236,7 +236,7 @@ input:checked + .tagbtn{
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-top: 280px;
+    margin-top: 100px;
 
     .smileIcon {
         width: 40px;
@@ -580,6 +580,7 @@ input:checked + .tagbtn{
         }
         .place-txt{
             width: 400px;
+            flex-shrink: 0;
             >h2{
                 font-size: 18px;
                 font-weight: bold;
@@ -599,6 +600,10 @@ input:checked + .tagbtn{
             }
             .place-tag{
                 padding-top: 5px;
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 >span{
                     font-size: 14px;
                 }

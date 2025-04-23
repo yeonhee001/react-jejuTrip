@@ -30,7 +30,10 @@ function SearchPage() {
         },
       })
       .then((res)=>{
-        setKeywords(res.data.data)
+        const spacing = res.data.data.map(item =>({
+          ...item, 단어: item.단어.replace(/\s/g, '')
+        }))
+        setKeywords(spacing)
       })
       .catch((error) => {
         console.error("인기 검색어 불러오기 실패", error);

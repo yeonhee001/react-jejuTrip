@@ -159,7 +159,7 @@ function SearchDetail() {
                   <PlaceItem imgpath={item.repPhoto?.photoid?.imgpath || '/imgs/common_noimage_big_02.png'} title={item.title} roadaddress={item.roadaddress || '현재 주소 정보가 비어 있어요. 확인 중입니다.'} tag={item.tag} heartType={"none"}/>
                 </div>
               )) : (
-                <NoSearch/>
+                <NoSearch className={'search-nodata'}/>
               )
             }
           </div>

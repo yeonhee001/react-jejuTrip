@@ -49,16 +49,22 @@ function Home() {
   const [activeTrip, setActiveTrip] = useState(null); // 여행지에서 클릭했을 때 active 값을 넣기 위한 useState
   const [selectedTrips, setSelectedTrips] = useState([]); // 랜덤으로 뽑을 여행지 4개를 위한 useState
   const [selectedFoods, setSelectedFoods] = useState([]); // 랜덤으로 뽑을 맛집 6개를 위한 useState
-  const [selectedMonth, setSelectedMonth] = useState(''); // 어떤 월을 선택했는지
+  
+  const nowmonth = new Date().getMonth() +1;
+  const matchMonth = nowmonth < 10 ? `0${nowmonth}` : `${nowmonth}`;
+  const [selectedMonth, setSelectedMonth] = useState(matchMonth); // 어떤 월을 선택했는지
   const [month, setMonth] = useState(false); //월별 팝업 열고 닫고
   const [people, setPeople] = useState([]); //관광객 전체 데이터
   const [selectedPeopleCount, setSelectedPeopleCount] = useState(null); //선택한 관광객 전체 데이터
-  const [mainWeather, setMainWeather] = useState([]); //선택한 관광객 전체 데이터
-  const [imgPost, setImgPost] = useState([]); //선택한 관광객 전체 데이터
+  
+  const [mainWeather, setMainWeather] = useState([]); // 오늘의 날씨 값
+  const [imgPost, setImgPost] = useState([]); // 커뮤니티에서 이미지게시물 가져온 값
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const isLoggedIn = !!sessionStorage.getItem('access'); // 세션 내 access 값이 있으면 true, 없으면 false
   const user = JSON.parse(sessionStorage.getItem('user'));
+  const userId = user?.id;
   const navigate = useNavigate();
+
   
 
   // 메인트립 로컬스토리지 저장, 하루시간 설정 후 삭제되게 함
@@ -305,14 +311,7 @@ function Home() {
     }
   }
 
-  // 인생샷 클릭했을 때 로그인 확인하기
-  const photoClick = (target)=>{
-    if(!isLoggedIn){
-      setIsPopupOpen(true);
-    }else if(target ==='top' || target ==='photo'){
-      navigate('/community', { state: { setSelectedTab: 1 } });
-    }
-  }
+
 
   // 관광객수 api 불러오기
   useEffect(()=>{
@@ -352,17 +351,40 @@ function Home() {
   // db 관련 커뮤니티 목록에서 이미지 가져오기
   useEffect(()=>{
     const fetchPostImg = async ()=>{
-      const res = await fetch(`${process.env.REACT_APP_APIURL}/post`);
+      const res = await fetch(`${process.env.REACT_APP_APIURL}/post/images`);
       if(res.ok){
         const result = await res.json();
-        const img = result.filter(post=>post.subject==='떠나팁')
-        .flatMap(post=>post.imageUrls?.[0] ? [post.imageUrls[0]] : [])
-        .slice(0,5);
-        setImgPost(img);
+        const imgPosts = result.filter(post=>post.post.subject==='떠나팁')
+        .flatMap(post => post.imageUrl ? [{ imageUrl: post.imageUrl, postId: post.id, post: post }] : [])
+        .slice(0, 5);
+        setImgPost(imgPosts);
       }
     }
     fetchPostImg();
   },[])
+  
+  // 인생샷 클릭했을 때 로그인 확인하기
+  const photoClick = async (target, post)=>{
+    if (!post || !post.id) {
+      console.error('Invalid post object or missing _id');
+      return;
+    }
+
+    if(!isLoggedIn){
+      setIsPopupOpen(true);
+    }else if(target ==='top'){
+      navigate('/community', { state: { setSelectedTab: 1 } });
+    }else if(target ==='photo'){
+      const res = await fetch(`${process.env.REACT_APP_APIURL}/like/user-liked?userId=${userId}`);
+      const data = await res.json();      
+      const likedPostIds = data?.likedPosts?.map(post => post.postId) || [];
+      let hasVote = likedPostIds.includes(post.post._id);
+      
+      localStorage.post = JSON.stringify({...post.post,hasVote});
+      // localStorage.setItem('post', JSON.stringify(post.post)); 
+      navigate(`/community/cmdetail/${post.id.toString()}`, { state: { setSelectedTab: 1 } });
+    }
+  }
 
   return (
     <div className='home-main'>
@@ -500,7 +522,7 @@ function Home() {
           onConfirm={() => navigate('/login')}/>
         )}
 
-        <div>
+        <div className='photoswiper-wrapper'>
           <Swiper
           slidesPerView={'auto'}
           spaceBetween={10}
@@ -509,11 +531,11 @@ function Home() {
             {
               imgPost.map((item, i)=>
                 <SwiperSlide key={i}>
-                  <HomePhoto className={'home-photo'} to={'/community'} img={item} state={{setSelectedTab: 1}} onClick={()=>photoClick('photo')}/>
+                  <HomePhoto className={'home-photo'} to={`/community/cmdetail/${item.post.id.toString()}`} img={item} state={{setSelectedTab: 1}} onClick={()=>{ if(item.post){photoClick('photo', item.post)}}}/>
                 </SwiperSlide>
               )
             }
-        </Swiper>
+          </Swiper>
         </div>
       </div>
       
@@ -533,7 +555,7 @@ function Home() {
         </div>
         <div className='home-people-num'>
           <p><img src="/imgs/home_trippeople_01.png" alt="" /></p>
-          <span>※ 2023년 기준</span>
+          <span>※ 2024년 기준</span>
           {
             selectedPeopleCount !== null ? (
               <MonthPeople count={selectedPeopleCount}/>
