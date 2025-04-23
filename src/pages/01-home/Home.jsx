@@ -365,10 +365,13 @@ function Home() {
   
   // 인생샷 클릭했을 때 로그인 확인하기
   const photoClick = async (target, post)=>{
-    if (!post || !post.id) {
-      console.error('Invalid post object or missing _id');
-      return;
+    if (target === 'photo') {
+      if (!post || (!post.id && !post._id)) {
+        console.error('Invalid post object or missing id');
+        return;
+      }
     }
+    
 
     if(!isLoggedIn){
       setIsPopupOpen(true);
@@ -515,7 +518,7 @@ function Home() {
         <HomeContTop 
         homecontTitle={'꼭 남겨야 할 인생샷 스팟 '} homecontEmoji={'📸'} 
         to={'/community'} state={{setSelectedTab: 1}}
-        onClick={()=>photoClick('top')}/>
+        onClick={()=>photoClick('top', {})}/>
         
         {isPopupOpen && (
           <Btn2Popup isOpen={isPopupOpen} setIsOpen={setIsPopupOpen} type={'login'} 

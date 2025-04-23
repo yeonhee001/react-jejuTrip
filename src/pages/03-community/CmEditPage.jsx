@@ -39,7 +39,7 @@ function CmEditPage() {
   };
 
   return (
-    <div style={{ margin: "92px 0 150px" }}>
+    <div style={{ padding: "50px 0 150px" }}>
       <FormProvider {...postForm}>
         <form onSubmit={postForm.handleSubmit(handlePostUpdate)}>
           <CmEditPost postData={post} onSubmit={handlePostUpdate} />

@@ -4,9 +4,11 @@ import { NavLink } from 'react-router-dom'
 
 function HomeContTop({onClick, homecontTitle, homecontEmoji, to, state, showMore = true}) {
   const handleMoreBtn = (e)=>{
-    e.preventDefault();
-    onClick();
-  }
+    if(onClick){
+      e.preventDefault();
+      onClick();
+    }
+  };
   return (
     <div className='home-menu-top'>
       <h2>{homecontTitle} <span className='emoji'>{homecontEmoji}</span> </h2>
