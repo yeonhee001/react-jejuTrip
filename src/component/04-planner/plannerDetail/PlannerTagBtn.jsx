@@ -19,11 +19,10 @@ function PlannerTagBtn({id, userId, checkData, setCheckData, setIsPopupOpenDelet
                     navigate(`/my/checklist/checkDetail/${item?.id}`);
                 }
             })
-    })
-}
+        })
+    }
 
-console.log(checkData);
-  return (
+    return (
     <div className='planner_tagbtn'>
         { checkData.filter(item=>item.planId == id).length==1 &&
         <NavLink
@@ -49,8 +48,6 @@ console.log(checkData);
         </NavLink>
 
         <button onClick={() => {setIsPopupOpenDelete(true);}}><TagBtn tagbtn={"전체 일정 삭제"}/></button>
-
-        
     </div>
 
     )

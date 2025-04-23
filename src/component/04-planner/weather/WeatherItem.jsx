@@ -34,7 +34,7 @@ function WeatherItem({tmn, tmx, icon, date}) {
         <div>
             <div className='weather_date'>{date}</div>
             <div className='weather_icon'>{weatherIcon(icon)}</div>
-            <div><WeatherTemp tmn={tmn} tmx={tmx}/></div>
+            <div><WeatherTemp tmn={tmn} tmx={tmx} className={"temp_item"}/></div>
         </div>
     )
 }

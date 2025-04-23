@@ -18,7 +18,7 @@
 .planner_title:focus{outline: none;}
 .planner_title, .planner_weather{font-weight: bold; font-size: 22px !important;}
 
-//로딩 중
+//날씨 로딩 중
 .detail_loading{
     b{
         display: inline-block;
@@ -41,7 +41,7 @@
 .weather_content{
     margin: 0 auto 50px;
     font-weight: bold;
-    h2{margin-bottom: 5px;}
+    h2{font-size: 22px; margin-bottom: 5px;}
     .weather_item{
         gap: 5%;
         display: flex;
@@ -189,7 +189,11 @@
                         padding: 20%;
                         text-align: center;
                     }
-                
+                    
+                }
+                .pick_read{
+                    display: inline-block;
+                    width: 100%;
                 }
                 .plnner_drag{
                     position: absolute;
@@ -250,8 +254,8 @@
         font-size: 11px;
         color: rgb(0, 0, 0, 0.3);
     }
-    .title{
-        font-size: 14px;
+    .card_title{
+        font-size: 20px;
         font-weight: bold;
         margin :0 
     }
@@ -303,4 +307,4 @@
     width: 100%;
 }
 
-@import './res-planner.scss';
+@import './res-plannerDetail.scss';

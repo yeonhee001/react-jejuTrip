@@ -25,10 +25,10 @@ function TicketPick({idx, topBarBtn, ticketdate, data}) {
                 
                 let type;
                 switch(item.contents_label){
-                  case '관광지' : type='tour'; break;
-                  case '쇼핑' : type='shopping'; break;
-                  case '음식점' : type='food'; break;
-                  case '축제&행사' : type='festival'; break;
+                    case '관광지' : type='tour'; break;
+                    case '쇼핑' : type='shopping'; break;
+                    case '음식점' : type='food'; break;
+                    case '축제&행사' : type='festival'; break;
                 }
 
             return (
@@ -40,7 +40,7 @@ function TicketPick({idx, topBarBtn, ticketdate, data}) {
                         </div>
                         <SvgVerticalLine/>
                         </div>
-                        <NavLink to={`/trip/triplist/${type}/tripdetail/${item.contents_id}`}>
+                        <NavLink className="pick_read" to={`/trip/triplist/${type}/tripdetail/${item.contents_id}`}>
                         <CardItem item={item} />
                         </NavLink>
                     </li>

@@ -35,7 +35,7 @@ function TicketRead({idx, topBarBtn, ticketdate}) {
                                     <div className='liNum'><span>{i + 1}</span></div>
                                     <SvgVerticalLine />
                                     </div>
-                                    <NavLink to={`/trip/triplist/${type}/tripdetail/${list.contents_id}`}>
+                                    <NavLink className="pick_read" to={`/trip/triplist/${type}/tripdetail/${list.contents_id}`}>
                                     <CardItem item={list} />
                                     </NavLink>
                                 </li>

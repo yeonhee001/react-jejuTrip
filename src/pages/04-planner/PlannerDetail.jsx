@@ -149,7 +149,7 @@ async function openSavePopup() {
     },[])
 
     return (
-        <div className='planner_detail'>
+        <div className='planner_detail' style={{padding:"92px 0"}}>
             <div className='weather_content'>
                 <h2>제주시 날씨는</h2>
                 <WeatherDays/>
@@ -174,9 +174,6 @@ async function openSavePopup() {
                 <PlannerTicket tripDay={tripDay} ticketDate={ticketDate}/>
             </div>
             <button onClick={()=>{
-                if(!planData?.item?.days[0]?.plans.length){
-                    return
-                }
                     if(isEditMode == true){
                         openSavePopup()
                         localStorage.removeItem('searchListItem')
@@ -208,13 +205,13 @@ async function openSavePopup() {
             isOpen={isPopupOpenSave} 
             setIsOpen={setIsPopupOpenSave} type={"save"}
             onConfirm={() => {
-                if(location.state?.isEdit == true){
+                if(location.state?.isEdit){
                     navigate(`/planner`);
                 }else{
                     setIsPopupOpenSave(false);
                 }
             }}
-            />
+        />
         <Btn2Popup //수정 중 나가기 팝업
             isOpen={isPopupOpenExit}
             setIsOpen={setIsPopupOpenExit}
@@ -225,7 +222,7 @@ async function openSavePopup() {
                 localStorage.removeItem('searchListItem');
             }}
             onCancel={()=>{localStorage.removeItem('searchListItem');}}
-            />
+        />
         <Btn2Popup //삭제 안내 팝업
             isOpen={isPopupOpenDelete}
             setIsOpen={setIsPopupOpenDelete}
@@ -235,7 +232,7 @@ async function openSavePopup() {
                 navigate(`/planner`)
                 setIsPopupOpenDelete(false)
             }}
-            />
+        />
         <Btn2Popup //수정 중 체크리스트 팝업
             isOpen={isPopupOpenCheckList}
             setIsOpen={setIsPopupOpenCheckList}

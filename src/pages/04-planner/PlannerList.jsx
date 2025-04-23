@@ -11,6 +11,8 @@ import DataLoading from '../../component/_common/DataLoading';
 import Calendar from '../../component/04-planner/calendar/Calendar';
 
 import "../../styles/04-planner/plannerList.scss";
+import NoPlan from '../../component/_common/NoPlan';
+import axios from 'axios';
 
 function PlannerList() {
     const storedUser = JSON.parse(sessionStorage.getItem('user'));
@@ -26,14 +28,10 @@ function PlannerList() {
     const [deleteTarget, setDeleteTarget] = useState({ index: null, type: null });
     
     const navigate = useNavigate();
-    
-    useEffect(()=>{
-        setTimeout(()=>{
-            setLoading(false)
-        },1200)
-    },[])
-    
+
     useEffect(() => {
+        setLoading(true);
+
         if (!userId) {
             setIsPopupOpen(true);
             return;
@@ -69,7 +67,23 @@ function PlannerList() {
         }
     }
 
-    if(loading){<DataLoading/>; return}
+    function checkListDel () {
+        const { id } = deleteTarget;
+        const stingId = String(userId)
+        
+        if (id !== null) {
+            axios.put(`${process.env.REACT_APP_APIURL}/check/plan/del`, { userId : stingId, planId: id })
+            .catch(err => {
+                console.error(err);
+                alert('삭제에 실패했습니다.');
+            });
+        } else {
+            console.log('No item to delete. deleteIndex is null');
+        }
+    }
+
+    if(!loading){<DataLoading/>;}
+
     return (
         <div className='plannerList'>
             { userId &&
@@ -83,13 +97,25 @@ function PlannerList() {
                         trash={(id) => trash(id)}
                         onConfirm={() => {
                             deletePlanData();
+                            checkListDel();
                             setIsDonePopupOpen(true); // 여기서 열기
                         }}
                         isDonePopupOpen={isDonePopupOpen}
                         setIsDonePopupOpen={setIsDonePopupOpen}
                         />
-                    <button onClick={()=>{setCalendar(true)}}><Newpost className={"planner_new"}/></button>
+                        <div onClick={() =>{setCalendar(true)}} className='add-check-btn-wrap'>
+                            <Newpost className={'add-check-btn'}/>
+                        </div>
                     </>
+                }
+                { userId && planData?.length == 0 && 
+                    <div className='listpage'>
+                        <h2>나의 여행 보기</h2>
+                        <NoPlan/>
+                        <div onClick={() =>{setCalendar(true)}} className='add-check-btn-wrap'>
+                            <Newpost className={'add-check-btn'}/>
+                        </div>
+                    </div>
                 }
                     <>
                     {calendar && <div className="overlay"/>}

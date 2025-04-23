@@ -50,4 +50,13 @@
     z-index: 10000;
 }
 
-@import './res-planner.scss';
+.new_btn{
+    z-index: 999;
+    position: fixed;
+    bottom: 13%;
+    right: calc((100vw - 768px) / 2 + 34px);
+    transform: translate(-13%, -4%);
+}
+
+
+@import './res-plannerList.scss';

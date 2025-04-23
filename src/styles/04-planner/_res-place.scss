@@ -1,0 +1,48 @@
+// place.scss
+@media (max-width:768px){
+    .place_btn_fixed{
+        width: 100% !important;
+        border-radius: 7px !important;
+        height: 60px !important;
+        .place_btn{ //선택완료 버튼
+            font-size: 16px !important;
+        }
+    }
+    //지역별
+    .address{font-size: 16px;}
+    .place_btn{ //선택완료 버튼
+        width: 100% !important;
+        font-size: 16px;
+    }
+    //선택 완료, 장소 추가, 전체 저장
+    .ticketbtn{font-size: 16px;}
+    .planner_Like{width: 210px !important;}
+}
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+@media (max-width:480px){
+    .planner_Like{width: 155px !important;}
+    .place_btn_fixed{
+        width: 100%;
+        position: fixed;
+        left: 50%; bottom: 0;
+        height: 60px !important;
+        transform: translateX(-50%);
+        .place_btn{ //선택완료 버튼
+            width: 100% !important;
+            font-size: 14px;
+        }
+    }
+
+    .searchbox{
+        .city_name{
+            margin-bottom: 10px;
+        }
+    } 
+    .ticketbtn{font-size: 14px;}
+}

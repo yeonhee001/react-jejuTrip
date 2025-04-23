@@ -1,0 +1,203 @@
+// plannerDertail.scss
+@media (max-width:768px){
+    .planner_content{
+        position: relative;
+        .hand{
+            position: absolute;
+            right: -10%;
+            transform: translate(-50%, -50%);
+            z-index: 99;
+        }
+        .planner{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            button{
+                font-size: 18px;
+                color: #2288FD;
+            }
+        }
+        .trip_date{
+            font-size: 18px;
+        }
+        .planner_tagbtn{
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+    }
+
+    .planner_memo{
+        position: relative;
+        width: 100%;
+        .memo_close{
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        .memo_text{
+            position: absolute;
+            left: 6%; top: 62%;
+            width: 50%;
+            transform: translate(0%, -50%);
+            background-color: transparent;
+            resize: none;
+            outline: none;
+        }
+    }
+
+    .topbar{
+        //Day 1 4/3 목
+        .ticketdate{font-size: 16px;}
+        >span{font-size: 16px;}
+        .plane{
+            max-width: 50%;
+            position: relative;
+            margin: 0 auto;
+            >img{width: 70%;}
+        }
+    }
+    
+    .swipeactionmemo{
+        //타이틀
+        .title{font-size: 20px;}
+        //설명
+        p:nth-of-type(1){font-size: 17px; margin: 8px 0 6px;}
+        //태그
+        p:nth-of-type(2){font-size: 15px;}
+        
+    }
+    //전체 일정 저장하기
+    .cardbtn{
+        width: 100%;
+        .planner_save{
+            width: 100%;
+            font-size: 18px;
+        }
+    }
+    //일정 순서 변경
+    .right_box{
+        width: 95.45px !important;
+        .topBarBtn{
+            display: inline-block;
+            width: 100%;
+            font-size: 16px;
+            color: #2288FD;
+        }
+    }
+
+}
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+@media (max-width:480px){
+    .planner_title, .planner_weather, .weather_text{font-weight: bold; font-size: 18px !important;}
+    .weather_date, .temp_item{font-weight: bold; font-size: 15px !important;}
+    
+    .weather_content{
+        >h2{font-size: 18px;}
+        .weather_wf{
+            .planner_weather{
+                font-weight: bold; font-size: 18px !important;
+            }
+        }
+    }
+    //로딩 중
+    .detail_loading>b{
+        font-size: 18px;
+    }
+    .planner_content{
+        .hand{top: 1150%;}
+    }
+    //편집 버튼 
+    .planner_content{
+        .trip_date{font-size: 16px;}
+        .planner{
+            button{
+                font-size: 14px;
+            }
+        }
+    }
+    //전체 일정 저장하기
+    .cardbtn{
+        width: 100%;
+        .planner_save{
+            width: 100%;
+            font-size: 14px;
+        }
+    }
+    .swipeactionmemo{
+        width: 100%;
+        .card_title{font-size: 14px !important;}
+        p:nth-of-type(1){
+            font-size: 12px;
+            margin: 7px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 85%;
+        }
+        p:nth-of-type(2){
+            font-size: 11px;
+            color: rgb(0, 0, 0, 0.3);
+        }
+    }
+
+    .tickebox{
+        .liLine{
+            height: 90px;
+            .liNum{
+                width: 20px; height: 20px;
+                border-radius: 50%;
+                background-color: #4E7CB2;
+                position: absolute;
+                top: 50%; left: 0;
+                transform: translate(-50%, -50%);
+            }
+            span{
+                font-size: 10px;
+                display: block;
+                width: 20px; height: 20px;
+                color: #fff;
+                padding: 20%;
+                text-align: center;
+            }
+        
+        }
+    }
+    .topbar{
+        margin-bottom: 16px;
+        //Day 1 4/3 목
+        >span, .ticketdate {font-size: 14px !important;}
+        //비행기 아이콘
+        .plane{
+            max-width: 40%;
+            position: relative;
+            margin: 0 auto;
+            >img{width: 70%;}
+        }
+        //수정버튼
+        .right_box{
+            width: 83.45px !important;
+            .topBarBtn{
+                display: inline-block;
+                width: 100%;
+                font-size: 13px;
+                color: #2288FD;
+            }
+        }
+    }
+    .memoNtrash{
+        .trashicon{
+            right: -180px !important;
+        }
+    }
+
+    .pick_read{
+        display: inline-block;
+        width: 100%;
+    }
+}
