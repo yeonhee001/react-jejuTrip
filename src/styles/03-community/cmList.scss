@@ -92,7 +92,7 @@
       bottom: 13%; right: calc((100vw - 768px) / 2 + 34px);
       transform: translate(-11.5%, -4%);    
       >img{
-          width: 40px; height: 40px;
+          width: 50px; height: 50px;
       }
     }
   }
@@ -111,14 +111,8 @@
   color: white
 }
 .list_loading{
-  width: 50%;
-  margin: 0 auto;
-  height: 219.8px;
-  img{
-      width: 50%;
-      display: inline-block;
-      text-align: center;
-  }
+  margin: 120px auto;
+  width: 300px;
 }
 .add-check-btn-wrap2{
   position: relative;
@@ -129,7 +123,7 @@
     z-index: 999;
     position: fixed;
     bottom: 20%;
-    right: 0%;
+    right: 0.5%;
     transform: translate(-13%, -4%);
     >img{
       width: 50px; height: 50px;

@@ -47,6 +47,7 @@ function PlannerDetail() {
     );
     
     useEffect(()=>{
+        window.scrollTo(0, 0);
         if(edit){
             enterEditMode()
             localStorage.removeItem('edit');

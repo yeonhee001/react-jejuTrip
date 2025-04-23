@@ -11,7 +11,6 @@ import CmDetail from './pages/03-community/CmDetail';
 import CmPostPage from './pages/03-community/CmPostPage';
 import CmEditPage from './pages/03-community/CmEditPage';
 import CmSubjectPage from './pages/03-community/CmSubjectPage';
-import CmPhoto from './pages/03-community/CmPhoto';
 import PlannerList from './pages/04-planner/PlannerList';
 import PlannerDetail from './pages/04-planner/PlannerDetail';
 import Place from './pages/04-planner/Place';
@@ -69,7 +68,6 @@ function App() {
           <Route path='/community/cmpostpage' element={<CmPostPage/>}/>
           <Route path='/community/cmeditpage' element={<CmEditPage/>}/>
           <Route path='/community/cmsubjectpage' element={<CmSubjectPage/>}/>
-          <Route path='/community/cmphoto' element={<CmPhoto/>}/>
 
           <Route path='/planner' element={<PlannerList/>}/>
           <Route path='/planner/plannerdetail/:id' element={<PlannerDetail/>}/>

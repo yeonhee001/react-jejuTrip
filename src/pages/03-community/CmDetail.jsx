@@ -82,6 +82,7 @@ function CmDetail() {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (!post || !loggedInUserId) return;
 
     const savedLiked = JSON.parse(localStorage.getItem(`liked-${post._id}`)) || false;
