@@ -10,20 +10,11 @@
     > b{font-size: 18px;}
   }
 
-  // tab
-  .tab-maintitle{
-    margin: 142px 0 50px;
-  }
-
   // list
   .listitem-icon{
     width: 8px; height: 16px;
   }
   .listpage{
-    h2{
-      margin: 142px 0 50px;
-      text-align: center;
-    }
     .listpage-loading{
       margin: 100px auto;
     }
@@ -100,7 +91,10 @@
   }
   .add-check-btn-wrap {
     max-width: auto;
-    .add-check-btn{right: 4%;}
+    .add-check-btn{
+      bottom: 15%; right: 4%;
+        transform: translate(-13%, -4%);
+    }
   }
 }
 
@@ -124,14 +118,10 @@
   // tab
   .tab-maintitle{
     font-size: 20px;
-    margin: 92px 0 50px;
   }
   .tabmenu{
     font-size: 18px;
-    > div{
-      margin-bottom: 16px;
-      padding-bottom: 16px;
-  }}
+  }
   .tabitem{
     column-gap: 16px;
     margin-bottom: 10px;
@@ -153,7 +143,6 @@
   }
   .listpage{
     h2{
-      margin: 92px 0 50px;
       font-size: 20px;
     }
     .listpage-year{

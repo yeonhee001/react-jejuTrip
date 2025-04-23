@@ -1,6 +1,6 @@
 .plannerList{
     position: relative; 
-    margin: 92px 0 150px;
+    padding: 92px 0 150px;
 }
 .planner_new{
     position: fixed;
@@ -50,4 +50,4 @@
     z-index: 10000;
 }
 
-@import './res-planner.scss';
+@import './res-plannerList.scss';

@@ -2,7 +2,7 @@
     .pickplan_pixed{
         position: relative;
     }
-    margin: 92px 0 94px;
+    padding: 92px 0 94px;
     .pickplan_title{
         font-size: 22px;
         font-weight: bold;
@@ -28,4 +28,4 @@
     margin: 20px 0;
 }
 
-@import './res-planner.scss';
+@import './res-pickplan.scss';

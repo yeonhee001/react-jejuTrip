@@ -173,23 +173,27 @@ async function openSavePopup() {
                 />
                 <PlannerTicket tripDay={tripDay} ticketDate={ticketDate}/>
             </div>
-            <button onClick={()=>{
-                if(!planData?.item?.days[0]?.plans.length){
-                    return
-                }
-                    if(isEditMode == true){
-                        openSavePopup()
-                        localStorage.removeItem('searchListItem')
-                        exitEditMode();
-                    }else{
-                        exitEditMode();
+            <button 
+                onClick={()=>{
+                    if(!planData?.item?.days[0]?.plans.length){
+                        return
                     }
-                }} className='cardbtn'><Button btn={"전체 일정 저장하기"} className={"planner_save"}/>
+                        if(isEditMode == true){
+                            openSavePopup()
+                            localStorage.removeItem('searchListItem')
+                            exitEditMode();
+                        }else{
+                            exitEditMode();
+                        }
+                }}
+                className='cardbtn'
+            >
+                    <Button btn={"전체 일정 저장하기"} className={"planner_save"}/>
             </button>
             </>
             ):(
             <> {/* 읽기모드 */}
-            <div className='planner_content'>
+            <div className='planner_content readonly'>
                 <PlannerTitle eTitle={eTitle} setETitle={setETitle} planData={planData}/>
                 <PlannerDay tripDay={tripDay}/>
                 <PlannerTagBtn 

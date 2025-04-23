@@ -100,7 +100,7 @@ function CmDetail() {
   }
 
   return (
-    <div className="p-4" style={{ margin: "92px 0 150px" }}>
+    <div className="p-4" style={{ padding: "92px 0 150px" }}>
       <Detail post={post}>
         {post.imageUrls && (
           <div className="mt-4">

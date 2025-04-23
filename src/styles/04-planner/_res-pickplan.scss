@@ -1,0 +1,30 @@
+// pickplan.scss
+@media (max-width:768px){
+
+}
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+@media (max-width:480px){
+    //추천 일정
+    .pickplan_content{
+        .pickplan_btn{
+            .tagbtn{margin-top: 0px; margin-bottom: 10px;}
+        }
+        .pickplan_title{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .pickplan_title_span{
+            font-size: 18px;
+            color: #2288FD;
+        }
+        p:last-of-type{
+            margin: 7px 0 16px;
+        }
+    }
+}

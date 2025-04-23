@@ -1,5 +1,5 @@
 @media (max-width:768px){
-  .home-main{margin: 92px 0 200px;}
+  .home-main{padding: 92px 0 200px;}
 
   .bottom-icons{
     width: auto;
@@ -275,7 +275,7 @@
   }
 
   .footer{
-    margin: 100px 0 150px;
+    padding: 100px 0 0;
     b{
       font-size: 12px;
       padding-bottom: 6px;
@@ -290,7 +290,7 @@
 
 
 @media (max-width:480px){
-  .home-main{margin: 92px 0 108px;}
+  .home-main{padding: 92px 0 108px;}
 
   .bottom-icons{
     width: auto;
@@ -557,7 +557,7 @@
   }
 
   .footer{
-    margin: 100px 0 150px;
+    padding: 100px 0 45px;
     b{
       font-size: 10px;
       padding-bottom: 4px;

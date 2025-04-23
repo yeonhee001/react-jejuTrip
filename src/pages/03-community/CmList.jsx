@@ -21,7 +21,7 @@ function CmList() {
   }, [location.state]);
 
   return (
-    <div style={{ margin: "92px 0 150px" }}>
+    <div style={{ padding: "92px 0 150px" }}>
       {!loginPopupOpen && (
         <TabPage
           type="community"

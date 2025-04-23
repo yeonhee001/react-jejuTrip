@@ -1,8 +1,7 @@
-// checkList.scss
+// plannerList.scss
 @media (max-width:768px){
-    .add-check-btn-wrap {
-        max-width: auto;
-        .add-check-btn{right: 4%;}
+    .calendar_popup{
+        width: 100%;
     }
 }
 
@@ -11,18 +10,12 @@
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-// checkDetail.scss
-@media (max-width:480px){
-    .checkdetail-page{
-        .titlebox{
-            .pagetitle{font-size: 18px;}
-            .mytriptitle{font-size: 14px;}
-            .detailbtn{font-size: 14px;}
-        }
-    }
 
-    // checkItem
-    .checkitem{
-        .MuiFormControlLabel-label {font-size: 14px;}
+@media (max-width:480px){
+    .calendar_popup{
+        width: 100%;
+        .calendar_top{
+            gap: 32.6%;
+        }
     }
 }
