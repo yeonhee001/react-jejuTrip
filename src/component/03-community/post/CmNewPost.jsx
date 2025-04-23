@@ -10,6 +10,7 @@ import Btn2Popup from "../../popups/Btn2Popup";
 import axios from "axios";
 import CmUploadImg from "../img/CmUploadImg";
 import PopupAction from "../../_common/PopupAction";
+import DataLoading from "../../_common/DataLoading"; 
 
 function CmNewPost({ onClose = () => {} }) {
   const { control, setFocus, handleSubmit, reset } = useFormContext();
@@ -20,6 +21,7 @@ function CmNewPost({ onClose = () => {} }) {
   const [isExitPopupOpen, setIsExitPopupOpen] = useState(false);
   const [selectedImages, setSelectedImages] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
+  const [isLoading, setIsLoading] = useState(false); 
 
   const title = useWatch({ control, name: "title" });
   const description = useWatch({ control, name: "description" });
@@ -43,6 +45,7 @@ function CmNewPost({ onClose = () => {} }) {
   };
 
   const onSubmit = async (data) => {
+    setIsLoading(true); 
     const userId = localStorage.getItem("userId");
     const formdata = new FormData();
     selectedImages.forEach((img) => formdata.append("images", img));
@@ -63,6 +66,8 @@ function CmNewPost({ onClose = () => {} }) {
       } else {
         alert("이미지 업로드에 실패했습니다. 파일 크기를 확인하거나 다시 시도해주세요.");
       }
+      setIsLoading(false); 
+      return;
     }
 
     const postData = {
@@ -71,7 +76,7 @@ function CmNewPost({ onClose = () => {} }) {
       title: data.title,
       description: data.description,
       subject: selectedItem,
-      hasVote:false,
+      hasVote: false,
       createdAt: new Date().toISOString(),
       imageUrls: res?.data || [],
     };
@@ -84,6 +89,8 @@ function CmNewPost({ onClose = () => {} }) {
     } catch (error) {
       console.error("글 등록 실패:", error);
       alert("글 등록 중 오류가 발생했습니다.");
+    } finally {
+      setIsLoading(false); 
     }
   };
 
@@ -101,6 +108,10 @@ function CmNewPost({ onClose = () => {} }) {
     reset();
     navigate("/community");
   };
+
+  if (isLoading) {
+    return <DataLoading className={"list_loading"}/>;
+  }
 
   return (
     <Box className="container">
@@ -172,6 +183,7 @@ function CmNewPost({ onClose = () => {} }) {
             helperText={error?.message}
             fullWidth
             variant="standard"
+            multiline
             InputProps={{
               disableUnderline: true,
               className: "inputTitle",
@@ -193,6 +205,7 @@ function CmNewPost({ onClose = () => {} }) {
             helperText={error?.message}
             fullWidth
             variant="standard"
+            multiline
             InputProps={{
               disableUnderline: true,
               className: "inputDescription",
@@ -200,16 +213,16 @@ function CmNewPost({ onClose = () => {} }) {
           />
         )}
       />
-      
-      {isSubjectOpen && <div className="overlay"/>}
+
+      {isSubjectOpen && <div className="overlay" />}
       {isSubjectOpen && (
-        <PopupAction 
+        <PopupAction
           className="cm-subject"
           useState={isSubjectOpen}
           onClose={() => setIsSubjectOpen(false)}
         >
           <div className="subjectWrapper">
-            <CmSubject 
+            <CmSubject
               selectedItem={selectedItem}
               setSelectedItem={(item) => {
                 setSelectedItem(item);

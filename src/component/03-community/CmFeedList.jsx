@@ -84,14 +84,15 @@ const CmFeedList = ({ setLoginPopupOpenFromParent }) => {
       try {
         const res = await fetch(`${process.env.REACT_APP_APIURL}/post`);
         const data = await res.json();
-        const likedPostIds = await fetchUserLikedPosts(userId);
-
+        const likedPosts = await fetchUserLikedPosts(userId);
+        
         if (Array.isArray(data)) {
           const postsWithCounts = await Promise.all(
             data.map(async (post) => {
               const commentCount = await fetchCommentCount(post._id);
               const likeCount = await fetchLikeCount(post._id);
-              const hasVote = likedPostIds.includes(post._id);
+              const hasVote = likedPosts.includes(post._id);
+              
               return { ...post, commentCount, likeCount, hasVote };
             })
           );
