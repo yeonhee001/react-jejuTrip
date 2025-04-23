@@ -53,12 +53,12 @@ function Like() {
 
       setLoading(true);
       try {
-        const res = await fetch(`${process.env.REACT_APP_APIURL}/triplike/liked-posts?userId=${userId}`);
+        const res = await fetch(`http://localhost:4000/triplike/liked-posts?userId=${userId}`);
         if (!res.ok) throw new Error('관광지 좋아요 데이터를 가져오는데 실패했습니다');
         const data = await res.json();
         setLikePosts(data.likedPostIds || []);
 
-        const res2 = await fetch(`${process.env.REACT_APP_APIURL}/like/user-liked?userId=${userId}`);
+        const res2 = await fetch(`http://localhost:4000/like/user-liked?userId=${userId}`);
         if (!res2.ok) throw new Error('커뮤니티 좋아요 데이터를 가져오는데 실패했습니다');
         const data2 = await res2.json();
 
@@ -169,8 +169,9 @@ function Like() {
                   <div
                     style={{
                       position: 'absolute',
-                      top: '10px',
+                      top: '50%', // 이미지의 중간에 위치
                       right: '10px',
+                      transform: 'translateY(-50%)', // 정확한 중앙 정렬
                       zIndex: 10,
                       width: '24px',
                       height: '24px'
