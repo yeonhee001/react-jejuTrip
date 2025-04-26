@@ -1,70 +1,241 @@
-# Getting Started with Create React App
+# ✨ 떠나봅서
+제주 여행을 계획하고 다양한 장소를 탐색할 수 있는 SPA 웹사이트, <b>"떠나봅서"</b> 입니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React와 비짓제주, 기상청 오픈 API를 활용하여 <br>
+제주 여행자들이 쉽게 정보를 수집하고 즐겁게 여행 계획을 세울 수 있는 웹 서비스입니다. <br>
+또한, 480px(모바일)과 768px(태블릿) 해상도에 최적화된 반응형 디자인을 적용하여, <br>
+다양한 환경에서도 편리하게 이용할 수 있도록 개발했습니다.
 
-## Available Scripts
+## 🔗 배포 URL
+https://jeju-trip-eosin.vercel.app/
 
-In the project directory, you can run:
+## 📑 프로젝트 요약
 
-### `npm start`
+### 1. 주제
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* 제주 여행에 필요한 정보 제공
+* 여행 일정 및 준비물 관리
+* 여행자 커뮤니티 기능 제공
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 2. 목표
 
-### `npm test`
+* 비짓제주, 기상청 오픈 API를 활용해 실시간 정보 제공 및 개인화된 여행 서비스 제공.
+* 다양한 정보 및 관리 기능을 통해 여행자들의 편의성 향상
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3. 핵심 기능
 
-### `npm run build`
+* SPA (Single Page Application) 기반으로 페이지 이동 없이 빠른 이용 경험 제공
+* 관광지, 맛집, 행사 등 다양한 장소 정보 제공
+* 커뮤니티를 통한 소통 및 정보 공유
+* 일정 작성/관리 및 여행 기간별 추천 일정
+* 여행 준비물 체크리스트
+* SNS 로그인 및 마이페이지
+* 반응형 웹 구현 (480px, 768px 대응)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 4. 주요 기술 스택
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* Front-End : React, Zustand, React Router
+* Back-End : Node.js, Express
+* API 활용 : 비짓제주 Open API, 기상청 Open API
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📆 기간 및 인원
 
-### `npm run eject`
+  * 총 작업 기간 : 18일
+    * 기초 데이터 수집 및 화면 설계 기간 : 2일
+    * 개발 및 테스트 기간 : 16일
+   
+  * 팀원 : 5명
+    
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 👩🏻‍🤝‍🧑🏻 팀원 소개
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| 이름 | 담당 | 주요 페이지 컴포넌트 | 해당 |
+| :---:| :---: | :---: | :---: |
+| 소연희 | 팀장/디자인 | Home.jsx, 장소 정보 (trip 폴더) | |
+| 안지현 | 기획/개발 | 내 여행 일정 (planner 폴더) | |
+| 천지호 | 개발/배포 | 마이페이지 (mypage 폴더, check 폴더), 로그인 (sns) | |
+| 황수빈 | 기획 | 커뮤니티 (community 폴더) | |
+| 이용욱 | 리소스 수집 | mypage 폴더 내 Like.jsx, QnA.jsx | |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## ⚙️ 주요 기능
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 1. 제주비짓 API 활용
+* 제주비짓 오픈 API를 활용하여, 메인컨텐츠, 검색 기능, 방문자통계 컨텐츠를 제공
+* trip 페이지 컴포넌트 내 맛집, 관광지, 포토스팟, 소품샵 등 제주 장소정보 제공
 
-## Learn More
+### 2. 기상청 API 활용
+* 기상청 API를 활용하여 오늘의 제주날씨 (Home.jsx), <br>
+* 오늘~10일까지의 제주날씨 (PlannerDetail.jsx) 컨텐츠를 제공
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 3. 트립
+* 장소 좋아요 기능
+* 클릭한 장소를 기준으로 주변 관광지 추천 기능
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 4. 떠나톡 (커뮤니티)
+* 게시글 작성 조회, 댓글 및 좋아요 기능
+  * 여행자들이 서로 정보를 공유하고 소통할 수 있는 커뮤니티 기능 구현  
+* 떠나팁 : 관리자들이 제공하는 제주 여행 관련 유용한 정보를 제공
 
-### Code Splitting
+### 5. 내 여행
+* 여행 일정 생성 및 수정
+  * 사용자가 직접 쉽고 편리하게 여행 계획을 세울 수 있도록 직관적인 UI/UX 제공
+* 일정별 장소 추가 및 관리
+* 여행 기간별 추천 일정 제공
+  * 1박 2일, 2박 3일 등 여행 기간에 맞춘 추천 일정을 제공
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 6. 마이페이지
+* 여행 체크리스트 확인 및 관리
+  * 사용자가 여행 준비에 필요한 물품을 직접 추가하고, 수정/삭제하며 체계적으로 관리할 수 있도록 지원 
+* 내가 작성한 게시글, 댓글 목록 조회
+* 내가 좋아요한 게시글, 장소 목록 조회
+* 내 활동 한눈에 확인
+* 로그인 (sns) : 로그인 후 개인화된 여행 서비스 제공
 
-### Analyzing the Bundle Size
+## 🗂️ 폴더 구조
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+📂Jeju
+┣ 📂Jeju-trip                 # 떠나봅서 ( Front-End 프로젝트 )
+┃ ┣ 📂public
+┃ ┃ ┣ 📂imgs
+┃ ┃ ┃ ┗ 📂_icons
+┃ ┣ 📂src
+┃ ┃ ┣ 📂component             # 컴포넌트 폴더
+┃ ┃ ┃ ┣ 📂_common             # 공통 컴포넌트 폴더
+┃ ┃ ┃ ┣ 📂00-login            # 로그인 컴포넌트 폴더
+┃ ┃ ┃ ┣ 📂00-search           # 검색 컴포넌트 폴더
+┃ ┃ ┃ ┣ 📂01-home             # 홈 컴포넌트 폴더
+┃ ┃ ┃ ┣ 📂02-trip                 
+┃ ┃ ┃ ┃ ┣ 📂tripDetail        # 장소 디테일 컴포넌트 폴더
+┃ ┃ ┃ ┃ ┗ 📂tripList          # 장소 리스트 컴포넌트 폴더
+┃ ┃ ┃ ┣ 📂03-community
+┃ ┃ ┃ ┃ ┣ 📂comment           # 댓글 컴포넌트 폴더
+┃ ┃ ┃ ┃ ┣ 📂img               # 갤러리 컴포넌트 폴더
+┃ ┃ ┃ ┃ ┗ 📂post              # 게시물 컴포넌트 폴더
+┃ ┃ ┃ ┣ 📂04-planner
+┃ ┃ ┃ ┃ ┣ 📂calendar          # 달력 컴포넌트 폴더
+┃ ┃ ┃ ┃ ┣ 📂plannerDateil     # 내 일정 디테일 컴포넌트 폴더
+┃ ┃ ┃ ┃ ┣ 📂search            # 장소추가 컴포넌트 폴더
+┃ ┃ ┃ ┃ ┣ 📂ticket            # 내 여행 일정의 하루 단위 티켓 컴포넌트 폴더
+┃ ┃ ┃ ┃ ┗ 📂weather           # 내 여행 내 오늘~10일까지 날씨 컴포넌트 폴더
+┃ ┃ ┃ ┣ 📂05-mypage
+┃ ┃ ┃ ┣ 📂icons
+┃ ┃ ┃ ┗ 📂popups              # 팝업 컴포넌트 폴더
+┃ ┃ ┣ 📂pages                 # 각 페이지 컴포넌트 폴더
+┃ ┃ ┃ ┣ 📂00-search
+┃ ┃ ┃ ┣ 📂01-home
+┃ ┃ ┃ ┣ 📂02-trip
+┃ ┃ ┃ ┣ 📂03-community 
+┃ ┃ ┃ ┣ 📂04-planner
+┃ ┃ ┃ ┣ 📂05-mypage
+┃ ┃ ┃ ┃ ┗ 📂check             # 체크리스트 페이지
+┃ ┃ ┃ ┗ 📜Splash.jsx          # 인트로 페이지
+┃ ┃ ┣ 📂styles                # scss
+┃ ┃ ┣ 📂utils                 # 로그아웃.js
+┃ ┣ 📜api.js                  # zustand 전역 상태 관리
+┃ ┗ 📜App.js                  # 프로젝트의 전체 라우팅 및 최상위 컴포넌트
+┣ ⚙️.env
+┗ README.md
+┣ 📂Jeju-server               # 떠나봅서 ( Back-End 프로젝트 )
+┃ ┣ 📂api                     # API 호출 및 가공하는 라우터 폴더
+┃ ┣ 📜index.js                # 서버의 메인 파일, 라우터를 연결하고 서버를 실행
+┗ ┗ ⚙️.env
+```
 
-### Making a Progressive Web App
+## 💻 개발 환경
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 1. Frond-End
 
-### Advanced Configuration
+| Badge | 기술명 | 설명 |
+| :---:| :---: | :---: |
+|![react](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white)| **React** | **프론트엔드 프레임워크 (SPA 구축)** |
+|![reactrouter](https://img.shields.io/badge/ReactRouter-CA4245?style=flat-square&logo=reactrouter&logoColor=white)| **React Router Dom** | **페이지 라우팅 관리** |
+|![reacthookform](https://img.shields.io/badge/ReactHookForm-F24E1E?style=flat-square&logo=reacthookform&logoColor=white) | **React Hook Form** | **폼 데이터 관리** |
+|![axios](https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=axios&logoColor=white)| **Axios** | **HTTP 클라이언트 라이브러리** |
+|![Zustand](https://img.shields.io/badge/Zustand-181717?style=flat-square&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAv0lEQVQ4jeVUMQ7DIAx0KmZGlJGJB+RBjLyC1/ADVr7AC8gzCBJs7lCpUhqw0qpDqp7kxSefDWd5QkQYwVqLQogh/4oYIwAiDiOlhO/AOYe30+1P4g8FGUUqpSaC7q4Hs9ai1rorFkJAKeUuX0qBZVmGjZgQApRSXVJKeeByzsTQv2DK911urXX/hXMOpZQDt20bcM67NbVWmKjj8AnIJ6/rivDYt2fknMkJrm/K9QXJ4+C9h3med7laKxhjhjV3vjqJYwKihcAAAAAASUVORK5CYII=&logoColor=white)| **Zustand** | **상태 관리**|
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 2. UI/UX & 날짜/시간 라이브러리
 
-### Deployment
+| Badge | 기술명 | 설명 |
+| :---:| :---: | :---: |
+|![mui](https://img.shields.io/badge/MUI-007FFF?style=flat-square&logo=mui&logoColor=white) | **MUI** | **UI 프레임워크** |
+|![Swiper](https://img.shields.io/badge/Swiper-6332F6?style=flat-square&logo=axios&logoColor=white)| **Swiper** | **슬라이더** |
+|![npm](https://img.shields.io/badge/react--swipeable-00e6a4?style=flat-square&logo=npm&logoColor=white)| **react-swipeable** | **스와이프 제스처** |
+|![motion](https://img.shields.io/badge/motion-fff312?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgMjQgOSI+CiAgPHBhdGggZD0iTSA5LjA2MiAwIEwgNC4zMiA4Ljk5MiBMIDAgOC45OTIgTCAzLjcwMyAxLjk3MSBDIDQuMjc3IDAuODgyIDUuNzA5IDAgNi45MDIgMCBaIE0gMTkuNjU2IDIuMjQ4IEMgMTkuNjU2IDEuMDA2IDIwLjYyMyAwIDIxLjgxNiAwIEMgMjMuMDA5IDAgMjMuOTc2IDEuMDA2IDIzLjk3NiAyLjI0OCBDIDIzLjk3NiAzLjQ5IDIzLjAwOSA0LjQ5NiAyMS44MTYgNC40OTYgQyAyMC42MjMgNC40OTYgMTkuNjU2IDMuNDkgMTkuNjU2IDIuMjQ4IFogTSA5Ljg3MiAwIEwgMTQuMTkyIDAgTCA5LjQ1IDguOTkyIEwgNS4xMyA4Ljk5MiBaIE0gMTQuOTc0IDAgTCAxOS4yOTQgMCBMIDE1LjU5MiA3LjAyMSBDIDE1LjAxOCA4LjExIDEzLjU4NSA4Ljk5MiAxMi4zOTIgOC45OTIgTCAxMC4yMzIgOC45OTIgWiIgZmlsbD0icmdiKDAsIDAsIDApIj48L3BhdGg+Cjwvc3ZnPgo=&logoColor=white)| **motion** | **애니메이션** |
+|![Sass](https://img.shields.io/badge/Sass-CC6699?style=flat-square&logo=Sass&logoColor=white)| **Sass** | **스타일링**|
+|![npm](https://img.shields.io/badge/@hello--pangea/dnd-CB3837?style=flat-square&logo=npm&logoColor=white)| **@hello-pangea/dnd** | **드래그 앤 드롭** |
+|![npm](https://img.shields.io/badge/react--date--range-3d91ff?style=flat-square&logo=npm&logoColor=white)| **react-date-range** | **날짜 범위 선택 라이브러리** |
+|![datefns](https://img.shields.io/badge/date--fns-770C56?style=flat-square&logo=datefns&logoColor=white) | **date-fns** | **날짜 및 시간 포맷, 계산** |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+### 3. Back-End
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| Badge | 기술명 | 설명 |
+| :---:| :---: | :---: |
+|![nodedotjs](https://img.shields.io/badge/Node.js-5FA04E?style=flat-square&logo=nodedotjs&logoColor=white)| **Node.js** | **JavaScript 런타임 환경** |
+|![express](https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white)| **Express** | **Node.js 기반 서버 프레임워크** |
+|![npm](https://img.shields.io/badge/multer-000000?style=flat-square&logo=npm&logoColor=white)| **multer** | **파일 업로드 처리** |
+|![JSON](https://img.shields.io/badge/JSON-000000?style=flat-square&logo=JSON&logoColor=white)| **JSON** | **데이터 형식 / API 응답 처리, MongoDB 데이터 저장 형식**  |
+|![mongodb](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)| **MongoDB** | **NoSQL 데이터베이스** |
+|![nodemon](https://img.shields.io/badge/Nodemon-76D04B?style=flat-square&logo=nodemon&logoColor=white)| **Nodemon** | **개발 중 서버 자동 재시작 도구** |
+|![axios](https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=axios&logoColor=white)| **Axios** | **서버에서 API 요청을 처리** |
+
+### 4. 개발 도구
+
+| Badge | 기술명 | 설명 |
+| :---:| :---: | :---: |
+|![VSCode](https://img.shields.io/badge/VSCode-007ACC?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI0LjAwMyAyTDEyIDEzLjMwM0w0Ljg0IDhMMiAxMEw4Ljc3MiAxNkwyIDIyTDQuODQgMjRMMTIgMTguNzAyTDI0LjAwMyAzMEwzMCAyNy4wODdWNC45MTNMMjQuMDAzIDJaTTI0IDkuNDM0VjIyLjU2NkwxNS4yODkgMTZMMjQgOS40MzRaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K&logoColor=white) | **Visual Studio Code (VS Code)** | **코드 편집기( 에디터 )** |
+|![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white)| **GitHub** | **버전 관리** |
+|![postman](https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=postman&logoColor=white)| **Postman** | **API 테스트** |
+|![vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)| **Vercel** | **서버리스 플랫폼** |
+|![Figma](https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white) | **Figma** | **디자인 & UI/UX**| 
+
+## 📚 참고 URL
+
+( 각자 개인 배포 후 밑에서부터는 각자 담당하신 내용에 대해 좀 더 세세하게? 적는 부분 입니다 ! <br>
+트러블 슈팅은 꼭 들어있어야 하고 그 외 기재 안하실 분들은 지워주시면 됩니다~ 다들 고생하셨습니다 ! !)
+<hr>
+
+# OOO의 개발 상세
+
+## 📑 요약
+* 담당
+* 담당 컴포넌트 상세
+
+## 🧩 공통 컴포넌트 제작
+* 📜.jsx
+
+  
+## 💥 트러블 슈팅
+
+### 📌 예약하기.html
+
+ 1. 과거 날짜와 예약이 완료된 날짜 모두 드래그가 가능한 이슈 발생
+  
+     * 예약이 완료된 날짜
+       
+       ⇒ **해결방법**: fullcalendar의 datesSet : 모든 데이터의 날짜를 가져와 while문으로 입실 날짜, 퇴실의 전날까지의 날짜를 회색으로 표현<br>
+       ⇒ **해결방법**: fullcalendar의 selectAllow : backgroundColor가 #CCC 일때 클릭 불가
+
+     * 과거 날짜
+         
+       ⇒ **해결방법**: fullcalendar의 selectAllow : if문으로 오늘 날짜보다 적을 때 클릭 불가 
+
+ 2. newDate()로 변경 시, 표준시간대(UTC) 기준으로 설정되어 한국 날짜와 9시간 차이나는 이슈
+ 
+      ⇒ **해결방법**: 현재 브라우저의 로컬 시간대 기준으로 정오(12:00) 시간을 설정해줄 수 있는 setHours(12, 0, 0, 0) 메서드를 사용
+
+ 3. 이름, 전화번호가 동일한 예약정보가 2개 이상일 때, 하나의 예약정보만 보여지는 이슈 발생
+ 
+     * 기존 코드에서는 객체의 index값을 반복하는 filter와 break로 하나의 값만 찾고 반복문에서 탈출
+    
+      ⇒ **해결방법**: forEach, push를 사용하여 객체의 index값을 반복하여 이름, 전화번호가 동일한 정보를 모두 let a = [] 변수에 담아둠<br>
+     또한 2개 이상의 예약 정보가 확인 될 때 createElement() 메서드를 사용하여 첫 번째 내역의 태그와 동일하게 태그를 생성
+
+4. 예약 정보가 2개 이상 확인 될 때 원하는 예약을 삭제하지 못하는 이슈 발생
+
+      ⇒ **해결방법**: 예약정보 마다 ```<input type="checkbox">``` 생성<br>
+        checked 된 예약정보에 대해 for~in문, filter을 사용하여 특정 조건 (호실, 입실 날짜, 퇴실 날짜가 동일하지 않은 경우) 으로 필터링<br>
+        필터링된 데이터를 다시 Local Storage에 저장
+
+
