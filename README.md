@@ -56,7 +56,7 @@ https://jeju-trip-eosin.vercel.app/
 | 황수빈 | 기획 | 커뮤니티 (community 폴더) | |
 | 이용욱 | 리소스 수집 | mypage 폴더 내 Like.jsx, QnA.jsx | |
 
-## ⚙️ 주요 기능
+## 💡 주요 기능
 
 ### 1. 제주비짓 API 활용
 * 제주비짓 오픈 API를 활용하여, 메인컨텐츠, 검색 기능, 방문자통계 컨텐츠를 제공
