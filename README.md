@@ -45,7 +45,6 @@ https://jeju-trip-eosin.vercel.app/
     * 개발 및 테스트 기간 : 16일
    
   * 팀원 : 5명
-    
 
 ## 👩🏻‍🤝‍🧑🏻 팀원 소개
 
@@ -166,7 +165,6 @@ https://jeju-trip-eosin.vercel.app/
 |![npm](https://img.shields.io/badge/@hello--pangea/dnd-CB3837?style=flat-square&logo=npm&logoColor=white)| **@hello-pangea/dnd** | **드래그 앤 드롭** |
 |![npm](https://img.shields.io/badge/react--date--range-3d91ff?style=flat-square&logo=npm&logoColor=white)| **react-date-range** | **날짜 범위 선택 라이브러리** |
 |![datefns](https://img.shields.io/badge/date--fns-770C56?style=flat-square&logo=datefns&logoColor=white) | **date-fns** | **날짜 및 시간 포맷, 계산** |
-
 
 ### 3. Back-End
 
