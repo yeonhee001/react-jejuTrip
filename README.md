@@ -172,9 +172,9 @@ https://jeju-trip-eosin.vercel.app/
 | :---:| :---: | :---: |
 |![nodedotjs](https://img.shields.io/badge/Node.js-5FA04E?style=flat-square&logo=nodedotjs&logoColor=white)| **Node.js** | **JavaScript 런타임 환경** |
 |![express](https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white)| **Express** | **Node.js 기반 서버 프레임워크** |
-|![npm](https://img.shields.io/badge/multer-000000?style=flat-square&logo=npm&logoColor=white)| **multer** | **파일 업로드 처리** |
-|![JSON](https://img.shields.io/badge/JSON-000000?style=flat-square&logo=JSON&logoColor=white)| **JSON** | **데이터 형식 / API 응답 처리, MongoDB 데이터 저장 형식**  |
 |![mongodb](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)| **MongoDB** | **NoSQL 데이터베이스** |
+|![npm](https://img.shields.io/badge/multer-CB3837?style=flat-square&logo=npm&logoColor=white)| **multer** | **파일 업로드 처리** |
+|![JSON](https://img.shields.io/badge/JSON-000000?style=flat-square&logo=JSON&logoColor=white)| **JSON** | **데이터 형식 / API 응답 처리, MongoDB 데이터 저장 형식**  |
 |![nodemon](https://img.shields.io/badge/Nodemon-76D04B?style=flat-square&logo=nodemon&logoColor=white)| **Nodemon** | **개발 중 서버 자동 재시작 도구** |
 |![axios](https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=axios&logoColor=white)| **Axios** | **서버에서 API 요청을 처리** |
 
