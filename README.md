@@ -145,7 +145,7 @@ https://jeju-trip-eosin.vercel.app/
 
 ### 1. Frond-End
 
-| Badge | 기술명 | 설명 |
+| Badge | 사용기술 | 설명 |
 | :---:| :---: | :---: |
 |![react](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white)| **React** | **프론트엔드 프레임워크 (SPA 구축)** |
 |![reactrouter](https://img.shields.io/badge/ReactRouter-CA4245?style=flat-square&logo=reactrouter&logoColor=white)| **React Router Dom** | **페이지 라우팅 관리** |
@@ -155,7 +155,7 @@ https://jeju-trip-eosin.vercel.app/
 
 ### 2. UI/UX & 날짜/시간 라이브러리
 
-| Badge | 기술명 | 설명 |
+| Badge | 사용기술 | 설명 |
 | :---:| :---: | :---: |
 |![mui](https://img.shields.io/badge/MUI-007FFF?style=flat-square&logo=mui&logoColor=white) | **MUI** | **UI 프레임워크** |
 |![Swiper](https://img.shields.io/badge/Swiper-6332F6?style=flat-square&logo=axios&logoColor=white)| **Swiper** | **슬라이더** |
@@ -168,7 +168,7 @@ https://jeju-trip-eosin.vercel.app/
 
 ### 3. Back-End
 
-| Badge | 기술명 | 설명 |
+| Badge | 사용기술 | 설명 |
 | :---:| :---: | :---: |
 |![nodedotjs](https://img.shields.io/badge/Node.js-5FA04E?style=flat-square&logo=nodedotjs&logoColor=white)| **Node.js** | **JavaScript 런타임 환경** |
 |![express](https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white)| **Express** | **Node.js 기반 서버 프레임워크** |
@@ -180,7 +180,7 @@ https://jeju-trip-eosin.vercel.app/
 
 ### 4. 개발 도구
 
-| Badge | 기술명 | 설명 |
+| Badge | 사용기술 | 설명 |
 | :---:| :---: | :---: |
 |![VSCode](https://img.shields.io/badge/VSCode-007ACC?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI0LjAwMyAyTDEyIDEzLjMwM0w0Ljg0IDhMMiAxMEw4Ljc3MiAxNkwyIDIyTDQuODQgMjRMMTIgMTguNzAyTDI0LjAwMyAzMEwzMCAyNy4wODdWNC45MTNMMjQuMDAzIDJaTTI0IDkuNDM0VjIyLjU2NkwxNS4yODkgMTZMMjQgOS40MzRaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K&logoColor=white) | **Visual Studio Code (VS Code)** | **코드 편집기( 에디터 )** |
 |![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white)| **GitHub** | **버전 관리** |
