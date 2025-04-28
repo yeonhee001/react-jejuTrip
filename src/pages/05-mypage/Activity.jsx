@@ -72,7 +72,7 @@ function Activity() {
             <CmtItem
               title={item.text}
               dateTime={format(item.createdAt, 'yyyy.MM.dd') + '  ' + format(item.createdAt, 'hh:mm')}
-              postTitle={item.postTitle}
+              postTitle={item.postInfo.title}
             />
           </div>
         ))
