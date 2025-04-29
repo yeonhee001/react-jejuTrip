@@ -161,7 +161,7 @@ async function openSavePopup() {
             })
         })
     }
-
+        
     return (
         <div className='planner_detail' style={{padding:"92px 0"}}>
             <div className='weather_content'>
@@ -181,6 +181,7 @@ async function openSavePopup() {
                     userId={userId} 
                     checkData={checkData} 
                     setCheckData={setCheckData} 
+                    checkListId ={checkListId}
                     setIsPopupOpenDelete={setIsPopupOpenDelete} 
                     setIsPopupOpenCheckList={setIsPopupOpenCheckList}
                     setIsPopupOpenPickPlan={setIsPopupOpenPickPlan}
@@ -211,7 +212,10 @@ async function openSavePopup() {
                     userId={userId} 
                     checkData={checkData} 
                     setCheckData={setCheckData} 
+                    checkListId ={checkListId}
                     setIsPopupOpenDelete={setIsPopupOpenDelete}
+                    setIsPopupOpenCheckList={setIsPopupOpenCheckList}
+                    setIsPopupOpenPickPlan={setIsPopupOpenPickPlan}
                 />
             <PlannerTicket tripDay={tripDay} ticketDate={ticketDate}/>
             </div>
@@ -256,7 +260,7 @@ async function openSavePopup() {
             type={"exit"}
             onConfirm={() => {
                 setIsPopupOpenCheckList(false)
-                navigate(`/my/checklist`);
+                checkListId();
                 localStorage.removeItem('searchListItem');
             }}
         />
@@ -268,6 +272,7 @@ async function openSavePopup() {
                 setIsPopupOpenPickPlan(false)
                 navigate(`/planner/pickplan`);
                 localStorage.removeItem('searchListItem');
+                exitEditMode();
             }}
             onCancel={()=>{localStorage.removeItem('searchListItem');}}
         />
