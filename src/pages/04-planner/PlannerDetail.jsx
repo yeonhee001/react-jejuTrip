@@ -149,6 +149,19 @@ async function openSavePopup() {
         })
     },[])
 
+    // 체크리스트 데이터 가져와서 링크 넘겨주기
+    function checkListId () {
+        axios.get(`${process.env.REACT_APP_APIURL}/check/user/${userId}`)
+        .then(res=>{
+            setCheckData(res.data);
+            checkData.forEach(item => {
+                if(id == item?.planId){
+                    navigate(`/my/checklist/checkDetail/${item?.id}`);
+                }
+            })
+        })
+    }
+
     return (
         <div className='planner_detail' style={{padding:"92px 0"}}>
             <div className='weather_content'>
