@@ -31,8 +31,6 @@ function TripList() {
   const {shopNfoodNpartyData, fetchCategory} = shopNfoodNparty();
   // api호출로 받아오는 데이터, 데이터를 가져오는 액션 함수
   
-  // const tripTypes = ['tour', 'food', 'festival', 'shopping'];
-
   useEffect(()=>{
     if(type==='tour'){
       fetchCategory('c1');
@@ -235,8 +233,10 @@ function TripList() {
       fetchLikeData(likedPostIds);
     }
   };
-  fetchUserLikedPosts();
-
+  useEffect(() => {
+    fetchUserLikedPosts();
+  }, [userId]);
+  
   return (
     <div className='trip-listpage'>
       <div className='trip-list-topimg'>
