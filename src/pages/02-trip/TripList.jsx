@@ -26,7 +26,7 @@ function TripList() {
   
   const [listMainImg, setListMainImg] = useState(null); // 트립 리스트 메인이미지에서 랜덤값 뽑기
   const [listCount, setListCount] = useState(30); // 리스트 갯수 처음 30개만 보임
-  const [filterOption, setFilterOption] = useState('좋아요순');
+  const [filterOption, setFilterOption] = useState('오름차순');
 
   const {shopNfoodNpartyData, fetchCategory} = shopNfoodNparty();
   // api호출로 받아오는 데이터, 데이터를 가져오는 액션 함수
@@ -213,15 +213,13 @@ function TripList() {
   };
 
   useEffect(()=>{ //좋아요 로딩시간이 느려서 빠르게 가져오기 위해 
-  if (loading && filterOption === '좋아요순') {
-    // 좋아요 데이터를 먼저 가져오고 나서 필터링을 다시 실행
-    const listData = getFilterData().slice(0, listCount);
-    const postIds = listData.map(item => item.contentsid);
-    fetchLikeData(postIds).then(() => {
-      setLikeLoading(false);
-    });
-  }
-  }, [filterOption, loading, listCount, type]);
+    if (!loading) {
+      const listData = getAllData().slice(0, listCount);
+      const postIds = listData.map(item=>item.contentsid); // 현재 리스트의 모든 게시물의 아이디값을 배열로 만듦
+      fetchLikeData(postIds).then(() => setLikeLoading(false));
+    }
+  },[loading, listCount, type ])
+
 
   // db관련 : 사용자가 좋아요 누른 게시물 찾아서 리스트에 표시함
   const fetchUserLikedPosts = async () => {
@@ -237,9 +235,7 @@ function TripList() {
       fetchLikeData(likedPostIds);
     }
   };
-  useEffect(() => {
-    fetchUserLikedPosts();
-  }, [userId]); // userId가 변경될 때마다 좋아요 데이터를 가져옵니다.
+  fetchUserLikedPosts();
 
   return (
     <div className='trip-listpage'>
@@ -253,7 +249,7 @@ function TripList() {
           <h3>{textTypeInfo[type].subtitle}</h3>
           <span>{textTypeInfo[type].intro}</span>
         </div>
-        <TripFilter onFilterChange={FilterChange} defaultOption="좋아요순"/>
+        <TripFilter onFilterChange={FilterChange}/>
       </div>
 
       {
