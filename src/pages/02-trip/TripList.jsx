@@ -26,7 +26,7 @@ function TripList() {
   
   const [listMainImg, setListMainImg] = useState(null); // 트립 리스트 메인이미지에서 랜덤값 뽑기
   const [listCount, setListCount] = useState(30); // 리스트 갯수 처음 30개만 보임
-  const [filterOption, setFilterOption] = useState('오름차순');
+  const [filterOption, setFilterOption] = useState('좋아요순');
 
   const {shopNfoodNpartyData, fetchCategory} = shopNfoodNparty();
   // api호출로 받아오는 데이터, 데이터를 가져오는 액션 함수
