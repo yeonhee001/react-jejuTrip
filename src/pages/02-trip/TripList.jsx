@@ -31,8 +31,6 @@ function TripList() {
   const {shopNfoodNpartyData, fetchCategory} = shopNfoodNparty();
   // api호출로 받아오는 데이터, 데이터를 가져오는 액션 함수
   
-  // const tripTypes = ['tour', 'food', 'festival', 'shopping'];
-
   useEffect(()=>{
     if(type==='tour'){
       fetchCategory('c1');
@@ -214,11 +212,15 @@ function TripList() {
 
   useEffect(()=>{ //좋아요 로딩시간이 느려서 빠르게 가져오기 위해 
     if (!loading) {
-      const listData = getAllData().slice(0, listCount);
-      const postIds = listData.map(item=>item.contentsid); // 현재 리스트의 모든 게시물의 아이디값을 배열로 만듦
+      const isLikeSort = filterOption === "좋아요순";
+      const postIds = isLikeSort 
+      ? getAllData().map(item => item.contentsid)
+      : getAllData().slice(0, listCount).map(item => item.contentsid);
+      
+      setLikeLoading(true);
       fetchLikeData(postIds).then(() => setLikeLoading(false));
     }
-  },[loading, listCount, type ])
+  },[loading, listCount, filterOption, type ])
 
 
   // db관련 : 사용자가 좋아요 누른 게시물 찾아서 리스트에 표시함
@@ -253,7 +255,7 @@ function TripList() {
       </div>
 
       {
-        loading ? (
+        (loading && likeLoading) ? (
           <DataLoading className={'trip-list-loading'}/>
         ) : 
           <>
