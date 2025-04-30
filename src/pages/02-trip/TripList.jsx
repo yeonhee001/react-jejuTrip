@@ -221,15 +221,7 @@ function TripList() {
       setLikeLoading(false);
     });
   }
-}, [filterOption, loading, listCount, type]);
-
-useEffect(() => { // 좋아요 데이터를 업데이트하고 나서 다시 필터링을 실행
-  if (!loading) {
-    const listData = getFilterData().slice(0, listCount);
-    setLikeData(prev => ({ ...prev })); // 상태 업데이트
-  }
-}, [likeData]); // likeData가 바뀔 때마다 다시 실행
-
+  }, [filterOption, loading, listCount, type]);
 
   // db관련 : 사용자가 좋아요 누른 게시물 찾아서 리스트에 표시함
   const fetchUserLikedPosts = async () => {
@@ -245,7 +237,9 @@ useEffect(() => { // 좋아요 데이터를 업데이트하고 나서 다시 필
       fetchLikeData(likedPostIds);
     }
   };
-  fetchUserLikedPosts();
+  useEffect(() => {
+    fetchUserLikedPosts();
+  }, [userId]); // userId가 변경될 때마다 좋아요 데이터를 가져옵니다.
 
   return (
     <div className='trip-listpage'>
