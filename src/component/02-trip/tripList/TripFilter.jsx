@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Down_black from '../../icons/Down_black';
 import Up_black from '../../icons/Up_black';
 
-function TripFilter({onFilterChange}) {
+function TripFilter({onFilterChange, defaultOption = '오름차순' }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState('오름차순');
+  const [selectedFilter, setSelectedFilter] = useState(defaultOption);
 
   // 리스트 보이기/숨기기 토글 함수
   const toggleList = () => {
