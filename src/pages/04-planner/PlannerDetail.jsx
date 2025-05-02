@@ -238,8 +238,14 @@ async function openSavePopup() {
             setIsOpen={setIsPopupOpenExit}
             type={"exit"}
             onConfirm={() => {
-                setIsPopupOpenExit(false)
-                exitEditMode();
+                if(location.state?.isEdit == true){
+                    exitEditMode();
+                    setIsEdit(false);
+                    navigate(-1);
+                }else{
+                    setIsPopupOpenExit(false)
+                    exitEditMode();
+                }
                 localStorage.removeItem('searchListItem');
             }}
             onCancel={()=>{localStorage.removeItem('searchListItem');}}
