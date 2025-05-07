@@ -52,9 +52,9 @@ https://jeju-trip-eosin.vercel.app/
 
 | 이름 | 담당 | 주요 페이지 컴포넌트 | 해당 |
 | :---:| :---: | :---: | :---: |
-| 소연희 | 팀장/디자인 | Home.jsx, 장소 정보 (trip 폴더) | |
+| 소연희 | 팀장/디자인 | Home.jsx, 장소 정보 (trip 폴더) | ✔ |
 | 안지현 | 기획/개발 | 내 여행 일정 (planner 폴더) | |
-| 천지호 | 개발/배포 | 마이페이지 (mypage 폴더), 로그인 (sns) | ✔ |
+| 천지호 | 개발/배포 | 마이페이지 (mypage 폴더), 로그인 (sns) |  |
 | 황수빈 | 기획 | 커뮤니티 (community 폴더) | |
 | 이용욱 | 리소스 수집 | mypage 폴더 내 Like.jsx, QnA.jsx | |
 
