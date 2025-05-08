@@ -190,9 +190,6 @@ https://jeju-trip-eosin.vercel.app/
 | **Vercel** | **서버리스 플랫폼** |![vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)|
 | **Figma** | **디자인 & UI/UX**|![Figma](https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white) |
 
-<!-- ( 각자 개인 배포 후 밑에서부터는 각자 담당하신 내용에 대해 좀 더 세세하게? 적는 부분 입니다 ! <br>
-트러블 슈팅은 꼭 들어있어야 하고 그 외 기재 안하실 분들은 지워주시면 됩니다~ 다들 고생하셨습니다 ! !)
-<hr>
 
 # OOO의 개발 상세
 
@@ -234,6 +231,6 @@ https://jeju-trip-eosin.vercel.app/
 
       ⇒ **해결방법**: 예약정보 마다 ```<input type="checkbox">``` 생성<br>
         checked 된 예약정보에 대해 for~in문, filter을 사용하여 특정 조건 (호실, 입실 날짜, 퇴실 날짜가 동일하지 않은 경우) 으로 필터링<br>
-        필터링된 데이터를 다시 Local Storage에 저장 -->
+        필터링된 데이터를 다시 Local Storage에 저장
 
 
