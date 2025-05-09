@@ -1,3 +1,4 @@
+<img src="https://github.com/user-attachments/assets/0635e812-e6b5-4e42-871c-483b6ec5a136" width="1000px"/>
 
 
 # <p><img src="https://github.com/user-attachments/assets/62fac1aa-5182-40b6-9ca3-6505f3f24fa7" alt="Image" style="vertical-align: middle;" /> 떠나봅서</p> 
