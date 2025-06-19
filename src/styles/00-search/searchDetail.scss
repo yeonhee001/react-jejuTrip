@@ -1,0 +1,47 @@
+.search-detail-page{
+  padding: 59px 0 150px;
+  width: 100%;
+}
+
+.search-detail-top3{
+  position: fixed;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  padding: 59px 38px 0;
+  margin: 0 auto;
+  width: 768px;
+  background-color: #fff;
+  .search-word-all{
+    h3{
+      font-size: 18px;
+      font-weight: bold;
+      margin: 32px 0 16px;
+    }
+  }
+  .search-word-label{
+    >.tagbtn{
+      margin-bottom: 16px;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+    >.tagbtn.active{
+      background-color: #5886BA;
+      color: #fff;
+    }
+  }
+}
+.searchDetail-item{
+  margin-top: 157px;
+}
+.search-detail-loading{
+  width: 50%;
+  margin: 180px auto 0;
+  height: 219.8px;
+}
+.search-nodata{
+  margin-top: 280px !important;
+}
+
+
+
+@import './res-searchDetail.scss';

@@ -1,14 +1,43 @@
+.activity-page{padding: 92px 0 150px;}
 .tab-content-reply{
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    p{font-weight: bold;}
+    cursor: pointer;
+    p{font-size: 18px; font-weight: bold;}
     span{
         &:nth-of-type(1){
             display: block;
             margin: 7px 0;
         }
-        font-size: 10px;
         color: rgba(0, 0, 0, 0.3);
     }
+    &:last-of-type{
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+}
+.activity-loading{
+    margin: 120px auto;
+    width: 300px;
+}
+
+
+@media (max-width:480px){
+    .tab-content-reply{
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        p{font-size: 14px;}
+        span{
+            &:nth-of-type(1){
+                margin: 4px 0 0;
+            }
+            font-size: 10px;
+        }
+    }
+    .activity-loading{
+        margin: 50px auto;    
+    }
+
 }

@@ -1,7 +1,8 @@
-main{margin-top: 59px;}
+.search-page{padding: 59px 0 100px;}
 
 //Searchbar
 .searchbar{
+  justify-content: space-between;
   >button{
     background-color: transparent;
     cursor: pointer;
@@ -19,7 +20,7 @@ main{margin-top: 59px;}
     margin: 32px 0 16px;
     font-size: 18px;
   }
-  .pop-cont{
+  .popSearch-cont{
     display: flex;
     justify-content: space-between;
     >span{
@@ -32,13 +33,42 @@ main{margin-top: 59px;}
   display: flex;
   align-items: center;
   b{
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     color: #5886BA;
   }
   span{
-    font-size: 14px;
+    font-size: 16px;
     margin-left: 14px;
     width: 100px;
   }
 }
+
+//Tags
+.pop-tags{
+  width: 100%;
+  h2{
+    margin: 32px 0 16px;
+    font-size: 18px;
+  }
+  .popTags-cont{
+    >.search-tagbtn{
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+//loading
+.search-loading-contain{
+  margin-top: 150px;
+  .search-loading{
+    width:50%;
+    margin: 0 auto;
+    height: 120px;
+  }
+}
+
+
+
+@import './res-searchPage.scss';

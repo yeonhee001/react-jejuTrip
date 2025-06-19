@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 function Menu() {
   const location = useLocation();
   // console.log(location);
-  const hiddenPaths = ["/login", "/community/cmpostpage", "/community/cmsubjectpage"];
+  const hiddenPaths = ["/login", "/community/cmpostpage", "/community/cmeditpage", "/community/cmsubjectpage", "/splash"];
   // location이 pathname을 가지고 있어서 안보이게 할 페이지를 지정
   const hideMenu = hiddenPaths.includes(location.pathname);
 

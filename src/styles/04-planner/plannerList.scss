@@ -1,0 +1,53 @@
+.plannerList{
+    position: relative; 
+    padding: 92px 0 150px;
+}
+.planner_new{
+    position: fixed;
+    bottom: 15%; right: 5%;
+    transform: translate(-5%, -15%);
+}
+.calendar_popup{
+    opacity: 0;
+    width: 100%;
+    bottom: 0; left: 50%;
+    background-color: white;
+    position: fixed;
+    width: 768px;
+    background-color: #fff;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    z-index: 10001;
+    .calendar_top{
+        width: 90%;
+        margin: 30px auto;
+        display: flex;
+        position: relative;
+        align-items: center;
+        >h2{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .calendar_close{
+            img{
+                vertical-align: text-top;
+            }
+        }
+    }
+    .calendar_content{
+        .calendar{
+            width: 90%;
+            margin: 0 auto;
+        }
+    }
+}
+.overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 10000;
+}
+
+@import './res-plannerList.scss';

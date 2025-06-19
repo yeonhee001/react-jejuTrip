@@ -1,7 +1,6 @@
-<img src="https://github.com/user-attachments/assets/0635e812-e6b5-4e42-871c-483b6ec5a136" width="1000px"/>
 
 
-## ✨ 소개
+# <p><img src="https://github.com/user-attachments/assets/62fac1aa-5182-40b6-9ca3-6505f3f24fa7" alt="Image" style="vertical-align: middle;" /> 떠나봅서</p> 
 제주 여행을 계획하고 다양한 장소를 탐색할 수 있는 SPA 웹사이트, <b>"떠나봅서"</b> 입니다.
 
 React와 비짓제주, 기상청 오픈 API를 활용하여 <br>
@@ -22,7 +21,7 @@ https://jeju-trip-eosin.vercel.app/
 
 ### 2. 목표
 
-* 비짓제주, 기상청 오픈 API를 활용해 실시간 정보 제공 및 개인화된 여행 서비스 제공
+* 비짓제주, 기상청 오픈 API를 활용해 실시간 정보 제공 및 개인화된 여행 서비스 제공.
 * 다양한 정보 및 관리 기능을 통해 여행자들의 편의성 향상
 
 ### 3. 핵심 기능
@@ -53,9 +52,9 @@ https://jeju-trip-eosin.vercel.app/
 
 | 이름 | 담당 | 주요 페이지 컴포넌트 | 해당 |
 | :---:| :---: | :---: | :---: |
-| 소연희 | 팀장/디자인 | Home.jsx, 검색 (search 폴더), 장소 정보 (trip 폴더) | ✔ |
+| 소연희 | 팀장/디자인 | Home.jsx, 장소 정보 (trip 폴더) | |
 | 안지현 | 기획/개발 | 내 여행 일정 (planner 폴더) | |
-| 천지호 | 개발/배포 | 마이페이지 (mypage 폴더), 로그인 (sns) |  |
+| 천지호 | 개발/배포 | 마이페이지 (mypage 폴더), 로그인 (sns) | ✔ |
 | 황수빈 | 기획 | 커뮤니티 (community 폴더) | |
 | 이용욱 | 리소스 수집 | mypage 폴더 내 Like.jsx, QnA.jsx | |
 
@@ -63,7 +62,7 @@ https://jeju-trip-eosin.vercel.app/
 
 ### 1. 제주비짓 API 활용
 * 제주비짓 오픈 API를 활용하여, 메인컨텐츠, 검색 기능, 방문자통계 컨텐츠를 제공
-* trip 페이지 컴포넌트 내 관광지, 맛집, 축제, 소품샵 등 제주 장소정보 제공
+* trip 페이지 컴포넌트 내 맛집, 관광지, 포토스팟, 소품샵 등 제주 장소정보 제공
 
 ### 2. 기상청 API 활용
 * 기상청 API를 활용하여 오늘의 제주날씨 (Home.jsx), <br>
@@ -191,88 +190,3 @@ https://jeju-trip-eosin.vercel.app/
 | **Vercel** | **서버리스 플랫폼** |![vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)|
 | **Figma** | **디자인 & UI/UX**|![Figma](https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white) |
 
-
-## 📚 프로젝트 문서 자료
-
-| 문서종류 | 파일명 | 설명 |
-| :---:| :---: | :---: |
-| 화면설계 | [화면설계.pdf](https://github.com/yeonhee001/jeju-trip-02project/blob/main/work/2%EC%B0%A8%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_B%ED%8C%80_01%EA%B8%B0%ED%9A%8D%2C%ED%99%94%EB%A9%B4%EC%84%A4%EA%B3%84.pdf) | 주요 페이지의 화면 구성, 사용자 흐름 등 와이어프레임 기반 설계 자료 |
-| 디자인 | [디자인.pdf](https://github.com/yeonhee001/jeju-trip-02project/blob/main/work/2%EC%B0%A8%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_B%ED%8C%80_02%EB%94%94%EC%9E%90%EC%9D%B8.pdf) | Figma로 작업한 디자인 시안. 색상, 폰트, UI 요소 등 자료 |
-| 발표자료 | [발표자료.pdf](https://github.com/yeonhee001/jeju-trip-02project/blob/main/work/2%EC%B0%A8%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_B%ED%8C%80_%EB%96%A0%EB%82%98%EB%B4%85%EC%84%9C_%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf) | 팀 프로젝트 발표용 슬라이드 자료 |
-| 인터페이스 기능 보고서 | [기능보고서.pdf](https://github.com/yeonhee001/jeju-trip-02project/blob/main/work/2%EC%B0%A8%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_B%ED%8C%80_%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%29%EA%B5%AC%ED%98%84%EB%B3%B4%EA%B3%A0%EC%84%9C_%EC%86%8C%EC%97%B0%ED%9D%AC.pdf) | 구현된 기능별 상세 설명 |
-| 완료 보고서 | [완료보고서.pdf](https://github.com/yeonhee001/jeju-trip-02project/blob/main/work/2%EC%B0%A8%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_B%ED%8C%80_%EC%99%84%EB%A3%8C%EB%B3%B4%EA%B3%A0%EC%84%9C.pdf) | 프로젝트 진행 결과 요약 등 최종 보고 |
-
-
-# 소연희의 개발 상세
-
-## 📑 요약
-* 담당
-  * 홈 메인 페이지 구현
-  * 검색 기능 및 검색 결과 페이지 구현
-  * 인기 검색어, 인기 태그 오픈 API 활용
-  * 여행지 리스트, 상세페이지 및 장소 좋아요 기능 구현
-  * 오픈 API 트립 컴포넌트 내 관광지, 맛집, 축제, 소품샵 등 제주 장소정보 제공
-* 담당 컴포넌트 상세
-  * Home.jsx - 배너 슬라이드, 탭 메뉴, 날씨 정보, 추천 콘텐츠(랜덤 여행지,맛집) 표시, 관리자 장소 추천, 관광객 통계 시각화 구현
-  * Search.jsx - 인기 검색어 및 인기 태그를 표시하고, 사용자 검색어 입력을 처리하는 검색 페이지
-  * SearchDetail.jsx - 입력된 검색어 또는 태그 기반으로 관련 콘텐츠를 필터링해 목록 출력
-  * Trip.jsx, TripList.jsx - 카테고리별 여행지 콘텐츠 슬라이드 및 리스트 구현
-  * TripDetail.jsx - 선택한 콘텐츠의 상세 정보 및 같은 지역의 다른 여행지 콘텐츠 표시
-
-## 🧩 공통 컴포넌트 제작
-* 📜Menu.jsx - 모든 페이지 하단에 고정된 메뉴바 컴포넌트
-* 📜Header.jsx - 모든 페이지 상단에 고정된 헤더 컴포넌트
-* 📜Burger.jsx - 헤더의 메뉴 버튼 클릭 시 나타나는 버거 메뉴 컴포넌트
-* 📜PlaceItem.jsx - 여행 콘텐츠를 사용하는 여러 페이지에서 공통으로 사용하는 장소 카드 컴포넌트
-* 📜LikeRed.jsx - 여행지 콘텐츠 및 커뮤니티에서 좋아요(하트) 상태를 표시하는 컴포넌트
-* 📜MoreBtn.jsx - 여행지 리스트 페이지로 이동하는 '전체보기' 버튼 컴포넌트
-* 📜TopBtn.jsx - 리스트 페이지에서 상단으로 스크롤하는 버튼 컴포넌트
-
-  
-## 💥 트러블 슈팅
-
-### 📌 Home.jsx
-
- 1. 헤더와 바텀 메뉴를 숨겨야 할 페이지 설정 문제
-  
-    *특정 페이지에서는 헤더와 바텀 메뉴를 숨겨야 하는 상황
-       
-    ⇒ **해결방법**: hiddenPaths 변수를 만들어 해당 경로를 지정하고, 해당 페이지일 경우 메뉴가 보이지 않도록 조건 처리<br>
-
- 2. 콘텐츠의 랜덤 데이터가 매번 새로고침되는 이슈
-  
-    *메인 배너 슬라이드, 관광지, 맛집 콘텐츠는 하루 동안 동일한 데이터를 유지해야 했으나, 초기에는 쿠키 저장 방식에 오류가 있어 새로고침 시마다 데이터가 초기화되는 상황
-       
-    ⇒ **해결방법**: 쿠키 대신 localStorage를 사용해 현재 시간을 저장하고, 24시간이 지나면 데이터를 삭제하고 새로 생성되도록 처리<br>
-
- 3. 관광객 통계 팝업에서 월 선택 없이 완료 버튼이 눌리는 이슈
-  
-    *월 선택 팝업에서 선택 없이도 완료 버튼이 눌려 팝업이 닫히는 문제
-       
-    ⇒ **해결방법**: Month 컴포넌트의 완료 버튼에 선택된 값이 없을 경우 return하도록 조건문을 추가하고, 월 선택 시에만 버튼이 활성화되도록 수정<br>
-
-
-### 📌 Search.jsx, SearchDetail.jsx
-
- 1. 띄어쓰기가 포함된 인기 검색어가 검색되지 않는 문제
-  
-    *API에서 받아온 인기 검색어 중 띄어쓰기가 있는 경우 검색 결과가 정상적으로 출력되지 않는 상황
-       
-    ⇒ **해결방법**: 검색어 데이터를 map으로 순회하며 replace(/\s/g, '')를 사용해 띄어쓰기를 제거하고, 검색이 가능하도록 처리<br>
-
- 2. 검색어 입력 시 h3 태그에 실시간으로 반영되는 이슈
-  
-    *검색창 아래에 있는 텍스트(h3)에 사용자가 입력하는 값이 실시간으로 반영되어 혼동되는 상황
-       
-    ⇒ **해결방법**: useState를 활용하여 실시간 반영을 막고, 검색 버튼을 눌렀을 때만 입력값이 저장되도록 로직을 수정<br>
-
-
-### 📌 TripDetail.jsx
-
- 1. 필터링된 리스트에서 디테일 페이지 이동 시 값이 초기화되는 문제
-  
-    *리스트 페이지에서 필터를 적용한 후 디테일 페이지로 이동하면, 필터링된 리스트가 유지되지 않고 기본값으로 돌아가는 상황
-       
-    ⇒ **해결방법**: navigate 함수로 이동할 때 state에 filterList를 함께 전달하고, 디테일 페이지에서는 useLocation 훅을 사용해 전달받은 데이터를 기반으로 필터링된 값을 유지하도록 처리<br>
-
-       

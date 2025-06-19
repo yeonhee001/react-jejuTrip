@@ -1,12 +1,16 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-function HomePhoto({className}) {
+function HomePhoto({className, onClick, to, state, img}) {
+  const handleMoreBtn = (e)=>{
+    e.preventDefault();
+    onClick();
+  }
   return (
     <div className={className}>
-      <NavLink to='/community/cmphoto'>
+      <NavLink to={to} state={state} onClick={handleMoreBtn}>
         <p className='home-photo-img'>
-          <img src="/imgs/home_photo_01.jpg" alt="" />
+          <img src={img.imageUrl} alt="" />
         </p>
       </NavLink>
     </div>

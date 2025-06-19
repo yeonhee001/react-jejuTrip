@@ -1,0 +1,149 @@
+.login-page{
+    height: 100vh;
+    overflow: hidden;
+    padding: 20vh 0;
+}
+
+// 본문
+.maintxt{
+    position: relative;
+    // margin: 160px auto 220px;
+    margin: 0 auto 25vh;
+    width: 337px;
+
+    // 제목
+    h2{
+        font-size: 30px;
+        font-weight: 200;
+        line-height: 150%;
+    }
+
+    // 로고 이미지
+    p{
+        position: absolute;
+        left: 80px; bottom: -2px;
+        width: 200px; height: 65px;
+        > img{width: 100%; height: 100%;}
+    }
+}
+
+// 버튼
+.maincont{
+    width: 337px;
+    margin: 0 auto;
+
+    // 소셜 로그인 버튼
+    .loginbtns{
+        p{cursor: pointer;}
+        .login-mobile{display: none;}
+        .btn-kakao{
+            margin: 16px 0;
+        }
+    }
+
+    // 로그인 하지 않고 이동 버튼
+    span{
+        text-align: right;
+        display: inline-block;
+        width: 337px;
+        margin-top: 32px;
+        color: #555;
+        font-size: 16px;
+    }
+}
+
+// 리다이렉트 페이지 - 로그인 요청 후 로딩 화면
+.rd-background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #FDF6EE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    text-align: center;
+    font-size: 20px;
+
+    // 로딩 아이콘
+    .rb-loading{
+        gap: 30px;
+        margin-bottom: 20px;
+        .dot{
+            width: 30px; height: auto;
+        }
+    }
+
+    // 로고 이미지
+    p{
+        position: absolute;
+        width: 156px; height: 54px;
+        bottom: 5%; left: 50%;
+        transform: translate(-50%, -5%);
+        > img{width: 100%; height: 100%;}
+    }
+
+    // 텍스트
+    span{
+        position: absolute;
+        top: 55%; left: 50%;
+        transform: translate(-50%, -55%);
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+
+
+@media (max-width:480px){
+    .login-page{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 23vh 0;
+    }
+    .maintxt{
+        margin: 0 auto;
+        p{
+            left: 80px; bottom: 0;
+            width: 190px; height: 60px;
+        }
+    }
+    .maincont{
+        width: 100%;
+        .loginbtns{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 16px;
+            p{width: 60px; height: 60px;}
+            .login-pc{display: none;}
+            .login-mobile{
+                width: 100%; height: 100%;
+                display: block;
+            }
+        }
+        span{
+            width: 165px;
+            text-align: center;
+            font-size: 14px;
+            display: block;
+            margin: 16px auto 0;
+            border-bottom: 1px solid #555;
+            padding: 7px 0;
+        }
+    }
+    .rd-background{
+        font-size: 16px;
+        p{
+            bottom: 10%;
+            transform: translate(-50%, -10%);
+        }
+    }
+}

@@ -1,3 +1,59 @@
+.searchLoading{
+    width: 50%;
+    margin: 15% auto;
+}
+.planner_place{
+    position: relative;
+    padding: 92px 0 150px;
+    .Place_back{
+        position: absolute;
+        left: 0;
+        top: 59px;
+        width: 14px;
+        height: 14px;
+        cursor: pointer;
+    }
+    .search_list_title{
+        font-size: 18px;
+        font-weight: bold;
+        margin: 16px 0;
+        display: flex;
+        gap: 5px;
+        >h3{
+            font-size: 18px;
+        }
+        >span{color: #5886BA;}
+    }   
+    .searchItem{
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row-reverse
+    }
+    .planner_Like{width: 400px;}
+    input{display: none;}
+    input:checked+div>div>.tagbtn{
+        display: inline-block;
+        padding: 7px 11px;
+        color: white;
+        border: 1px solid #5886BA;
+        background-color: #5886BA;
+        border-radius: 85px;
+    }
+    .place_btn_fixed{
+        width: 768px;
+        background-color: white;
+        border-radius: 7px;
+        height: 84px;
+        position: fixed;
+        left: 50%; bottom: 0;
+        transform: translateX(-50%);
+        .place_btn{ //선택완료 버튼
+            width: 100%;
+        }
+    }
+}
 .category{
     font-size: 14px;
     font-weight: normal;
@@ -6,7 +62,7 @@
     margin-bottom: 50px;
 }
 .address{
-    font-size: 12px;
+    font-size: 16px;
     font-weight: normal;
     color: #555;
     margin: 16px 0;
@@ -14,6 +70,19 @@
 .taginput{
     display: none;
 }
-.cardbtn{
-    width: 90%;
+.city_name{
+    margin-bottom: 10px;
+    font-size: 16px;
 }
+.LikeItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse
+}
+.searchbtn{
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+@import './res-place.scss';

@@ -1,48 +1,125 @@
 import React, { useState } from "react";
-import { Controller, useFormContext } from "react-hook-form";
-import { useNavigate } from "react-router-dom";  
+import { Controller, useFormContext, useWatch } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { Box, Typography } from "@mui/material";
 import Right_black from "../../icons/Right_black";
-import Photo from "../../icons/Photo";
 import Close from "../../icons/Close";
 import CmSubject from "../cmSubject";
-import { v4 as uuidv4 } from "uuid";
+import Btn2Popup from "../../popups/Btn2Popup";
+import axios from "axios";
+import CmUploadImg from "../img/CmUploadImg";
+import PopupAction from "../../_common/PopupAction";
+import DataLoading from "../../_common/DataLoading"; 
 
 function CmNewPost({ onClose = () => {} }) {
   const { control, setFocus, handleSubmit, reset } = useFormContext();
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
   const [isSubjectOpen, setIsSubjectOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState("주제선택");
+  const [showSubjectAlert, setShowSubjectAlert] = useState(false);
+  const [isExitPopupOpen, setIsExitPopupOpen] = useState(false);
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [imageUrls, setImageUrls] = useState([]);
+  const [isLoading, setIsLoading] = useState(false); 
 
-  const onSubmit = (data) => {
-    const newPost = {
-      id: uuidv4(),
+  const title = useWatch({ control, name: "title" });
+  const description = useWatch({ control, name: "description" });
+
+  const handleSubmitWrapper = (e) => {
+    e.preventDefault();
+    let shouldShowAlert = false;
+
+    if (selectedItem === "주제선택") {
+      setShowSubjectAlert(true);
+      shouldShowAlert = true;
+    } else {
+      setShowSubjectAlert(false);
+    }
+
+    handleSubmit((data) => {
+      if (!shouldShowAlert) {
+        onSubmit(data);
+      }
+    })();
+  };
+
+  const onSubmit = async (data) => {
+    setIsLoading(true); 
+    const userId = localStorage.getItem("userId");
+    const formdata = new FormData();
+    selectedImages.forEach((img) => formdata.append("images", img));
+
+    let res;
+    try {
+      if (selectedImages.length > 0) {
+        res = await axios.post(`${process.env.REACT_APP_APIURL}/post/images`, formdata, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      }
+    } catch (err) {
+      console.error("이미지 업로드 실패:", err.response?.data || err.message);
+      if (err.response?.status === 429) {
+        alert("요청이 너무 많아 이미지 업로드가 잠시 제한되었습니다. 잠시 후 다시 시도해주세요.");
+      } else {
+        alert("이미지 업로드에 실패했습니다. 파일 크기를 확인하거나 다시 시도해주세요.");
+      }
+      setIsLoading(false); 
+      return;
+    }
+
+    const postData = {
+      userId: JSON.parse(window.sessionStorage.user).id,
+      username: JSON.parse(window.sessionStorage.user).name,
       title: data.title,
       description: data.description,
-      createdAt: new Date().toISOString(),
-      author: {
-        id: 2,
-        nickname: "새 사용자",
-        imageUri: "https://via.placeholder.com/40",
-      },
-      likes: [],
+      subject: selectedItem,
       hasVote: false,
-      voteCount: 0,
-      commentCount: 0,
+      createdAt: new Date().toISOString(),
+      imageUrls: res?.data || [],
     };
 
-    navigate("/community", { state: { newPost } });
-
-    reset();
-    onClose();
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_APIURL}/post`, postData);
+      reset();
+      onClose();
+      navigate("/community", { state: { newPost: response.data } });
+    } catch (error) {
+      console.error("글 등록 실패:", error);
+      alert("글 등록 중 오류가 발생했습니다.");
+    } finally {
+      setIsLoading(false); 
+    }
   };
+
+  const handleCloseClick = () => {
+    const isDirty = title || description || selectedItem !== "주제선택";
+    if (isDirty) {
+      setIsExitPopupOpen(true);
+    } else {
+      navigate("/community");
+    }
+  };
+
+  const handleExitConfirm = () => {
+    setIsExitPopupOpen(false);
+    reset();
+    navigate("/community");
+  };
+
+  if (isLoading) {
+    return <DataLoading className={"list_loading"}/>;
+  }
 
   return (
     <Box className="container">
-      <Box className="header">
-        <div onClick={()=>{navigate("/community")}}><Close className="Cm-closeIcon"  /></div>
-        <button className="submitButton" onClick={handleSubmit(onSubmit)}>
+      <Box className="header1">
+        <div onClick={handleCloseClick}>
+          <Close className="Cm-closeIcon" />
+        </div>
+        <button className="submitButton" onClick={(e) => handleSubmitWrapper(e)}>
           등록
         </button>
       </Box>
@@ -52,20 +129,37 @@ function CmNewPost({ onClose = () => {} }) {
       </Typography>
 
       <Box className="subjectContainer">
-        <Box className="subjectBox" onClick={() => setIsSubjectOpen(true)}>
-          <Typography className="subjectText" variant="body1">
+        <Box
+          className={`subjectBox ${showSubjectAlert ? "subjectBox-error" : ""}`}
+          onClick={() => {
+            setIsSubjectOpen(true);
+            setShowSubjectAlert(false);
+          }}
+        >
+          <Typography
+            className={`subjectText ${
+              selectedItem === "주제선택" ? "subjectText-placeholder" : ""
+            }`}
+            variant="body1"
+          >
             {selectedItem}
           </Typography>
-          <Right_black className={"nw-Right"} />
+          <Right_black className="nw-Right" />
         </Box>
+        {showSubjectAlert && (
+          <Typography className="subjectErrorText">
+            주제를 선택해주세요.
+          </Typography>
+        )}
         <Box className="divider" />
       </Box>
 
-      <Box className="photoContainer">
-        <Box className="photoBox">
-          <Photo className={"nw-photo"} />
-        </Box>
-      </Box>
+      <CmUploadImg
+        selectedImages={selectedImages}
+        setSelectedImages={setSelectedImages}
+        setImageUrls={setImageUrls}
+        imageUrls={imageUrls}
+      />
 
       <Box className="divider" />
 
@@ -89,9 +183,10 @@ function CmNewPost({ onClose = () => {} }) {
             helperText={error?.message}
             fullWidth
             variant="standard"
+            multiline
             InputProps={{
               disableUnderline: true,
-              className: "inputTitle"
+              className: "inputTitle",
             }}
           />
         )}
@@ -110,21 +205,41 @@ function CmNewPost({ onClose = () => {} }) {
             helperText={error?.message}
             fullWidth
             variant="standard"
+            multiline
             InputProps={{
               disableUnderline: true,
-              className: "inputDescription"
+              className: "inputDescription",
             }}
           />
         )}
       />
 
+      {isSubjectOpen && <div className="overlay" />}
       {isSubjectOpen && (
-        <div className="modalOverlay" onClick={() => setIsSubjectOpen(false)}>
-          <div onClick={(e) => e.stopPropagation()}>
-            <CmSubject selectedItem={selectedItem} setSelectedItem={setSelectedItem} onClose={() => setIsSubjectOpen(false)} />
+        <PopupAction
+          className="cm-subject"
+          useState={isSubjectOpen}
+          onClose={() => setIsSubjectOpen(false)}
+        >
+          <div className="subjectWrapper">
+            <CmSubject
+              selectedItem={selectedItem}
+              setSelectedItem={(item) => {
+                setSelectedItem(item);
+                setShowSubjectAlert(false);
+              }}
+              onClose={() => setIsSubjectOpen(false)}
+            />
           </div>
-        </div>
+        </PopupAction>
       )}
+
+      <Btn2Popup
+        isOpen={isExitPopupOpen}
+        setIsOpen={setIsExitPopupOpen}
+        type="exit"
+        onConfirm={handleExitConfirm}
+      />
     </Box>
   );
 }

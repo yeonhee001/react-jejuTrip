@@ -4,9 +4,31 @@
     width: 100%;
     padding: 0 5%;
   }
+
+  // toggle
+  .toggle{
+    > b{font-size: 18px;}
+  }
+
+  // list
+  .listitem-icon{
+    width: 8px; height: 16px;
+  }
+  .listpage{
+    .listpage-loading{
+      margin: 100px auto;
+    }
+  }
+
+  // popup
+  .popup-box-burger{width: 100% !important;}
+
   .header{
     width: 100%; height: 91.33px;
     padding: 45px 5% 13px;
+    h2{
+      >img{width: 130px;}
+    }
   }
   .morebtn{
     b{
@@ -29,7 +51,7 @@
   .burger-rel{
     width: 100%;
     .burger{
-        padding: 59px 5% 131px;
+      padding: 59px 5% 131px;
     }
   }
 
@@ -45,13 +67,33 @@
         .place-txt{
             width: 233px;
             >h2{font-size: 18px; font-weight: bold;}
-            >p{font-size: 16px; padding: 6px 0;}
+            >p{font-size: 16px; padding-top: 6px;}
             .place-tag{
+              padding-top: 6px;
               >span{
                 font-size: 14px;
               }
             }
         }
+    }
+  }
+
+  //Top버튼
+  .top-btn-wrap {
+    max-width: auto;
+    .top-btn{
+        bottom: 13%; right: 4%;
+        transform: translate(-13%, -4%);    
+        >img{
+            width: 40px; height: 40px;
+        }
+    }
+  }
+  .add-check-btn-wrap {
+    max-width: auto;
+    .add-check-btn{
+      bottom: 15%; right: 4%;
+        transform: translate(-13%, -4%);
     }
   }
 }
@@ -63,9 +105,95 @@
     width: 100%;
     padding: 0 5%;
   }
+  
+  // toggle
+  .toggle{
+    >b{font-size: 14px;}
+  }
+  .toggle-icon{
+    width: 16px; height: 8px;
+    img{width: 100%; height: 100%;}
+  }
+
+  // tab
+  .tab-maintitle{
+    margin: 0 0 50px;
+    font-size: 20px;
+  }
+  .tabmenu{
+    font-size: 18px;
+  }
+  .tabitem{
+    column-gap: 16px;
+    margin-bottom: 10px;
+      > p{
+        width: 114px; height: 84px;
+      }
+      > div{
+        p{font-size: 14px;}
+        span{font-size: 12px;}
+      }
+  }
+
+  // list
+  .listitem{
+    > div{
+      p{font-size: 14px;}
+      span{font-size: 12px;}
+    }
+  }
+  .listpage{
+    h2{
+      margin: 0 0 50px;
+      font-size: 20px;
+    }
+    .listpage-year{
+      margin-bottom: 32px;
+      >h3{
+        font-size: 18px;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // popup
+  .popup, .closepopup{
+    min-width: 280px;
+    max-width: 300px;
+  }
+  .popup{
+    padding: 20px;
+    .popup-cont{
+      gap: 12px;
+      font-size: 14px; 
+      p{
+        span{font-size: 12px;}
+      }
+      .popup-warningicon{width: 25px;}
+      .popup-callicon{width: 25px;}
+    }
+  }
+  .closepopup{
+    .popup-title{font-size: 14px;}
+    .popup-closeicon{width: 12px;}
+    .popup-cont{
+      font-size: 14px;
+      .no-select-btn{font-size: 12px;}
+    }
+  }
+  .popup-btns-box{
+    margin-top: 16px;
+  }
+  .btn1popup-btn, .btn2popup-btn{
+    font-size: 14px;
+  }
+  
   .header{
-    width: 100%; height: 91.33px;
-    padding: 45px 5% 13px;
+    width: 100%; height: 70px;
+    padding: 15px 5% 13px;
+    h2{
+      >img{width: 115px;}
+    }
   }
   .morebtn{
     b{
@@ -80,7 +208,7 @@
     }
   }
   .bottom-menu{
-    padding: 20px 5% 40px 5%;
+    padding: 20px 5% 20px 5%;
     width: 100%;
   }
 
@@ -91,6 +219,7 @@
         padding: 59px 5% 131px;
     }
   }
+
 
   // LikeRed
   .heart-fill-red, .heart-stroke-red{
@@ -110,12 +239,24 @@
         .place-txt{
           width: 141px;
           >h2{font-size: 14px; font-weight: bold;}
-          >p{font-size: 12px; padding:5px 0;}
+          >p{font-size: 12px; padding-top:5px;}
           .place-tag{
+            padding-top: 5px;
             span{
-                font-size: 10px;
+              font-size: 10px;
             }
           }
+        }
+    }
+  }
+  //Top버튼
+  .top-btn-wrap {
+    max-width: auto;
+    .top-btn{
+        bottom: 11%; right: 4%;
+        transform: translate(-11%, -4%);    
+        >img{
+            width: 36px; height: 36px;
         }
     }
   }

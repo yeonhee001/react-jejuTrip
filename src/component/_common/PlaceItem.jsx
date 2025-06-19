@@ -3,7 +3,7 @@ import LikeRed from './LikeRed';
 
 
 
-function PlaceItem({title, roadaddress, tag, imgpath, heartType}) {
+function PlaceItem({title, roadaddress, tag, imgpath, heartType, ClassName}) {
 
   let heartElement = null;
 
@@ -25,7 +25,7 @@ function PlaceItem({title, roadaddress, tag, imgpath, heartType}) {
         <div className="place-img">
           <img src={imgpath} alt="장소이미지" />
         </div>
-        <div className="place-txt">
+        <div className={`place-txt ${ClassName}`}>
           <h2>{title}</h2>
           <p>{roadaddress}</p>
           <div className='place-tag'>
