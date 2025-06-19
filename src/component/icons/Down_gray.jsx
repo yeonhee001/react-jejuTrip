@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Down_gray({ className }) {
+function Down_gray() {
   return (
-    <div className={className}><img src='/imgs/_icons/Down_gray.svg'/></div>
+    <div><img src='/imgs/_icons/Down_gray.svg'/></div>
   )
 }
 

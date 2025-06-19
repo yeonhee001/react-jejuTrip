@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
-function TabMenu({ tabTitle, onTabChange, selectedTab }) {
+function TabMenu({ tabTitle, onTabChange }) {
     const [addClass, setAddClass] = useState(0);
     
-    useEffect(() => {
-        if (selectedTab !== undefined) {
-            setAddClass(selectedTab);
-        }
-    }, [selectedTab]);
-
     function clickEvent(index) {
         setAddClass(index);
         if(onTabChange) {

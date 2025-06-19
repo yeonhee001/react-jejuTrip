@@ -1,10 +1,8 @@
 import React from 'react'
 
-function Newpost({className}) {
+function Newpost() {
   return (
-    <div className={className}>
-      <img src='/imgs/_icons/Newpost.svg'/>
-    </div>
+    <div><img src='/imgs/_icons/Newpost.svg'/></div>
   )
 }
 

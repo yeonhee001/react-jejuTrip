@@ -3,9 +3,8 @@ import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import CmNewPost from "../../component/03-community/post/CmNewPost";
 import "../../styles/03-community/cmPostPage.scss";
-import "../../styles/03-community/_res-community.scss";
 
-function CmPostPage() {
+export default function CmPostPage() {
   const navigate = useNavigate();
   const postForm = useForm({
     defaultValues: {
@@ -36,11 +35,9 @@ function CmPostPage() {
 
   return (
     <FormProvider {...postForm}>
-      <form onSubmit={postForm.handleSubmit(onSubmit)}  className="cm-post-page">
+      <form onSubmit={postForm.handleSubmit(onSubmit)}>
         <CmNewPost />
       </form>
     </FormProvider>
   );
 }
-
-export default CmPostPage

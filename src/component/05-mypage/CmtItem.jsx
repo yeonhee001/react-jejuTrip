@@ -1,12 +1,8 @@
 import React from 'react'
 
-function CmtItem({title, dateTime, postTitle}) {
+function CmtItem() {
   return (
-    <>
-      <p>{title}</p>
-      <span>{dateTime}</span>
-      <span>{postTitle}</span>
-    </>
+    <div>CmtItem</div>
   )
 }
 

@@ -9,7 +9,7 @@ function CmSubject({ onClose, setSelectedItem, selectedItem }) {
   };
 
   return (
-    <div className="">
+    <div className="cm-subject">
       <div className="container">
         <div className="close-button" onClick={onClose}>
           <Close className={"Sb-Close"} />

@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Warning from '../icons/Warning';
 
-function Btn1Popup({ isOpen, setIsOpen, type, onConfirm, className='' }) {
+function Btn1Popup({ isOpen, setIsOpen, type }) {
 
   // type별 팝업 내용
   const popupContent = {
@@ -11,13 +11,10 @@ function Btn1Popup({ isOpen, setIsOpen, type, onConfirm, className='' }) {
     save: {
       txt: '저장되었습니다'
     },
-    delete: {
-      txt: '삭제되었습니다'
-    },
     select: {
       txt: '선택된 항목이 없습니다',
       icon: <Warning className={'popup-warningicon'}/>
-    }
+    },
   }
 
   // 팝업 배경 클릭 시 팝업 닫힘
@@ -31,7 +28,7 @@ function Btn1Popup({ isOpen, setIsOpen, type, onConfirm, className='' }) {
   if (!isOpen) return null;
   
   return (
-    <div className={className ? className : 'popup-box'} onClick={closePopup}>
+    <div className='popup-box' onClick={closePopup}>
       <div className='popup'>
 
         <div className='popup-cont'>
@@ -40,10 +37,7 @@ function Btn1Popup({ isOpen, setIsOpen, type, onConfirm, className='' }) {
         </div>
 
         <div className='popup-btns-box'>
-          <button className='btn1popup-btn' onClick={() => {
-            if (onConfirm) onConfirm();  // 조건부 실행
-            else setIsOpen(false); 
-          }}>
+          <button className='btn1popup-btn' onClick={() => setIsOpen(false)}>
             확인
           </button>
         </div>

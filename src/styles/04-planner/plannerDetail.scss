@@ -1,92 +1,34 @@
-.planner_detail{
-    position: relative;
-    padding-top: 92px;
-}
-.tagbtn{
-    font-size: 18px;
-}
-.checkdetail-icon-close{
-    position: absolute;
-    left: 0; top: 60px;
-    width: 14px; height: 14px;
-    cursor: pointer;
-    img{
-        width: 100%; height: 100%;
-        object-fit: fill;
-    }
-}
-.planner_title{width: 85%;}
-.planner_title:focus{outline: none;}
-.planner_title, .planner_weather{font-weight: bold; font-size: 22px !important;}
-
-//날씨 로딩 중
-.detail_loading{
-    b{
-        display: inline-block;
-        font-size: 22px;
-        margin-bottom: 16px;
-        span{ color: #2288FD;}
-    }
-}
-.weather_loading{
-    width: 50%;
-    margin: 0 auto;
-    height: 120px;
-    img{
-        width: 50%;
-        display: inline-block;
-        text-align: center;
-    }
-}
 //날씨
+h2{font-size: 22px;}
 .weather_content{
     margin: 0 auto 50px;
     font-weight: bold;
-    h2{font-size: 22px; margin-bottom: 5px;}
-    .weather_item{
-        gap: 5%;
-        display: flex;
-        justify-content: space-between;
-    }
-    .weathertemp, .weather_date{ 
-        text-align: center;
-        font-size: 19px; 
-    }
-    .weather_icon{
-        width: 100%;
-        margin: 16px auto;
-        img{
-            display: block;
-            margin: 0 auto;
-            width: 50%;
-        }
-    }
+    h2{margin-bottom: 5px;}
     .weather_wf{
-        display: flex;
         margin-bottom: 16px;
         font-size: 22px;
-        .weather_text{
+        span:nth-of-type(2){
             margin-left: 10px;
             color: #2288FD;
         }
     }
 }
+
 //여행일정
 .planner_content{
     position: relative;
     .hand{
         position: absolute;
-        top: 1000%;
+        top: 27%;
         right: 5%;
         transform: translate(-50%, -50%);
         z-index: 99;
     }
     .planner{
-        position: relative;
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-        button{
+        a{
             font-size: 16px;
             color: #2288FD;
         }
@@ -96,29 +38,19 @@
         font-size: 14px;
     }
     .planner_tagbtn{
-        font-size: 16px;
-        margin-bottom: 16px;
+        margin: 16px 0;
     }
 }
-.readonly{
-    padding-bottom: 92px;
-}
+
 //비행기 티켓
 .ticketline{
-    margin: 0 auto 32px;
+    margin: 16px auto;
     .ticket{
         width: 100%;
         border: 1px solid black;
         border-radius: 10px;
         .ticketpadding{
             padding: 16px 5%;
-            .barcode{
-                max-width: 80%;
-                margin: 0 auto;
-                .barcode_img{
-                    width: 100%;
-                }
-            }
         }
         .tickettop{
             position: relative;
@@ -135,7 +67,7 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                font-size: 14px; 
+                font-size: 14px;
                 margin-bottom: 16px;
                 //Day 1 4/3 목
                 .ticketdate{
@@ -148,28 +80,20 @@
                     margin: 0 auto;
                 }
                 //수정버튼
-                .right_box{
-                    width: 79.45px;
-                    .topBarBtn{
-                        display: inline-block;
-                        width: 100%;
-                        color: #2288FD;
-                    }
+                .topbarright{
+                    color: #2288FD;
                 }
             }
             //ul
             .tickebox{
                 //li
                 .liItem{
-                    position: relative;
                     display: flex;
                     align-items: center;
                     gap: 5%;
                 }
-                .svg_vertical_line{
-                    flex-grow: 1;
-                    flex-shrink: 1; /* 줄어들 수 있게 */
-                    height: 100%;
+                .vertical-line {
+                    min-height: 100px;
                 }
                 .content{
                     box-shadow:""
@@ -193,22 +117,12 @@
                         padding: 20%;
                         text-align: center;
                     }
-                    
-                }
-                .pick_read{
-                    display: inline-block;
-                    width: 100%;
-                }
-                .plnner_drag{
-                    position: absolute;
-                    top: 50%;
-                    right: 0;
-                    transform: translateY(-50%);
+                
                 }
             }
         }
         //중앙 점선
-        .svg_middle_line{
+        .svgline{
             position: relative;
             display: flex;
             align-items: center;
@@ -249,66 +163,34 @@
     width: 100%;
     p:nth-of-type(1){
         margin: 7px 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        width: 85%;
     }
     p:nth-of-type(2){
         font-size: 11px;
         color: rgb(0, 0, 0, 0.3);
     }
-    .card_title{
-        font-size: 20px;
+    .title{
+        font-size: 14px;
         font-weight: bold;
-        margin :0 
     }
     .memoNtrash{
     height: 100px;
     display: flex;
     .trashicon{
-        right: -194px !important;
+        right: -160px !important;
     }
     .memoicon{
         width: 80px;
         height: 100%;
         background: #2288FD;
         position: absolute;
-        top: 0; right: -115px;
+        top: 0; right: -80px;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 }
-.planner_memo{
-    position: relative;
-    width: 100%;
-    .memo_close{
-        position: absolute;
-        top: 30%;
-        right: 10%;
-        transform: translate(-50%, -50%);
-    }
-    .memo_text{
-        position: absolute;
-        left: 13%;
-        top: 54%;
-        width: 50%;
-        transform: translate(0%, -50%);
-        background-color: transparent;
-        resize: none;
-        outline: none;
-    }
-}
 }
 .cardbtn{
     width: 100%;
-    margin: 0 auto 16px;
+    margin: 0 auto;
 }
-//선택완료
-.place_btn{
-    font-size: 18px;
-    width: 100%;
-}
-
-@import './res-plannerDetail.scss';

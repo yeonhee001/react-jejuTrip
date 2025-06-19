@@ -1,6 +1,7 @@
 import React from 'react'
 import Right_black from '../icons/Right_black'
 import { useNavigate } from 'react-router-dom';
+import Trash from '../icons/Trash';
 
 function ListItem({ id, title, date, page }) {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ function ListItem({ id, title, date, page }) {
     <div className='listitem' onClick={changeLink}>
       <div>
         <p>{title}</p>
-        <span> {date.length > 1 ? `${date[0]} - ${date[date.length-1]}` : date} </span>
+        <span>{date}</span>
       </div>
       <Right_black className={'listitem-icon'}/>
     </div>

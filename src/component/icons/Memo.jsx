@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Memo({className}) {
+function Memo() {
   return (
-    <div className={className}><img src='/imgs/_icons/Memo.svg'/></div>
+    <div><img src='/imgs/_icons/Memo.svg'/></div>
   )
 }
 

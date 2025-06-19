@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Photo({ className }) {
+function Photo() {
   return (
-    <div className={className}><img src='/imgs/_icons/Photo.svg'/></div>
+    <div><img src='/imgs/_icons/Photo.svg'/></div>
   )
 }
 

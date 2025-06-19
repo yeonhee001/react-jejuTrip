@@ -2,7 +2,7 @@ import React from 'react'
 import Warning from '../icons/Warning';
 import Call from '../icons/Call';
 
-function Btn2Popup({ isOpen, setIsOpen, type, onConfirm, onCancel, className='' }) {
+function Btn2Popup({ isOpen, setIsOpen, type }) {
 
   // type별 팝업 내용
   const popupContent = {
@@ -40,7 +40,7 @@ function Btn2Popup({ isOpen, setIsOpen, type, onConfirm, onCancel, className='' 
       icon: <Warning className={'popup-warningicon'}/>
     },
     call: {
-      txt: '1588-0000',
+      txt: '070-0707-0707',
       btntxt1: '취소',
       btntxt2: '통화',
       icon: <Call className={'popup-callicon'}/>
@@ -58,7 +58,7 @@ function Btn2Popup({ isOpen, setIsOpen, type, onConfirm, onCancel, className='' 
   if (!isOpen) return null;
 
   return (
-    <div className={className ? className : 'popup-box'} onClick={closePopup}>
+    <div className='popup-box' onClick={closePopup}>
       <div className='popup'>
 
         <div className='popup-cont'>
@@ -70,19 +70,10 @@ function Btn2Popup({ isOpen, setIsOpen, type, onConfirm, onCancel, className='' 
         </div>
 
         <div className='popup-btns-box'>
-          <button 
-            className='btn2popup-btn' 
-            onClick={() => {
-              setIsOpen(false);
-              if (onCancel) onCancel();
-            }}>
+          <button className='btn2popup-btn' onClick={() => setIsOpen(false)}>
             {popupContent[type]?.btntxt1}
           </button>
-          <button
-            className='btn1popup-btn'
-            onClick={() => {
-              if (onConfirm) onConfirm(); // callback 실행
-          }}>
+          <button className='btn1popup-btn' onClick={() => setIsOpen(false)}>
             {popupContent[type]?.btntxt2}
           </button>
         </div>

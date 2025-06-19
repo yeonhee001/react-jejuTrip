@@ -1,12 +1,11 @@
 import React from 'react'
 import Left_black from '../icons/Left_black'
 
-function SearchBar({onSubmit, showBackBtn, placeholder, value, onChange, submitbtn, onClick}) {
+function SearchBar({showBackBtn, placeholder, submitbtn, onClick}) {
   return (
-    <form className='searchbar' onSubmit={onSubmit}>
+    <form className='searchbar'>
       {showBackBtn && <Left_black className={'search-back'} onClick={() => { onClick() }}/>}
-      <input type="text" placeholder={placeholder} 
-        value={value} onChange={onChange} name='search' />
+      <input type="text" placeholder={placeholder} name='search' />
       <button type="submit">{submitbtn}</button>
     </form>
   )

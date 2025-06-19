@@ -10,12 +10,12 @@ function Toggle({title, isOpen, setIsOpen}) {
   }
 
   return (
-    <>
+    <div>
       <div className='toggle' onClick={toggleIcon}>
         <b>{title}</b>
         <span>{ isOpen ? <Down_black className={'toggle-icon'}/> : <Up_black className={'toggle-icon'}/>}</span>
       </div>
-    </>
+    </div>
   )
 }
 

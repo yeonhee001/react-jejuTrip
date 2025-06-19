@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useSwipeable } from 'react-swipeable';
 import Trash from '../icons/Trash';
 
-function SwipeAction({children, setTrashClick, setIsPopupOpen, resetSwipe }) {
+function SwipeAction({children}) {
     const [swipe, setSwipe] = useState(0); // 현재 이동 거리
     const [trashbtn, setTrashbtn] = useState(false); // 스와이프 상태 관리
-
-    useEffect(() => {
-        if (resetSwipe) {
-        setSwipe(0);
-        setTrashbtn(false);
-        }
-    }, [resetSwipe]);
 
     const handlers = useSwipeable({
         onSwiping: (e) => {
@@ -46,7 +39,7 @@ function SwipeAction({children, setTrashClick, setIsPopupOpen, resetSwipe }) {
                 }}
             >
                 <div className='children'>{children}</div>
-                <div className="trashicon" onClick={() => {setTrashClick(true); setIsPopupOpen(true)}}><Trash/></div>
+                <div className="trashicon" onClick={() => alert("삭제!")}><Trash/></div>
             </div>
         </div>
     );

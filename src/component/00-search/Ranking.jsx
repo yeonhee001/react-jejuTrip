@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Ranking({rank, word, onClick}) {  
+function Ranking({rank, word}) {  
   return (
-    <div className='rankingOne' onClick={onClick}>
+    <div className='rankingOne'>
       <b>{rank}</b>
       <span>{word}</span>
     </div>

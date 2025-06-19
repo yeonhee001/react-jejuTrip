@@ -1,74 +1,9 @@
-.trip-detail-Page{padding: 92px 0 110px;}
-
-// TripDetailItem 컴포넌트
-.trip-detail-item{
-  .trip-detail-top{
-    width: 100%;
-    position: relative;
-    .trip-detail-img{
-      >img{
-        width: calc(100% + 76px); // style.scss에서 뺀 패딩 38px * 2
-        margin-left: -38px;
-        margin-right: -38px;
-        // 위 3가지 body에서 패딩 넣은거 무시하기
-        object-fit: cover;
-        height: 600px;
-      }
-    }
-    .likewhite{
-      position: absolute;
-      right: 0; bottom: 6%;
-      width: 36px; height: 32px;
-      img{width: 36px; height: 32px;}
-    }
-  }
-  .trip-detail-text{
-    margin-top: 32px;
-    h3{
-      font-size: 24px;
-    }
-    b{
-      font-size: 16px;
-      line-height: 1.4;
-      display: block;
-      padding: 16px 0 10px;
-    }
-    p{
-      line-height: 18px;
-    }
-    span{
-      display: block;
-      padding: 10px 0 16px;
-    }
-  }
-}
-
-// TripTag 컴포넌트
-.trip-tag{
-  .trip-tag-div{
-    text-align: center;
-    display: inline-block;
-    width: auto;
-    height: 38px;
-    margin: 0 10px 10px 0;
-    >span{
-      display: flex;
-      align-items: center;
-      display: inline-block;
-      width: 100%;
-      height: 100%;
-      border: 1px solid #333;
-      border-radius: 7px;
-      padding: 12px;
-      font-size: 12px;
-    }
-  }
-}
+.trip-detail-Page{margin: 92px 0 91px;}
 
 .trip-around-part{
   margin-bottom: 32px;
   h3{
-    font-size: 20px;
+    font-size: 14px;
     margin: 32px 0 7px;
   }
   p{
@@ -78,6 +13,28 @@
   }
 }
 
+// TripTag 컴포넌트
+.trip-tag{
+  .trip-tag-swiper{
+    text-align: center;
+    display: inline-block;
+    .trip-tag-slide{
+      width: auto;
+      height: 38px;
+      >span{
+        display: flex;
+        align-items: center;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        border: 1px solid #333;
+        border-radius: 7px;
+        padding: 12px;
+        font-size: 12px;
+      }
+    }
+  }
+}
 // Around 컴포넌트
 .trip-around-swiper{
   .trip-around-slide{
@@ -98,14 +55,13 @@
     }
   }
   >b{
-    font-size: 16px;
     word-break: break-word;
     display: block;
-    margin: 7px 0 4px;
+    margin: 7px 0 3px;
   }
   >span{
     display: block;
-    font-size: 14px;
+    font-size: 12px;
   }
 }
 // BackNext 컴포넌트
@@ -113,29 +69,59 @@
   display: flex;
   justify-content: space-between;
   gap: 6px;
-  margin-top: 32px;
   padding-bottom: 33px;
   gap: 5px;
   >button{
     display: flex;
     justify-content: center;
     gap: 6px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     .backnext-btn{
-      width: 8px; height: 18px;
+      width: 5px; height: 10px;
       img{
-        padding-bottom: 2px;
           width: 100%; height: 100%;
       }
       }
   }
 }
-
-
-.trip-detail-loading{
-  margin: 120px auto;
-  width: 300px;
+// TripDetailItem 컴포넌트
+.trip-detail-item{
+  .trip-detail-top{
+    width: 100%;
+    position: relative;
+    .trip-detail-img{
+      >img{
+        width: calc(100% + 76px); // style.scss에서 뺀 패딩 38px * 2
+        margin-left: -38px;
+        margin-right: -38px;
+        // 위 3가지 body에서 패딩 넣은거 무시하기
+        object-fit: cover;
+        height: 411px;
+      }
+    }
+    .likewhite{
+      position: absolute;
+      right: 0; bottom: 7%;
+    }
+  }
+  .trip-detail-text{
+    margin-top: 32px;
+    h3{
+      font-size: 20px;
+    }
+    b{
+      display: block;
+      padding: 16px 0 10px;
+    }
+    p{
+      line-height: 20px;
+    }
+    span{
+      display: block;
+      padding: 10px 0 16px;
+    }
+  }
 }
 
 

@@ -1,8 +1,8 @@
-.trip-listpage{ padding: 92px 0 150px; }
+.trip-listpage{ margin: 92px 0 150px; }
 
 .trip-list-topimg{
   .trip-list-title{
-    font-size: 24px;
+    font-size: 20px;
     padding-bottom: 7px;
   }
   >img{
@@ -10,7 +10,7 @@
     margin-left: -38px;
     margin-right: -38px;
     // 위 3가지 body에서 패딩 넣은거 무시하기
-    height: 410px;
+    height: 248px;
     object-fit: cover;
   }
 }
@@ -21,31 +21,12 @@
   padding: 32px 0 10px;
   .trip-list-cont-title{
     >h3{
-      font-size: 20px;
+      font-size: 18px;
     }
     >span{
-      font-size: 18px;
       display: block;
       font-weight: bold;
       padding-top: 6px;
-    }
-  }
-}
-.place-item-all{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  .place{
-    width: 96%;
-  }
-  .place-like-count{
-    width: 4%;
-    padding-bottom: 10px;
-    padding-left: 3px;
-    text-align: right;
-    span{
-      font-size: 18px;
-      font-weight: bold;
     }
   }
 }
@@ -61,7 +42,7 @@
     .order-button {
       background: transparent;
       border: none;
-      font-size: 14px;
+      font-size: 10px;
       font-weight: bold;
       color: #333;
       padding-right: 6px;
@@ -73,26 +54,15 @@
     right: 0; top: 130%;
     background: white;
     border: 1px solid #555;
-    width: 80px;
+    width: 68px;
+    height: 92px;
     border-radius: 10px;
     padding: 15px;
     li {
-      font-size: 14px;
+      font-size: 10px;
       font-weight: bold;
-      padding-bottom: 14px;
-      text-align: center;
+      padding-bottom: 13px;
       cursor: pointer;
     }
-    li:nth-of-type(3){padding-bottom: 0;}
   }
 }
-
-//데이터로딩
-.trip-list-loading{
-  margin: 120px auto;
-  width: 300px;
-}
-
-
-
-@import './res-tripList.scss';
