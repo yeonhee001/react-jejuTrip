@@ -1,4 +1,5 @@
-<img src="https://github.com/user-attachments/assets/0635e812-e6b5-4e42-871c-483b6ec5a136" width="1000px"/>
+<img src="https://github.com/user-attachments/assets/73474e41-1664-4b8d-8c83-3817146c0573" width="1000px"/>
+
 
 
 ## ✨ 소개
@@ -10,7 +11,7 @@ React와 비짓제주, 기상청 오픈 API를 활용하여 <br>
 다양한 환경에서도 편리하게 이용할 수 있도록 개발했습니다.
 
 ## 🔗 배포 URL
-https://jeju-trip-eosin.vercel.app/
+https://jeju-trip-02project.vercel.app
 
 ## 📑 프로젝트 요약
 
