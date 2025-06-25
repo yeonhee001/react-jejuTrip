@@ -1,6 +1,4 @@
-<img src="https://github.com/user-attachments/assets/73474e41-1664-4b8d-8c83-3817146c0573" width="1000px"/>
-
-
+<img src="https://github.com/user-attachments/assets/aa3e7c70-4dac-4b1a-a4e5-bb1fd5055bbb" width="1000px"/>
 
 ## ✨ 소개
 제주 여행을 계획하고 다양한 장소를 탐색할 수 있는 SPA 웹사이트, <b>"떠나봅서"</b> 입니다.
@@ -44,9 +42,9 @@ https://jeju-trip-02project.vercel.app
 
 ## 📆 기간 및 인원
 
-  * 총 작업 기간 : 15일
-    * 기초 데이터 수집 및 화면 설계 기간 : 2일
-    * 개발 및 테스트 기간 : 13일
+  * 총 작업 기간 : 25일
+    * 기초 데이터 수집 및 화면 설계 기간 : 7일
+    * 개발 및 테스트 기간 : 18일
    
   * 팀원 : 5명
 
