@@ -202,6 +202,11 @@ https://jeju-trip-02project.vercel.app
 | 완료 보고서 | [완료보고서.pdf](https://github.com/yeonhee001/jeju-trip-02project/blob/main/work/2%EC%B0%A8%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_B%ED%8C%80_%EC%99%84%EB%A3%8C%EB%B3%B4%EA%B3%A0%EC%84%9C.pdf) | 프로젝트 진행 결과 요약 등 최종 보고 |
 
 
+## 💾 프로젝트 저장소
+프론트엔드와 서버 소스 코드는 별도의 저장소로 분리되어있습니다.
+* [서버 저장소 바로가기](https://github.com/yeonhee001/node-jejuServer.git)
+
+
 # 소연희의 개발 상세
 
 ## 📑 요약
